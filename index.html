@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NURA | 전국대학교로켓연합회</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Pretendard & Noto Sans KR -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+      }
+      /* 개요 섹션 높이 조정 */
+      @media (min-width: 768px) {
+        #overview {
+          min-height: 100vh;
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+      }
+      @media (max-width: 767px) {
+        #overview {
+          min-height: 100vh;
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+      }
+      
+      /* 전체 배경색 강화 */
+      html, body {
+        background-color: #030712;
+        overflow-x: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
+    <div class="w-full bg-gray-950">
+      <!-- Sidebar Navigation -->
+      <nav id="sidebar" class="fixed top-0 left-0 h-screen w-56 bg-gray-900 flex flex-col py-10 px-4 gap-6 hidden md:flex z-50">
+        <div class="mb-8 text-2xl font-bold tracking-tight">
+          <span class="text-blue-400">NURA</span><br />
+          <span class="text-xs text-gray-400">전국대학교로켓연합회</span>
+        </div>
+        <ul class="flex flex-col gap-4 text-lg">
+          <li><a href="#overview" class="sidebar-link" data-section="overview">개요<br><span class="text-xs text-gray-400">Overview</span></a></li>
+          <li><a href="#about" class="sidebar-link" data-section="about">단체 소개<br><span class="text-xs text-gray-400">About</span></a></li>
+          <li><a href="#activities" class="sidebar-link" data-section="activities">활동 소개<br><span class="text-xs text-gray-400">Activities</span></a></li>
+          <li><a href="#sponsors" class="sidebar-link" data-section="sponsors">후원사 소개<br><span class="text-xs text-gray-400">Sponsors</span></a></li>
+          <li><a href="#contact" class="sidebar-link" data-section="contact">컨택 정보<br><span class="text-xs text-gray-400">Contact</span></a></li>
+        </ul>
+      </nav>
+      <!-- Main Content -->
+      <main class="w-full flex flex-col px-4 md:px-16 md:ml-56">
+        <!-- Overview Section -->
+        <section id="overview" class="min-h-screen flex flex-col justify-center">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4"></h1>
+          <p class="text-lg md:text-xl text-gray-300"></p>
+        </section>
+        <!-- About Section -->
+        <section id="about" class="py-16">
+          <h2 class="text-3xl font-bold mb-2"></h2>
+          <p class="text-gray-300"></p>
+        </section>
+        <!-- Activities Section -->
+        <section id="activities" class="py-16">
+          <h2 class="text-3xl font-bold mb-2"></h2>
+          <ul class="list-disc pl-6 text-gray-300"></ul>
+        </section>
+        <!-- Sponsors Section -->
+        <section id="sponsors" class="py-16">
+          <h2 class="text-3xl font-bold mb-2"></h2>
+          <div class="flex flex-wrap gap-8 items-center mt-4"></div>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact" class="py-16">
+          <h2 class="text-3xl font-bold mb-2"></h2>
+          <ul class="text-gray-300"></ul>
+        </section>
+      </main>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-8 px-4 md:px-16 w-full pb-14 md:pb-0">
+      <div class="max-w-6xl mx-auto md:ml-56">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Organization Info -->
+          <div></div>
+          
+          <!-- Contact Details -->
+          <div></div>
+          
+          <!-- Business Info -->
+          <div></div>
+        </div>
+        
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
+          <p class="text-gray-500 text-sm"></p>
+        </div>
+      </div>
+    </footer>
+    <!-- Mobile Bottom Nav -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-gray-900 flex md:hidden justify-around py-2 z-50 border-t border-gray-800">
+      <a href="#overview" class="sidebar-link px-2" data-section="overview">개요</a>
+      <a href="#about" class="sidebar-link px-2" data-section="about">소개</a>
+      <a href="#activities" class="sidebar-link px-2" data-section="activities">활동</a>
+      <a href="#sponsors" class="sidebar-link px-2" data-section="sponsors">후원</a>
+      <a href="#contact" class="sidebar-link px-2" data-section="contact">컨택</a>
+    </nav>
+    <script>
+      // 콘텐츠 데이터를 직접 포함
+      const contentData = {
+        "overview": {
+          "title": "전국대학교로켓연합회 NURA",
+          "subtitle": "National University Rocket Association",
+          "description": "대한민국 대학생 로켓 동아리들의 연합체로, 우주·로켓 분야의 학술 교류와 기술 발전을 도모합니다."
+        },
+        "about": {
+          "title": "단체 소개",
+          "subtitle": "About",
+          "description": "NURA는 1993년 설립된 전국 단위의 대학생 로켓 연합 단체입니다. 설립 배경, 참여 대학, 운영 방식 등은 추후 상세히 안내될 예정입니다."
+        },
+        "activities": {
+          "title": "활동 소개",
+          "subtitle": "Activities",
+          "items": [
+            "학술대회 개최",
+            "로켓 발사대회 주최",
+            "기술 교류 및 워크숍"
+          ]
+        },
+        "sponsors": {
+          "title": "후원사 소개",
+          "subtitle": "Sponsors",
+          "description": "NURA의 활동을 후원해주시는 기업 및 기관들입니다.",
+          "sponsors": [
+            {
+              "name": "후원사명",
+              "logo": "로고"
+            }
+          ]
+        },
+        "contact": {
+          "title": "컨택 정보",
+          "subtitle": "Contact",
+          "items": [
+            {
+              "label": "Email",
+              "value": "info@nura.kr",
+              "link": "mailto:info@nura.kr"
+            },
+            {
+              "label": "Instagram",
+              "value": "@nura.kr",
+              "link": "#"
+            },
+            {
+              "label": "Linktree",
+              "value": "linktr.ee/nura",
+              "link": "#"
+            }
+          ]
+        },
+        "footer": {
+          "organization": {
+            "name": "NURA",
+            "fullName": "전국대학교로켓연합회",
+            "englishName": "National University Rocket Association"
+          },
+          "contact": {
+            "title": "연락처",
+            "items": [
+              {
+                "icon": "📧",
+                "label": "Email",
+                "value": "info@nura.kr"
+              },
+              {
+                "icon": "📱",
+                "label": "Tel",
+                "value": "02-1234-5678"
+              },
+              {
+                "icon": "📍",
+                "label": "Address",
+                "value": "서울특별시 강남구 테헤란로 123"
+              }
+            ]
+          },
+          "business": {
+            "title": "사업자 정보",
+            "items": [
+              {
+                "label": "사업자등록번호",
+                "value": "123-45-67890"
+              },
+              {
+                "label": "대표자",
+                "value": "홍길동"
+              },
+              {
+                "label": "설립일",
+                "value": "2024년 1월 1일"
+              }
+            ]
+          },
+          "copyright": "© 2024 NURA. All rights reserved."
+        },
+        "navigation": {
+          "overview": {
+            "korean": "개요",
+            "english": "Overview"
+          },
+          "about": {
+            "korean": "단체 소개",
+            "english": "About"
+          },
+          "activities": {
+            "korean": "활동 소개",
+            "english": "Activities"
+          },
+          "sponsors": {
+            "korean": "후원사 소개",
+            "english": "Sponsors"
+          },
+          "contact": {
+            "korean": "컨택 정보",
+            "english": "Contact"
+          }
+        }
+      };
+      
+      // 페이지 로드 시 내용 업데이트
+      function loadContent() {
+        updateContent();
+      }
+      
+      // 페이지 내용 업데이트
+      function updateContent() {
+        // Overview 섹션
+        const overviewSection = document.getElementById('overview');
+        if (overviewSection && contentData.overview) {
+          const title = overviewSection.querySelector('h1');
+          const description = overviewSection.querySelector('p');
+          
+          title.innerHTML = `${contentData.overview.title} <span class="text-blue-400">NURA</span><br><span class="text-lg font-normal text-gray-400">${contentData.overview.subtitle}</span>`;
+          description.textContent = contentData.overview.description;
+        }
+        
+        // About 섹션
+        const aboutSection = document.getElementById('about');
+        if (aboutSection && contentData.about) {
+          const title = aboutSection.querySelector('h2');
+          const description = aboutSection.querySelector('p');
+          
+          title.innerHTML = `${contentData.about.title} <span class="text-lg text-gray-400">${contentData.about.subtitle}</span>`;
+          description.textContent = contentData.about.description;
+        }
+        
+        // Activities 섹션
+        const activitiesSection = document.getElementById('activities');
+        if (activitiesSection && contentData.activities) {
+          const title = activitiesSection.querySelector('h2');
+          const list = activitiesSection.querySelector('ul');
+          
+          title.innerHTML = `${contentData.activities.title} <span class="text-lg text-gray-400">${contentData.activities.subtitle}</span>`;
+          
+          if (list && contentData.activities.items) {
+            list.innerHTML = contentData.activities.items.map(item => `<li>${item}</li>`).join('');
+          }
+        }
+        
+        // Sponsors 섹션
+        const sponsorsSection = document.getElementById('sponsors');
+        if (sponsorsSection && contentData.sponsors) {
+          const title = sponsorsSection.querySelector('h2');
+          const container = sponsorsSection.querySelector('.flex.flex-wrap');
+          
+          title.innerHTML = `${contentData.sponsors.title} <span class="text-lg text-gray-400">${contentData.sponsors.subtitle}</span>`;
+          
+          if (container && contentData.sponsors.sponsors) {
+            container.innerHTML = contentData.sponsors.sponsors.map(sponsor => `
+              <div class="flex flex-col items-center">
+                <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center mb-2">${sponsor.logo}</div>
+                <span class="text-gray-400 text-sm">${sponsor.name}</span>
+              </div>
+            `).join('');
+          }
+        }
+        
+        // Contact 섹션
+        const contactSection = document.getElementById('contact');
+        if (contactSection && contentData.contact) {
+          const title = contactSection.querySelector('h2');
+          const list = contactSection.querySelector('ul');
+          
+          title.innerHTML = `${contentData.contact.title} <span class="text-lg text-gray-400">${contentData.contact.subtitle}</span>`;
+          
+          if (list && contentData.contact.items) {
+            list.innerHTML = contentData.contact.items.map(item => 
+              `<li>${item.label}: <a href="${item.link}" class="text-blue-400 underline">${item.value}</a></li>`
+            ).join('');
+          }
+        }
+        
+        // Footer 업데이트
+        updateFooter();
+      }
+      
+      // Footer 내용 업데이트
+      function updateFooter() {
+        if (!contentData.footer) return;
+        
+        const footer = document.querySelector('footer');
+        if (!footer) return;
+        
+        const orgInfo = footer.querySelector('.grid > div:nth-child(1)');
+        const contactInfo = footer.querySelector('.grid > div:nth-child(2)');
+        const businessInfo = footer.querySelector('.grid > div:nth-child(3)');
+        const copyright = footer.querySelector('.border-t p');
+        
+        // Organization Info
+        if (orgInfo && contentData.footer.organization) {
+          orgInfo.innerHTML = `
+            <h3 class="text-lg font-bold mb-4 text-blue-400">${contentData.footer.organization.name}</h3>
+            <p class="text-gray-400 text-sm mb-2">${contentData.footer.organization.fullName}</p>
+            <p class="text-gray-400 text-sm mb-2">${contentData.footer.organization.englishName}</p>
+          `;
+        }
+        
+        // Contact Info
+        if (contactInfo && contentData.footer.contact) {
+          contactInfo.innerHTML = `
+            <h3 class="text-lg font-bold mb-4">${contentData.footer.contact.title}</h3>
+            <div class="text-gray-400 text-sm space-y-2">
+              ${contentData.footer.contact.items.map(item => 
+                `<p>${item.icon} ${item.label}: ${item.value}</p>`
+              ).join('')}
+            </div>
+          `;
+        }
+        
+        // Business Info
+        if (businessInfo && contentData.footer.business) {
+          businessInfo.innerHTML = `
+            <h3 class="text-lg font-bold mb-4">${contentData.footer.business.title}</h3>
+            <div class="text-gray-400 text-sm space-y-2">
+              ${contentData.footer.business.items.map(item => 
+                `<p>${item.label}: ${item.value}</p>`
+              ).join('')}
+            </div>
+          `;
+        }
+        
+        // Copyright
+        if (copyright && contentData.footer.copyright) {
+          copyright.textContent = contentData.footer.copyright;
+        }
+      }
+      
+      // Active section highlight
+      const links = document.querySelectorAll('.sidebar-link');
+      const sections = Array.from(document.querySelectorAll('section'));
+      function onScroll() {
+        const scrollPos = window.scrollY + 120;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // 스크롤이 거의 끝에 도달했을 때 contact 섹션 활성화
+        if (scrollPos + windowHeight >= documentHeight - 100) {
+          links.forEach(link => {
+            if (link.dataset.section === 'contact') {
+              link.classList.add('text-blue-400', 'font-bold');
+            } else {
+              link.classList.remove('text-blue-400', 'font-bold');
+            }
+          });
+          return;
+        }
+        
+        let current = sections[0].id;
+        for (const section of sections) {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          if (scrollPos >= sectionTop - 200 && scrollPos < sectionTop + sectionHeight - 200) {
+            current = section.id;
+          }
+        }
+        
+        links.forEach(link => {
+          if (link.dataset.section === current) {
+            link.classList.add('text-blue-400', 'font-bold');
+          } else {
+            link.classList.remove('text-blue-400', 'font-bold');
+          }
+        });
+      }
+      
+      // 페이지 로드 시 내용 불러오기
+      document.addEventListener('DOMContentLoaded', loadContent);
+      
+      window.addEventListener('scroll', onScroll);
+      // Smooth scroll for anchor links (for Safari)
+      links.forEach(link => {
+        link.addEventListener('click', e => {
+          const href = link.getAttribute('href');
+          if (href.startsWith('#')) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    </script>
+  </body>
+</html> 
