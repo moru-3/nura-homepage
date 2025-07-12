@@ -44,7 +44,7 @@
       <!-- Sidebar Navigation -->
       <nav id="sidebar" class="fixed top-0 left-0 h-screen w-44 bg-gray-900 flex flex-col py-10 px-6 gap-6 hidden md:flex z-50 overflow-y-auto">
         <div class="mb-8 text-2xl font-bold tracking-tight flex flex-col items-start pl-1">
-          <img src="source/nura-logo.png" alt="NURA 로고" class="w-24 h-24 object-contain mb-2" />
+          <img src="source/resources/nura-logo.png" alt="NURA 로고" class="w-24 h-24 object-contain mb-2" />
           <span class="text-xs text-gray-400 text-left">전국대학교로켓연합회</span>
           <span class="text-[11px] text-gray-500 text-left mt-0.5 leading-tight block">The National Universities'</span>
           <span class="text-[11px] text-gray-500 text-left leading-tight block">Rocket Association</span>
@@ -52,9 +52,9 @@
         <ul class="flex flex-col gap-4 text-lg">
           <li><a href="#overview" class="sidebar-link" data-section="overview">개요<br><span class="text-xs text-gray-400">Overview</span></a></li>
           <li><a href="#about" class="sidebar-link" data-section="about">단체 소개<br><span class="text-xs text-gray-400">About</span></a></li>
-          <li><a href="#activities" class="sidebar-link" data-section="activities">활동 소개<br><span class="text-xs text-gray-400">Activities</span></a></li>
-          <li><a href="#sponsors" class="sidebar-link" data-section="sponsors">후원사 소개<br><span class="text-xs text-gray-400">Sponsors</span></a></li>
-          <li><a href="#contact" class="sidebar-link" data-section="contact">컨택 정보<br><span class="text-xs text-gray-400">Contact</span></a></li>
+          <li><a href="#activities" class="sidebar-link" data-section="activities">주요 활동<br><span class="text-xs text-gray-400">Activities</span></a></li>
+          <li><a href="#sponsors" class="sidebar-link" data-section="sponsors">후원사<br><span class="text-xs text-gray-400">Sponsors</span></a></li>
+          <li><a href="#resources" class="sidebar-link" data-section="resources">자료실<br><span class="text-xs text-gray-400">Resources</span></a></li>
         </ul>
       </nav>
       <!-- Main Content -->
@@ -78,32 +78,33 @@
           </div>
         </section>
         <!-- About Section -->
-        <section id="about" class="py-16">
+        <section id="about" class="py-20 border-t border-gray-800">
           <h2 class="text-3xl font-bold mb-2 text-left pl-8 pr-8"></h2>
           <p class="text-gray-300 text-left pl-8 pr-8"></p>
         </section>
         <!-- Activities Section -->
-        <section id="activities" class="py-16">
-          <h2 class="text-3xl font-bold mb-2 text-left pl-8 pr-8"></h2>
-          <ul class="list-disc pl-8 pr-8 text-gray-300 text-left"></ul>
+        <section id="activities" class="py-20 border-t border-gray-800">
+          <h2 class="text-3xl font-bold mb-8 text-left pl-8 pr-8"></h2>
+          <div id="activities-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-8"></div>
         </section>
         <!-- Sponsors Section -->
-        <section id="sponsors" class="py-16">
+        <section id="sponsors" class="py-20 border-t border-gray-800">
           <h2 class="text-3xl font-bold mb-2 text-left pl-8 pr-8"></h2>
-          <div class="flex flex-wrap gap-8 items-center mt-4 pl-8 pr-8"></div>
+          <div id="sponsor-wall" class="mt-4 px-8 py-6 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8"></div>
         </section>
-        <!-- Contact Section -->
-        <section id="contact" class="py-16">
-          <h2 class="text-3xl font-bold mb-2 text-left pl-8 pr-8"></h2>
-          <ul class="text-gray-300 text-left pl-8 pr-8"></ul>
+        <!-- Resources Section -->
+        <section id="resources" class="py-20 border-t border-gray-800">
+          <h2 class="text-3xl font-bold mb-8 text-left pl-8 pr-8"></h2>
+          <div class="flex flex-col items-start pl-8 pr-8" id="resources-content"></div>
         </section>
       </main>
     </div>
     
     <!-- Footer -->
     <footer class="bg-gray-900 border-t border-gray-800 py-8 px-4 md:px-16 w-full pb-14 md:pb-0">
-      <div class="max-w-6xl mx-auto md:ml-56">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="w-full flex flex-col md:ml-44 md:pr-44">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8">
           <!-- Organization Info -->
           <div></div>
           
@@ -120,64 +121,92 @@
       </div>
     </footer>
     <!-- Mobile Bottom Nav -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-gray-900 flex md:hidden justify-around py-2 z-50 border-t border-gray-800">
+    <nav class="fixed bottom-0 left-0 right-0 bg-gray-900 flex md:hidden justify-around py-4 z-50 border-t border-gray-800">
       <a href="#overview" class="sidebar-link px-2" data-section="overview">개요</a>
       <a href="#about" class="sidebar-link px-2" data-section="about">소개</a>
       <a href="#activities" class="sidebar-link px-2" data-section="activities">활동</a>
       <a href="#sponsors" class="sidebar-link px-2" data-section="sponsors">후원</a>
-      <a href="#contact" class="sidebar-link px-2" data-section="contact">컨택</a>
+      <a href="#resources" class="sidebar-link px-2" data-section="resources">자료</a>
     </nav>
     <script>
       // 콘텐츠 데이터를 직접 포함
       const contentData = {
         "overview": {
-          "title": "전국대학교로켓연합회 NURA",
-          "subtitle": "National University Rocket Association",
-          "description": "대한민국 대학생 로켓 동아리들의 연합체로, 우주·로켓 분야의 학술 교류와 기술 발전을 도모합니다."
+          "title": "전국대학교로켓연합회",
+          "subtitle": "The National Universities' Rocket Association",
+          "description": "로켓 기술 교류를 촉진하고 대학생들의 발사 활동을 지원합니다."
         },
         "about": {
           "title": "단체 소개",
           "subtitle": "About",
-          "description": "NURA는 1993년 설립된 전국 단위의 대학생 로켓 연합 단체입니다. 설립 배경, 참여 대학, 운영 방식 등은 추후 상세히 안내될 예정입니다."
+          "description": "NURA는 대학의 로켓 정보 교류 및 활동, 로켓 발사대회 경진을 목표로 설립되었습니다. 1992년 한국항공대에서 로켓 발사 대회가 개최된 것을 시작으로 1993년 각 대학의 로켓 정보 교류 및 활동을 위한 전국 로켓 연구 연합회가 창설 되었으며 그 후, 2001년 정식으로 전국 대학교 로켓 연합회를 발족하였습니다."
         },
         "activities": {
-          "title": "활동 소개",
+          "title": "주요 활동",
           "subtitle": "Activities",
-          "items": [
-            "학술대회 개최",
-            "로켓 발사대회 주최",
-            "기술 교류 및 워크숍"
+          "categories": [
+            {
+              "title": "학술대회",
+              "items": [
+                "로켓/우주 분야 학술 교류",
+                "논문 발표 및 세미나",
+                "참여 대학생 네트워킹"
+              ]
+            },
+            {
+              "title": "발사대회",
+              "items": [
+                "전국 대학생 로켓 발사대회 주최",
+                "실제 로켓 제작 및 발사",
+                "기술 경진 및 시상"
+              ]
+            },
+            {
+              "title": "추진공학회",
+              "items": [
+                "추진기관/엔진 연구 교류",
+                "전문가 초청 강연",
+                "실험 및 실습 워크숍"
+              ]
+            },
+            {
+              "title": "기타 활동",
+              "items": [
+                "기술 워크숍 및 세미나",
+                "산학협력/산업체 견학",
+                "회원 교류 행사"
+              ]
+            }
           ]
         },
         "sponsors": {
-          "title": "후원사 소개",
+          "title": "후원사",
           "subtitle": "Sponsors",
           "description": "NURA의 활동을 후원해주시는 기업 및 기관들입니다.",
           "sponsors": [
             {
-              "name": "후원사명",
-              "logo": "로고"
-            }
-          ]
-        },
-        "contact": {
-          "title": "컨택 정보",
-          "subtitle": "Contact",
-          "items": [
-            {
-              "label": "Email",
-              "value": "info@nura.kr",
-              "link": "mailto:info@nura.kr"
+              "name": "대한항공",
+              "logo": "source/sponsors/koreanair.png",
+              "url": "https://www.koreanair.com",
+              "ratio": 2.8
             },
             {
-              "label": "Instagram",
-              "value": "@nura.kr",
-              "link": "#"
+              "name": "이노스페이스",
+              "logo": "source/sponsors/innospace.png",
+              "url": "https://www.innospc.com",
+              "ratio": 2.5
             },
             {
-              "label": "Linktree",
-              "value": "linktr.ee/nura",
-              "link": "#"
+              "name": "한국항공우주연구원",
+              "logo": "source/sponsors/kari.jpg",
+              "url": "https://www.kari.re.kr",
+              "ratio": 1.1
+            },
+            {
+              "name": "LIG풍산",
+              "logo": "source/sponsors/ligpoongsan.png",
+              "url": "https://www.ligpoongsan.co.kr",
+              "ratio": 2.0
             }
           ]
         },
@@ -185,7 +214,7 @@
           "organization": {
             "name": "NURA",
             "fullName": "전국대학교로켓연합회",
-            "englishName": "National University Rocket Association"
+            "englishName": "The National Universities' Rocket Association"
           },
           "contact": {
             "title": "연락처",
@@ -193,17 +222,17 @@
               {
                 "icon": "📧",
                 "label": "Email",
-                "value": "info@nura.kr"
+                "value": "nurarocketscience@gmail.com"
               },
               {
-                "icon": "📱",
-                "label": "Tel",
-                "value": "02-1234-5678"
+                "icon": "📷",
+                "label": "Instagram",
+                "value": "@nura._.official"
               },
               {
                 "icon": "📍",
                 "label": "Address",
-                "value": "서울특별시 강남구 테헤란로 123"
+                "value": "경기도 고양시 덕양구 항공대학로 76"
               }
             ]
           },
@@ -212,42 +241,27 @@
             "items": [
               {
                 "label": "사업자등록번호",
-                "value": "123-45-67890"
+                "value": "609-82-83482"
               },
               {
                 "label": "대표자",
-                "value": "홍길동"
+                "value": "전하상"
               },
               {
                 "label": "설립일",
-                "value": "2024년 1월 1일"
+                "value": "1992년 3월 2일"
               }
             ]
           },
-          "copyright": "© 2024 NURA. All rights reserved."
+          "copyright": "© 1992 NURA. All rights reserved."
         },
-        "navigation": {
-          "overview": {
-            "korean": "개요",
-            "english": "Overview"
-          },
-          "about": {
-            "korean": "단체 소개",
-            "english": "About"
-          },
-          "activities": {
-            "korean": "활동 소개",
-            "english": "Activities"
-          },
-          "sponsors": {
-            "korean": "후원사 소개",
-            "english": "Sponsors"
-          },
-          "contact": {
-            "korean": "컨택 정보",
-            "english": "Contact"
-          }
-        }
+        "resources": {
+          "title": "자료실",
+          "subtitle": "Resources",
+          "description": "NURA의 기술문서, 역사, 각종 자료 등은 아래 노션 페이지에서 확인하실 수 있습니다.",
+          "notionUrl": "https://www.notion.so/nura/NURA-Resources",
+          "buttonText": "NURA 자료실 바로가기"
+        },
       };
       
       // 페이지 로드 시 내용 업데이트
@@ -263,7 +277,7 @@
           const title = overviewSection.querySelector('h1');
           const description = overviewSection.querySelector('p');
           
-          title.innerHTML = `${contentData.overview.title} <span class="text-blue-400">NURA</span><br><span class="text-lg font-normal text-gray-400">${contentData.overview.subtitle}</span>`;
+          title.innerHTML = `<span class= "text-blue-400">${contentData.overview.title}</span><br><span class="text-lg font-normal text-gray-400">${contentData.overview.subtitle}</span>`;
           description.textContent = contentData.overview.description;
         }
         
@@ -281,46 +295,59 @@
         const activitiesSection = document.getElementById('activities');
         if (activitiesSection && contentData.activities) {
           const title = activitiesSection.querySelector('h2');
-          const list = activitiesSection.querySelector('ul');
-          
+          const cards = document.getElementById('activities-cards');
           title.innerHTML = `${contentData.activities.title} <span class="text-lg text-gray-400">${contentData.activities.subtitle}</span>`;
-          
-          if (list && contentData.activities.items) {
-            list.innerHTML = contentData.activities.items.map(item => `<li>${item}</li>`).join('');
-          }
-        }
-        
-        // Sponsors 섹션
-        const sponsorsSection = document.getElementById('sponsors');
-        if (sponsorsSection && contentData.sponsors) {
-          const title = sponsorsSection.querySelector('h2');
-          const container = sponsorsSection.querySelector('.flex.flex-wrap');
-          
-          title.innerHTML = `${contentData.sponsors.title} <span class="text-lg text-gray-400">${contentData.sponsors.subtitle}</span>`;
-          
-          if (container && contentData.sponsors.sponsors) {
-            container.innerHTML = contentData.sponsors.sponsors.map(sponsor => `
-              <div class="flex flex-col items-center">
-                <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center mb-2">${sponsor.logo}</div>
-                <span class="text-gray-400 text-sm">${sponsor.name}</span>
+          if (cards && contentData.activities.categories) {
+            cards.innerHTML = contentData.activities.categories.map(cat => `
+              <div class="bg-gray-900 rounded-xl shadow p-6 flex flex-col">
+                <h3 class="text-xl font-bold mb-2 text-blue-300">${cat.title}</h3>
+                <ul class="list-disc pl-5 text-gray-300 text-sm">
+                  ${cat.items.map(item => `<li>${item}</li>`).join('')}
+                </ul>
               </div>
             `).join('');
           }
         }
         
-        // Contact 섹션
-        const contactSection = document.getElementById('contact');
-        if (contactSection && contentData.contact) {
-          const title = contactSection.querySelector('h2');
-          const list = contactSection.querySelector('ul');
-          
-          title.innerHTML = `${contentData.contact.title} <span class="text-lg text-gray-400">${contentData.contact.subtitle}</span>`;
-          
-          if (list && contentData.contact.items) {
-            list.innerHTML = contentData.contact.items.map(item => 
-              `<li>${item.label}: <a href="${item.link}" class="text-blue-400 underline">${item.value}</a></li>`
-            ).join('');
+        // Sponsors 섹션 (Activities 카드와 동일한 스타일)
+        function renderSponsorWall() {
+          const sponsorsSection = document.getElementById('sponsors');
+          if (!sponsorsSection || !contentData.sponsors) return;
+          const title = sponsorsSection.querySelector('h2');
+          const wall = document.getElementById('sponsor-wall');
+          title.innerHTML = `${contentData.sponsors.title} <span class="text-lg text-gray-400">${contentData.sponsors.subtitle}</span>`;
+          if (wall && contentData.sponsors.sponsors) {
+            wall.innerHTML = contentData.sponsors.sponsors.map(sponsor => `
+              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
+                <a href="${sponsor.url}" target="_blank" rel="noopener noreferrer">
+                  <img src="${sponsor.logo}" alt="${sponsor.name} 로고" class="max-w-full max-h-24 object-contain" />
+                </a>
+              </div>
+            `).join('');
           }
+        }
+        window.addEventListener('load', renderSponsorWall);
+        window.addEventListener('resize', renderSponsorWall);
+        
+        // Resources 섹션 렌더링
+        const resourcesSection = document.getElementById('resources');
+        if (resourcesSection && contentData.resources) {
+          const title = resourcesSection.querySelector('h2');
+          const content = document.getElementById('resources-content');
+          title.innerHTML = `${contentData.resources.title} <span class="text-lg text-gray-400">${contentData.resources.subtitle}</span>`;
+          content.innerHTML = `
+            <div class="relative min-h-[260px] max-w-3xl w-full mx-auto rounded-xl shadow bg-white/80 overflow-hidden p-10 flex flex-col items-center justify-center">
+              <img src="source/resources/notion-blur.png" alt="Notion" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
+              <div class="relative z-10 flex flex-col items-center">
+                <h3 class="text-2xl font-bold mb-4 text-gray-900">${contentData.resources.title}</h3>
+                <p class="text-gray-700 mb-6 text-center">${contentData.resources.description}</p>
+                <a href="${contentData.resources.notionUrl}" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+                  <span class="text-2xl mr-2">📄</span> ${contentData.resources.buttonText}
+                </a>
+              </div>
+            </div>
+          `;
         }
         
         // Footer 업데이트
@@ -354,7 +381,9 @@
             <h3 class="text-lg font-bold mb-4">${contentData.footer.contact.title}</h3>
             <div class="text-gray-400 text-sm space-y-2">
               ${contentData.footer.contact.items.map(item => 
-                `<p>${item.icon} ${item.label}: ${item.value}</p>`
+                item.label === 'Email'
+                  ? `<p class='break-all'>${item.icon} ${item.label}: ${item.value}</p>`
+                  : `<p>${item.icon} ${item.label}: ${item.value}</p>`
               ).join('')}
             </div>
           `;
@@ -382,14 +411,14 @@
       const links = document.querySelectorAll('.sidebar-link');
       const sections = Array.from(document.querySelectorAll('section'));
       function onScroll() {
-        const scrollPos = window.scrollY + 120;
+        const scrollPos = window.scrollY;
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
-        
-        // 스크롤이 거의 끝에 도달했을 때 contact 섹션 활성화
+
+        // 스크롤이 거의 끝에 도달했을 때 resources 섹션 활성화
         if (scrollPos + windowHeight >= documentHeight - 100) {
           links.forEach(link => {
-            if (link.dataset.section === 'contact') {
+            if (link.dataset.section === 'resources') {
               link.classList.add('text-blue-400', 'font-bold');
             } else {
               link.classList.remove('text-blue-400', 'font-bold');
@@ -397,17 +426,17 @@
           });
           return;
         }
-        
+
         let current = sections[0].id;
         for (const section of sections) {
           const sectionTop = section.offsetTop;
           const sectionHeight = section.offsetHeight;
-          
-          if (scrollPos >= sectionTop - 200 && scrollPos < sectionTop + sectionHeight - 200) {
+          // 섹션의 중간이 화면 상단에 닿을 때까지 활성화 유지
+          if (scrollPos >= sectionTop - windowHeight / 2 && scrollPos < sectionTop + sectionHeight - windowHeight / 2) {
             current = section.id;
           }
         }
-        
+
         links.forEach(link => {
           if (link.dataset.section === current) {
             link.classList.add('text-blue-400', 'font-bold');
