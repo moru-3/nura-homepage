@@ -256,11 +256,23 @@
           "copyright": "© 1992 NURA. All rights reserved."
         },
         "resources": {
-          "title": "자료실",
-          "subtitle": "Resources",
-          "description": "NURA의 기술문서, 역사, 각종 자료 등은 아래 노션 페이지에서 확인하실 수 있습니다.",
-          "notionUrl": "https://www.notion.so/nura/NURA-Resources",
-          "buttonText": "NURA 자료실 바로가기"
+          "gallery": {
+            "title": "갤러리",
+            "description": "NURA의 활동 사진, 대회 사진 등은 아래 원드라이브 공유 폴더에서 확인하실 수 있습니다.",
+            "buttonText": "NURA 갤러리 바로가기",
+            "buttonIcon": "🖼️",
+            "url": "https://onedrive.live.com/your-shared-gallery-link",
+            "bgImage": "source/resources/onedrive-blur.png"
+          },
+          "document": {
+            "title": "문서실",
+            "description": "NURA의 기술, 역사 등에 관한 각종 문서는는 아래 노션 페이지에서 확인하실 수 있습니다.",
+            "buttonText": "NURA 노션 바로가기",
+            "buttonIcon": "📄",
+            "url": "https://www.notion.so/nura/NURA-Resources",
+            "bgImage": "source/resources/notion-blur.png"
+          },
+          "subtitle": "Resources"
         },
       };
       
@@ -331,20 +343,35 @@
         
         // Resources 섹션 렌더링
         const resourcesSection = document.getElementById('resources');
-        if (resourcesSection && contentData.resources) {
+        if (resourcesSection && contentData.resources && contentData.resources.gallery && contentData.resources.document) {
           const title = resourcesSection.querySelector('h2');
           const content = document.getElementById('resources-content');
-          title.innerHTML = `${contentData.resources.title} <span class="text-lg text-gray-400">${contentData.resources.subtitle}</span>`;
+          title.innerHTML = `${contentData.resources.title || '자료실'} <span class="text-lg text-gray-400">${contentData.resources.subtitle}</span>`;
           content.innerHTML = `
-            <div class="relative min-h-[260px] max-w-3xl w-full mx-auto rounded-xl shadow bg-white/80 overflow-hidden p-10 flex flex-col items-center justify-center">
-              <img src="source/resources/notion-blur.png" alt="Notion" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
-              <div class="relative z-10 flex flex-col items-center">
-                <h3 class="text-2xl font-bold mb-4 text-gray-900">${contentData.resources.title}</h3>
-                <p class="text-gray-700 mb-6 text-center">${contentData.resources.description}</p>
-                <a href="${contentData.resources.notionUrl}" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
-                  <span class="text-2xl mr-2">📄</span> ${contentData.resources.buttonText}
-                </a>
+            <div class="flex flex-col md:flex-row gap-8 items-stretch w-full">
+              <!-- 갤러리 카드 (원드라이브 링크) -->
+              <div class="resource-card flex-1 min-h-[260px] bg-white/80 rounded-xl shadow overflow-hidden flex flex-col items-center justify-center p-10 relative">
+                <img src="${contentData.resources.gallery.bgImage}" alt="Gallery" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
+                <div class="relative z-10 flex flex-col items-center">
+                  <h3 class="text-2xl font-bold mb-4 text-gray-900">${contentData.resources.gallery.title}</h3>
+                  <p class="text-gray-700 mb-6 text-center">${contentData.resources.gallery.description}</p>
+                  <a href="${contentData.resources.gallery.url}" target="_blank" rel="noopener noreferrer"
+                     class="inline-flex items-center bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+                    <span class="text-2xl mr-2">${contentData.resources.gallery.buttonIcon}</span> ${contentData.resources.gallery.buttonText}
+                  </a>
+                </div>
+              </div>
+              <!-- 문서실 안내 카드 -->
+              <div class="resource-card flex-1 min-h-[260px] bg-white/80 rounded-xl shadow overflow-hidden flex flex-col items-center justify-center p-10 relative">
+                <img src="${contentData.resources.document.bgImage}" alt="Notion" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
+                <div class="relative z-10 flex flex-col items-center">
+                  <h3 class="text-2xl font-bold mb-4 text-gray-900">${contentData.resources.document.title}</h3>
+                  <p class="text-gray-700 mb-6 text-center">${contentData.resources.document.description}</p>
+                  <a href="${contentData.resources.document.url}" target="_blank" rel="noopener noreferrer"
+                     class="inline-flex items-center bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+                    <span class="text-2xl mr-2">${contentData.resources.document.buttonIcon}</span> ${contentData.resources.document.buttonText}
+                  </a>
+                </div>
               </div>
             </div>
           `;
