@@ -42,10 +42,12 @@
   <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
     <div class="flex min-h-screen bg-gray-950 min-h-0">
       <!-- Sidebar Navigation -->
-      <nav id="sidebar" class="fixed top-0 left-0 h-screen w-56 bg-gray-900 flex flex-col py-10 px-4 gap-6 hidden md:flex z-50 overflow-y-auto">
-        <div class="mb-8 text-2xl font-bold tracking-tight flex flex-col items-start">
+      <nav id="sidebar" class="fixed top-0 left-0 h-screen w-44 bg-gray-900 flex flex-col py-10 px-6 gap-6 hidden md:flex z-50 overflow-y-auto">
+        <div class="mb-8 text-2xl font-bold tracking-tight flex flex-col items-start pl-1">
           <img src="source/nura-logo.png" alt="NURA 로고" class="w-24 h-24 object-contain mb-2" />
           <span class="text-xs text-gray-400 text-left">전국대학교로켓연합회</span>
+          <span class="text-[11px] text-gray-500 text-left mt-0.5 leading-tight block">The National Universities'</span>
+          <span class="text-[11px] text-gray-500 text-left leading-tight block">Rocket Association</span>
         </div>
         <ul class="flex flex-col gap-4 text-lg">
           <li><a href="#overview" class="sidebar-link" data-section="overview">개요<br><span class="text-xs text-gray-400">Overview</span></a></li>
@@ -56,7 +58,7 @@
         </ul>
       </nav>
       <!-- Main Content -->
-      <main class="w-full flex flex-col md:ml-56 overflow-y-auto p-0 m-0">
+      <main class="w-full flex flex-col md:ml-44 overflow-y-auto p-0 m-0">
         <!-- Overview Section -->
         <section id="overview" class="relative overflow-hidden flex flex-col justify-center min-h-0 h-screen w-full p-0 m-0">
           <!-- 배경 슬라이드 이미지들 (본문 전체를 덮음) -->
@@ -69,7 +71,7 @@
           </div>
           <!-- 텍스트 컨텐츠 -->
           <div class="relative z-30 flex items-center justify-center h-full w-full text-white">
-            <div class="w-full max-w-3xl flex flex-col items-start text-left pl-8">
+            <div class="w-full max-w-3xl flex flex-col items-start text-left pl-8 pr-8">
               <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg min-w-0 break-words text-left"></h1>
               <p class="text-lg md:text-xl text-gray-200 drop-shadow-lg min-w-0 break-words text-left"></p>
             </div>
@@ -77,23 +79,23 @@
         </section>
         <!-- About Section -->
         <section id="about" class="py-16">
-          <h2 class="text-3xl font-bold mb-2 text-left pl-8"></h2>
-          <p class="text-gray-300 text-left pl-8"></p>
+          <h2 class="text-3xl font-bold mb-2 text-left pl-8 pr-8"></h2>
+          <p class="text-gray-300 text-left pl-8 pr-8"></p>
         </section>
         <!-- Activities Section -->
         <section id="activities" class="py-16">
-          <h2 class="text-3xl font-bold mb-2 text-left pl-8"></h2>
-          <ul class="list-disc pl-8 text-gray-300 text-left"></ul>
+          <h2 class="text-3xl font-bold mb-2 text-left pl-8 pr-8"></h2>
+          <ul class="list-disc pl-8 pr-8 text-gray-300 text-left"></ul>
         </section>
         <!-- Sponsors Section -->
         <section id="sponsors" class="py-16">
-          <h2 class="text-3xl font-bold mb-2 text-left pl-8"></h2>
-          <div class="flex flex-wrap gap-8 items-center mt-4 pl-8"></div>
+          <h2 class="text-3xl font-bold mb-2 text-left pl-8 pr-8"></h2>
+          <div class="flex flex-wrap gap-8 items-center mt-4 pl-8 pr-8"></div>
         </section>
         <!-- Contact Section -->
         <section id="contact" class="py-16">
-          <h2 class="text-3xl font-bold mb-2 text-left pl-8"></h2>
-          <ul class="text-gray-300 text-left pl-8"></ul>
+          <h2 class="text-3xl font-bold mb-2 text-left pl-8 pr-8"></h2>
+          <ul class="text-gray-300 text-left pl-8 pr-8"></ul>
         </section>
       </main>
     </div>
