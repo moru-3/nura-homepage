@@ -220,17 +220,14 @@
             "title": "연락처",
             "items": [
               {
-                "icon": "📧",
                 "label": "Email",
                 "value": "nurarocketscience@gmail.com"
               },
               {
-                "icon": "📷",
                 "label": "Instagram",
                 "value": "@nura._.official"
               },
               {
-                "icon": "📍",
                 "label": "Address",
                 "value": "경기도 고양시 덕양구 항공대학로 76"
               }
@@ -409,8 +406,8 @@
             <div class="text-gray-400 text-sm space-y-2">
               ${contentData.footer.contact.items.map(item => 
                 item.label === 'Email'
-                  ? `<p class='break-all'>${item.icon} ${item.label}: ${item.value}</p>`
-                  : `<p>${item.icon} ${item.label}: ${item.value}</p>`
+                  ? `<p class='break-all'>${item.label}: ${item.value}</p>`
+                  : `<p>${item.label}: ${item.value}</p>`
               ).join('')}
             </div>
           `;
