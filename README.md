@@ -55,7 +55,7 @@ pip install Pillow
 const contentData = {
   "overview": {
     "title": "전국대학교로켓연합회",
-    "subtitle": "The National Universities' Rocket Association",
+    "subtitle": "National University Rocket Association",
     "description": "로켓 기술 교류를 촉진하고 대학생들의 발사 활동을 지원합니다."
   },
   // ... 기타 섹션들
