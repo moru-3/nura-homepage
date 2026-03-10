@@ -95,75 +95,92 @@
         <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA NOW</p>
         <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">관련 기사</h2>
         <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
-          링크만 추가하면 카드가 생성되도록 구성한 영역입니다.
+          전국대학교로켓연합회와 관련된 외부 기사입니다.
         </p>
       </div>
     </div>
 
-    <div id="news-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+      <article class="rounded-3xl border border-white/10 bg-white/5 overflow-hidden hover:border-blue-400/40 transition">
+        <a href="https://mobile.newsis.com/photo/NISI20230221_0019794413" target="_blank" rel="noopener noreferrer" class="block h-full">
+          <div class="aspect-[16/10] overflow-hidden bg-gray-900">
+            <img
+              src="source/news/news1.jpg"
+              alt="전국대학교로켓연합회 명예회원증 관련 기사 이미지"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="p-6">
+            <div class="text-sm text-gray-500 mb-3">2023.02.21</div>
+            <h3 class="text-xl font-bold text-white leading-snug">
+              전국대학교로켓연합회 명예회원증 받는 윤석열 대통령
+            </h3>
+            <p class="mt-4 text-gray-400 leading-7">
+              우주경제 개척자와의 대화 행사에서 전국대학교로켓연합회 관련 장면을 다룬 기사입니다.
+            </p>
+            <span class="mt-6 inline-flex text-sm font-semibold text-blue-300 hover:text-blue-200">
+              기사 보기 →
+            </span>
+          </div>
+        </a>
+      </article>
+
+      <article class="rounded-3xl border border-white/10 bg-white/5 overflow-hidden hover:border-blue-400/40 transition">
+        <a href="https://www.newsis.com/view/NISX20221212_0002119849" target="_blank" rel="noopener noreferrer" class="block h-full">
+          <div class="aspect-[16/10] overflow-hidden bg-gray-900">
+            <img
+              src="source/news/news2.jpg"
+              alt="전북대 로켓동아리 수상 관련 기사 이미지"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="p-6">
+            <div class="text-sm text-gray-500 mb-3">2022.12.12</div>
+            <h3 class="text-xl font-bold text-white leading-snug">
+              전북대 항공우주공학과 로켓동아리, 전국 대회서 은상 수상
+            </h3>
+            <p class="mt-4 text-gray-400 leading-7">
+              전국대학생로켓연합회가 주관한 대회에서 전북대 로켓동아리가 은상을 수상한 기사입니다.
+            </p>
+            <span class="mt-6 inline-flex text-sm font-semibold text-blue-300 hover:text-blue-200">
+              기사 보기 →
+            </span>
+          </div>
+        </a>
+      </article>
+
+      <article class="rounded-3xl border border-white/10 bg-white/5 overflow-hidden hover:border-blue-400/40 transition">
+        <a href="https://www.newsis.com/view/NISX20201028_0001214406" target="_blank" rel="noopener noreferrer" class="block h-full">
+          <div class="aspect-[16/10] overflow-hidden bg-gray-900">
+            <img
+              src="source/news/news3.jpg"
+              alt="순천대 로켓연구팀 대상 수상 관련 기사 이미지"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="p-6">
+            <div class="text-sm text-gray-500 mb-3">2020.10.28</div>
+            <h3 class="text-xl font-bold text-white leading-snug">
+              순천대 로켓연구팀, 2년 연속 전국대회서 대상 수상
+            </h3>
+            <p class="mt-4 text-gray-400 leading-7">
+              전국대학교 로켓 학술대회에서 순천대 로켓연구팀이 2년 연속 대상을 수상한 기사입니다.
+            </p>
+            <span class="mt-6 inline-flex text-sm font-semibold text-blue-300 hover:text-blue-200">
+              기사 보기 →
+            </span>
+          </div>
+        </a>
+      </article>
+    </div>
   </div>
 </section>
-
-<script>
-  const nuraNewsLinks = [
-    "https://www.yna.co.kr/view/PYH20230221128900013",
-    "https://www.joongang.co.kr/article/25078299",
-    "https://kaunews.kau.ac.kr/pages/people.php?searchkey=&searchvalue=&code=s1201&page=10&selstrdate=&selenddate=&mode=read&seq=903"
-  ];
-
-  (function () {
-    const container = document.getElementById("news-list");
-    if (!container) return;
-
-    function getDomain(url) {
-      try {
-        return new URL(url).hostname.replace("www.", "");
-      } catch {
-        return "external link";
-      }
-    }
-
-    function getSlug(url) {
-      try {
-        const pathname = new URL(url).pathname;
-        const last = pathname.split("/").filter(Boolean).pop() || url;
-        return decodeURIComponent(last);
-      } catch {
-        return url;
-      }
-    }
-
-    container.innerHTML = nuraNewsLinks
-      .map(
-        (href, index) => `
-          <article class="rounded-3xl border border-white/10 bg-white/5 p-6 hover:border-blue-400/40 transition">
-            <a href="${href}" target="_blank" rel="noopener noreferrer" class="block h-full">
-              <div class="text-sm text-blue-300 font-semibold mb-3">
-                ARTICLE ${index + 1}
-              </div>
-
-              <h3 class="text-xl font-bold text-white leading-snug break-all">
-                ${getSlug(href)}
-              </h3>
-
-              <p class="mt-4 text-gray-400 leading-7 break-all">
-                ${href}
-              </p>
-
-              <div class="mt-4 text-sm text-gray-500">
-                출처: ${getDomain(href)}
-              </div>
-
-              <span class="mt-6 inline-flex text-sm font-semibold text-blue-300 hover:text-blue-200">
-                기사 보기 →
-              </span>
-            </a>
-          </article>
-        `
-      )
-      .join("");
-  })();
-</script>
 
 <!-- NURA OVERVIEW -->
 <section class="w-full bg-gradient-to-b from-gray-950 to-slate-950 border-t border-white/5 border-b border-white/5">
