@@ -44,8 +44,8 @@ window.NURA_DATA = {
       href: "https://www.joongang.co.kr/article/25078299"
     },
     {
-      date: "2020.10.28",
-      title: "순천대 로켓연구팀, 2년 연속 전국대회서 대상 수상",
+      date: "2024.01.05",
+      title: "부산대학교 항공우주공학과 동아리 PRO, 전국항공우주과학경진대회 대상·금상 수상",
       summary:
         "전국항공우주과학경진대회에서 부산대 항공우주공학과 동아리가 금상을 수상한 기사입니다.",
       image: "source/news/news3.jpg",
