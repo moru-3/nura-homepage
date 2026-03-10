@@ -33,23 +33,23 @@ window.NURA_DATA = {
       summary:
         "우주경제 개척자와의 대화 행사에서 전국대학교로켓연합회 관련 장면을 다룬 기사입니다.",
       image: "source/news/news1.jpg",
-      href: "https://mobile.newsis.com/photo/NISI20230221_0019794413"
+      href: "https://www.yna.co.kr/view/PYH20230221128900013"
     },
     {
-      date: "2022.12.12",
-      title: "전북대 항공우주공학과 로켓동아리, 전국 대회서 은상 수상",
+      date: "2022.06.11",
+      title: "[한국 우주시대 본격 개막]로켓 직접 깎고 다듬고, 우주산업 혁명 벼르는 ‘우주키즈'",
       summary:
-        "전국대학생로켓연합회가 주관한 대회에서 전북대 로켓동아리가 은상을 수상한 기사입니다.",
+        "한국의 우주산업을 이끌 우주키즈들의 마음 한 켠엔 저마다의 로켓이 자리 잡고 있다.",
       image: "source/news/news2.jpg",
-      href: "https://www.newsis.com/view/NISX20221212_0002119849"
+      href: "https://www.joongang.co.kr/article/25078299"
     },
     {
       date: "2020.10.28",
       title: "순천대 로켓연구팀, 2년 연속 전국대회서 대상 수상",
       summary:
-        "전국대학교 로켓 학술대회에서 순천대 로켓연구팀이 2년 연속 대상을 수상한 기사입니다.",
+        "전국항공우주과학경진대회에서 부산대 항공우주공학과 동아리가 금상을 수상한 기사입니다.",
       image: "source/news/news3.jpg",
-      href: "https://www.newsis.com/view/NISX20201028_0001214406"
+      href: "https://www.lecturernews.com/news/articleView.html?idxno=143887"
     }
   ]
 };
