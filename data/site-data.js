@@ -3,7 +3,7 @@ window.NURA_DATA = {
     {
       basis: "2026년 3월 기준",
       label: "참여 대학",
-      value: 14,
+      value: 35,
       unit: "개교"
     },
     {
