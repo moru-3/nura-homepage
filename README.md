@@ -9,12 +9,30 @@ nura-homepage/
 ├── index.html              # 메인 HTML 파일
 ├── README.md               # 이 문서
 ├── image_postprocessing.py # 이미지 후처리 스크립트 (선택사항)
+├── about/                
+│   └── index.html          # 상단 네비게이션바 HTML 파일
+├── activities/          
+│   └── index.html          # 상단 네비게이션바 HTML 파일
+├── resources/           
+│   └── index.html          # 상단 네비게이션바 HTML 파일
+├── sponsors/               
+│   └── index.html          # 상단 네비게이션바 HTML 파일
+├── data/               
+│   └── site-data.js        # 변수
 ├── source/
 │   ├── overview/           # 개요 섹션 이미지
 │   │   ├── blurred/        # 블러 처리된 슬라이드 이미지
 │   │   │   ├── slide1.jpg
 │   │   │   ├── slide2.jpg
-│   │   │   └── slide3.jpg
+│   │   │   ├── slide3.jpg
+│   │   │   ├── slide4.jpg
+│   │   │   ├── slide5.jpg
+│   │   │   ├── slide6.jpg
+│   │   │   ├── slide7.jpg
+│   │   │   ├── slide8.jpg
+│   │   │   ├── slide9.jpg
+│   │   │   ├── slide10.jpg
+│   │   │   └── slide11.jpg
 │   │   └── [원본 이미지들]
 │   ├── resources/          # 리소스 파일들
 │   │   ├── nura-logo.png   # 메인 로고
@@ -27,6 +45,10 @@ nura-homepage/
 │       ├── innospace.png
 │       ├── kari.jpg
 │       └── ligpoongsan.png
+│   └── news/           # 뉴스 사진들
+│       ├── news1.jpg
+│       ├── news2.jpg
+│       └── news3.jpg
 └── venv/                   # Python 가상환경 (선택사항)
 ```
 
@@ -49,7 +71,7 @@ pip install Pillow
 ## 📝 콘텐츠 관리
 
 ### 1. 텍스트 콘텐츠 수정
-모든 텍스트 콘텐츠는 `index.html` 파일 내의 `contentData` 객체에서 관리됩니다.
+텍스트 콘텐츠는 `index.html` 파일 내의 `contentData` 객체와 `data/site-data.js`에서 관리됩니다.
 
 ```javascript
 const contentData = {
@@ -69,6 +91,7 @@ const contentData = {
 - **sponsors**: 후원사 정보
 - **resources**: 자료실 링크
 - **footer**: 푸터 정보 (연락처, 사업자 정보 등)
+- **site-data**: 년도, 참여대학, 회원수, 누적 행사 수, 협력 기관 수, 뉴스
 
 ### 2. 이미지 교체
 
@@ -228,6 +251,6 @@ python image_postprocessing.py
 
 ---
 
-**마지막 업데이트**: 2025년 07월
+**마지막 업데이트**: 2026년 03월
 
-**관리자**: 전현우(jhw030520@gmail.com)
+**관리자**: 전현우(jhw030520@gmail.com), 심승기(shimseunggi@naver.com)
