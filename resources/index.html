@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NURA | 전국대학교로켓연합회</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="source/resources/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="source/resources/favicon-16x16.png" />
-    <link rel="shortcut icon" type="image/png" href="source/resources/favicon-32x32.png" />
+    <title>NURA | Resources</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
+    <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
     <header id="topbar" class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-gray-950/70 backdrop-blur-md">
       <div class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
         <a href="/" class="flex items-center gap-3">
-          <img src="source/resources/nura-logo.png" alt="NURA 로고" class="w-10 h-10 object-contain" />
+          <img src="../source/resources/nura-logo.png" alt="NURA 로고" class="w-10 h-10 object-contain" />
           <div class="leading-tight">
             <div class="text-sm md:text-base font-bold text-white">전국대학교로켓연합회</div>
             <div class="text-[9px] md:text-xs text-gray-400">National University Rocket Association</div>
@@ -61,29 +61,45 @@
     </header>
 
       <main class="w-full flex-1 flex flex-col pt-20">
-        <section id="overview" class="relative overflow-hidden flex flex-col justify-center h-[calc(100vh-5rem)] w-full p-0 m-0">
-          <div id="slideshow-bg" class="absolute inset-0 w-full h-full z-0 pointer-events-none">
-            <img src="source/overview/blurred/slide1.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-[1500ms]" style="z-index:1;" alt="슬라이드1">
-            <img src="source/overview/blurred/slide2.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드2">
-            <img src="source/overview/blurred/slide3.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드3">
-            <img src="source/overview/blurred/slide4.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드4">
-            <img src="source/overview/blurred/slide5.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드5">
-            <img src="source/overview/blurred/slide6.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드6">
-            <img src="source/overview/blurred/slide7.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드7">
-            <img src="source/overview/blurred/slide8.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드8">
-            <img src="source/overview/blurred/slide9.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드9">
-            <img src="source/overview/blurred/slide10.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드10">
-            <img src="source/overview/blurred/slide11.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드11">
-            <div class="absolute inset-0 bg-black/60 z-10"></div>
-          </div>
-          <div class="relative z-30 flex items-center justify-center h-full w-full text-white">
-            <div class="w-full max-w-3xl flex flex-col items-start text-left pl-8 pr-8">
-              <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
-                <span class="text-blue-400">전국대학교로켓연합회</span><br>
-                <span class="text-lg font-normal text-gray-300">National University Rocket Association</span>
-              </h1>
-              <p class="text-lg md:text-xl text-gray-200 drop-shadow-lg">로켓 기술 교류를 촉진하고 대학생들의 발사 활동을 지원합니다.</p>
+        <section class="hero-grid border-b border-white/10">
+          <div class="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-20">
+            <div class="max-w-3xl">
+              <p class="text-sm md:text-base uppercase tracking-[0.2em] text-blue-300/90 mb-4">Resources</p>
+              <h1 class="text-4xl md:text-5xl font-bold mb-6">자료실</h1>
+              <p class="text-lg md:text-xl text-gray-300 leading-relaxed">갤러리와 문서실 링크를 별도 하위페이지에서 바로 확인할 수 있도록 정리했습니다.</p>
             </div>
+          </div>
+        </section>
+        <section class="max-w-6xl mx-auto w-full px-6 md:px-8 py-12 md:py-16">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <article class="rounded-3xl overflow-hidden border border-white/10 bg-white/5 relative min-h-[300px]">
+              <img src="../source/resources/onedrive-blur.png" alt="NURA Gallery" class="absolute inset-0 w-full h-full object-cover opacity-30" />
+              <div class="relative z-10 p-8 md:p-10 h-full flex flex-col justify-between">
+                <div>
+                  <h2 class="text-2xl font-bold mb-4">갤러리</h2>
+                  <p class="text-gray-200 leading-7">NURA의 활동 사진, 대회 사진 등은 아래 원드라이브 공유 폴더에서 확인하실 수 있습니다.</p>
+                </div>
+                <div class="pt-8">
+                  <a href="https://onedrive.live.com/your-shared-gallery-link" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-blue-600 text-white font-bold px-6 py-3 rounded-xl shadow hover:bg-blue-700 transition">
+                    <span class="text-2xl mr-2">🖼️</span> NURA 갤러리 바로가기
+                  </a>
+                </div>
+              </div>
+            </article>
+            <article class="rounded-3xl overflow-hidden border border-white/10 bg-white/5 relative min-h-[300px]">
+              <img src="../source/resources/notion-blur.png" alt="NURA Resources" class="absolute inset-0 w-full h-full object-cover opacity-30" />
+              <div class="relative z-10 p-8 md:p-10 h-full flex flex-col justify-between">
+                <div>
+                  <h2 class="text-2xl font-bold mb-4">문서실</h2>
+                  <p class="text-gray-200 leading-7">NURA의 기술, 역사 등에 관한 각종 문서는 아래 노션 페이지에서 확인하실 수 있습니다.</p>
+                </div>
+                <div class="pt-8">
+                  <a href="https://www.notion.so/nura/NURA-Resources" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-blue-600 text-white font-bold px-6 py-3 rounded-xl shadow hover:bg-blue-700 transition">
+                    <span class="text-2xl mr-2">📄</span> NURA 노션 바로가기
+                  </a>
+                </div>
+              </div>
+            </article>
           </div>
         </section>
       </main>
@@ -120,25 +136,7 @@
 
     </div>
     <script>
-      (function() {
-        const slides = document.querySelectorAll('.slide-img');
-        let current = 0;
-        function showSlide(idx) {
-          slides.forEach((img, i) => {
-            img.style.opacity = (i === idx) ? '1' : '0';
-            img.style.zIndex = (i === idx) ? '1' : '0';
-          });
-          current = idx;
-        }
-        function nextSlide() {
-          showSlide((current + 1) % slides.length);
-        }
-        showSlide(0);
-        setInterval(nextSlide, 3000);
-      })();
-    </script>
-    <script>
-      const currentPage = 'overview';
+      const currentPage = 'resources';
       document.querySelectorAll('.nav-link').forEach((link) => {
         if (link.dataset.page === currentPage) {
           link.classList.add('text-blue-400', 'font-bold');
