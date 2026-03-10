@@ -22,17 +22,7 @@ nura-homepage/
 ├── source/
 │   ├── overview/           # 개요 섹션 이미지
 │   │   ├── blurred/        # 블러 처리된 슬라이드 이미지
-│   │   │   ├── slide1.jpg
-│   │   │   ├── slide2.jpg
-│   │   │   ├── slide3.jpg
-│   │   │   ├── slide4.jpg
-│   │   │   ├── slide5.jpg
-│   │   │   ├── slide6.jpg
-│   │   │   ├── slide7.jpg
-│   │   │   ├── slide8.jpg
-│   │   │   ├── slide9.jpg
-│   │   │   ├── slide10.jpg
-│   │   │   └── slide11.jpg
+│   │   │   └── [블러 처리된 이미지들]
 │   │   └── [원본 이미지들]
 │   ├── resources/          # 리소스 파일들
 │   │   ├── nura-logo.png   # 메인 로고
