@@ -11,16 +11,158 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-      html { scroll-behavior: smooth; }
-      html, body { background-color: #030712; overflow-x: hidden; }
-      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
-      .page-shell { min-height: 100vh; }
-      .hero-grid {
-        background-image:
-          radial-gradient(circle at top right, rgba(59,130,246,0.18), transparent 28%),
-          radial-gradient(circle at bottom left, rgba(14,165,233,0.14), transparent 24%);
-      }
-    </style>
+  .history-side-panel {
+    position: relative;
+  }
+
+  .history-dial {
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    height: 112px;
+    overflow: hidden;
+    border-radius: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .history-dial::before,
+  .history-dial::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    height: 2.75rem;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .history-dial::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(3, 7, 18, 0.96), rgba(3, 7, 18, 0));
+  }
+
+  .history-dial::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(3, 7, 18, 0.96), rgba(3, 7, 18, 0));
+  }
+
+  .history-dial-focus {
+    position: absolute;
+    inset-inline: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1px;
+    background: rgba(96, 165, 250, 0.45);
+    z-index: 11;
+  }
+
+  .history-year-reel {
+    position: absolute;
+    inset-inline: 0;
+    transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .history-year-item {
+    height: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -0.08em;
+    color: rgba(255, 255, 255, 0.2);
+    transform: scale(0.92);
+    transition:
+      color 300ms ease,
+      opacity 300ms ease,
+      transform 300ms ease,
+      text-shadow 300ms ease;
+    user-select: none;
+  }
+
+  .history-year-item.is-active {
+    color: rgb(147 197 253);
+    transform: scale(1);
+    text-shadow: 0 0 26px rgba(96, 165, 250, 0.22);
+  }
+
+  .history-rail {
+    position: relative;
+    padding-left: 2.25rem;
+  }
+
+  .history-rail::before {
+    content: "";
+    position: absolute;
+    left: 0.4rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      rgba(96, 165, 250, 0.55),
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0)
+    );
+  }
+
+  .history-entry {
+    position: relative;
+    scroll-margin-top: 8rem;
+    transition:
+      transform 260ms ease,
+      border-color 260ms ease,
+      background 260ms ease,
+      box-shadow 260ms ease;
+  }
+
+  .history-entry::before {
+    content: "";
+    position: absolute;
+    left: -2rem;
+    top: 2.2rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 9999px;
+    background: rgb(96 165 250);
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
+  }
+
+  .history-entry.is-active {
+    transform: translateY(-2px);
+    border-color: rgba(96, 165, 250, 0.32);
+    background:
+      linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), rgba(255, 255, 255, 0.05));
+    box-shadow: 0 14px 40px rgba(2, 6, 23, 0.28);
+  }
+
+  .history-entry-year {
+    letter-spacing: -0.06em;
+  }
+
+  @media (max-width: 1023px) {
+    .history-dial {
+      max-width: 190px;
+      height: 88px;
+    }
+
+    .history-year-item {
+      height: 88px;
+      font-size: 2.4rem;
+    }
+
+    .history-rail {
+      padding-left: 1.75rem;
+    }
+
+    .history-entry::before {
+      left: -1.55rem;
+    }
+  }
+</style>
   </head>
   <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
     <div class="page-shell flex flex-col">
@@ -106,25 +248,649 @@
 </header>
 
       <main class="w-full flex-1 flex flex-col">
-        <section class="hero-grid border-b border-white/10">
-          <div class="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-20">
-            <div class="max-w-3xl">
-              <p class="text-sm md:text-base uppercase tracking-[0.2em] text-blue-300/90 mb-4">About</p>
-              <h1 class="text-4xl md:text-5xl font-bold mb-6">단체 소개</h1>
-              <p class="text-lg md:text-xl text-gray-300 leading-relaxed">NURA의 출범 배경과 연혁을 별도 페이지로 분리했습니다.</p>
+       <section id="history" class="relative border-t border-white/10 bg-gradient-to-b from-slate-950 via-gray-950 to-black">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[42rem] h-[42rem] bg-blue-500/10 blur-3xl rounded-full"></div>
+    <div class="absolute bottom-0 right-0 w-[28rem] h-[28rem] bg-cyan-400/5 blur-3xl rounded-full"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto w-full px-6 md:px-8 py-24 md:py-28">
+    <div class="grid lg:grid-cols-[minmax(280px,0.92fr)_minmax(0,1.08fr)] gap-12 lg:gap-16 items-start">
+      <aside class="history-side-panel lg:sticky lg:top-28">
+        <p class="text-sm uppercase tracking-[0.24em] text-blue-300/90 mb-4">History</p>
+        <h2 class="text-4xl md:text-6xl font-black tracking-[-0.05em] leading-none text-white">
+          NURA의 전체 연혁
+        </h2>
+        <p class="mt-6 text-gray-300 text-base md:text-lg leading-8">
+          1992년 첫 로켓발사대회부터 2026년 제35대 집행부까지,
+          전국대학교로켓연합회의 주요 흐름을 시간의 축 위에서 한눈에 볼 수 있도록 정리했습니다.
+        </p>
+
+        <div class="mt-10 grid grid-cols-2 gap-4">
+          <div class="rounded-3xl border border-white/10 bg-white/[0.04] p-5">
+            <div class="text-xs uppercase tracking-[0.18em] text-gray-400">Founded from</div>
+            <div class="mt-2 text-3xl font-black tracking-[-0.04em] text-white">1992</div>
+          </div>
+          <div class="rounded-3xl border border-white/10 bg-white/[0.04] p-5">
+            <div class="text-xs uppercase tracking-[0.18em] text-gray-400">Current</div>
+<div id="history-current-year" class="mt-2 text-3xl font-black tracking-[-0.04em] text-white"></div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <div class="text-xs uppercase tracking-[0.18em] text-gray-500 mb-3">Current Year</div>
+          <div class="history-dial">
+            <div class="history-dial-focus"></div>
+            <div id="history-year-reel" class="history-year-reel"></div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="history-rail">
+  <div id="history-start-spacer" aria-hidden="true"></div>
+  <div id="history-entry-list" class="space-y-5 md:space-y-6"></div>
+  <div id="history-end-spacer" aria-hidden="true"></div>
+</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const historyCurrentYearEl = document.getElementById("history-current-year");
+  if (historyCurrentYearEl) {
+    historyCurrentYearEl.textContent = String(new Date().getFullYear());
+  }
+</script>
+
+<script>
+  const historyData = [
+    {
+      year: 1992,
+      items: ["제1회 로켓발사대회(한국항공대학교)"]
+    },
+    {
+      year: 1993,
+      items: [
+        "1월 31일 전국로켓연구연합회 발족(각 대학 로켓 연구회 간의 교류 시작)",
+        "제2회 로켓발사대회(인하대학교)"
+      ]
+    },
+    {
+      year: 1994,
+      items: ["제3회 로켓발사대회(경희대학교)"]
+    },
+    {
+      year: 1995,
+      items: ["제4회 로켓발사대회(한국항공대학교)"]
+    },
+    {
+      year: 1996,
+      items: ["제5회 로켓발사대회(경희대학교)"]
+    },
+    {
+      year: 1997,
+      items: ["제6회 로켓발사대회(한국항공대학교)"]
+    },
+    {
+      year: 1998,
+      items: ["제7회 로켓발사대회(인하대학교)"]
+    },
+    {
+      year: 1999,
+      items: ["제8회 로켓발사대회(충남대학교)"]
+    },
+    {
+      year: 2000,
+      items: [
+        "제9회 로켓발사대회",
+        "제1회 전국대학교 로켓연합캠프(경희대학교)"
+      ]
+    },
+    {
+      year: 2001,
+      featured: true,
+      items: [
+        "2월 19일 전국대학교로켓연합회(The National Universities’ Rocket Association: NURA) 발족",
+        "제1회 정기 총회",
+        "건국대, 경희대, 배재대, 부산대, 서울대, 인하대, 조선대, 충남대, 충북대, 카이스트, 항공대 가입",
+        "제1대 회장 인하대학교 이훈희",
+        "제10회 로켓발사대회",
+        "제2회 전국대학교 로켓연합캠프(울산대학교)"
+      ]
+    },
+    {
+      year: 2002,
+      items: [
+        "2월 17일 제2회 정기 총회",
+        "제2대 회장 인하대학교 이선미",
+        "연세대학교 가입",
+        "제11회 로켓발사대회",
+        "제3회 전국대학교 로켓연합캠프(한국항공대학교)"
+      ]
+    },
+    {
+      year: 2003,
+      items: [
+        "2월 8일 제3회 정기 총회",
+        "제3대 회장 한국항공대학교 강해성",
+        "경북대학교 가입",
+        "7월 11일 제12회 로켓발사대회",
+        "제4회 전국대학교 로켓연합캠프(인하대학교)"
+      ]
+    },
+    {
+      year: 2004,
+      items: [
+        "3월 6일 제4회 정기 총회",
+        "제4대 회장 인하대학교 김두환",
+        "제13회 로켓발사대회",
+        "제5회 전국대학교 로켓연합캠프(경북대학교)"
+      ]
+    },
+    {
+      year: 2005,
+      items: [
+        "2월 제5회 정기 총회",
+        "제5대 회장 경희대학교 김기홍",
+        "6월 전북대학교 가입",
+        "7월 제14회 로켓발사대회",
+        "제6회 전국대학교 로켓연합캠프(인하대학교)",
+        "11월 제25회 한국추진공학회 학생세션 참가"
+      ]
+    },
+    {
+      year: 2006,
+      items: [
+        "2월 제6회 정기 총회",
+        "제6대 회장 충남대학교 이용우",
+        "4월 제26회 한국추진공학회 학생세션 참가",
+        "7월 제15회 로켓발사대회",
+        "제7회 전국대학교 로켓연합캠프(전라남도 고흥군)",
+        "10월 항공우주연구원 주최 제4회 전국모형로켓발사대회 대학부 참가",
+        "11월 제27회 한국추진공학회 학생세션 참가"
+      ]
+    },
+    {
+      year: 2007,
+      items: [
+        "3월 제7회 정기 총회",
+        "제7대 회장 부산대학교 오근수",
+        "4월 제28회 한국추진공학회 학생세션 참가",
+        "7월 제16회 로켓발사대회",
+        "제8회 전국대학교 로켓연합캠프(전라남도 고흥군)"
+      ]
+    },
+    {
+      year: 2008,
+      items: [
+        "2월 18일 제8회 정기 총회",
+        "제8대 회장 항공대학교 조승현",
+        "7월 25일 제17회 로켓발사대회",
+        "제9회 전국대학교 로켓연합캠프(경상남도 사천시)"
+      ]
+    },
+    {
+      year: 2009,
+      items: [
+        "2월 7일 제9회 정기 총회(부산대학교)",
+        "제9대 회장 건국대학교 강경오",
+        "7월 29일 제18회 로켓발사대회",
+        "제10회 전국대학교 로켓연합캠프(경기도 화성시)"
+      ]
+    },
+    {
+      year: 2010,
+      items: ["1월 31일 제10회 정기 총회(건국대학교)"]
+    },
+    {
+      year: 2012,
+      items: [
+        "7월 27일 제21회 로켓발사대회",
+        "제13회 전국대학교 로켓연합캠프(경기도 화성시)",
+        "제12대 회장 서울대학교 김일수",
+        "대학 현황: 건국대, 경북대, 경희대, 교통대, 부산대, 서울대, 인하대, 충남대, 항공대"
+      ]
+    },
+    {
+      year: 2014,
+      items: [
+        "제14대 회장 충남대학교 심창훈",
+        "8월 4-6일 제23회 로켓발사대회",
+        "제23회 전국대학교 로켓연합캠프(전라남도 고흥군 고흥항공센터)"
+      ]
+    },
+    {
+      year: 2015,
+      items: [
+        "제15대 회장 경북대학교 손민수, 부회장 건국대학교 길하종, 총무 조선대학교 엄태호",
+        "1월 28일 제15회 정기 총회(서울대학교)",
+        "6월 27일 제16회 정기 총회(경북대학교)",
+        "8월 4-6일 제24회 로켓발사대회",
+        "제24회 전국대학교 로켓연합캠프(전라남도 고흥군 고흥항공센터)"
+      ]
+    },
+    {
+      year: 2016,
+      featured: true,
+      items: [
+        "제16대 회장 조선대학교 엄태호, 부회장 구미대학교 박성재, 총무 한국항공대학교 김세원",
+        "(주)한화 방위산업부문 후원",
+        "차세대우주추진연구센터 후원(정기후원 계약)",
+        "한국항공우주연구원 후원",
+        "한국추진공학회 후원",
+        "고흥군청 우주항공사업소 후원",
+        "월간항공 NURA 기재",
+        "제25회 전국대학교 학술교류",
+        "대학 현황: 조선대, 구미대, 항공대, 건국대, 경북대, 경희대, 한서대, 충남대, 서울대, 인하대, 중앙대"
+      ]
+    },
+    {
+      year: 2017,
+      items: [
+        "제17대 회장 경희대학교 김진섭, 부회장 서울대학교 허수범, 총무 건국대학교 김민웅",
+        "제26회 전국대학교 로켓발사대회 및 학술대회"
+      ]
+    },
+    {
+      year: 2018,
+      items: [
+        "제18대 회장 인하대학교 정민지, 부회장 한국기술교육대학교 권영근, 중앙대학교 이성우",
+        "제27회 로켓발사대회",
+        "대학 현황: 건국대, 경북대, 경희대, 한서대, 서울대, 인하대, 조선대, 충남대, 교통대, 항공대, 한국기술교육대, 중앙대, 구미대"
+      ]
+    },
+    {
+      year: 2019,
+      items: [
+        "2019 상반기 정기 총회(충남대학교)",
+        "2019 하반기 정기 총회(경북대학교)",
+        "제28회 전국대학교 로켓학술대회(순천대학교)",
+        "제28회 전국대학교 로켓발사대회(전라남도 고흥군 고흥항공센터)",
+        "제28회 전국대학교 로켓연합캠프(전라남도 고흥군 고흥항공센터)",
+        "NURA 비영리 민간단체 설립 준비(정관 작성)",
+        "항공우주산업 관련 기업, 후원 업체 발굴 및 선정 후 공문 발송",
+        "한국추진공학회 첫 초청 및 발표 진행(논문명: 2019 전국대학교로켓연합회 로켓경연대회)",
+        "대학 현황: 건국대, 경북대, 경상대, 경운대, 경희대, 고려대, 구미대, 부산대, 서울대, 순천대, 인하대, 전북대, 조선대, 중앙대, 충남대, KAIST, 포항공대, 한국교통대, 한국항공대, 한서대, 한양대"
+      ]
+    },
+    {
+      year: 2020,
+      items: [
+        "제29회 전국대학교 로켓학술대회(주최/주관 한국과학우주청소년단, NURA)",
+        "한국추진공학회 NURA OS 특별세션 개최, 최우수 논문상 1편 수상 및 발표논문 14편 등록"
+      ]
+    },
+    {
+      year: 2021,
+      items: [
+        "2021 상반기 대표자 회의",
+        "제30대 회장 부경대학교 장예지",
+        "2021 우주 외교포럼(주최/주관 외교부, 과학기술정책연구원) 행사 초청",
+        "기존 NURA 단체 명의의 시상에서 과학기술정보통신부, 한국항공우주연구원, 한국과학창의재단, 한국과학우주청소년단 상으로 변경",
+        "제30회 전국대학교 로켓학술대회(주최/주관 한국과학우주청소년단, NURA)",
+        "2021 하반기 대표자 회의",
+        "제30회 전국대학교 로켓발사대회(주최/주관 한국과학우주청소년단, NURA)",
+        "광주과학기술원 가입",
+        "한국추진공학회 NURA OS 특별세션",
+        "대학 현황: 강원대, 건국대, 경북대, 경상대, 경희대, 고려대, 국민대, 부경대, 부산대, 서울대, 순천대, 인하대, 전북대, 조선대, 중앙대, 충남대, 교통대, 한서대, 한양대, 한양대 에리카, 항공대"
+      ]
+    },
+    {
+      year: 2022,
+      featured: true,
+      items: [
+        "전국대학교로켓연합회(NURA) 비영리법인 등록",
+        "제31대 회장 항공대 최나린, 부회장 항공대 황우연, 총무 건국대 문준석",
+        "우주경제 대통령 간담회 ‘우주 개척자와의 대화’ 참석",
+        "2022 대표자회의",
+        "제31회 전국대학교 로켓학술대회(주최/주관 한국과학우주청소년단, NURA)",
+        "제31회 전국대학교 로켓발사대회(주최/주관 한국과학우주청소년단, NURA)",
+        "한국추진공학회 NURA OS 특별세션 진행"
+      ]
+    },
+    {
+      year: 2023,
+      items: [
+        "2023 대표자회의",
+        "제32대 회장 한국항공대학교 양소현, 부회장 한국교통대학교 이승환, 총무 건국대학교 서보석",
+        "㈜이노스페이스 후원",
+        "대한항공 후원",
+        "한국항공우주연구원 후원",
+        "제32회 전국대학교 로켓학술대회(주최/주관 한국과학우주청소년단, NURA)",
+        "제32회 전국대학교 로켓발사대회(주최/주관 NURA)",
+        "한국추진공학회 NURA OS 특별세션 진행",
+        "대학 현황: 가천대, 건국대, 경기대, 경북대, 경상대, 경희대, 고려대, 지스트, 교통대, 카이스트, 부경대, 부산대, 과기대, 서울대, 숙명대, 순천대, 연세대, 인하대, 전북대, 조선대, 중앙대, 충남대, 한서대, 한양대 에리카, 항공대"
+      ]
+    },
+    {
+      year: 2024,
+      items: [
+        "‘우주개발 생태계 조성을 위한 정책 포럼’ 참석",
+        "2024 대표자회의",
+        "제33대 회장 한국항공대학교 신동욱, 부회장 서울대학교 서지완, 총무 건국대학교 노혜우",
+        "제33회 전국대학교 로켓학술대회(주최/주관 한국과학우주청소년단, NURA)",
+        "제33회 전국대학교 로켓발사대회(주최/주관 NURA)",
+        "한국추진공학회 NURA OS 특별세션 진행"
+      ]
+    },
+    {
+      year: 2025,
+      items: [
+        "제34대 회장 한국항공대학교 신동욱, 부회장 서울대학교 서지완(직무대행 광주과학기술원 이창현), 총무 이화여자대학교 박세연",
+        "2025 대표자회의",
+        "‘민간발사체 산업활성화 토론회’ 참석",
+        "제34회 전국대학교 로켓학술대회(주최/주관 NURA)",
+        "제34회 전국대학교 로켓발사대회(주최/주관 NURA)",
+        "한국추진공학회 NURA OS 특별세션 진행"
+      ]
+    },
+    {
+      year: 2026,
+      featured: true,
+      items: [
+        "제35대 회장 광주과학기술원 이창현, 부회장 동국대학교 한재경, 총무 건국대학교 윤원빈"
+      ]
+    }
+  ];
+
+  function getTags(items) {
+    const tags = new Set();
+    const joined = items.join(" ");
+
+    if (/발사대회|모형로켓/.test(joined)) tags.add("발사대회");
+    if (/학술대회|학술교류|특별세션|학생세션/.test(joined)) tags.add("학술");
+    if (/정기 총회|총회|대표자회의/.test(joined)) tags.add("회의");
+    if (/연합캠프/.test(joined)) tags.add("연합캠프");
+    if (/회장|부회장|총무|집행부/.test(joined)) tags.add("집행부");
+    if (/가입/.test(joined)) tags.add("대학 네트워크");
+    if (/후원|포럼|간담회|외교포럼/.test(joined)) tags.add("대외 협력");
+    if (/비영리법인|비영리 민간단체/.test(joined)) tags.add("법인화");
+
+    return [...tags].slice(0, 4);
+  }
+
+  function createHistoryEntry(entry) {
+    const tags = getTags(entry.items);
+    const cardClass = entry.featured
+      ? "border-blue-400/20 bg-gradient-to-br from-blue-500/12 via-white/[0.06] to-white/[0.04]"
+      : "border-white/10 bg-white/[0.04]";
+
+    const badgeClass = entry.featured
+      ? "border-blue-400/30 bg-blue-500/12 text-blue-200"
+      : "border-white/10 bg-white/[0.04] text-white";
+
+    const tagsHtml = tags.length
+      ? `<div class="flex flex-wrap gap-2 mb-4">
+          ${tags
+            .map(
+              (tag) =>
+                `<span class="px-2.5 py-1 rounded-full text-[11px] md:text-xs tracking-[0.04em] text-blue-100 bg-blue-500/10 border border-blue-400/20">${tag}</span>`
+            )
+            .join("")}
+        </div>`
+      : "";
+
+    const itemsHtml = entry.items
+      .map(
+        (item) => `
+          <li class="relative pl-4 text-gray-300 leading-7 md:leading-8">
+            <span class="absolute left-0 top-[0.8em] w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+            ${item}
+          </li>
+        `
+      )
+      .join("");
+
+    return `
+      <article class="history-entry rounded-[1.75rem] border ${cardClass} p-5 md:p-7" data-year="${entry.year}">
+        <div class="flex flex-col md:flex-row gap-5 md:gap-6">
+          <div class="shrink-0">
+            <div class="history-entry-year w-16 h-16 md:w-20 md:h-20 rounded-3xl border ${badgeClass} inline-flex items-center justify-center text-xl md:text-2xl font-black">
+              ${entry.year}
             </div>
           </div>
-        </section>
-        <section class="max-w-6xl mx-auto w-full px-6 md:px-8 py-12 md:py-16">
-          <div class="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10">
-            <h2 class="text-2xl font-bold mb-6">단체 소개</h2>
-            <div class="space-y-5 text-gray-300 leading-8 text-base md:text-lg">
-              <p>NURA는 대학의 로켓 정보 교류 및 활동, 로켓 발사대회 경진을 목표로 설립되었습니다.</p>
-              <p>1992년 한국항공대에서 로켓 발사 대회가 개최된 것을 시작으로, 1993년 각 대학의 로켓 정보 교류 및 활동을 위한 전국 로켓 연구 연합회가 창설되었습니다.</p>
-              <p>그 후 2001년 정식으로 전국대학교로켓연합회를 발족하였으며, 현재까지 대학생 로켓 활동의 연결점 역할을 이어가고 있습니다.</p>
-            </div>
+
+          <div class="min-w-0 flex-1">
+            ${tagsHtml}
+            <ul class="space-y-2.5">
+              ${itemsHtml}
+            </ul>
           </div>
-        </section>
+        </div>
+      </article>
+    `;
+  }
+
+  (function renderHistoryDialTimeline() {
+    const reel = document.getElementById("history-year-reel");
+    const list = document.getElementById("history-entry-list");
+    const currentYearEl = document.getElementById("history-current-year");
+    const endSpacer = document.getElementById("history-end-spacer");
+    const dial = document.querySelector(".history-dial");
+    const historySection = document.getElementById("history");
+
+    if (!reel || !list || !dial || !historySection) return;
+
+    list.innerHTML = historyData.map(createHistoryEntry).join("");
+
+    const entryYears = historyData.map((entry) => entry.year);
+    const startYear = Math.min(...entryYears);
+    const endYear = Math.max(...entryYears);
+    const years = [];
+
+    for (let year = startYear; year <= endYear; year += 1) {
+      years.push(year);
+    }
+
+    reel.innerHTML = years
+      .map((year) => `<div class="history-year-item" data-year="${year}">${year}</div>`)
+      .join("");
+
+    const yearItems = Array.from(reel.querySelectorAll(".history-year-item"));
+    const entries = Array.from(list.querySelectorAll(".history-entry"));
+
+    let introRunning = false;
+    let introRaf = null;
+
+    function getYearItemHeight() {
+      const first = yearItems[0];
+      return first ? first.offsetHeight : 112;
+    }
+
+    function getDialCenterYViewport() {
+      const rect = dial.getBoundingClientRect();
+      return rect.top + rect.height / 2;
+    }
+
+    function getMaxScrollY() {
+      return Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+    }
+
+    function clampScrollY(value) {
+      return Math.min(Math.max(value, 0), getMaxScrollY());
+    }
+
+    const REAL_CURRENT_YEAR = new Date().getFullYear();
+
+function setCurrentYearText() {
+  if (currentYearEl) currentYearEl.textContent = String(REAL_CURRENT_YEAR);
+}
+    function setReelPositionByYear(yearValue) {
+      const itemHeight = getYearItemHeight();
+      const dialHeight = dial.clientHeight;
+      const indexFloat = yearValue - startYear;
+      const offset = dialHeight / 2 - itemHeight / 2 - indexFloat * itemHeight;
+      reel.style.transform = `translateY(${offset}px)`;
+    }
+
+    function setActiveYear(year) {
+      const numericYear = Number(year);
+      if (!years.includes(numericYear)) return;
+
+      setReelPositionByYear(numericYear);
+      setCurrentYearText();
+
+      yearItems.forEach((item) => {
+        item.classList.toggle("is-active", Number(item.dataset.year) === numericYear);
+      });
+
+      entries.forEach((entry) => {
+        entry.classList.toggle("is-active", Number(entry.dataset.year) === numericYear);
+      });
+    }
+
+    function getTargetScrollForEntry(entry) {
+      const rect = entry.getBoundingClientRect();
+      const entryCenterInDocument = window.scrollY + rect.top + rect.height / 2;
+      return entryCenterInDocument - getDialCenterYViewport();
+    }
+
+    function updateEndSpacerPrecise() {
+      if (!endSpacer || !entries.length) return;
+
+      endSpacer.style.height = "0px";
+
+      const lastEntry = entries[entries.length - 1];
+      const rawTargetScroll = getTargetScrollForEntry(lastEntry);
+      const currentMaxScroll = getMaxScrollY();
+      const extraNeeded = Math.max(rawTargetScroll - currentMaxScroll, 0);
+
+      endSpacer.style.height = `${Math.ceil(extraNeeded + 96)}px`;
+    }
+
+    function updateStartSpacerPrecise() {
+  const startSpacer = document.getElementById("history-start-spacer");
+  if (!startSpacer || !entries.length) return;
+
+  startSpacer.style.height = "0px";
+
+  const firstEntry = entries[0];
+  const dialCenterY = getDialCenterYViewport();
+  const desiredTopSpace = Math.max(dialCenterY - firstEntry.offsetHeight / 2, 0);
+
+  startSpacer.style.height = `${Math.ceil(desiredTopSpace)}px`;
+}
+
+    function syncFromScroll() {
+      if (!entries.length) return;
+
+      const dialCenterY = getDialCenterYViewport();
+      let closestEntry = null;
+      let closestDistance = Infinity;
+
+      entries.forEach((entry) => {
+        const rect = entry.getBoundingClientRect();
+        const entryCenterY = rect.top + rect.height / 2;
+        const distance = Math.abs(entryCenterY - dialCenterY);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestEntry = entry;
+        }
+      });
+
+      if (closestEntry) {
+        setActiveYear(closestEntry.dataset.year);
+      }
+    }
+
+    function easeOutQuint(t) {
+      return 1 - Math.pow(1 - t, 5);
+    }
+
+    function stopIntro() {
+      if (!introRunning) return;
+      introRunning = false;
+      if (introRaf) cancelAnimationFrame(introRaf);
+      introRaf = null;
+      syncFromScroll();
+    }
+
+    function playIntroAnimation() {
+      if (!entries.length) return;
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      updateEndSpacerPrecise();
+      updateStartSpacerPrecise();
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const lastEntry = entries[entries.length - 1];
+          const startScroll = clampScrollY(historySection.offsetTop);
+          const endScroll = clampScrollY(getTargetScrollForEntry(lastEntry));
+
+          if (prefersReducedMotion) {
+            window.scrollTo(0, endScroll);
+            syncFromScroll();
+            return;
+          }
+
+          introRunning = true;
+          const duration = 3600;
+          const startTime = performance.now();
+
+          window.scrollTo(0, startScroll);
+          syncFromScroll();
+
+          function frame(now) {
+            if (!introRunning) return;
+
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = easeOutQuint(progress);
+            const currentScroll = startScroll + (endScroll - startScroll) * eased;
+
+            window.scrollTo(0, currentScroll);
+            syncFromScroll();
+
+            if (progress < 1) {
+              introRaf = requestAnimationFrame(frame);
+            } else {
+              introRunning = false;
+              window.scrollTo(0, endScroll);
+              syncFromScroll();
+            }
+          }
+
+          introRaf = requestAnimationFrame(frame);
+        });
+      });
+    }
+
+    function handleScroll() {
+      if (introRunning) return;
+      syncFromScroll();
+    }
+
+    function handleResize() {
+      updateEndSpacerPrecise();
+      updateStartSpacerPrecise();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          syncFromScroll();
+        });
+      });
+    }
+
+    setActiveYear(startYear);
+    updateEndSpacerPrecise();
+    updateStartSpacerPrecise();
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        playIntroAnimation();
+      });
+    });
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("load", handleResize);
+
+    window.addEventListener("wheel", stopIntro, { passive: true });
+    window.addEventListener("touchstart", stopIntro, { passive: true });
+    window.addEventListener("keydown", stopIntro);
+  })();
+</script>
       </main>
     <footer class="bg-gray-900 border-t border-gray-800 py-8 px-4 md:px-16 w-full">
       <div class="max-w-6xl mx-auto">
