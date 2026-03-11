@@ -768,11 +768,11 @@ function setCurrentYearText() {
       });
     }
 
-    function getTargetScrollForEntry(entry) {
-      const rect = entry.getBoundingClientRect();
-      const entryCenterInDocument = window.scrollY + rect.top + rect.height / 2;
-      return entryCenterInDocument - getDialCenterYViewport();
-    }
+  function getTargetScrollForEntry(entry) {
+  const rect = entry.getBoundingClientRect();
+  const entryCenterInDocument = window.scrollY + rect.top + rect.height / 2;
+  return entryCenterInDocument - getActivationCenterY();
+}
 
     function updateEndSpacerPrecise() {
       if (!endSpacer || !entries.length) return;
@@ -784,45 +784,43 @@ function setCurrentYearText() {
       const currentMaxScroll = getMaxScrollY();
       const extraNeeded = Math.max(rawTargetScroll - currentMaxScroll, 0);
 
-      endSpacer.style.height = `${Math.ceil(extraNeeded + 96)}px`;
+      endSpacer.style.height = `${Math.ceil(extraNeeded + 600)}px`;
     }
 
     function updateStartSpacerPrecise() {
-      const startSpacer = document.getElementById("history-start-spacer");
-      if (!startSpacer || !entries.length) return;
+    const startSpacer = document.getElementById("history-start-spacer");
+    if (!startSpacer || !entries.length) return;
 
-      startSpacer.style.height = "0px";
+    // 너무 많이 밀리지 않도록 고정/제한
+    startSpacer.style.height = window.innerWidth >= 1024 ? "56px" : "24px";
+  }
 
-      const firstEntry = entries[0];
-      const dialCenterY = getDialCenterYViewport();
-      const dialOffset = window.innerWidth >= 1024 ? 80 : 56;
-      const desiredTopSpace = Math.max(dialCenterY - firstEntry.offsetHeight / 2 - dialOffset, 0);
-
-      startSpacer.style.height = `${Math.ceil(desiredTopSpace)}px`;
-    }
+  function getActivationCenterY() {
+  return window.innerHeight / 2;
+}
 
     function syncFromScroll() {
-      if (!entries.length) return;
+  if (!entries.length) return;
 
-      const dialCenterY = getDialCenterYViewport();
-      let closestEntry = null;
-      let closestDistance = Infinity;
+  const activationCenterY = getActivationCenterY();
+  let closestEntry = null;
+  let closestDistance = Infinity;
 
-      entries.forEach((entry) => {
-        const rect = entry.getBoundingClientRect();
-        const entryCenterY = rect.top + rect.height / 2;
-        const distance = Math.abs(entryCenterY - dialCenterY);
+  entries.forEach((entry) => {
+    const rect = entry.getBoundingClientRect();
+    const entryCenterY = rect.top + rect.height / 2;
+    const distance = Math.abs(entryCenterY - activationCenterY);
 
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestEntry = entry;
-        }
-      });
-
-      if (closestEntry) {
-        setActiveYear(closestEntry.dataset.year);
-      }
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestEntry = entry;
     }
+  });
+
+  if (closestEntry) {
+    setActiveYear(closestEntry.dataset.year);
+  }
+}
 
     function easeOutQuint(t) {
       return 1 - Math.pow(1 - t, 5);
