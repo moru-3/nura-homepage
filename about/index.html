@@ -144,6 +144,35 @@
   }
 
   @media (max-width: 1023px) {
+    .history-side-panel {
+      position: static;
+    }
+
+    .history-dial-wrap {
+      position: fixed;
+      left: 50%;
+      bottom: 1rem;
+      transform: translateX(-50%);
+      width: min(100% - 2rem, 230px);
+      z-index: 40;
+      margin-top: 0;
+      padding: 0.75rem;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(2, 6, 23, 0.74);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 16px 38px rgba(2, 6, 23, 0.45);
+    }
+
+    .history-dial-wrap .history-dial {
+      max-width: none;
+    }
+
+    #history {
+      padding-bottom: 8.5rem;
+    }
+
     .history-dial {
       max-width: 190px;
       height: 88px;
@@ -277,7 +306,7 @@
           </div>
         </div>
 
-        <div class="mt-8">
+        <div class="history-dial-wrap mt-8">
           <div class="text-xs uppercase tracking-[0.18em] text-gray-500 mb-3">Current Year</div>
           <div class="history-dial">
             <div class="history-dial-focus"></div>
