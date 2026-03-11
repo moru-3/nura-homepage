@@ -9,19 +9,19 @@ window.NURA_DATA = {
     {
       basis: "2026년 3월 기준",
       label: "회원 수",
-      value: 218,
+      value: 443,
       unit: "명"
     },
     {
       basis: "누적 기준",
       label: "누적 행사",
-      value: 27,
+      value: 34,
       unit: "회"
     },
     {
       basis: "2026년 기준",
       label: "협력 기관",
-      value: 8,
+      value: 4,
       unit: "곳"
     }
   ],
