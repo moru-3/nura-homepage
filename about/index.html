@@ -208,7 +208,12 @@
     -webkit-backdrop-filter: blur(14px) saturate(1.08);
     border-bottom-color: rgba(255, 255, 255, 0.08);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-  } </style>
+  }
+  body.mobile-menu-open #topbar.is-scrolled {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+ </style>
   </head>
   <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
     <div class="page-shell flex flex-col">
@@ -992,6 +997,7 @@ function setCurrentYearText() {
       menuIconOpen?.classList.toggle('hidden', isOpen);
       menuIconClose?.classList.toggle('hidden', !isOpen);
       document.body.classList.toggle('overflow-hidden', isOpen);
+      document.body.classList.toggle('mobile-menu-open', isOpen);
     };
 
     const openMenu = () => {

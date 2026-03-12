@@ -38,6 +38,12 @@
     border-bottom-color: rgba(255, 255, 255, 0.08);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   }
+
+
+  body.mobile-menu-open #topbar.is-scrolled {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
     </style>
   </head>
   <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
@@ -185,7 +191,7 @@
     <div id="stats-list" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5"></div>
   </div>
 </section>
-      
+
 <!-- OVERVIEW CTA -->
 <section class="relative overflow-hidden border-t border-white/10 bg-gradient-to-b from-slate-950 to-black">
   <div class="absolute inset-0 pointer-events-none">
@@ -281,9 +287,9 @@
     counters.forEach((counter) => observer.observe(counter));
   })();
 
-  
+
 </script>
-        
+
       </main>
     <footer class="bg-gray-900 border-t border-gray-800 py-8 px-4 md:px-16 w-full">
       <div class="max-w-6xl mx-auto">
@@ -358,6 +364,7 @@
       menuIconOpen?.classList.toggle('hidden', isOpen);
       menuIconClose?.classList.toggle('hidden', !isOpen);
       document.body.classList.toggle('overflow-hidden', isOpen);
+      document.body.classList.toggle('mobile-menu-open', isOpen);
     };
 
     const openMenu = () => {
@@ -572,6 +579,6 @@
   window.addEventListener('scroll', updateTopbarBlur, { passive: true });
 
 </script>
-    
+
   </body>
 </html>
