@@ -20,205 +20,110 @@
           radial-gradient(circle at top right, rgba(59,130,246,0.18), transparent 28%),
           radial-gradient(circle at bottom left, rgba(14,165,233,0.14), transparent 24%);
       }
+        #topbar {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 260ms ease,
+      backdrop-filter 260ms ease,
+      -webkit-backdrop-filter 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease;
+  }
 
-      .topbar-text-halo {
-        position: relative;
-        display: inline-block;
-        isolation: isolate;
-      }
-
-      .topbar-text-halo::before {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-
-  color: rgba(0, 0, 0, 0.98);
-  opacity: 1;
-
-  filter: blur(9px) contrast(1.35);
-  transform: translateZ(0) scale(1.08);
-
-  text-shadow:
-    0 0 8px rgba(0, 0, 0, 0.95),
-    0 0 18px rgba(0, 0, 0, 0.85),
-    0 0 28px rgba(0, 0, 0, 0.75);
-}
-
-      .topbar-text-halo > span {
-        position: relative;
-        z-index: 1;
-      }
-
-      .topbar-logo-stack {
-        position: relative;
-        width: 2.5rem;
-        height: 2.5rem;
-        flex-shrink: 0;
-        isolation: isolate;
-      }
-
-      .topbar-logo-stack .logo-halo,
-      .topbar-logo-stack .logo-main {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-
-      .topbar-logo-stack .logo-halo {
-        filter: blur(8px);
-        opacity: 0.5;
-        transform: translateZ(0) scale(1.03);
-        z-index: 0;
-      }
-
-      .topbar-logo-stack .logo-main {
-        position: relative;
-        z-index: 1;
-      }
+  #topbar.is-scrolled {
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(14px) saturate(1.08);
+    -webkit-backdrop-filter: blur(14px) saturate(1.08);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  }
     </style>
   </head>
   <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
     <div class="page-shell flex flex-col">
-      <header
-        id="topbar"
-        class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300"
+    <header
+  id="topbar"
+  class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between"
+  >
+    <a href="./" class="flex items-center gap-3 relative z-[70]">
+      <img
+        src="source/resources/nura-logo.png"
+        alt="NURA 로고"
+        class="w-10 h-10 object-contain"
+      />
+      <div class="leading-tight">
+        <div class="text-sm md:text-base font-bold text-white">
+          전국대학교로켓연합회
+        </div>
+        <div class="text-[9px] md:text-xs text-gray-400">
+          National University Rocket Association
+        </div>
+      </div>
+    </a>
+
+    <script src="./data/site-data.js"></script>
+
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <a href="./" data-page="overview" class="nav-link text-gray-300 hover:text-white transition">Overview</a>
+      <a href="./about/" data-page="about" class="nav-link text-gray-300 hover:text-white transition">About</a>
+      <a href="./activities/" data-page="activities" class="nav-link text-gray-300 hover:text-white transition">Activities</a>
+      <a href="./sponsors/" data-page="sponsors" class="nav-link text-gray-300 hover:text-white transition">Sponsors</a>
+      <a href="./resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
+    </nav>
+
+    <button
+      id="mobile-menu-btn"
+      type="button"
+      aria-label="모바일 메뉴 열기"
+      aria-expanded="false"
+      class="md:hidden relative z-[70] inline-flex items-center justify-center w-11 h-11 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 transition text-white backdrop-blur-sm"
+    >
+      <svg
+        id="menu-icon-open"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
       >
-        <div
-          class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between"
-        >
-          <a href="./" class="flex items-center gap-3 relative z-[70]">
-            <div class="topbar-logo-stack" aria-hidden="true">
-              <img
-                src="./source/resources/nura-logo.png"
-                alt=""
-                class="logo-halo"
-              />
-              <img
-                src="./source/resources/nura-logo.png"
-                alt="NURA 로고"
-                class="logo-main"
-              />
-            </div>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg
+        id="menu-icon-close"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5 hidden"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+  </div>
 
-            <div class="leading-tight">
-              <div
-                class="topbar-text-halo text-sm md:text-base font-bold text-white"
-                data-text="전국대학교로켓연합회"
-              >
-                <span>전국대학교로켓연합회</span>
-              </div>
-              <div
-                class="topbar-text-halo text-[9px] md:text-xs text-gray-400"
-                data-text="National University Rocket Association"
-              >
-                <span>National University Rocket Association</span>
-              </div>
-            </div>
-          </a>
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-[60] hidden md:hidden bg-slate-950/88 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
+  >
+    <div class="flex flex-col justify-between min-h-screen px-6 pt-20 pb-10 transform transition duration-300 ease-out opacity-0 translate-y-3">
+      <div class="flex flex-col gap-1">
+        <a href="./" data-page="overview" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Overview</a>
+        <a href="./about/" data-page="about" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">About</a>
+        <a href="./activities/" data-page="activities" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Activities</a>
+        <a href="./sponsors/" data-page="sponsors" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Sponsors</a>
+        <a href="./resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
+      </div>
 
-          <script src="./data/site-data.js"></script>
-
-          <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a
-              href="./"
-              data-page="overview"
-              data-text="Overview"
-              class="nav-link topbar-text-halo text-gray-300 hover:text-white transition"
-            >
-              <span>Overview</span>
-            </a>
-
-            <a
-              href="./about/"
-              data-page="about"
-              data-text="About"
-              class="nav-link topbar-text-halo text-gray-300 hover:text-white transition"
-            >
-              <span>About</span>
-            </a>
-
-            <a
-              href="./activities/"
-              data-page="activities"
-              data-text="Activities"
-              class="nav-link topbar-text-halo text-gray-300 hover:text-white transition"
-            >
-              <span>Activities</span>
-            </a>
-
-            <a
-              href="./sponsors/"
-              data-page="sponsors"
-              data-text="Sponsors"
-              class="nav-link topbar-text-halo text-gray-300 hover:text-white transition"
-            >
-              <span>Sponsors</span>
-            </a>
-
-            <a
-              href="./resources/"
-              data-page="resources"
-              data-text="Resources"
-              class="nav-link topbar-text-halo text-gray-300 hover:text-white transition"
-            >
-              <span>Resources</span>
-            </a>
-          </nav>
-
-          <button
-            id="mobile-menu-btn"
-            type="button"
-            aria-label="모바일 메뉴 열기"
-            aria-expanded="false"
-            class="md:hidden relative z-[70] inline-flex items-center justify-center w-11 h-11 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 transition text-white backdrop-blur-sm"
-          >
-            <svg
-              id="menu-icon-open"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <svg
-              id="menu-icon-close"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5 hidden"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 6l12 12M18 6L6 18" />
-            </svg>
-          </button>
-        </div>
-
-        <div
-          id="mobile-menu"
-          class="fixed inset-0 z-[60] hidden md:hidden bg-slate-950/88 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
-        >
-          <div class="flex flex-col justify-between min-h-screen px-6 pt-20 pb-10 transform transition duration-300 ease-out opacity-0 translate-y-3">
-            <div class="flex flex-col gap-1">
-              <a href="./" data-page="overview" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Overview</a>
-              <a href="./about/" data-page="about" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">About</a>
-              <a href="./activities/" data-page="activities" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Activities</a>
-              <a href="./sponsors/" data-page="sponsors" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Sponsors</a>
-              <a href="./resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
-            </div>
-
-            <div class="pt-10 text-sm text-gray-400">
-              National University Rocket Association
-            </div>
-          </div>
-        </div>
-      </header>
+      <div class="pt-10 text-sm text-gray-400">
+        National University Rocket Association
+      </div>
+    </div>
+  </div>
+</header>
 
       <main class="w-full flex-1 flex flex-col">
         <section id="overview" class="relative overflow-hidden flex flex-col justify-center h-screen w-full p-0 m-0">
@@ -247,124 +152,124 @@
           </div>
         </section>
 
-        <!-- NURA NOW -->
-        <section id="nura-now" class="w-full bg-gray-950 border-t border-white/5">
-          <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-              <div>
-                <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA NOW</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">관련 기사</h2>
-                <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
-                  전국대학교로켓연합회와 관련된 외부 기사입니다.
-                </p>
-              </div>
-            </div>
-
-            <div id="news-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
-          </div>
-        </section>
-
-        <!-- NURA OVERVIEW -->
-        <section class="w-full bg-gradient-to-b from-gray-950 to-slate-950 border-t border-white/5 border-b border-white/5">
-          <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-              <div>
-                <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA OVERVIEW</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">숫자로 보는 NURA</h2>
-                <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
-                  연합회의 현재 규모와 활동 현황을 한눈에 볼 수 있도록 주요 지표를 정리했습니다.
-                </p>
-              </div>
-            </div>
-
-            <div id="stats-list" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5"></div>
-          </div>
-        </section>
-
-        <script>
-          (function () {
-            const counters = document.querySelectorAll(".count-up");
-            if (!counters.length) return;
-
-            const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-            if (prefersReducedMotion) {
-              counters.forEach((counter) => {
-                counter.textContent = counter.dataset.target;
-              });
-              return;
-            }
-
-            const animateCounter = (el) => {
-              const target = parseInt(el.dataset.target, 10);
-              const duration = 1200;
-              const startTime = performance.now();
-
-              function update(now) {
-                const progress = Math.min((now - startTime) / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const value = Math.floor(target * eased);
-                el.textContent = String(value).padStart(String(el.dataset.target).length, "0");
-
-                if (progress < 1) {
-                  requestAnimationFrame(update);
-                } else {
-                  el.textContent = el.dataset.target;
-                }
-              }
-
-              requestAnimationFrame(update);
-            };
-
-            const observer = new IntersectionObserver(
-              (entries, obs) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    obs.unobserve(entry.target);
-                  }
-                });
-              },
-              { threshold: 0.4 }
-            );
-
-            counters.forEach((counter) => observer.observe(counter));
-          })();
-        </script>
-      </main>
-
-      <footer class="bg-gray-900 border-t border-gray-800 py-8 px-4 md:px-16 w-full">
-        <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-0 md:px-8">
-            <div>
-              <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
-              <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
-              <p class="text-gray-400 text-sm mb-2">National University Rocket Association</p>
-            </div>
-            <div>
-              <h3 class="text-lg font-bold mb-4">연락처</h3>
-              <div class="text-gray-400 text-sm space-y-2">
-                <p class="break-all">Email: nurarocketscience@gmail.com</p>
-                <p>Instagram: @nura._.official</p>
-                <p>Address: 경기도 고양시 덕양구 항공대학로 76</p>
-              </div>
-            </div>
-            <div>
-              <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
-              <div class="text-gray-400 text-sm space-y-2">
-                <p>사업자등록번호: 609-82-83482</p>
-                <p>대표자: 전하상</p>
-                <p>설립일: 1992년 3월 2일</p>
-              </div>
-            </div>
-          </div>
-          <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
-            <p class="text-gray-500 text-sm">© 1992 NURA. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+<!-- NURA NOW -->
+<section id="nura-now" class="w-full bg-gray-950 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+      <div>
+        <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA NOW</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">관련 기사</h2>
+        <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
+          전국대학교로켓연합회와 관련된 외부 기사입니다.
+        </p>
+      </div>
     </div>
 
+    <div id="news-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+  </div>
+</section>
+
+<!-- NURA OVERVIEW -->
+<section class="w-full bg-gradient-to-b from-gray-950 to-slate-950 border-t border-white/5 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+      <div>
+        <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA OVERVIEW</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">숫자로 보는 NURA</h2>
+        <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
+          연합회의 현재 규모와 활동 현황을 한눈에 볼 수 있도록 주요 지표를 정리했습니다.
+        </p>
+      </div>
+    </div>
+
+    <div id="stats-list" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5"></div>
+  </div>
+</section>
+        
+<script>
+  (function () {
+    const counters = document.querySelectorAll(".count-up");
+    if (!counters.length) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      counters.forEach((counter) => {
+        counter.textContent = counter.dataset.target;
+      });
+      return;
+    }
+
+    const animateCounter = (el) => {
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1200;
+      const startTime = performance.now();
+
+      function update(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(target * eased);
+        el.textContent = String(value).padStart(String(el.dataset.target).length, "0");
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = el.dataset.target;
+        }
+      }
+
+      requestAnimationFrame(update);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    counters.forEach((counter) => observer.observe(counter));
+  })();
+</script>
+        
+      </main>
+    <footer class="bg-gray-900 border-t border-gray-800 py-8 px-4 md:px-16 w-full">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-0 md:px-8">
+          <div>
+            <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
+            <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
+            <p class="text-gray-400 text-sm mb-2">National University Rocket Association</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">연락처</h3>
+            <div class="text-gray-400 text-sm space-y-2">
+              <p class="break-all">Email: nurarocketscience@gmail.com</p>
+              <p>Instagram: @nura._.official</p>
+              <p>Address: 경기도 고양시 덕양구 항공대학로 76</p>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
+            <div class="text-gray-400 text-sm space-y-2">
+              <p>사업자등록번호: 609-82-83482</p>
+              <p>대표자: 전하상</p>
+              <p>설립일: 1992년 3월 2일</p>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
+          <p class="text-gray-500 text-sm">© 1992 NURA. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    </div>
     <script>
       (function() {
         const slides = document.querySelectorAll('.slide-img');
@@ -383,103 +288,208 @@
         setInterval(nextSlide, 3000);
       })();
     </script>
-
     <script>
-      const currentPage = 'overview';
-      document.querySelectorAll('.nav-link').forEach((link) => {
-        if (link.dataset.page === currentPage) {
-          link.classList.add('text-blue-400', 'font-bold');
-          link.classList.remove('text-gray-300', 'text-white');
-        }
+  const currentPage = 'overview';
+  document.querySelectorAll('.nav-link').forEach((link) => {
+    if (link.dataset.page === currentPage) {
+      link.classList.add('text-blue-400', 'font-bold');
+      link.classList.remove('text-gray-300', 'text-white');
+    }
+  });
+
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
+  if (mobileMenuBtn && mobileMenu) {
+    const mobileMenuPanel = mobileMenu.firstElementChild;
+    const ANIMATION_MS = 300;
+    let closeTimeoutId;
+
+    const setMenuState = (isOpen) => {
+      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuIconOpen?.classList.toggle('hidden', isOpen);
+      menuIconClose?.classList.toggle('hidden', !isOpen);
+      document.body.classList.toggle('overflow-hidden', isOpen);
+    };
+
+    const openMenu = () => {
+      clearTimeout(closeTimeoutId);
+      mobileMenu.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+        mobileMenuPanel?.classList.remove('opacity-0', 'translate-y-3');
+        mobileMenuPanel?.classList.add('opacity-100', 'translate-y-0');
       });
+      setMenuState(true);
+    };
 
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const menuIconOpen = document.getElementById('menu-icon-open');
-      const menuIconClose = document.getElementById('menu-icon-close');
-      if (mobileMenuBtn && mobileMenu) {
-        const mobileMenuPanel = mobileMenu.firstElementChild;
-        const ANIMATION_MS = 300;
-        let closeTimeoutId;
+    const closeMenu = () => {
+      mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+      mobileMenuPanel?.classList.remove('opacity-100', 'translate-y-0');
+      mobileMenuPanel?.classList.add('opacity-0', 'translate-y-3');
+      setMenuState(false);
+      closeTimeoutId = setTimeout(() => mobileMenu.classList.add('hidden'), ANIMATION_MS);
+    };
 
-        const setMenuState = (isOpen) => {
-          mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
-          menuIconOpen?.classList.toggle('hidden', isOpen);
-          menuIconClose?.classList.toggle('hidden', !isOpen);
-          document.body.classList.toggle('overflow-hidden', isOpen);
-        };
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
 
-        const openMenu = () => {
-          clearTimeout(closeTimeoutId);
-          mobileMenu.classList.remove('hidden');
-          requestAnimationFrame(() => {
-            mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-            mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
-            mobileMenuPanel?.classList.remove('opacity-0', 'translate-y-3');
-            mobileMenuPanel?.classList.add('opacity-100', 'translate-y-0');
-          });
-          setMenuState(true);
-        };
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+</script>
 
-        const closeMenu = () => {
-          mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
-          mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-          mobileMenuPanel?.classList.remove('opacity-100', 'translate-y-0');
-          mobileMenuPanel?.classList.add('opacity-0', 'translate-y-3');
-          setMenuState(false);
-          closeTimeoutId = setTimeout(() => mobileMenu.classList.add('hidden'), ANIMATION_MS);
-        };
+<script>
+  (function () {
+    const counters = document.querySelectorAll(".count-up");
+    if (!counters.length) return;
 
-        mobileMenuBtn.addEventListener('click', () => {
-          const isOpen = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-          if (isOpen) {
-            closeMenu();
-          } else {
-            openMenu();
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      counters.forEach((counter) => {
+        counter.textContent = counter.dataset.target;
+      });
+      return;
+    }
+
+    const animateCounter = (el) => {
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1200;
+      const startTime = performance.now();
+
+      function update(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(target * eased);
+        el.textContent = String(value).padStart(String(el.dataset.target).length, "0");
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = el.dataset.target;
+        }
+      }
+
+      requestAnimationFrame(update);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            obs.unobserve(entry.target);
           }
         });
+      },
+      { threshold: 0.4 }
+    );
 
-        mobileMenu.querySelectorAll('a').forEach((link) => {
-          link.addEventListener('click', closeMenu);
-        });
-      }
-    </script>
+    counters.forEach((counter) => observer.observe(counter));
+  })();
+</script>
 
-    <script>
-      (function () {
-        const counters = document.querySelectorAll(".count-up");
-        if (!counters.length) return;
+<script>
+  (function () {
+    const data = window.NURA_DATA;
+    if (!data) return;
 
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const newsContainer = document.getElementById("news-list");
+    const statsContainer = document.getElementById("stats-list");
 
-        if (prefersReducedMotion) {
-          counters.forEach((counter) => {
-            counter.textContent = counter.dataset.target;
-          });
-          return;
+    if (newsContainer) {
+      newsContainer.innerHTML = data.newsItems
+        .map(
+          (item) => `
+            <article class="rounded-3xl border border-white/10 bg-white/5 overflow-hidden hover:border-blue-400/40 transition">
+              <a href="${item.href}" target="_blank" rel="noopener noreferrer" class="block h-full">
+                <div class="aspect-[16/10] overflow-hidden bg-gray-900">
+                  <img
+                    src="${item.image}"
+                    alt="${item.title}"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="p-6">
+                  <div class="text-sm text-gray-500 mb-3">${item.date}</div>
+
+                  <h3 class="text-xl font-bold text-white leading-snug">
+                    ${item.title}
+                  </h3>
+
+                  <p class="mt-4 text-gray-400 leading-7">
+                    ${item.summary}
+                  </p>
+
+                  <span class="mt-6 inline-flex text-sm font-semibold text-blue-300 hover:text-blue-200">
+                    기사 보기 →
+                  </span>
+                </div>
+              </a>
+            </article>
+          `
+        )
+        .join("");
+    }
+
+    if (statsContainer) {
+      statsContainer.innerHTML = data.overviewStats
+        .map(
+          (item) => `
+            <article class="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
+              <p class="text-sm text-gray-500">${item.basis}</p>
+              <h3 class="mt-3 text-lg font-semibold text-gray-200">${item.label}</h3>
+              <p class="mt-5 text-4xl md:text-5xl font-extrabold tracking-[-0.03em] text-white">
+                <span class="count-up" data-target="${item.value}">0</span><span class="text-blue-300">${item.unit}</span>
+              </p>
+            </article>
+          `
+        )
+        .join("");
+
+      const counters = statsContainer.querySelectorAll(".count-up");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function animateCounter(el) {
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 1400;
+        const startTime = performance.now();
+
+        function update(now) {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(target * eased);
+
+          el.textContent = current.toLocaleString();
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            el.textContent = target.toLocaleString();
+          }
         }
 
-        const animateCounter = (el) => {
-          const target = parseInt(el.dataset.target, 10);
-          const duration = 1200;
-          const startTime = performance.now();
+        requestAnimationFrame(update);
+      }
 
-          function update(now) {
-            const progress = Math.min((now - startTime) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const value = Math.floor(target * eased);
-            el.textContent = String(value).padStart(String(el.dataset.target).length, "0");
-
-            if (progress < 1) {
-              requestAnimationFrame(update);
-            } else {
-              el.textContent = el.dataset.target;
-            }
-          }
-
-          requestAnimationFrame(update);
-        };
-
+      if (prefersReducedMotion) {
+        counters.forEach((el) => {
+          el.textContent = parseInt(el.dataset.target, 10).toLocaleString();
+        });
+      } else {
         const observer = new IntersectionObserver(
           (entries, obs) => {
             entries.forEach((entry) => {
@@ -489,121 +499,32 @@
               }
             });
           },
-          { threshold: 0.4 }
+          {
+            threshold: 0.35
+          }
         );
 
         counters.forEach((counter) => observer.observe(counter));
-      })();
-    </script>
+      }
+    }
+  })();
 
-    <script>
-      (function () {
-        const data = window.NURA_DATA;
-        if (!data) return;
+  const topbar = document.getElementById('topbar');
 
-        const newsContainer = document.getElementById("news-list");
-        const statsContainer = document.getElementById("stats-list");
+  function updateTopbarBlur() {
+    if (!topbar) return;
 
-        if (newsContainer) {
-          newsContainer.innerHTML = data.newsItems
-            .map(
-              (item) => `
-                <article class="rounded-3xl border border-white/10 bg-white/5 overflow-hidden hover:border-blue-400/40 transition">
-                  <a href="${item.href}" target="_blank" rel="noopener noreferrer" class="block h-full">
-                    <div class="aspect-[16/10] overflow-hidden bg-gray-900">
-                      <img
-                        src="${item.image}"
-                        alt="${item.title}"
-                        class="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
+    if (window.scrollY > 12) {
+      topbar.classList.add('is-scrolled');
+    } else {
+      topbar.classList.remove('is-scrolled');
+    }
+  }
 
-                    <div class="p-6">
-                      <div class="text-sm text-gray-500 mb-3">${item.date}</div>
+  updateTopbarBlur();
+  window.addEventListener('scroll', updateTopbarBlur, { passive: true });
 
-                      <h3 class="text-xl font-bold text-white leading-snug">
-                        ${item.title}
-                      </h3>
-
-                      <p class="mt-4 text-gray-400 leading-7">
-                        ${item.summary}
-                      </p>
-
-                      <span class="mt-6 inline-flex text-sm font-semibold text-blue-300 hover:text-blue-200">
-                        기사 보기 →
-                      </span>
-                    </div>
-                  </a>
-                </article>
-              `
-            )
-            .join("");
-        }
-
-        if (statsContainer) {
-          statsContainer.innerHTML = data.overviewStats
-            .map(
-              (item) => `
-                <article class="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
-                  <p class="text-sm text-gray-500">${item.basis}</p>
-                  <h3 class="mt-3 text-lg font-semibold text-gray-200">${item.label}</h3>
-                  <p class="mt-5 text-4xl md:text-5xl font-extrabold tracking-[-0.03em] text-white">
-                    <span class="count-up" data-target="${item.value}">0</span><span class="text-blue-300">${item.unit}</span>
-                  </p>
-                </article>
-              `
-            )
-            .join("");
-
-          const counters = statsContainer.querySelectorAll(".count-up");
-          const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-          function animateCounter(el) {
-            const target = parseInt(el.dataset.target, 10);
-            const duration = 1400;
-            const startTime = performance.now();
-
-            function update(now) {
-              const progress = Math.min((now - startTime) / duration, 1);
-              const eased = 1 - Math.pow(1 - progress, 3);
-              const current = Math.floor(target * eased);
-
-              el.textContent = current.toLocaleString();
-
-              if (progress < 1) {
-                requestAnimationFrame(update);
-              } else {
-                el.textContent = target.toLocaleString();
-              }
-            }
-
-            requestAnimationFrame(update);
-          }
-
-          if (prefersReducedMotion) {
-            counters.forEach((el) => {
-              el.textContent = parseInt(el.dataset.target, 10).toLocaleString();
-            });
-          } else {
-            const observer = new IntersectionObserver(
-              (entries, obs) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    obs.unobserve(entry.target);
-                  }
-                });
-              },
-              {
-                threshold: 0.35
-              }
-            );
-
-            counters.forEach((counter) => observer.observe(counter));
-          }
-        }
-      })();
-    </script>
+</script>
+    
   </body>
 </html>
