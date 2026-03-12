@@ -23,4 +23,4 @@ SOFTWARE.
 -----
 Project-specific notes:
 - Website code (HTML/CSS/JS) and scripts (e.g., image_postprocessing.py) are licensed under the MIT terms above.
-- Media assets (logos, photos, blurred slides, and sponsor images) in `source/resources/`, `source/overview/`, and `source/sponsors/` are NOT covered by the MIT license. They remain the property of NURA or the respective sponsors and may not be used commercially without permission.
+- Media assets (logos, photos, blurred slides, and sponsor images) in `source/resources/`, `source/overview/`, and `source/Partnership/` are NOT covered by the MIT license. They remain the property of NURA or the respective Partnership and may not be used commercially without permission.

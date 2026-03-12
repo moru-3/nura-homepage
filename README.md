@@ -15,7 +15,7 @@ nura-homepage/
 │   └── index.html          # 상단 네비게이션바 HTML 파일
 ├── resources/           
 │   └── index.html          # 상단 네비게이션바 HTML 파일
-├── sponsors/               
+├── Partnership/               
 │   └── index.html          # 상단 네비게이션바 HTML 파일
 ├── data/               
 │   └── site-data.js        # 변수
@@ -30,7 +30,7 @@ nura-homepage/
 │   │   ├── favicon-16x16.png # 파비콘 (16x16)
 │   │   ├── notion-blur.png # 노션 배경 이미지
 │   │   └── onedrive-blur.png # 원드라이브 배경 이미지
-│   └── sponsors/           # 후원사 로고들
+│   └── Partnership/           # 후원사 로고들
 │       ├── koreanair.png
 │       ├── innospace.png
 │       ├── kari.jpg
@@ -78,7 +78,7 @@ const contentData = {
 - **overview**: 메인 화면 제목과 설명
 - **about**: 단체 소개
 - **activities**: 주요 활동 (카테고리별로 구성)
-- **sponsors**: 후원사 정보
+- **Partnership**: 후원사 정보
 - **resources**: 자료실 링크
 - **footer**: 푸터 정보 (연락처, 사업자 정보 등)
 - **site-data**: 년도, 참여대학, 회원수, 누적 행사 수, 협력 기관 수, 뉴스
@@ -99,7 +99,7 @@ const contentData = {
 - **파일 형식**: PNG 권장 (투명 배경 지원)
 
 #### 후원사 로고
-- 위치: `source/sponsors/`
+- 위치: `source/Partnership/`
 - 권장 크기: 300x150px (2:1 직사각형 비율)
 - 투명 배경 권장
 - **파일 형식**: JPG, PNG, GIF 등 웹 호환 형식 사용 (HEIC, TIFF 등은 피하기)
@@ -120,8 +120,8 @@ const contentData = {
 
 #### 후원사 링크
 ```javascript
-"sponsors": {
-  "sponsors": [
+"Partnership": {
+  "Partnership": [
     {
       "name": "대한항공",
       "url": "https://www.koreanair.com"
@@ -147,12 +147,12 @@ Tailwind CSS 클래스를 사용하여 색상을 변경할 수 있습니다:
 ## 🛠️ 유지보수 가이드
 
 ### 새로운 후원사 추가
-1. 로고 이미지를 `source/sponsors/` 폴더에 추가
-2. `contentData.sponsors.sponsors` 배열에 정보 추가:
+1. 로고 이미지를 `source/Partnership/` 폴더에 추가
+2. `contentData.Partnership.Partnership` 배열에 정보 추가:
 ```javascript
 {
   "name": "새로운 후원사",
-  "logo": "source/sponsors/new-sponsor.png",
+  "logo": "source/Partnership/new-sponsor.png",
   "url": "https://new-sponsor.com",
   "ratio": 1.5  // 로고 가로세로 비율
 }

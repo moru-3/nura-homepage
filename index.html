@@ -71,7 +71,7 @@
       <a href="./" data-page="overview" class="nav-link text-gray-300 hover:text-white transition">Overview</a>
       <a href="./about/" data-page="about" class="nav-link text-gray-300 hover:text-white transition">About</a>
       <a href="./activities/" data-page="activities" class="nav-link text-gray-300 hover:text-white transition">Activities</a>
-      <a href="./sponsors/" data-page="sponsors" class="nav-link text-gray-300 hover:text-white transition">Sponsors</a>
+      <a href="./Partnership/" data-page="Partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
       <a href="./resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
     </nav>
 
@@ -114,7 +114,7 @@
         <a href="./" data-page="overview" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Overview</a>
         <a href="./about/" data-page="about" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">About</a>
         <a href="./activities/" data-page="activities" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Activities</a>
-        <a href="./sponsors/" data-page="sponsors" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Sponsors</a>
+        <a href="./Partnership/" data-page="Partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
         <a href="./resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
       </div>
 
@@ -185,7 +185,52 @@
     <div id="stats-list" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5"></div>
   </div>
 </section>
-        
+      
+<!-- OVERVIEW CTA -->
+<section class="relative overflow-hidden border-t border-white/10 bg-gradient-to-b from-slate-950 to-black">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42rem] h-[42rem] rounded-full bg-blue-500/10 blur-3xl"></div>
+    <div class="absolute bottom-[-6rem] right-[-4rem] w-[24rem] h-[24rem] rounded-full bg-cyan-400/10 blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
+    <div class="rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-sm p-8 md:p-12">
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_auto] gap-8 lg:gap-12 items-center">
+        <div class="max-w-3xl">
+          <p class="text-sm uppercase tracking-[0.22em] text-blue-300/90 mb-3">Get Involved</p>
+          <h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] text-white">
+            NURA와 함께할 방법을 확인해보세요
+          </h2>
+          <p class="mt-4 text-gray-300 text-base md:text-lg leading-8">
+            후원과 협력 방식을 확인하거나, 자료를 살펴보거나, 공식 이메일로 바로 문의할 수 있습니다.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+          <a
+            href="./partnership/"
+            class="inline-flex items-center justify-center rounded-2xl bg-blue-600 hover:bg-blue-500 px-6 py-3.5 font-bold text-white transition"
+          >
+            후원사 · 협력 보기
+          </a>
+          <a
+            href="./resources/"
+            class="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 px-6 py-3.5 font-semibold text-white transition"
+          >
+            자료실 보기
+          </a>
+          <a
+            href="mailto:nurarocketscience@gmail.com?subject=NURA%20Inquiry"
+            class="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 px-6 py-3.5 font-semibold text-white transition"
+          >
+            문의하기
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
   (function () {
     const counters = document.querySelectorAll(".count-up");
@@ -235,6 +280,8 @@
 
     counters.forEach((counter) => observer.observe(counter));
   })();
+
+  
 </script>
         
       </main>
