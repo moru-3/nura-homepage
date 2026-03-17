@@ -646,24 +646,7 @@
     }
   ];
 
-  function getTags(items) {
-    const tags = new Set();
-    const joined = items.join(" ");
-
-    if (/발사대회|모형로켓/.test(joined)) tags.add("발사대회");
-    if (/학술대회|학술교류|특별세션|학생세션/.test(joined)) tags.add("학술");
-    if (/정기 총회|총회|대표자회의/.test(joined)) tags.add("회의");
-    if (/연합캠프/.test(joined)) tags.add("연합캠프");
-    if (/회장|부회장|총무|집행부/.test(joined)) tags.add("집행부");
-    if (/가입/.test(joined)) tags.add("대학 네트워크");
-    if (/후원|포럼|간담회|외교포럼/.test(joined)) tags.add("대외 협력");
-    if (/비영리법인|비영리 민간단체/.test(joined)) tags.add("법인화");
-
-    return [...tags].slice(0, 4);
-  }
-
   function createHistoryEntry(entry) {
-    const tags = getTags(entry.items);
     const cardClass = entry.featured
       ? "border-blue-400/20 bg-white/10"
       : "border-white/10 bg-white/[0.04]";
@@ -671,17 +654,6 @@
     const badgeClass = entry.featured
       ? "border-blue-400/30 bg-blue-500/12 text-blue-200"
       : "border-white/10 bg-white/[0.04] text-white";
-
-    const tagsHtml = tags.length
-      ? `<div class="flex flex-wrap gap-2 mb-4">
-          ${tags
-            .map(
-              (tag) =>
-                `<span class="px-2.5 py-1 rounded-full text-[11px] md:text-xs tracking-[0.04em] text-blue-100 bg-blue-500/10 border border-blue-400/20">${tag}</span>`
-            )
-            .join("")}
-        </div>`
-      : "";
 
     const itemsHtml = entry.items
       .map(
@@ -704,7 +676,6 @@
           </div>
 
           <div class="min-w-0 flex-1">
-            ${tagsHtml}
             <ul class="space-y-2.5">
               ${itemsHtml}
             </ul>
