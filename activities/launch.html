@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NURA | 전국대학교로켓발사대회</title>
+    <script type="text/javascript" nonce="a82d3092fc0a4d3fb9d2e5b4f10" src="//local.adguard.org?ts=1773918280664&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_000000009be071f8bf67bd61f86cda86%26ts%3D492755%26p%3Dfs%26cid%3D1%26sig%3D027f0730b46573aaec55648477bfc7f232172afd4d8bd020d8f837fcb5cb7810%26v%3D0&amp;app=com.apple.Safari&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-push&amp;st-loc&amp;st-java&amp;st-dnt"></script><script type="text/javascript" nonce="a82d3092fc0a4d3fb9d2e5b4f10" src="//local.adguard.org?ts=1773918280664&amp;name=AdGuard%20Extra&amp;type=user-script"></script><link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
+    <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+      html { scroll-behavior: smooth; }
+      html, body { background-color: #030712; overflow-x: hidden; }
+      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+      .page-shell { min-height: 100vh; }
+      #topbar {
+        background: transparent;
+        border-bottom: 1px solid transparent;
+        transition:
+          background-color 260ms ease,
+          backdrop-filter 260ms ease,
+          -webkit-backdrop-filter 260ms ease,
+          border-color 260ms ease,
+          box-shadow 260ms ease;
+      }
+      #topbar.is-scrolled {
+        background: rgba(0, 0, 0, 0.42);
+        backdrop-filter: blur(14px) saturate(1.08);
+        -webkit-backdrop-filter: blur(14px) saturate(1.08);
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      }
+      body.mobile-menu-open #topbar.is-scrolled {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+      .activity-panel {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(17, 24, 39, 0.9);
+        box-shadow:
+          0 24px 80px rgba(0,0,0,0.28),
+          inset 0 1px 0 rgba(255,255,255,0.05);
+      }
+      .activity-kicker { letter-spacing: 0.24em; }
+      .activity-display { letter-spacing: -0.05em; line-height: 0.94; }
+      .metric-card {
+        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(255,255,255,0.04);
+      }
+      .activity-reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 700ms ease, transform 700ms ease;
+      }
+      .activity-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .split-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.1);
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+          rgba(17, 24, 39, 0.88);
+        box-shadow:
+          0 30px 80px rgba(0,0,0,0.28),
+          inset 0 1px 0 rgba(255,255,255,0.04);
+        transition:
+          transform 260ms ease,
+          border-color 260ms ease,
+          box-shadow 260ms ease,
+          background 260ms ease;
+      }
+      .split-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(125, 211, 252, 0.28);
+        box-shadow:
+          0 40px 100px rgba(0,0,0,0.34),
+          0 0 0 1px rgba(125, 211, 252, 0.08),
+          inset 0 1px 0 rgba(255,255,255,0.05);
+      }
+      .split-card::after {
+        content: "";
+        position: absolute;
+        inset: auto -10% -35% auto;
+        width: 240px;
+        height: 240px;
+        border-radius: 9999px;
+        background: radial-gradient(circle, rgba(59,130,246,0.22), transparent 68%);
+        pointer-events: none;
+      }
+      .split-number { letter-spacing: -0.06em; line-height: 0.9; }
+      .split-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.04);
+        transition: all 220ms ease;
+      }
+      .split-link:hover {
+        border-color: rgba(255,255,255,0.24);
+        background: rgba(255,255,255,0.08);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .activity-reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
+    <div class="page-shell flex flex-col">
+    <header
+      id="topbar"
+      class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300"
+    >
+      <div class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+        <a href="../" class="relative z-[70] flex items-center shrink-0">
+          <img
+            src="../source/resources/nura-header.png"
+            alt="전국대학교로켓연합회 로고"
+            class="block h-5 md:h-7 w-auto max-w-[240px] md:max-w-[520px] object-contain translate-y-[1px]"
+          />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-base font-medium">
+          <a href="../" data-page="overview" class="nav-link text-gray-300 hover:text-white transition">Overview</a>
+          <a href="../about/" data-page="about" class="nav-link text-gray-300 hover:text-white transition">About</a>
+          <a href="../activities/" data-page="activities" class="nav-link text-gray-300 hover:text-white transition">Activities</a>
+          <a href="../partnership/" data-page="Partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
+          <a href="../resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
+        </nav>
+
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          aria-label="모바일 메뉴 열기"
+          aria-expanded="false"
+          class="md:hidden relative z-[70] inline-flex items-center justify-center w-11 h-11 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 transition text-white"
+        >
+          <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="fixed inset-0 z-[60] hidden md:hidden bg-slate-950/88 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
+      >
+        <div class="flex flex-col justify-between min-h-screen px-6 pt-20 pb-10 transform transition duration-300 ease-out opacity-0 translate-y-3">
+          <div class="flex flex-col gap-1">
+            <a href="../" data-page="overview" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Overview</a>
+            <a href="../about/" data-page="about" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">About</a>
+            <a href="../activities/" data-page="activities" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Activities</a>
+            <a href="../partnership/" data-page="Partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
+            <a href="../resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
+          </div>
+          <div class="pt-10 text-sm text-gray-400">National University Rocket Association</div>
+        </div>
+      </div>
+    </header>
+
+<main class="w-full flex-1 flex flex-col">
+  <section class="border-b border-white/10 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24">
+      <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-12 items-end">
+        <div class="activity-reveal">
+          <p class="activity-kicker text-xs md:text-sm uppercase text-cyan-300/90">Rocket Launch Competition</p>
+          <h1 class="activity-display mt-4 text-[2.8rem] md:text-[5rem] lg:text-[6.2rem] font-black text-white">
+            전국대학교<br />로켓발사대회
+          </h1>
+          <p class="mt-6 text-lg md:text-xl text-gray-300 leading-8 max-w-2xl">
+            자체 설계한 로켓을 실제 환경에서 발사하며 비행 안정성,
+            구조 완성도, 기술 구현 수준을 검증하는 NURA의 핵심 실전 프로그램입니다.
+          </p>
+        </div>
+
+        <div class="activity-panel rounded-[2rem] p-6 md:p-8 activity-reveal">
+          <p class="text-xs uppercase tracking-[0.24em] text-gray-400">Overview</p>
+          <p class="mt-4 text-3xl md:text-5xl font-black tracking-[-0.05em] text-white">02</p>
+          <p class="mt-4 text-gray-300 leading-8">
+            설계 결과를 실제 비행으로 검증하고, 발사와 회수, 성능 평가까지
+            하나의 흐름으로 확인하는 실전형 경쟁 무대입니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-black border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-16 grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div class="metric-card rounded-3xl p-6 activity-reveal">
+        <p class="text-xs uppercase tracking-[0.2em] text-cyan-300/90">Launch</p>
+        <p class="mt-4 text-2xl md:text-3xl font-black">실제 발사</p>
+        <p class="mt-3 text-sm leading-7 text-gray-400">제작한 로켓을 현장에서 직접 발사합니다.</p>
+      </div>
+      <div class="metric-card rounded-3xl p-6 activity-reveal">
+        <p class="text-xs uppercase tracking-[0.2em] text-cyan-300/90">Flight</p>
+        <p class="mt-4 text-2xl md:text-3xl font-black">비행 검증</p>
+        <p class="mt-3 text-sm leading-7 text-gray-400">비행 안정성과 구조 완성도를 실제 결과로 확인합니다.</p>
+      </div>
+      <div class="metric-card rounded-3xl p-6 activity-reveal">
+        <p class="text-xs uppercase tracking-[0.2em] text-cyan-300/90">Recovery</p>
+        <p class="mt-4 text-2xl md:text-3xl font-black">회수 및 확인</p>
+        <p class="mt-3 text-sm leading-7 text-gray-400">발사 이후 회수 과정을 포함해 전체 흐름을 검토합니다.</p>
+      </div>
+      <div class="metric-card rounded-3xl p-6 activity-reveal">
+        <p class="text-xs uppercase tracking-[0.2em] text-cyan-300/90">Review</p>
+        <p class="mt-4 text-2xl md:text-3xl font-black">심사 및 평가</p>
+        <p class="mt-3 text-sm leading-7 text-gray-400">기술 구현 수준과 결과 완성도를 종합적으로 평가합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-gray-950">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-16 space-y-6 md:space-y-8">
+      <article class="activity-panel rounded-[2rem] md:rounded-[2.5rem] activity-reveal">
+        <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-12 items-center p-7 md:p-10 lg:p-14">
+          <div>
+            <p class="activity-kicker text-xs md:text-sm uppercase text-cyan-300/90">Why Launch</p>
+            <h2 class="activity-display mt-4 text-[2.3rem] md:text-[4rem] lg:text-[5rem] font-black text-white">
+              만들어진 기술은<br />날아가며 증명됩니다
+            </h2>
+            <p class="mt-6 text-base md:text-lg text-gray-300 leading-8 max-w-2xl">
+              발사대회는 설계와 제작이 실제 비행에서 어떤 결과를 내는지 확인하는 과정입니다.
+              책상 위의 설계를 현장의 검증으로 연결하는 가장 직접적인 활동입니다.
+            </p>
+          </div>
+          <div class="rounded-[2rem] border border-white/10 bg-gray-900 min-h-[320px] p-6 md:p-8 flex flex-col justify-between">
+            <div class="text-right text-xs uppercase tracking-[0.24em] text-gray-400">Launch Flow</div>
+            <div>
+              <p class="text-gray-400 text-sm md:text-base">Build · Launch · Validation</p>
+              <p class="mt-3 text-3xl md:text-5xl font-black tracking-[-0.05em] text-white">02</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="grid lg:grid-cols-3 gap-4 md:gap-5">
+        <div class="metric-card rounded-[1.75rem] p-6 activity-reveal">
+          <p class="text-sm font-semibold text-white">현장 발사</p>
+          <p class="mt-3 text-sm leading-7 text-gray-400">설계된 로켓을 실제 발사 절차에 따라 운용합니다.</p>
+        </div>
+        <div class="metric-card rounded-[1.75rem] p-6 activity-reveal">
+          <p class="text-sm font-semibold text-white">성능 확인</p>
+          <p class="mt-3 text-sm leading-7 text-gray-400">비행 결과를 통해 안정성과 기술 구현 수준을 점검합니다.</p>
+        </div>
+        <div class="metric-card rounded-[1.75rem] p-6 activity-reveal">
+          <p class="text-sm font-semibold text-white">경쟁과 검증</p>
+          <p class="mt-3 text-sm leading-7 text-gray-400">심사와 비교를 통해 결과물의 완성도를 객관적으로 드러냅니다.</p>
+        </div>
+      </div>
+
+      <div class="pt-4 activity-reveal">
+        <a href="./" class="inline-flex items-center gap-2 text-sm md:text-base text-gray-300 hover:text-white transition">
+          <span aria-hidden="true">←</span> Activities로 돌아가기
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-gray-950 border-t border-gray-800 py-8 px-4 md:px-16 w-full"> 
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-0 md:px-8">
+      <div>
+        <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
+        <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
+        <p class="text-gray-400 text-sm mb-2">National University Rocket Association</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-4">연락처</h3>
+        <div class="text-gray-400 text-sm space-y-2">
+          <p class="break-all">Email: nurarocketscience@gmail.com</p>
+          <p>Instagram: @nura._.official</p>
+          <p>Address: 경기도 고양시 덕양구 항공대학로 76</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
+        <div class="text-gray-400 text-sm space-y-2">
+          <p>사업자등록번호: 609-82-83482</p>
+          <p>대표자: 전하상</p>
+          <p>설립일: 1992년 3월 2일</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
+      <p class="text-gray-500 text-sm">© 1992 NURA. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script>
+  const currentPage = 'activities';
+  document.querySelectorAll('.nav-link').forEach((link) => {
+    if (link.dataset.page === currentPage) {
+      link.classList.add('text-blue-400', 'font-bold');
+      link.classList.remove('text-gray-300', 'text-white');
+    }
+  });
+
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
+  if (mobileMenuBtn && mobileMenu) {
+    const mobileMenuPanel = mobileMenu.firstElementChild;
+    const ANIMATION_MS = 300;
+    let closeTimeoutId;
+
+    const setMenuState = (isOpen) => {
+      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuIconOpen?.classList.toggle('hidden', isOpen);
+      menuIconClose?.classList.toggle('hidden', !isOpen);
+      document.body.classList.toggle('overflow-hidden', isOpen);
+      document.body.classList.toggle('mobile-menu-open', isOpen);
+    };
+
+    const openMenu = () => {
+      clearTimeout(closeTimeoutId);
+      mobileMenu.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+        mobileMenuPanel?.classList.remove('opacity-0', 'translate-y-3');
+        mobileMenuPanel?.classList.add('opacity-100', 'translate-y-0');
+      });
+      setMenuState(true);
+    };
+
+    const closeMenu = () => {
+      mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+      mobileMenuPanel?.classList.remove('opacity-100', 'translate-y-0');
+      mobileMenuPanel?.classList.add('opacity-0', 'translate-y-3');
+      setMenuState(false);
+      closeTimeoutId = setTimeout(() => mobileMenu.classList.add('hidden'), ANIMATION_MS);
+    };
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) closeMenu(); else openMenu();
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
+  const topbar = document.getElementById('topbar');
+  function updateTopbarBlur() {
+    if (!topbar) return;
+    if (window.scrollY > 12) topbar.classList.add('is-scrolled');
+    else topbar.classList.remove('is-scrolled');
+  }
+  updateTopbarBlur();
+  window.addEventListener('scroll', updateTopbarBlur, { passive: true });
+
+  const activityRevealTargets = document.querySelectorAll('.activity-reveal');
+  if ('IntersectionObserver' in window) {
+    const activityObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          activityObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+    activityRevealTargets.forEach((el) => activityObserver.observe(el));
+  } else {
+    activityRevealTargets.forEach((el) => el.classList.add('is-visible'));
+  }
+</script>
+</body>
+</html>
