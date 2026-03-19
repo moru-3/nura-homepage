@@ -37,7 +37,89 @@
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
- </style>
+ 
+
+/* Activities dropdown */
+.activities-dropdown {
+  position: relative;
+}
+
+.activities-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  margin-top: 11px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  width: 220px;
+  background: rgba(255, 255, 255, 0.96);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms ease;
+  overflow: hidden;
+  z-index: 80;
+}
+
+.activities-dropdown:hover .activities-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.activities-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  color: #111111;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.activities-dropdown-item + .activities-dropdown-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.activities-dropdown-item:hover {
+  background: #3B82F6;
+  color: #ffffff;
+  transform: scale(1.02);
+}
+
+.activities-dropdown-item:hover .activities-dropdown-arrow {
+  color: #ffffff;
+}
+
+.activities-dropdown-arrow {
+  color: #111111;
+  transition: color 180ms ease;
+}
+
+.activities-dropdown::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 14px;
+}
+
+    </style>
   </head>
   <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
     <div class="page-shell flex flex-col">
@@ -58,7 +140,38 @@
     <nav class="hidden md:flex items-center gap-8 text-base font-medium">
       <a href="../" data-page="overview" class="nav-link text-gray-300 hover:text-white transition">Overview</a>
       <a href="../about/" data-page="about" class="nav-link text-gray-300 hover:text-white transition">About</a>
-      <a href="../activities/" data-page="activities" class="nav-link text-gray-300 hover:text-white transition">Activities</a>
+<div class="activities-dropdown">
+  <a
+    href="../activities/"
+    data-page="activities"
+    class="nav-link text-gray-300 hover:text-white transition inline-flex items-center gap-2"
+  >
+    Activities
+    <svg
+      class="w-4 h-4 transition-transform duration-200"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </a>
+
+  <div class="activities-dropdown-menu">
+    <a href="../activities/conference.html" class="activities-dropdown-item">
+      <span>학술대회</span>
+      <span class="activities-dropdown-arrow">→</span>
+    </a>
+    <a href="../activities/launch.html" class="activities-dropdown-item">
+      <span>발사대회</span>
+      <span class="activities-dropdown-arrow">→</span>
+    </a>
+  </div>
+</div>
       <a href="../partnership/" data-page="Partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
       <a href="../resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
     </nav>
@@ -101,7 +214,47 @@
       <div class="flex flex-col gap-1">
         <a href="../" data-page="overview" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Overview</a>
         <a href="../about/" data-page="about" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">About</a>
-        <a href="../activities/" data-page="activities" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Activities</a>
+<div class="border-b border-white/10">
+  <button
+    id="mobile-activities-toggle"
+    type="button"
+    class="w-full py-4 text-2xl font-semibold text-white flex items-center justify-between"
+    aria-expanded="false"
+    aria-controls="mobile-activities-submenu"
+  >
+    <span>Activities</span>
+    <svg
+      id="mobile-activities-arrow"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-5 h-5 text-gray-300 transition-transform duration-300"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 9l6 6 6-6" />
+    </svg>
+  </button>
+
+  <div
+    id="mobile-activities-submenu"
+    class="max-h-0 overflow-hidden transition-all duration-300 ease-out"
+  >
+    <div class="pb-4">
+      <a
+        href="../activities/conference.html"
+        class="block py-2 text-xl font-medium text-gray-300 hover:text-white transition"
+      >
+        학술대회
+      </a>
+      <a
+        href="../activities/launch.html"
+        class="block py-2 text-xl font-medium text-gray-300 hover:text-white transition"
+      >
+        발사대회
+      </a>
+    </div>
+  </div>
+</div>
         <a href="../partnership/" data-page="Partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
         <a href="../resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
       </div>
@@ -555,6 +708,26 @@
 
   updateTopbarBlur();
   window.addEventListener('scroll', updateTopbarBlur, { passive: true });
+
+  const mobileActivitiesToggle = document.getElementById('mobile-activities-toggle');
+  const mobileActivitiesSubmenu = document.getElementById('mobile-activities-submenu');
+  const mobileActivitiesArrow = document.getElementById('mobile-activities-arrow');
+
+  if (mobileActivitiesToggle && mobileActivitiesSubmenu) {
+    mobileActivitiesToggle.addEventListener('click', () => {
+      const isOpen = mobileActivitiesToggle.getAttribute('aria-expanded') === 'true';
+
+      mobileActivitiesToggle.setAttribute('aria-expanded', String(!isOpen));
+      mobileActivitiesArrow?.classList.toggle('rotate-180', !isOpen);
+
+      if (isOpen) {
+        mobileActivitiesSubmenu.style.maxHeight = '0px';
+      } else {
+        mobileActivitiesSubmenu.style.maxHeight = mobileActivitiesSubmenu.scrollHeight + 'px';
+      }
+    });
+  }
+
 </script>
   </body>
 </html>
