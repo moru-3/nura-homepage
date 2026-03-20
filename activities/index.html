@@ -10,330 +10,227 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <script src="../data/shared-layout.js"></script>
     <style>
-      html { scroll-behavior: smooth; }
-      html, body { background-color: #030712; overflow-x: hidden; }
-      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
-      .page-shell { min-height: 100vh; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    overflow-x: hidden;
+  }
 
-      .activity-reveal {
-        opacity: 0;
-        transform: translateY(28px);
-        transition: opacity 700ms ease, transform 700ms ease;
-      }
+  body {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    color: #fff;
+  }
 
-      .activity-reveal.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
+  .page-shell {
+    min-height: 100vh;
+    background: #000;
+  }
 
-      .feature-card {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.08);
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-        box-shadow:
-          0 30px 80px rgba(0, 0, 0, 0.34),
-          inset 0 1px 0 rgba(255,255,255,0.06);
-      }
+  .activity-grid {
+    display: flex;
+    flex-direction: column;
+  }
 
-      .feature-image-wrap {
-        position: relative;
-        overflow: hidden;
-        border-radius: 1.75rem;
-        min-height: 340px;
-      }
+  .activity-hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
 
-      .feature-image-wrap::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(2,6,23,0.02) 0%, rgba(2,6,23,0.18) 100%);
-      }
+  .activity-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.01);
+  }
 
-      .feature-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform: scale(1.01);
-      }
+  .activity-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,0.42) 0%,
+        rgba(0,0,0,0.18) 28%,
+        rgba(0,0,0,0.34) 55%,
+        rgba(0,0,0,0.50) 100%
+      );
+  }
 
-      .learn-more-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.7rem;
-        border-radius: 9999px;
-        background: #2563eb;
-        color: #ffffff;
-        padding: 0.95rem 1.5rem;
-        font-weight: 600;
-        transition: transform 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
-        box-shadow: 0 14px 40px rgba(37, 99, 235, 0.35);
-      }
+  .activity-hero__content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+  }
 
-      .learn-more-btn:hover {
-        background: #3b82f6;
-        transform: translateY(-1px);
-      }
+  .activity-hero__inner {
+    padding-left: clamp(1.5rem, 4vw, 4rem);
+    padding-right: 1.5rem;
+    padding-bottom: clamp(3rem, 8vw, 6rem);
+  }
 
-      .learn-more-btn--cyan {
-        background: #0891b2;
-        box-shadow: 0 14px 40px rgba(8, 145, 178, 0.3);
-      }
+  .activity-label {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: #fff;
+  }
 
-      .learn-more-btn--cyan:hover {
-        background: #06b6d4;
-      }
+      .activity-label--launch {
+  font-size: 35px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
 
-      @media (prefers-reduced-motion: reduce) {
-        .activity-reveal {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-      }
-    </style>
-    <script src="../data/shared-layout.js"></script>
+    .activity-label--conference {
+  font-size: 35px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+  .activity-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.25rem;
+    width: 176px;
+    height: 58px;
+    border: 2px solid rgba(255,255,255,0.92);
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+ .activity-btn:hover {
+  background: #71b3e2; /* 파란색 */
+  border-color: #71b3e2;
+  color: #000000;
+}
+
+  /* 섹션별 이미지 위치 미세조정 */
+  .activity-hero--conference .activity-hero__image {
+    object-position: center center;
+  }
+
+  .activity-hero--launch .activity-hero__image {
+    object-position: center center;
+  }
+
+  .activity-hero--conference .activity-hero__image {
+    object-position: center center;
+  }
+
+  /* 모바일: 사진처럼 한 화면에 여러 카드가 보이게 */
+  @media (max-width: 767px) {
+    .activity-hero {
+      min-height: 38vh;
+    }
+
+    .activity-hero__content {
+      min-height: 38vh;
+      align-items: flex-end;
+    }
+
+    .activity-hero__inner {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+      padding-bottom: 1.9rem;
+    }
+
+    .activity-label {
+      font-size: 2.15rem;
+    }
+    
+    .activity-btn {
+      width: 170px;
+      height: 54px;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+}
+
+  }
+
+  /* 데스크톱: 카드처럼 둥글게 하지 말고 꽉 차게 */
+  @media (min-width: 768px) {
+    .activities-wrap {
+      padding: 0;
+    }
+
+    .activity-grid {
+      gap: 0;
+    }
+
+    .activity-hero {
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+</style>
   </head>
-  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden" data-current-page="activities" data-base-path="..">
+  <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="activities" data-base-path="..">
     <div class="page-shell flex flex-col">
       <div data-shared-header></div>
 
-      <main class="w-full flex-1 flex flex-col bg-gray-950">
-        <section>
-          <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-20">
-            <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-8 md:pb-10 border-b border-white/10">
-              <div class="max-w-5xl">
-                <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">Activities</h1>
-                <p class="mt-6 max-w-2xl text-base md:text-xl leading-8 text-gray-300">
-                  전국 대학 로켓 팀이 함께 설계하고, 발표하고, 실제로 발사하며 기술을 확장하는 NURA의 대표 활동입니다.
-                </p>
-              </div>
-            </section>
+      <main class="w-full flex-1 flex flex-col bg-black">
+  <section class="activity-grid">
 
-            <section class="pt-10 md:pt-16 space-y-8 md:space-y-10">
-              <article class="feature-card rounded-[2rem] md:rounded-[2.75rem] p-5 md:p-8 lg:p-10 activity-reveal">
-                <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-6 md:gap-8 lg:gap-10 items-center">
-                  <div class="feature-image-wrap">
-                    <img src="../source/overview/IMG_0701.JPG" alt="전국대학교로켓학술대회 대표 이미지" class="feature-image" />
-                  </div>
-                  <div class="px-1 md:px-2 lg:px-4">
-                    <p class="text-xs md:text-sm uppercase tracking-[0.26em] text-blue-200/85">Conference</p>
-                    <h2 class="mt-4 text-[2.2rem] md:text-[3.6rem] lg:text-[4.5rem] leading-[0.95] tracking-[-0.06em] font-semibold text-white">
-                      전국대학교로켓학술대회
-                    </h2>
-                    <p class="mt-6 text-base md:text-lg leading-8 text-gray-300">
-                      로켓 설계 과정과 시험 결과를 공유하며, 발표와 토론을 통해 팀의 기술을 다음 단계로 연결하는 자리입니다.
-                    </p>
-                    <div class="mt-8">
-                      <a href="./conference.html" class="learn-more-btn">
-                        <span>Learn more</span>
-                        <span aria-hidden="true">→</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </article>
+    <article class="activity-hero activity-hero--conference">
+      <img
+        src="../source/overview/IMG_0651.jpg"
+        alt="추진 시스템 대표 이미지"
+        class="activity-hero__image"
+      />
+      <div class="activity-hero__content">
+        <div class="activity-hero__inner">
+          <h2 class="activity-label activity-label--conference">CONFERENCE</h2>
+          <a href="./conference.html" class="activity-btn">LEARN MORE</a>
+        </div>
+      </div>
+    </article>
 
-              <article class="feature-card rounded-[2rem] md:rounded-[2.75rem] p-5 md:p-8 lg:p-10 activity-reveal">
-                <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-6 md:gap-8 lg:gap-10 items-center">
-                  <div class="order-2 lg:order-1 px-1 md:px-2 lg:px-4">
-                    <p class="text-xs md:text-sm uppercase tracking-[0.26em] text-cyan-200/85">Launch</p>
-                    <h2 class="mt-4 text-[2.2rem] md:text-[3.6rem] lg:text-[4.5rem] leading-[0.95] tracking-[-0.06em] font-semibold text-white">
-                      전국대학교로켓발사대회
-                    </h2>
-                    <p class="mt-6 text-base md:text-lg leading-8 text-gray-300">
-                      직접 제작한 로켓을 현장에서 발사하고, 비행 안정성과 구조 완성도를 실제 데이터로 검증하는 핵심 무대입니다.
-                    </p>
-                    <div class="mt-8">
-                      <a href="./launch.html" class="learn-more-btn learn-more-btn--cyan">
-                        <span>Learn more</span>
-                        <span aria-hidden="true">→</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="order-1 lg:order-2 feature-image-wrap min-h-[360px] md:min-h-[420px]">
-                    <img src="../source/overview/IMG_0651.jpg" alt="전국대학교로켓발사대회 대표 이미지" class="feature-image" />
-                  </div>
-                </div>
-              </article>
-            </section>
-          </div>
-        </section>
-      </main>
+    <article class="activity-hero activity-hero--launch">
+      <img
+        src="../source/overview/IMG_0651.jpg"
+        alt="전국대학교로켓발사대회 대표 이미지"
+        class="activity-hero__image"
+      />
+      <div class="activity-hero__content">
+        <div class="activity-hero__inner">
+          <h2 class="activity-label activity-label--launch">LAUNCH</h2>
+          <a href="./launch.html" class="activity-btn">LEARN MORE</a>
+        </div>
+      </div>
+    </article>
+
+  </section>
+</main>
 
       <div data-shared-footer></div>
     </div>
-
-    <script>
-      const activityRevealTargets = document.querySelectorAll('.activity-reveal');
-
-      if ('IntersectionObserver' in window) {
-        const activityObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              activityObserver.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.16 });
-
-        activityRevealTargets.forEach((el) => activityObserver.observe(el));
-      } else {
-        activityRevealTargets.forEach((el) => el.classList.add('is-visible'));
-      }
-    </script>
-  </body>
-</html>
-          inset 0 1px 0 rgba(255,255,255,0.06);
-      }
-
-      .feature-image-wrap {
-        position: relative;
-        overflow: hidden;
-        border-radius: 1.75rem;
-        min-height: 340px;
-      }
-
-      .feature-image-wrap::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(2,6,23,0.02) 0%, rgba(2,6,23,0.18) 100%);
-      }
-
-      .feature-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform: scale(1.01);
-      }
-
-      .learn-more-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.7rem;
-        border-radius: 9999px;
-        background: #2563eb;
-        color: #ffffff;
-        padding: 0.95rem 1.5rem;
-        font-weight: 600;
-        transition: transform 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
-        box-shadow: 0 14px 40px rgba(37, 99, 235, 0.35);
-      }
-
-      .learn-more-btn:hover {
-        background: #3b82f6;
-        transform: translateY(-1px);
-      }
-
-      .learn-more-btn--cyan {
-        background: #0891b2;
-        box-shadow: 0 14px 40px rgba(8, 145, 178, 0.3);
-      }
-
-      .learn-more-btn--cyan:hover {
-        background: #06b6d4;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .activity-reveal {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-      }
-    </style>
-    <script src="../data/shared-layout.js"></script>
-  </head>
-  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden" data-current-page="activities" data-base-path="..">
-    <div class="page-shell flex flex-col">
-      <div data-shared-header></div>
-
-      <main class="w-full flex-1 flex flex-col bg-gray-950">
-        <section>
-          <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-20">
-            <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-8 md:pb-10 border-b border-white/10">
-              <div class="max-w-5xl">
-                <p class="text-xs md:text-sm uppercase tracking-[0.28em] text-blue-200/80">NURA Programs</p>
-                <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">Activities</h1>
-                <p class="mt-6 max-w-2xl text-base md:text-xl leading-8 text-gray-300">
-                  전국 대학 로켓 팀이 함께 설계하고, 발표하고, 실제로 발사하며 기술을 확장하는 NURA의 대표 활동입니다.
-                </p>
-              </div>
-            </section>
-
-            <section class="pt-10 md:pt-16 space-y-8 md:space-y-10">
-              <article class="feature-card rounded-[2rem] md:rounded-[2.75rem] p-5 md:p-8 lg:p-10 activity-reveal">
-                <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-6 md:gap-8 lg:gap-10 items-center">
-                  <div class="feature-image-wrap">
-                    <img src="../source/overview/IMG_0701.JPG" alt="전국대학교로켓학술대회 대표 이미지" class="feature-image" />
-                  </div>
-                  <div class="px-1 md:px-2 lg:px-4">
-                    <p class="text-xs md:text-sm uppercase tracking-[0.26em] text-blue-200/85">Conference</p>
-                    <h2 class="mt-4 text-[2.2rem] md:text-[3.6rem] lg:text-[4.5rem] leading-[0.95] tracking-[-0.06em] font-semibold text-white">
-                      전국대학교로켓학술대회
-                    </h2>
-                    <p class="mt-6 text-base md:text-lg leading-8 text-gray-300">
-                      로켓 설계 과정과 시험 결과를 공유하며, 발표와 토론을 통해 팀의 기술을 다음 단계로 연결하는 자리입니다.
-                    </p>
-                    <div class="mt-8">
-                      <a href="./conference.html" class="learn-more-btn">
-                        <span>Learn more</span>
-                        <span aria-hidden="true">→</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="feature-card rounded-[2rem] md:rounded-[2.75rem] p-5 md:p-8 lg:p-10 activity-reveal">
-                <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-6 md:gap-8 lg:gap-10 items-center">
-                  <div class="order-2 lg:order-1 px-1 md:px-2 lg:px-4">
-                    <p class="text-xs md:text-sm uppercase tracking-[0.26em] text-cyan-200/85">Launch</p>
-                    <h2 class="mt-4 text-[2.2rem] md:text-[3.6rem] lg:text-[4.5rem] leading-[0.95] tracking-[-0.06em] font-semibold text-white">
-                      전국대학교로켓발사대회
-                    </h2>
-                    <p class="mt-6 text-base md:text-lg leading-8 text-gray-300">
-                      직접 제작한 로켓을 현장에서 발사하고, 비행 안정성과 구조 완성도를 실제 데이터로 검증하는 핵심 무대입니다.
-                    </p>
-                    <div class="mt-8">
-                      <a href="./launch.html" class="learn-more-btn learn-more-btn--cyan">
-                        <span>Learn more</span>
-                        <span aria-hidden="true">→</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="order-1 lg:order-2 feature-image-wrap min-h-[360px] md:min-h-[420px]">
-                    <img src="../source/overview/IMG_0651.jpg" alt="전국대학교로켓발사대회 대표 이미지" class="feature-image" />
-                  </div>
-                </div>
-              </article>
-            </section>
-          </div>
-        </section>
-      </main>
-
-      <div data-shared-footer></div>
-    </div>
-
-    <script>
-      const activityRevealTargets = document.querySelectorAll('.activity-reveal');
-
-      if ('IntersectionObserver' in window) {
-        const activityObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              activityObserver.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.16 });
-
-        activityRevealTargets.forEach((el) => activityObserver.observe(el));
-      } else {
-        activityRevealTargets.forEach((el) => el.classList.add('is-visible'));
-      }
-    </script>
   </body>
 </html>
