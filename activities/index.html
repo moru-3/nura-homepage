@@ -104,6 +104,157 @@
           <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-20">
             <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-8 md:pb-10 border-b border-white/10">
               <div class="max-w-5xl">
+                <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">Activities</h1>
+                <p class="mt-6 max-w-2xl text-base md:text-xl leading-8 text-gray-300">
+                  전국 대학 로켓 팀이 함께 설계하고, 발표하고, 실제로 발사하며 기술을 확장하는 NURA의 대표 활동입니다.
+                </p>
+              </div>
+            </section>
+
+            <section class="pt-10 md:pt-16 space-y-8 md:space-y-10">
+              <article class="feature-card rounded-[2rem] md:rounded-[2.75rem] p-5 md:p-8 lg:p-10 activity-reveal">
+                <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-6 md:gap-8 lg:gap-10 items-center">
+                  <div class="feature-image-wrap">
+                    <img src="../source/overview/IMG_0701.JPG" alt="전국대학교로켓학술대회 대표 이미지" class="feature-image" />
+                  </div>
+                  <div class="px-1 md:px-2 lg:px-4">
+                    <p class="text-xs md:text-sm uppercase tracking-[0.26em] text-blue-200/85">Conference</p>
+                    <h2 class="mt-4 text-[2.2rem] md:text-[3.6rem] lg:text-[4.5rem] leading-[0.95] tracking-[-0.06em] font-semibold text-white">
+                      전국대학교로켓학술대회
+                    </h2>
+                    <p class="mt-6 text-base md:text-lg leading-8 text-gray-300">
+                      로켓 설계 과정과 시험 결과를 공유하며, 발표와 토론을 통해 팀의 기술을 다음 단계로 연결하는 자리입니다.
+                    </p>
+                    <div class="mt-8">
+                      <a href="./conference.html" class="learn-more-btn">
+                        <span>Learn more</span>
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="feature-card rounded-[2rem] md:rounded-[2.75rem] p-5 md:p-8 lg:p-10 activity-reveal">
+                <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-6 md:gap-8 lg:gap-10 items-center">
+                  <div class="order-2 lg:order-1 px-1 md:px-2 lg:px-4">
+                    <p class="text-xs md:text-sm uppercase tracking-[0.26em] text-cyan-200/85">Launch</p>
+                    <h2 class="mt-4 text-[2.2rem] md:text-[3.6rem] lg:text-[4.5rem] leading-[0.95] tracking-[-0.06em] font-semibold text-white">
+                      전국대학교로켓발사대회
+                    </h2>
+                    <p class="mt-6 text-base md:text-lg leading-8 text-gray-300">
+                      직접 제작한 로켓을 현장에서 발사하고, 비행 안정성과 구조 완성도를 실제 데이터로 검증하는 핵심 무대입니다.
+                    </p>
+                    <div class="mt-8">
+                      <a href="./launch.html" class="learn-more-btn learn-more-btn--cyan">
+                        <span>Learn more</span>
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="order-1 lg:order-2 feature-image-wrap min-h-[360px] md:min-h-[420px]">
+                    <img src="../source/overview/IMG_0651.jpg" alt="전국대학교로켓발사대회 대표 이미지" class="feature-image" />
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <div data-shared-footer></div>
+    </div>
+
+    <script>
+      const activityRevealTargets = document.querySelectorAll('.activity-reveal');
+
+      if ('IntersectionObserver' in window) {
+        const activityObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              activityObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.16 });
+
+        activityRevealTargets.forEach((el) => activityObserver.observe(el));
+      } else {
+        activityRevealTargets.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
+  </body>
+</html>
+          inset 0 1px 0 rgba(255,255,255,0.06);
+      }
+
+      .feature-image-wrap {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1.75rem;
+        min-height: 340px;
+      }
+
+      .feature-image-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(2,6,23,0.02) 0%, rgba(2,6,23,0.18) 100%);
+      }
+
+      .feature-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.01);
+      }
+
+      .learn-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        border-radius: 9999px;
+        background: #2563eb;
+        color: #ffffff;
+        padding: 0.95rem 1.5rem;
+        font-weight: 600;
+        transition: transform 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
+        box-shadow: 0 14px 40px rgba(37, 99, 235, 0.35);
+      }
+
+      .learn-more-btn:hover {
+        background: #3b82f6;
+        transform: translateY(-1px);
+      }
+
+      .learn-more-btn--cyan {
+        background: #0891b2;
+        box-shadow: 0 14px 40px rgba(8, 145, 178, 0.3);
+      }
+
+      .learn-more-btn--cyan:hover {
+        background: #06b6d4;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .activity-reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
+    <script src="../data/shared-layout.js"></script>
+  </head>
+  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden" data-current-page="activities" data-base-path="..">
+    <div class="page-shell flex flex-col">
+      <div data-shared-header></div>
+
+      <main class="w-full flex-1 flex flex-col bg-gray-950">
+        <section>
+          <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-20">
+            <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-8 md:pb-10 border-b border-white/10">
+              <div class="max-w-5xl">
                 <p class="text-xs md:text-sm uppercase tracking-[0.28em] text-blue-200/80">NURA Programs</p>
                 <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">Activities</h1>
                 <p class="mt-6 max-w-2xl text-base md:text-xl leading-8 text-gray-300">
