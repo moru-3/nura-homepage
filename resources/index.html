@@ -1,239 +1,21 @@
-<html lang="ko"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NURA | Resources</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png">
-    <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
+    <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <script src="../data/site-data.js"></script>
-    <style>
-      html { scroll-behavior: smooth; }
-      html, body { background-color: #030712; overflow-x: hidden; }
-      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
-      .page-shell { min-height: 100vh; }
-      #topbar {
-    background: transparent;
-    border-bottom: 1px solid transparent;
-    transition:
-      background-color 260ms ease,
-      backdrop-filter 260ms ease,
-      -webkit-backdrop-filter 260ms ease,
-      border-color 260ms ease,
-      box-shadow 260ms ease;
-  }
-
-  #topbar.is-scrolled {
-    background: rgba(0, 0, 0, 0.42);
-    backdrop-filter: blur(14px) saturate(1.08);
-    -webkit-backdrop-filter: blur(14px) saturate(1.08);
-    border-bottom-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-  }
-  body.mobile-menu-open #topbar.is-scrolled {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
- 
-
-/* Activities dropdown */
-.activities-dropdown {
-  position: relative;
-}
-
-.activities-dropdown-menu {
-  position: absolute;
-  top: 100%;
-  margin-top: 11px;
-  left: 50%;
-  transform: translateX(-50%) translateY(8px);
-  width: 220px;
-  background: rgba(255, 255, 255, 0.96);
-  border: none;
-  border-radius: 16px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease,
-    visibility 180ms ease;
-  overflow: hidden;
-  z-index: 80;
-}
-
-.activities-dropdown:hover .activities-dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
-}
-
-.activities-dropdown-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
-  color: #111111;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
-}
-
-.activities-dropdown-item + .activities-dropdown-item {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.activities-dropdown-item:hover {
-  background: #3B82F6;
-  color: #ffffff;
-  transform: scale(1.02);
-}
-
-.activities-dropdown-item:hover .activities-dropdown-arrow {
-  color: #ffffff;
-}
-
-.activities-dropdown-arrow {
-  color: #111111;
-  transition: color 180ms ease;
-}
-
-.activities-dropdown::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  height: 14px;
-}
-
-    </style>
-  <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.relative{position:relative}.inset-0{inset:0px}.left-0{left:0px}.right-0{right:0px}.top-0{top:0px}.z-50{z-index:50}.z-\[60\]{z-index:60}.z-\[70\]{z-index:70}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mt-5{margin-top:1.25rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-11{height:2.75rem}.h-20{height:5rem}.h-5{height:1.25rem}.min-h-screen{min-height:100vh}.w-11{width:2.75rem}.w-5{width:1.25rem}.w-auto{width:auto}.w-full{width:100%}.max-w-5xl{max-width:64rem}.max-w-6xl{max-width:72rem}.max-w-7xl{max-width:80rem}.max-w-\[240px\]{max-width:240px}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.translate-y-3{--tw-translate-y:0.75rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-\[1px\]{--tw-translate-y:1px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-3{gap:0.75rem}.gap-8{gap:2rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-hidden{overflow-x:hidden}.break-all{word-break:break-all}.rounded-\[2rem\]{border-radius:2rem}.rounded-full{border-radius:9999px}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-black{--tw-border-opacity:1;border-color:rgb(0 0 0 / var(--tw-border-opacity, 1))}.border-black\/10{border-color:rgb(0 0 0 / 0.1)}.border-black\/15{border-color:rgb(0 0 0 / 0.15)}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.bg-\[\#f6f5f1\]{--tw-bg-opacity:1;background-color:rgb(246 245 241 / var(--tw-bg-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-gray-900{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity, 1))}.bg-gray-950{--tw-bg-opacity:1;background-color:rgb(3 7 18 / var(--tw-bg-opacity, 1))}.bg-transparent{background-color:transparent}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.object-contain{object-fit:contain}.px-0{padding-left:0px;padding-right:0px}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.pb-10{padding-bottom:2.5rem}.pb-12{padding-bottom:3rem}.pb-16{padding-bottom:4rem}.pb-2{padding-bottom:0.5rem}.pb-6{padding-bottom:1.5rem}.pt-10{padding-top:2.5rem}.pt-12{padding-top:3rem}.pt-2{padding-top:0.5rem}.pt-20{padding-top:5rem}.pt-24{padding-top:6rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[11px\]{font-size:11px}.text-\[42px\]{font-size:42px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.tracking-\[-0\.02em\]{letter-spacing:-0.02em}.tracking-\[-0\.06em\]{letter-spacing:-0.06em}.tracking-\[0\.24em\]{letter-spacing:0.24em}.text-\[\#111111\]{--tw-text-opacity:1;color:rgb(17 17 17 / var(--tw-text-opacity, 1))}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-black\/45{color:rgb(0 0 0 / 0.45)}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-black\/55{color:rgb(0 0 0 / 0.55)}.opacity-0{opacity:0}.shadow-\[0_30px_90px_rgba\(0\2c 0\2c 0\2c 0\.28\)\]{--tw-shadow:0 30px 90px rgba(0,0,0,0.28);--tw-shadow-colored:0 30px 90px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-xl{--tw-backdrop-blur:blur(24px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.ease-out{transition-timing-function:cubic-bezier(0, 0, 0.2, 1)}.hover\:bg-black:hover{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.hover\:bg-black\/85:hover{background-color:rgb(0 0 0 / 0.85)}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:flex-row{flex-direction:row}}@media (min-width: 768px){.md\:flex{display:flex}.md\:hidden{display:none}.md\:h-7{height:1.75rem}.md\:max-w-\[520px\]{max-width:520px}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:rounded-\[2\.5rem\]{border-radius:2.5rem}.md\:px-10{padding-left:2.5rem;padding-right:2.5rem}.md\:px-16{padding-left:4rem;padding-right:4rem}.md\:px-8{padding-left:2rem;padding-right:2rem}.md\:py-4{padding-top:1rem;padding-bottom:1rem}.md\:py-12{padding-top:3rem;padding-bottom:3rem}.md\:pb-14{padding-bottom:3.5rem}.md\:pb-20{padding-bottom:5rem}.md\:pb-8{padding-bottom:2rem}.md\:pt-10{padding-top:2.5rem}.md\:pt-16{padding-top:4rem}.md\:pt-32{padding-top:8rem}.md\:text-\[22px\]{font-size:22px}.md\:text-\[72px\]{font-size:72px}.md\:text-xs{font-size:0.75rem;line-height:1rem}}@media (min-width: 1024px){.lg\:px-14{padding-left:3.5rem;padding-right:3.5rem}}</style></head>
-  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
+    <link rel="stylesheet" href="../assets/css/common.css" />
+  </head>
+  <body data-root=".." data-page="resources" class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
     <div class="page-shell flex flex-col">
-    <header id="topbar" class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-    <a href="../" class="relative z-[70] flex items-center shrink-0">
-  <img src="../source/resources/nura-header.png" alt="전국대학교로켓연합회 로고" class="block h-5 md:h-7 w-auto max-w-[240px] md:max-w-[520px] object-contain translate-y-[1px]">
-</a>
-
-    <nav class="hidden md:flex items-center gap-8 text-base font-medium">
-      <a href="../" data-page="overview" class="nav-link text-gray-300 hover:text-white transition">Overview</a>
-      <a href="../about/" data-page="about" class="nav-link text-gray-300 hover:text-white transition">About</a>
-<div class="activities-dropdown">
-  <a
-    href="../activities/"
-    data-page="activities"
-    class="nav-link text-gray-300 hover:text-white transition inline-flex items-center gap-2"
-  >
-    Activities
-    <svg
-      class="w-4 h-4 transition-transform duration-200"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-        clip-rule="evenodd"
-      />
-    </svg>
-  </a>
-
-  <div class="activities-dropdown-menu">
-    <a href="../activities/conference.html" class="activities-dropdown-item">
-      <span>학술대회</span>
-      <span class="activities-dropdown-arrow">→</span>
-    </a>
-    <a href="../activities/launch.html" class="activities-dropdown-item">
-      <span>발사대회</span>
-      <span class="activities-dropdown-arrow">→</span>
-    </a>
-  </div>
-</div>
-      <a href="../partnership/" data-page="Partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
-      <a href="../resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
-    </nav>
-
-    <button id="mobile-menu-btn" type="button" aria-label="모바일 메뉴 열기" aria-expanded="false" class="md:hidden relative z-[70] inline-flex items-center justify-center w-11 h-11 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 transition text-white">
-      <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-      <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 6l12 12M18 6L6 18"></path>
-      </svg>
-    </button>
-  </div>
-
-  <div id="mobile-menu" class="fixed inset-0 z-[60] hidden md:hidden bg-slate-950/88 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 ease-out">
-    <div class="flex flex-col justify-between min-h-screen px-6 pt-20 pb-10 transform transition duration-300 ease-out opacity-0 translate-y-3">
-      <div class="flex flex-col gap-1">
-        <a href="../" data-page="overview" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Overview</a>
-        <a href="../about/" data-page="about" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">About</a>
-<div class="border-b border-white/10">
-  <button
-    id="mobile-activities-toggle"
-    type="button"
-    class="w-full py-4 text-2xl font-semibold text-white flex items-center justify-between"
-    aria-expanded="false"
-    aria-controls="mobile-activities-submenu"
-  >
-    <span>Activities</span>
-    <svg
-      id="mobile-activities-arrow"
-      xmlns="http://www.w3.org/2000/svg"
-      class="w-5 h-5 text-gray-300 transition-transform duration-300"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 9l6 6 6-6" />
-    </svg>
-  </button>
-
-  <div
-    id="mobile-activities-submenu"
-    class="max-h-0 overflow-hidden transition-all duration-300 ease-out"
-  >
-    <div class="pb-4">
-      <a
-        href="../activities/conference.html"
-        class="block py-2 text-xl font-medium text-gray-300 hover:text-white transition"
-      >
-        학술대회
-      </a>
-      <a
-        href="../activities/launch.html"
-        class="block py-2 text-xl font-medium text-gray-300 hover:text-white transition"
-      >
-        발사대회
-      </a>
-    </div>
-  </div>
-</div>
-        <a href="../partnership/" data-page="Partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
-        <a href="../resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
-      </div>
-
-      <div class="pt-10 text-sm text-gray-400">
-        National University Rocket Association
-      </div>
-    </div>
-  </div>
-</header>
-
+      <div id="site-header"></div>
       <main class="w-full flex-1 flex flex-col">
   <section class="bg-gray-950">
     <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-12">
@@ -269,178 +51,55 @@
     </div>
   </section>
 </main>
-<footer class="bg-gray-950 border-t border-gray-800 py-8 px-4 md:px-16 w-full"> 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-0 md:px-8">
-          <div>
-            <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
-            <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
-            <p class="text-gray-400 text-sm mb-2">National University Rocket Association</p>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4">연락처</h3>
-            <div class="text-gray-400 text-sm space-y-2">
-              <p class="break-all">Email: nurarocketscience@gmail.com</p>
-              <p>Instagram: @nura._.official</p>
-              <p>Address: 경기도 고양시 덕양구 항공대학로 76</p>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
-            <div class="text-gray-400 text-sm space-y-2">
-              <p>사업자등록번호: 609-82-83482</p>
-              <p>대표자: 전하상</p>
-              <p>설립일: 1992년 3월 2일</p>
-            </div>
-          </div>
-        </div>
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
-          <p class="text-gray-500 text-sm">© 1992 NURA. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-
+      <div id="site-footer"></div>
     </div>
-   <script>
-  const currentPage = 'resources';
-  document.querySelectorAll('.nav-link').forEach((link) => {
-    if (link.dataset.page === currentPage) {
-      link.classList.add('text-blue-400', 'font-bold');
-      link.classList.remove('text-gray-300', 'text-white');
-    }
-  });
 
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuIconOpen = document.getElementById('menu-icon-open');
-  const menuIconClose = document.getElementById('menu-icon-close');
-  if (mobileMenuBtn && mobileMenu) {
-    const mobileMenuPanel = mobileMenu.firstElementChild;
-    const ANIMATION_MS = 300;
-    let closeTimeoutId;
+    <script src="../assets/js/layout.js"></script>
+    <script>
+      const resourceDocumentList = document.getElementById('resource-document-list');
+      const resourceDocuments = window.NURA_DATA?.resourceDocuments || [];
 
-    const setMenuState = (isOpen) => {
-      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
-      menuIconOpen?.classList.toggle('hidden', isOpen);
-      menuIconClose?.classList.toggle('hidden', !isOpen);
-      document.body.classList.toggle('overflow-hidden', isOpen);
-      document.body.classList.toggle('mobile-menu-open', isOpen);
-    };
+      const getResourceAction = (item) => {
+        if (item.status === 'coming-soon') {
+          return '<span class="inline-flex items-center justify-center rounded-full border border-black/15 px-4 py-2 text-sm font-medium text-black/45">업로드 예정</span>';
+        }
 
-    const openMenu = () => {
-      clearTimeout(closeTimeoutId);
-      mobileMenu.classList.remove('hidden');
-      requestAnimationFrame(() => {
-        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-        mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
-        mobileMenuPanel?.classList.remove('opacity-0', 'translate-y-3');
-        mobileMenuPanel?.classList.add('opacity-100', 'translate-y-0');
-      });
-      setMenuState(true);
-    };
+        const isMail = typeof item.href === 'string' && item.href.startsWith('mailto:');
+        const label = isMail ? '문의하기' : 'View';
+        const targetAttrs = isMail ? '' : ' target="_blank" rel="noopener noreferrer"';
+        return `
+          <a href="${item.href}"${targetAttrs} class="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-black">
+            <span>${label}</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        `;
+      };
 
-    const closeMenu = () => {
-      mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
-      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-      mobileMenuPanel?.classList.remove('opacity-100', 'translate-y-0');
-      mobileMenuPanel?.classList.add('opacity-0', 'translate-y-3');
-      setMenuState(false);
-      closeTimeoutId = setTimeout(() => mobileMenu.classList.add('hidden'), ANIMATION_MS);
-    };
-
-    mobileMenuBtn.addEventListener('click', () => {
-      const isOpen = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
+      if (resourceDocumentList) {
+        if (!resourceDocuments.length) {
+          resourceDocumentList.innerHTML = `
+            <article class="py-10 md:py-12 border-b border-white/10">
+              <p class="text-base text-white/55">등록된 자료가 없습니다. <span class="font-medium text-white">data/site-data.js</span>의 <span class="font-medium text-white">resourceDocuments</span> 배열을 추가해 주세요.</p>
+            </article>
+          `;
+        } else {
+          resourceDocumentList.innerHTML = resourceDocuments.map((item) => `
+            <article class="py-6 md:py-8 border-b border-white/10 last:border-b-0">
+              <div class="grid grid-cols-1 md:grid-cols-[170px_minmax(0,1fr)_auto] gap-4 md:gap-8 md:items-center">
+                <div class="text-sm md:text-base text-white/45 font-medium tracking-[-0.01em]">${item.date}</div>
+                <div class="min-w-0">
+                  <h2 class="text-[22px] md:text-[30px] leading-[1.22] tracking-[-0.04em] font-semibold text-white break-keep">${item.title}</h2>
+                  <p class="mt-2 text-sm md:text-[15px] text-white/55 break-keep">${item.category} · ${item.format}${item.size ? ` · ${item.size}` : ''}</p>
+                  ${item.description ? `<p class="mt-3 text-sm md:text-[15px] leading-7 text-white/55 break-keep max-w-3xl">${item.description}</p>` : ''}
+                </div>
+                <div class="pt-1 md:pt-0">
+                  ${getResourceAction(item)}
+                </div>
+              </div>
+            </article>
+          `).join('');
+        }
       }
-    });
-
-    mobileMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', closeMenu);
-    });
-  }
-    const topbar = document.getElementById('topbar');
-
-  function updateTopbarBlur() {
-    if (!topbar) return;
-
-    if (window.scrollY > 12) {
-      topbar.classList.add('is-scrolled');
-    } else {
-      topbar.classList.remove('is-scrolled');
-    }
-  }
-
-
-
-  const resourceDocumentList = document.getElementById('resource-document-list');
-  const resourceDocuments = window.NURA_DATA?.resourceDocuments || [];
-
-  const getResourceAction = (item) => {
-    if (item.status === 'coming-soon') {
-      return '<span class="inline-flex items-center justify-center rounded-full border border-black/15 px-4 py-2 text-sm font-medium text-black/45">업로드 예정</span>';
-    }
-
-    const isMail = typeof item.href === 'string' && item.href.startsWith('mailto:');
-    const label = isMail ? '문의하기' : 'View';
-    const targetAttrs = isMail ? '' : ' target="_blank" rel="noopener noreferrer"';
-    return `
-      <a href="${item.href}"${targetAttrs} class="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-black">
-        <span>${label}</span>
-        <span aria-hidden="true">↗</span>
-      </a>
-    `;
-  };
-
-  if (resourceDocumentList) {
-    if (!resourceDocuments.length) {
-      resourceDocumentList.innerHTML = `
-        <article class="py-10 md:py-12 border-b border-white/10">
-          <p class="text-base text-white/55">등록된 자료가 없습니다. <span class="font-medium text-white">data/site-data.js</span>의 <span class="font-medium text-white">resourceDocuments</span> 배열을 추가해 주세요.</p>
-        </article>
-      `;
-    } else {
-      resourceDocumentList.innerHTML = resourceDocuments.map((item) => `
-        <article class="py-6 md:py-8 border-b border-white/10 last:border-b-0">
-          <div class="grid grid-cols-1 md:grid-cols-[170px_minmax(0,1fr)_auto] gap-4 md:gap-8 md:items-center">
-            <div class="text-sm md:text-base text-white/45 font-medium tracking-[-0.01em]">${item.date}</div>
-            <div class="min-w-0">
-              <h2 class="text-[22px] md:text-[30px] leading-[1.22] tracking-[-0.04em] font-semibold text-white break-keep">${item.title}</h2>
-              <p class="mt-2 text-sm md:text-[15px] text-white/55 break-keep">${item.category} · ${item.format}${item.size ? ` · ${item.size}` : ''}</p>
-              ${item.description ? `<p class="mt-3 text-sm md:text-[15px] leading-7 text-white/55 break-keep max-w-3xl">${item.description}</p>` : ''}
-            </div>
-            <div class="pt-1 md:pt-0">
-              ${getResourceAction(item)}
-            </div>
-          </div>
-        </article>
-      `).join('');
-    }
-  }
-  updateTopbarBlur();
-  window.addEventListener('scroll', updateTopbarBlur, { passive: true });
-
-  const mobileActivitiesToggle = document.getElementById('mobile-activities-toggle');
-  const mobileActivitiesSubmenu = document.getElementById('mobile-activities-submenu');
-  const mobileActivitiesArrow = document.getElementById('mobile-activities-arrow');
-
-  if (mobileActivitiesToggle && mobileActivitiesSubmenu) {
-    mobileActivitiesToggle.addEventListener('click', () => {
-      const isOpen = mobileActivitiesToggle.getAttribute('aria-expanded') === 'true';
-
-      mobileActivitiesToggle.setAttribute('aria-expanded', String(!isOpen));
-      mobileActivitiesArrow?.classList.toggle('rotate-180', !isOpen);
-
-      if (isOpen) {
-        mobileActivitiesSubmenu.style.maxHeight = '0px';
-      } else {
-        mobileActivitiesSubmenu.style.maxHeight = mobileActivitiesSubmenu.scrollHeight + 'px';
-      }
-    });
-  }
-
-</script>
-  
-
-</body></html>
+    </script>
+  </body>
+</html>

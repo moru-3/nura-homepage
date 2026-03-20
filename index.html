@@ -3,755 +3,152 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NURA | 전국대학교로켓연합회</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="source/resources/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="source/resources/favicon-16x16.png" />
-    <link rel="shortcut icon" type="image/png" href="source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./source/resources/favicon-16x16.png" />
+    <link rel="shortcut icon" type="image/png" href="./source/resources/favicon-32x32.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <style>
-      html { scroll-behavior: smooth; }
-      html, body { background-color: #030712; overflow-x: hidden; }
-      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
-      .page-shell { min-height: 100vh; }
-        #topbar {
-    background: transparent;
-    border-bottom: 1px solid transparent;
-    transition:
-      background-color 260ms ease,
-      backdrop-filter 260ms ease,
-      -webkit-backdrop-filter 260ms ease,
-      border-color 260ms ease,
-      box-shadow 260ms ease;
-  }
-
-  #topbar.is-scrolled {
-    background: rgba(0, 0, 0, 0.42);
-    backdrop-filter: blur(14px) saturate(1.08);
-    -webkit-backdrop-filter: blur(14px) saturate(1.08);
-    border-bottom-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-  }
-
-
-  body.mobile-menu-open #topbar.is-scrolled {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-    
-
-/* Activities dropdown */
-.activities-dropdown {
-  position: relative;
-}
-
-.activities-dropdown-menu {
-  position: absolute;
-  top: 100%;
-  margin-top: 11px;
-  left: 50%;
-  transform: translateX(-50%) translateY(8px);
-  width: 220px;
-  background: rgba(255, 255, 255, 0.96);
-  border: none;
-  border-radius: 16px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease,
-    visibility 180ms ease;
-  overflow: hidden;
-  z-index: 80;
-}
-
-.activities-dropdown:hover .activities-dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
-}
-
-.activities-dropdown-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
-  color: #111111;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
-}
-
-.activities-dropdown-item + .activities-dropdown-item {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.activities-dropdown-item:hover {
-  background: #3B82F6;
-  color: #ffffff;
-  transform: scale(1.02);
-}
-
-.activities-dropdown-item:hover .activities-dropdown-arrow {
-  color: #ffffff;
-}
-
-.activities-dropdown-arrow {
-  color: #111111;
-  transition: color 180ms ease;
-}
-
-.activities-dropdown::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  height: 14px;
-}
-
-    </style>
-  </head>
-  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
-    <div class="page-shell flex flex-col">
-    <header
-  id="topbar"
-  class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300"
->
-  <div
-    class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between"
-  >
-<a href="./" class="relative z-[70] flex items-center shrink-0">
-  <img
-    src="source/resources/nura-header.png"
-    alt="전국대학교로켓연합회 로고"
-    class="block h-5 md:h-7 w-auto max-w-[240px] md:max-w-[520px] object-contain translate-y-[1px]"  />
-</a>
-
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/common.css" />
+    <title>NURA | 전국대학교로켓연합회</title>
     <script src="./data/site-data.js"></script>
-
-    <nav class="hidden md:flex items-center gap-8 text-base font-medium">
-      <a href="./" data-page="overview" class="nav-link text-gray-300 hover:text-white transition">Overview</a>
-      <a href="./about/" data-page="about" class="nav-link text-gray-300 hover:text-white transition">About</a>
-<div class="activities-dropdown">
-  <a
-    href="./activities/"
-    data-page="activities"
-    class="nav-link text-gray-300 hover:text-white transition inline-flex items-center gap-2"
-  >
-    Activities
-    <svg
-      class="w-4 h-4 transition-transform duration-200"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-        clip-rule="evenodd"
-      />
-    </svg>
-  </a>
-
-  <div class="activities-dropdown-menu">
-    <a href="./activities/conference.html" class="activities-dropdown-item">
-      <span>학술대회</span>
-      <span class="activities-dropdown-arrow">→</span>
-    </a>
-    <a href="./activities/launch.html" class="activities-dropdown-item">
-      <span>발사대회</span>
-      <span class="activities-dropdown-arrow">→</span>
-    </a>
-  </div>
-</div>
-      <a href="./partnership/" data-page="Partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
-      <a href="./resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
-    </nav>
-
-    <button
-      id="mobile-menu-btn"
-      type="button"
-      aria-label="모바일 메뉴 열기"
-      aria-expanded="false"
-      class="md:hidden relative z-[70] inline-flex items-center justify-center w-11 h-11 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 transition text-white"
-    >
-      <svg
-        id="menu-icon-open"
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-5 h-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-      <svg
-        id="menu-icon-close"
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-5 h-5 hidden"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 6l12 12M18 6L6 18" />
-      </svg>
-    </button>
-  </div>
-
-  <div
-    id="mobile-menu"
-    class="fixed inset-0 z-[60] hidden md:hidden bg-slate-950/88 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
-  >
-    <div class="flex flex-col justify-between min-h-screen px-6 pt-20 pb-10 transform transition duration-300 ease-out opacity-0 translate-y-3">
-      <div class="flex flex-col gap-1">
-        <a href="./" data-page="overview" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Overview</a>
-        <a href="./about/" data-page="about" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">About</a>
-<div class="border-b border-white/10">
-  <button
-    id="mobile-activities-toggle"
-    type="button"
-    class="w-full py-4 text-2xl font-semibold text-white flex items-center justify-between"
-    aria-expanded="false"
-    aria-controls="mobile-activities-submenu"
-  >
-    <span>Activities</span>
-    <svg
-      id="mobile-activities-arrow"
-      xmlns="http://www.w3.org/2000/svg"
-      class="w-5 h-5 text-gray-300 transition-transform duration-300"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 9l6 6 6-6" />
-    </svg>
-  </button>
-
-  <div
-    id="mobile-activities-submenu"
-    class="max-h-0 overflow-hidden transition-all duration-300 ease-out"
-  >
-    <div class="pb-4">
-      <a
-        href="./activities/conference.html"
-        class="block py-2 text-xl font-medium text-gray-300 hover:text-white transition"
-      >
-        학술대회
-      </a>
-      <a
-        href="./activities/launch.html"
-        class="block py-2 text-xl font-medium text-gray-300 hover:text-white transition"
-      >
-        발사대회
-      </a>
-    </div>
-  </div>
-</div>
-        <a href="./partnership/" data-page="Partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
-        <a href="./resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
-      </div>
-
-      <div class="pt-10 text-sm text-gray-400">
-        National University Rocket Association
-      </div>
-    </div>
-  </div>
-</header>
-
-
-
+  </head>
+  <body data-root="." data-page="overview" class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
+    <div class="page-shell flex flex-col">
+      <div id="site-header"></div>
       <main class="w-full flex-1 flex flex-col">
-        <section id="overview" class="relative overflow-hidden flex flex-col justify-center h-screen w-full p-0 m-0">
-          <div id="slideshow-bg" class="absolute inset-0 w-full h-full z-0 pointer-events-none">
-            <img src="source/overview/blurred/slide1.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-[1500ms]" style="z-index:1;" alt="슬라이드1">
-            <img src="source/overview/blurred/slide2.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드2">
-            <img src="source/overview/blurred/slide3.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드3">
-            <img src="source/overview/blurred/slide4.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드4">
-            <img src="source/overview/blurred/slide5.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드5">
-            <img src="source/overview/blurred/slide6.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드6">
-            <img src="source/overview/blurred/slide7.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드7">
-            <img src="source/overview/blurred/slide8.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드8">
-            <img src="source/overview/blurred/slide9.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드9">
-            <img src="source/overview/blurred/slide10.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드10">
-            <img src="source/overview/blurred/slide11.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드11">
+
+        <section class="relative min-h-[760px] bg-black overflow-hidden">
+          <div class="absolute inset-0">
+            <img src="source/overview/blurred/slide1.jpg" class="hero-slide is-active" alt="슬라이드1" />
+            <img src="source/overview/blurred/slide2.jpg" class="hero-slide" alt="슬라이드2" />
+            <img src="source/overview/blurred/slide3.jpg" class="hero-slide" alt="슬라이드3" />
+            <img src="source/overview/blurred/slide4.jpg" class="hero-slide" alt="슬라이드4" />
+            <img src="source/overview/blurred/slide5.jpg" class="hero-slide" alt="슬라이드5" />
+            <img src="source/overview/blurred/slide6.jpg" class="hero-slide" alt="슬라이드6" />
+            <img src="source/overview/blurred/slide7.jpg" class="hero-slide" alt="슬라이드7" />
+            <img src="source/overview/blurred/slide8.jpg" class="hero-slide" alt="슬라이드8" />
+            <img src="source/overview/blurred/slide9.jpg" class="hero-slide" alt="슬라이드9" />
+            <img src="source/overview/blurred/slide10.jpg" class="hero-slide" alt="슬라이드10" />
+            <img src="source/overview/blurred/slide11.jpg" class="hero-slide" alt="슬라이드11" />
             <div class="absolute inset-0 bg-black/60 z-10"></div>
           </div>
-<div class="relative z-30 h-full w-full text-white">
-<div class="max-w-7xl mx-auto px-4 md:px-8 h-full flex items-start pt-[500px] md:pt-[450px] lg:pt-[400px]">    <div class="max-w-5xl flex flex-col items-start text-left">
-    <h1 class="text-white font-bold tracking-[-0.01em] leading-[2.0] text-5xl md:text-7xl lg:text-[88px] drop-shadow-[0_6px_24px_rgba(0,0,0,0.35)]">
-      함께 더 멀리<br>
-      전국대학교로켓연합회
-    </h1>
-
-    <p class="mt-2 ml-1 max-w-3xl text-white text-lg md:text-2xl lg:text-[28px] leading-[1.35] font-medium drop-shadow-[0_4px_18px_rgba(0,0,0,0.28)]">
-       대한민국 우주항공의 미래를 피워냅니다
-    </p>
-
-    <div class="mt-4 flex flex-wrap items-center gap-2.5">
-      <a
-        href="./source/resources/NURA-company-profile.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-6 py-3 text-sm md:text-base font-medium text-white backdrop-blur-sm transition duration-300 hover:bg-white hover:text-black hover:border-white"
-      >
-        단체소개서
-      </a>
-    </div>
-  </div>
-</div>
-</div>
+          <div class="relative z-30 h-full w-full text-white">
+            <div class="max-w-7xl mx-auto px-4 md:px-8 h-full flex items-start pt-[500px] md:pt-[450px] lg:pt-[400px]">
+              <div class="max-w-5xl flex flex-col items-start text-left">
+                <h1 class="text-white font-bold tracking-[-0.01em] leading-[1.1] text-5xl md:text-7xl lg:text-[88px] drop-shadow-[0_6px_24px_rgba(0,0,0,0.35)]">함께 더 멀리<br />전국대학교로켓연합회</h1>
+                <p class="mt-2 ml-1 max-w-3xl text-white text-lg md:text-2xl lg:text-[28px] leading-[1.35] font-medium drop-shadow-[0_4px_18px_rgba(0,0,0,0.28)]">대한민국 우주항공의 미래를 피워냅니다</p>
+                <div class="mt-4 flex flex-wrap items-center gap-2.5"><a href="./source/resources/NURA-company-profile.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-6 py-3 text-sm md:text-base font-medium text-white backdrop-blur-sm transition duration-300 hover:bg-white hover:text-black hover:border-white">단체소개서</a></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="nura-now" class="w-full bg-gray-950 border-t border-white/5">
+          <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10"><div><p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA NOW</p><h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">관련 기사</h2><p class="mt-3 text-gray-400 leading-7 max-w-2xl">전국대학교로켓연합회와 관련된 외부 기사입니다.</p></div></div>
+            <div id="news-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+          </div>
+        </section>
+        <section class="w-full bg-gray-950 border-t border-white/5 border-b border-white/5">
+          <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10"><div><p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA OVERVIEW</p><h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">숫자로 보는 NURA</h2><p class="mt-3 text-gray-400 leading-7 max-w-2xl">연합회의 현재 규모와 활동 현황을 한눈에 볼 수 있도록 주요 지표를 정리했습니다.</p></div></div>
+            <div id="stats-list" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5"></div>
+          </div>
+        </section>
+        <section class="border-t border-white/10 border-b border-white/10 bg-black">
+          <div class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10"><div class="max-w-3xl"><p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">Current Partners</p><h2 class="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-white">현재 함께하는 파트너</h2><p class="mt-3 text-gray-400 leading-7 max-w-2xl">NURA의 활동을 지원해주신 기업 및 기관입니다.</p></div></div>
+            <div id="sponsor-wall" class="mt-4 px-8 py-6 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8">
+              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center"><a href="https://www.koreanair.com" target="_blank" rel="noopener noreferrer"><img src="source/partnership/koreanair.png" alt="대한항공 로고" class="max-w-full max-h-24 object-contain"></a></div>
+              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center"><a href="https://www.innospc.com" target="_blank" rel="noopener noreferrer"><img src="source/partnership/innospace.png" alt="이노스페이스 로고" class="max-w-full max-h-24 object-contain"></a></div>
+              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center"><a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer"><img src="source/partnership/kari.jpg" alt="한국항공우주연구원 로고" class="max-w-full max-h-24 object-contain"></a></div>
+              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center"><a href="https://www.ligpoongsan.co.kr" target="_blank" rel="noopener noreferrer"><img src="source/partnership/ligpoongsan.png" alt="LIG풍산 로고" class="max-w-full max-h-24 object-contain"></a></div>
+            </div>
+          </div>
         </section>
 
-<!-- NURA NOW -->
-<section id="nura-now" class="w-full bg-gray-950 border-t border-white/5">
-  <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-      <div>
-        <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA NOW</p>
-        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">관련 기사</h2>
-        <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
-          전국대학교로켓연합회와 관련된 외부 기사입니다.
-        </p>
-
-        
-      </div>
-    </div>
-
-    <div id="news-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
-  </div>
-</section>
-
-<!-- NURA OVERVIEW -->
-<section class="w-full bg-gray-950 border-t border-white/5 border-b border-white/5">
-  <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-      <div>
-        <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA OVERVIEW</p>
-        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">숫자로 보는 NURA</h2>
-        <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
-          연합회의 현재 규모와 활동 현황을 한눈에 볼 수 있도록 주요 지표를 정리했습니다.
-        </p>
-      </div>
-    </div>
-
-    <div id="stats-list" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5"></div>
-  </div>
-</section>
-
-<!-- CURRENT PARTNERS -->
-<section class="border-t border-white/10 border-b border-white/10 bg-black">
-  <div class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-      <div class="max-w-3xl">
-        <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">Current Partners</p>
-        <h2 class="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-white">현재 함께하는 파트너</h2>
-        <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
-          NURA의 활동을 지원해주신 기업 및 기관입니다.
-        </p>
-      </div>
-    </div>
-
-               <div id="sponsor-wall" class="mt-4 px-8 py-6 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8">
-              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
-                <a href="https://www.koreanair.com" target="_blank" rel="noopener noreferrer">
-                  <img src="source/partnership/koreanair.png" alt="대한항공 로고" class="max-w-full max-h-24 object-contain">
-                </a>
-              </div>
-            
-              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
-                <a href="https://www.innospc.com" target="_blank" rel="noopener noreferrer">
-                  <img src="source/partnership/innospace.png" alt="이노스페이스 로고" class="max-w-full max-h-24 object-contain">
-                </a>
-              </div>
-            
-              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
-                <a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer">
-                  <img src="source/partnership/kari.jpg" alt="한국항공우주연구원 로고" class="max-w-full max-h-24 object-contain">
-                </a>
-              </div>
-            
-              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
-                <a href="https://www.ligpoongsan.co.kr" target="_blank" rel="noopener noreferrer">
-                  <img src="source/partnership/ligpoongsan.png" alt="LIG풍산 로고" class="max-w-full max-h-24 object-contain">
-                </a>
-              </div>
-            </div>
-  </div>
-</section>
-
-<script>
-  (function () {
-    const counters = document.querySelectorAll(".count-up");
-    if (!counters.length) return;
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReducedMotion) {
-      counters.forEach((counter) => {
-        counter.textContent = counter.dataset.target;
-      });
-      return;
-    }
-
-    const animateCounter = (el) => {
-      const target = parseInt(el.dataset.target, 10);
-      const duration = 1200;
-      const startTime = performance.now();
-
-      function update(now) {
-        const progress = Math.min((now - startTime) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = Math.floor(target * eased);
-        el.textContent = String(value).padStart(String(el.dataset.target).length, "0");
-
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        } else {
-          el.textContent = el.dataset.target;
-        }
-      }
-
-      requestAnimationFrame(update);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-
-    counters.forEach((counter) => observer.observe(counter));
-  })();
-
-
-</script>
-
       </main>
-<footer class="bg-gray-950 border-t border-gray-800 py-8 px-4 md:px-16 w-full"> 
-      <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-0 md:px-8">
-          <div>
-            <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
-            <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
-            <p class="text-gray-400 text-sm mb-2">National University Rocket Association</p>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4">연락처</h3>
-            <div class="text-gray-400 text-sm space-y-2">
-              <p class="break-all">Email: nurarocketscience@gmail.com</p>
-              <p>Instagram: @nura._.official</p>
-              <p>Address: 경기도 고양시 덕양구 항공대학로 76</p>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
-            <div class="text-gray-400 text-sm space-y-2">
-              <p>사업자등록번호: 609-82-83482</p>
-              <p>대표자: 전하상</p>
-              <p>설립일: 1992년 3월 2일</p>
-            </div>
-          </div>
-        </div>
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
-          <p class="text-gray-500 text-sm">© 1992 NURA. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-
+      <div id="site-footer"></div>
     </div>
-    <script>
-      (function() {
-        const slides = document.querySelectorAll('.slide-img');
-        let current = 0;
-        function showSlide(idx) {
-          slides.forEach((img, i) => {
-            img.style.opacity = (i === idx) ? '1' : '0';
-            img.style.zIndex = (i === idx) ? '1' : '0';
-          });
-          current = idx;
-        }
-        function nextSlide() {
-          showSlide((current + 1) % slides.length);
-        }
-        showSlide(0);
-        setInterval(nextSlide, 3000);
-      })();
-    </script>
-    <script>
-  const currentPage = 'overview';
-  document.querySelectorAll('.nav-link').forEach((link) => {
-    if (link.dataset.page === currentPage) {
-      link.classList.add('text-blue-400', 'font-bold');
-      link.classList.remove('text-gray-300', 'text-white');
-    }
-  });
-
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuIconOpen = document.getElementById('menu-icon-open');
-  const menuIconClose = document.getElementById('menu-icon-close');
-  if (mobileMenuBtn && mobileMenu) {
-    const mobileMenuPanel = mobileMenu.firstElementChild;
-    const ANIMATION_MS = 300;
-    let closeTimeoutId;
-
-    const setMenuState = (isOpen) => {
-      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
-      menuIconOpen?.classList.toggle('hidden', isOpen);
-      menuIconClose?.classList.toggle('hidden', !isOpen);
-      document.body.classList.toggle('overflow-hidden', isOpen);
-      document.body.classList.toggle('mobile-menu-open', isOpen);
-    };
-
-    const openMenu = () => {
-      clearTimeout(closeTimeoutId);
-      mobileMenu.classList.remove('hidden');
-      requestAnimationFrame(() => {
-        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-        mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
-        mobileMenuPanel?.classList.remove('opacity-0', 'translate-y-3');
-        mobileMenuPanel?.classList.add('opacity-100', 'translate-y-0');
-      });
-      setMenuState(true);
-    };
-
-    const closeMenu = () => {
-      mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
-      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-      mobileMenuPanel?.classList.remove('opacity-100', 'translate-y-0');
-      mobileMenuPanel?.classList.add('opacity-0', 'translate-y-3');
-      setMenuState(false);
-      closeTimeoutId = setTimeout(() => mobileMenu.classList.add('hidden'), ANIMATION_MS);
-    };
-
-    mobileMenuBtn.addEventListener('click', () => {
-      const isOpen = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-
-    mobileMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', closeMenu);
-    });
-  }
-</script>
-
+    <script src="./assets/js/layout.js"></script>
+    
 <script>
-  (function () {
-    const counters = document.querySelectorAll(".count-up");
-    if (!counters.length) return;
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReducedMotion) {
-      counters.forEach((counter) => {
-        counter.textContent = counter.dataset.target;
-      });
-      return;
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    let current = 0;
+    function showSlide(idx) {
+      slides.forEach((img, i) => img.classList.toggle('is-active', i === idx));
+      current = idx;
     }
-
-    const animateCounter = (el) => {
-      const target = parseInt(el.dataset.target, 10);
-      const duration = 1200;
-      const startTime = performance.now();
-
-      function update(now) {
-        const progress = Math.min((now - startTime) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = Math.floor(target * eased);
-        el.textContent = String(value).padStart(String(el.dataset.target).length, "0");
-
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        } else {
-          el.textContent = el.dataset.target;
-        }
-      }
-
-      requestAnimationFrame(update);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-
-    counters.forEach((counter) => observer.observe(counter));
+    if (slides.length) {
+      showSlide(0);
+      setInterval(() => showSlide((current + 1) % slides.length), 3000);
+    }
   })();
-</script>
 
-<script>
-  (function () {
-    const data = window.NURA_DATA;
-    if (!data) return;
-
-    const newsContainer = document.getElementById("news-list");
-    const statsContainer = document.getElementById("stats-list");
+  (function() {
+    const data = window.NURA_DATA || {};
+    const newsContainer = document.getElementById('news-list');
+    const statsContainer = document.getElementById('stats-list');
 
     if (newsContainer) {
-      newsContainer.innerHTML = data.newsItems
-        .map(
-          (item) => `
-            <article class="rounded-3xl border border-white/10 bg-white/5 overflow-hidden hover:border-blue-400/40 transition">
-              <a href="${item.href}" target="_blank" rel="noopener noreferrer" class="block h-full">
-                <div class="aspect-[16/10] overflow-hidden bg-gray-900">
-                  <img
-                    src="${item.image}"
-                    alt="${item.title}"
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-
-                <div class="p-6">
-                  <div class="text-sm text-gray-500 mb-3">${item.date}</div>
-
-                  <h3 class="text-xl font-bold text-white leading-snug">
-                    ${item.title}
-                  </h3>
-
-                  <p class="mt-4 text-gray-400 leading-7">
-                    ${item.summary}
-                  </p>
-
-                  <span class="mt-6 inline-flex text-sm font-semibold text-blue-300 hover:text-blue-200">
-                    기사 보기 →
-                  </span>
-                </div>
-              </a>
-            </article>
-          `
-        )
-        .join("");
+      const news = Array.isArray(data.newsArticles) ? data.newsArticles : [];
+      if (!news.length) {
+        newsContainer.innerHTML = `<article class="rounded-3xl border border-white/10 bg-white/5 p-6"><p class="text-white/60">data/site-data.js의 newsArticles 배열을 추가해 주세요.</p></article>`;
+      } else {
+        newsContainer.innerHTML = news.map((item) => `
+          <article class="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
+            <p class="text-sm text-gray-500">${item.date || ''}</p>
+            <h3 class="mt-3 text-xl font-semibold text-white break-keep">${item.title || ''}</h3>
+            <p class="mt-3 text-gray-400 leading-7 break-keep">${item.description || ''}</p>
+            <a href="${item.href || '#'}" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-black">기사 보기 <span aria-hidden="true">↗</span></a>
+          </article>`).join('');
+      }
     }
 
     if (statsContainer) {
-      statsContainer.innerHTML = data.overviewStats
-        .map(
-          (item) => `
-            <article class="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
-              <p class="text-sm text-gray-500">${item.basis}</p>
-              <h3 class="mt-3 text-lg font-semibold text-gray-200">${item.label}</h3>
-              <p class="mt-5 text-4xl md:text-5xl font-extrabold tracking-[-0.03em] text-white">
-                <span class="count-up text-blue-300" data-target="${item.value}">0</span><span class="text-white">${item.unit}</span>
-              </p>
-            </article>
-          `
-        )
-        .join("");
-
-      const counters = statsContainer.querySelectorAll(".count-up");
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      function animateCounter(el) {
-        const target = parseInt(el.dataset.target, 10);
-        const duration = 1400;
-        const startTime = performance.now();
-
-        function update(now) {
-          const progress = Math.min((now - startTime) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const current = Math.floor(target * eased);
-
-          el.textContent = current.toLocaleString();
-
-          if (progress < 1) {
-            requestAnimationFrame(update);
-          } else {
-            el.textContent = target.toLocaleString();
-          }
-        }
-
-        requestAnimationFrame(update);
-      }
-
-      if (prefersReducedMotion) {
-        counters.forEach((el) => {
-          el.textContent = parseInt(el.dataset.target, 10).toLocaleString();
-        });
+      const stats = Array.isArray(data.overviewStats) ? data.overviewStats : [];
+      if (!stats.length) {
+        statsContainer.innerHTML = `<article class="rounded-3xl border border-white/10 bg-white/5 p-6"><p class="text-white/60">data/site-data.js의 overviewStats 배열을 추가해 주세요.</p></article>`;
       } else {
-        const observer = new IntersectionObserver(
-          (entries, obs) => {
+        statsContainer.innerHTML = stats.map((item) => `
+          <article class="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
+            <p class="text-sm text-gray-500">${item.basis || ''}</p>
+            <h3 class="mt-3 text-lg font-semibold text-gray-200">${item.label || ''}</h3>
+            <p class="mt-5 text-4xl md:text-5xl font-extrabold tracking-[-0.03em] text-white"><span class="count-up text-blue-300" data-target="${item.value || 0}">0</span><span class="text-white">${item.unit || ''}</span></p>
+          </article>`).join('');
+
+        const counters = statsContainer.querySelectorAll('.count-up');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function animateCounter(el) {
+          const target = parseInt(el.dataset.target, 10) || 0;
+          const duration = 1400;
+          const startTime = performance.now();
+          function update(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(target * eased);
+            el.textContent = current.toLocaleString();
+            if (progress < 1) requestAnimationFrame(update);
+            else el.textContent = target.toLocaleString();
+          }
+          requestAnimationFrame(update);
+        }
+        if (prefersReducedMotion) counters.forEach((el) => el.textContent = (parseInt(el.dataset.target, 10) || 0).toLocaleString());
+        else {
+          const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 animateCounter(entry.target);
                 obs.unobserve(entry.target);
               }
             });
-          },
-          {
-            threshold: 0.35
-          }
-        );
-
-        counters.forEach((counter) => observer.observe(counter));
+          }, { threshold: 0.35 });
+          counters.forEach((counter) => observer.observe(counter));
+        }
       }
     }
   })();
-
-  const topbar = document.getElementById('topbar');
-
-  function updateTopbarBlur() {
-    if (!topbar) return;
-
-    if (window.scrollY > 12) {
-      topbar.classList.add('is-scrolled');
-    } else {
-      topbar.classList.remove('is-scrolled');
-    }
-  }
-
-  updateTopbarBlur();
-  window.addEventListener('scroll', updateTopbarBlur, { passive: true });
-
-  const mobileActivitiesToggle = document.getElementById('mobile-activities-toggle');
-  const mobileActivitiesSubmenu = document.getElementById('mobile-activities-submenu');
-  const mobileActivitiesArrow = document.getElementById('mobile-activities-arrow');
-
-  if (mobileActivitiesToggle && mobileActivitiesSubmenu) {
-    mobileActivitiesToggle.addEventListener('click', () => {
-      const isOpen = mobileActivitiesToggle.getAttribute('aria-expanded') === 'true';
-
-      mobileActivitiesToggle.setAttribute('aria-expanded', String(!isOpen));
-      mobileActivitiesArrow?.classList.toggle('rotate-180', !isOpen);
-
-      if (isOpen) {
-        mobileActivitiesSubmenu.style.maxHeight = '0px';
-      } else {
-        mobileActivitiesSubmenu.style.maxHeight = mobileActivitiesSubmenu.scrollHeight + 'px';
-      }
-    });
-  }
-
-
 </script>
 
   </body>
