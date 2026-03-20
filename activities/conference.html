@@ -4,42 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NURA | 전국대학교로켓학술대회</title>
-    <script type="text/javascript" nonce="a82d3092fc0a4d3fb9d2e5b4f10" src="//local.adguard.org?ts=1773918280664&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_00000000125871fda951a01dfef5701f%26ts%3D492755%26p%3Dfs%26cid%3D1%26sig%3D34cfa479dcce1f35f426e0dfb3a44b1f32ec9ba0c2cbda74836d0d73392925d8%26v%3D0&amp;app=com.apple.Safari&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-push&amp;st-loc&amp;st-java&amp;st-dnt"></script><script type="text/javascript" nonce="a82d3092fc0a4d3fb9d2e5b4f10" src="//local.adguard.org?ts=1773918280664&amp;name=AdGuard%20Extra&amp;type=user-script"></script><link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
     <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <style>
       html { scroll-behavior: smooth; }
-      html, body { background-color: #030712; overflow-x: hidden; }
+      html, body { background-color: #020617; overflow-x: hidden; }
       body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
       .page-shell { min-height: 100vh; }
-
-
-      .activity-panel {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.08);
-        background: rgba(17, 24, 39, 0.9);
-        box-shadow:
-          0 24px 80px rgba(0,0,0,0.28),
-          inset 0 1px 0 rgba(255,255,255,0.05);
-      }
-
-      .activity-kicker {
-        letter-spacing: 0.24em;
-      }
-
-      .activity-display {
-        letter-spacing: -0.05em;
-        line-height: 0.94;
-      }
-
-      .metric-card {
-        border: 1px solid rgba(255,255,255,0.08);
-        background: rgba(255,255,255,0.04);
-      }
 
       .activity-reveal {
         opacity: 0;
@@ -52,6 +27,54 @@
         transform: translateY(0);
       }
 
+      .hero-panel {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 2.5rem;
+        background:
+          radial-gradient(circle at top, rgba(59,130,246,0.2), transparent 36%),
+          linear-gradient(180deg, rgba(15,23,42,0.94), rgba(2,6,23,0.98));
+        box-shadow: 0 30px 80px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.05);
+      }
+
+      .hero-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 2rem;
+        min-height: 420px;
+      }
+
+      .hero-image img,
+      .feature-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-image::after,
+      .feature-media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(15,23,42,0.12), rgba(15,23,42,0.4));
+      }
+
+      .feature-media {
+        position: relative;
+        overflow: hidden;
+        border-radius: 2rem;
+        min-height: 340px;
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .spec-card {
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 1.75rem;
+        background: rgba(255,255,255,0.03);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .activity-reveal {
           opacity: 1;
@@ -59,166 +82,107 @@
           transition: none;
         }
       }
-
-
-      .split-card {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.1);
-        background:
-          linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-          rgba(17, 24, 39, 0.88);
-        box-shadow:
-          0 30px 80px rgba(0,0,0,0.28),
-          inset 0 1px 0 rgba(255,255,255,0.04);
-        transition:
-          transform 260ms ease,
-          border-color 260ms ease,
-          box-shadow 260ms ease,
-          background 260ms ease;
-      }
-      .split-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(125, 211, 252, 0.28);
-        box-shadow:
-          0 40px 100px rgba(0,0,0,0.34),
-          0 0 0 1px rgba(125, 211, 252, 0.08),
-          inset 0 1px 0 rgba(255,255,255,0.05);
-      }
-      .split-card::after {
-        content: "";
-        position: absolute;
-        inset: auto -10% -35% auto;
-        width: 240px;
-        height: 240px;
-        border-radius: 9999px;
-        background: radial-gradient(circle, rgba(59,130,246,0.22), transparent 68%);
-        pointer-events: none;
-      }
-      .split-number { letter-spacing: -0.06em; line-height: 0.9; }
-      .split-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.55rem;
-        border: 1px solid rgba(255,255,255,0.14);
-        background: rgba(255,255,255,0.04);
-        transition: all 220ms ease;
-      }
-      .split-link:hover {
-        border-color: rgba(255,255,255,0.24);
-        background: rgba(255,255,255,0.08);
-      }
-
     </style>
-      <script src="../data/shared-layout.js"></script>
+    <script src="../data/shared-layout.js"></script>
   </head>
-  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden" data-current-page="activities" data-base-path="..">
+  <body class="bg-slate-950 text-white min-h-screen overflow-x-hidden" data-current-page="activities" data-base-path="..">
     <div class="page-shell flex flex-col">
-    <div data-shared-header></div>
+      <div data-shared-header></div>
 
-<main class="w-full flex-1 flex flex-col">
-  <section class="bg-gray-950">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-12">
-      <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
-        <div class="max-w-5xl">
-          <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">전국대학교로켓학술대회</h1>
-        </div>
-      </section>
+      <main class="w-full flex-1 flex flex-col bg-slate-950">
+        <section>
+          <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-20">
+            <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
+              <div class="max-w-5xl">
+                <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">전국대학교로켓학술대회</h1>
+              </div>
+            </section>
 
-  <section class="bg-black border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-16 grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
-      <div class="metric-card rounded-3xl p-6 activity-reveal">
-        <p class="text-xs uppercase tracking-[0.2em] text-blue-300/90">Presentation</p>
-        <p class="mt-4 text-2xl md:text-3xl font-black">설계 발표</p>
-        <p class="mt-3 text-sm leading-7 text-gray-400">개발 목표와 설계 논리를 발표 형식으로 공유</p>
-      </div>
-      <div class="metric-card rounded-3xl p-6 activity-reveal">
-        <p class="text-xs uppercase tracking-[0.2em] text-blue-300/90">Analysis</p>
-        <p class="mt-4 text-2xl md:text-3xl font-black">결과 해석</p>
-        <p class="mt-3 text-sm leading-7 text-gray-400">시험 결과와 데이터 해석 과정을 정리</p>
-      </div>
-      <div class="metric-card rounded-3xl p-6 activity-reveal">
-        <p class="text-xs uppercase tracking-[0.2em] text-blue-300/90">Exchange</p>
-        <p class="mt-4 text-2xl md:text-3xl font-black">기술 교류</p>
-        <p class="mt-3 text-sm leading-7 text-gray-400">발표 이후 질의응답과 토론으로 경험 확장</p>
-      </div>
-      <div class="metric-card rounded-3xl p-6 activity-reveal">
-        <p class="text-xs uppercase tracking-[0.2em] text-blue-300/90">Network</p>
-        <p class="mt-4 text-2xl md:text-3xl font-black">네트워킹</p>
-        <p class="mt-3 text-sm leading-7 text-gray-400">참여 팀과의 연결을 통해 다음 협업 기반 형성</p>
-      </div>
-    </div>
-  </section>
+            <section class="pt-10 md:pt-14 space-y-10 md:space-y-14">
+              <article class="hero-panel p-5 md:p-8 lg:p-10 activity-reveal">
+                <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-10 items-center">
+                  <div class="text-center lg:text-left px-2 md:px-4">
+                    <p class="text-sm uppercase tracking-[0.32em] text-blue-200/80">Rocket Conference</p>
+                    <h2 class="mt-5 text-[2.5rem] md:text-[4.5rem] lg:text-[5.8rem] font-semibold tracking-[-0.07em] leading-[0.92] text-white">
+                      Ideas.<br />Shared.
+                    </h2>
+                    <p class="mt-6 max-w-xl mx-auto lg:mx-0 text-base md:text-xl leading-8 md:leading-9 text-slate-300">
+                      설계의 논리, 제작 과정의 판단, 시험 결과의 해석까지.
+                      NURA의 학술대회는 각 팀의 경험을 하나의 기술 자산으로 연결합니다.
+                    </p>
+                  </div>
+                  <div class="hero-image">
+                    <img src="../source/overview/IMG_0701.JPG" alt="전국대학교로켓학술대회 현장 이미지" />
+                  </div>
+                </div>
+              </article>
 
-  <section class="bg-gray-950">
-    <div class="max-w-7xl mx-auto px-6 md:px-8 py-10 md:py-16 space-y-6 md:space-y-8">
-      <article class="activity-panel rounded-[2rem] md:rounded-[2.5rem] activity-reveal">
-        <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center p-7 md:p-10 lg:p-14">
-          <div>
-            <p class="activity-kicker text-xs md:text-sm uppercase text-blue-300/90">Why Conference</p>
-            <h2 class="activity-display mt-4 text-[2.3rem] md:text-[4rem] lg:text-[5rem] font-black text-white">
-              발표를 통해<br />기술이 축적됩니다
-            </h2>
-            <p class="mt-6 text-base md:text-lg text-gray-300 leading-8 max-w-2xl">
-              학술대회는 단순한 결과 소개가 아니라, 로켓 개발 과정에서 얻은 지식과 시행착오를
-              다른 팀과 공유하며 전체 생태계의 기술 수준을 높이는 장입니다.
-            </p>
+              <section class="grid md:grid-cols-3 gap-4 md:gap-5 activity-reveal">
+                <div class="spec-card p-6 md:p-7 text-center md:text-left">
+                  <p class="text-sm uppercase tracking-[0.24em] text-blue-200/80">01</p>
+                  <p class="mt-4 text-2xl md:text-3xl font-semibold tracking-[-0.05em]">설계 발표</p>
+                  <p class="mt-4 text-sm md:text-base leading-7 text-slate-300">개발 목표와 설계 선택의 이유를 선명하게 공유합니다.</p>
+                </div>
+                <div class="spec-card p-6 md:p-7 text-center md:text-left">
+                  <p class="text-sm uppercase tracking-[0.24em] text-blue-200/80">02</p>
+                  <p class="mt-4 text-2xl md:text-3xl font-semibold tracking-[-0.05em]">결과 해석</p>
+                  <p class="mt-4 text-sm md:text-base leading-7 text-slate-300">시험과 비행 데이터를 바탕으로 기술적 인사이트를 정리합니다.</p>
+                </div>
+                <div class="spec-card p-6 md:p-7 text-center md:text-left">
+                  <p class="text-sm uppercase tracking-[0.24em] text-blue-200/80">03</p>
+                  <p class="mt-4 text-2xl md:text-3xl font-semibold tracking-[-0.05em]">네트워킹</p>
+                  <p class="mt-4 text-sm md:text-base leading-7 text-slate-300">질의응답과 교류를 통해 다음 협업과 확장을 만들어 냅니다.</p>
+                </div>
+              </section>
+
+              <section class="grid lg:grid-cols-[0.9fr_1.1fr] gap-6 md:gap-8 lg:gap-10 items-center activity-reveal">
+                <div class="text-center lg:text-left px-2 md:px-4 lg:px-0">
+                  <p class="text-sm uppercase tracking-[0.3em] text-slate-400">Why it matters</p>
+                  <h3 class="mt-4 text-[2rem] md:text-[3.4rem] lg:text-[4.3rem] font-semibold leading-[0.95] tracking-[-0.06em] text-white">
+                    발표는 단순한 소개가 아니라,
+                    기술을 정리하는 과정입니다.
+                  </h3>
+                  <p class="mt-6 text-base md:text-lg leading-8 text-slate-300 max-w-xl mx-auto lg:mx-0">
+                    팀이 만든 결과를 다른 사람에게 전달하는 순간, 설계의 강점과 한계는 더 명확해집니다.
+                    그 과정이 다음 프로젝트의 정확도를 높이고, 전체 생태계의 기준을 끌어올립니다.
+                  </p>
+                </div>
+                <div class="feature-media">
+                  <img src="../source/news/news1.jpg" alt="학술대회 발표와 교류를 상징하는 이미지" />
+                </div>
+              </section>
+
+              <section class="activity-reveal text-center py-4 md:py-8">
+                <a href="./" class="inline-flex items-center gap-2 text-sm md:text-base text-slate-300 hover:text-white transition">
+                  <span aria-hidden="true">←</span>
+                  <span>Activities로 돌아가기</span>
+                </a>
+              </section>
+            </section>
           </div>
-          <div class="rounded-[2rem] border border-white/10 bg-gray-900 min-h-[320px] p-6 md:p-8 flex flex-col justify-between">
-            <div class="text-right text-xs uppercase tracking-[0.24em] text-gray-400">Conference Flow</div>
-            <div>
-              <p class="text-gray-400 text-sm md:text-base">Design · Presentation · Discussion</p>
-              <p class="mt-3 text-3xl md:text-5xl font-black tracking-[-0.05em] text-white">01</p>
-            </div>
-          </div>
-        </div>
-      </article>
+        </section>
+      </main>
 
-      <div class="grid lg:grid-cols-3 gap-4 md:gap-5">
-        <div class="metric-card rounded-[1.75rem] p-6 activity-reveal">
-          <p class="text-sm font-semibold text-white">설계 배경 공유</p>
-          <p class="mt-3 text-sm leading-7 text-gray-400">문제 정의와 목표 설정, 설계 선택의 이유를 전달합니다.</p>
-        </div>
-        <div class="metric-card rounded-[1.75rem] p-6 activity-reveal">
-          <p class="text-sm font-semibold text-white">시험 결과 정리</p>
-          <p class="mt-3 text-sm leading-7 text-gray-400">시험과 해석 결과를 바탕으로 성능을 비교하고 검토합니다.</p>
-        </div>
-        <div class="metric-card rounded-[1.75rem] p-6 activity-reveal">
-          <p class="text-sm font-semibold text-white">팀 간 확장</p>
-          <p class="mt-3 text-sm leading-7 text-gray-400">발표 이후 이어지는 질의응답과 교류가 다음 발전으로 연결됩니다.</p>
-        </div>
-      </div>
-
-      <div class="pt-4 activity-reveal">
-        <a href="./" class="inline-flex items-center gap-2 text-sm md:text-base text-gray-300 hover:text-white transition">
-          <span aria-hidden="true">←</span> Activities로 돌아가기
-        </a>
-      </div>
+      <div data-shared-footer></div>
     </div>
-  </section>
-</main>
 
-<div data-shared-footer></div>
+    <script>
+      const activityRevealTargets = document.querySelectorAll('.activity-reveal');
 
-</div>
+      if ('IntersectionObserver' in window) {
+        const activityObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              activityObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.16 });
 
-<script>
-  const activityRevealTargets = document.querySelectorAll('.activity-reveal');
-
-  if ('IntersectionObserver' in window) {
-    const activityObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          activityObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.16 });
-
-    activityRevealTargets.forEach((el) => activityObserver.observe(el));
-  } else {
-    activityRevealTargets.forEach((el) => el.classList.add('is-visible'));
-  }
-</script>
-</body>
+        activityRevealTargets.forEach((el) => activityObserver.observe(el));
+      } else {
+        activityRevealTargets.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
+  </body>
 </html>
