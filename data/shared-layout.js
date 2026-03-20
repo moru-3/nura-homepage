@@ -202,14 +202,22 @@
               <a href="${basePath}/" data-page="overview" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Overview</a>
               <a href="${basePath}/about/" data-page="about" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">About</a>
               <div class="border-b border-white/10">
-                <button
-                  id="mobile-activities-toggle"
-                  type="button"
-                  class="w-full py-4 text-2xl font-semibold text-white flex items-center justify-between"
-                  aria-expanded="false"
-                  aria-controls="mobile-activities-submenu"
-                >
-                  <span>Activities</span>
+   <div class="flex items-center justify-between gap-3 py-4">
+                  <a
+                    href="${basePath}/activities/"
+                    data-page="activities"
+                    class="nav-link flex-1 text-2xl font-semibold text-white"
+                  >
+                    Activities
+                  </a>
+                  <button
+                    id="mobile-activities-toggle"
+                    type="button"
+                    class="inline-flex shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 p-2.5 text-white transition hover:bg-white/10"
+                    aria-label="Activities 하위 메뉴 열기"
+                    aria-expanded="false"
+                    aria-controls="mobile-activities-submenu"
+                  >
                   <svg
                     id="mobile-activities-arrow"
                     xmlns="http://www.w3.org/2000/svg"
@@ -221,6 +229,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 9l6 6 6-6" />
                   </svg>
                 </button>
+                </div>
 
                 <div id="mobile-activities-submenu" class="max-h-0 overflow-hidden transition-all duration-300 ease-out">
                   <div class="pb-4">
