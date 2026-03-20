@@ -15,7 +15,7 @@ nura-homepage/
 │   └── index.html          # 상단 네비게이션바 HTML 파일
 ├── resources/           
 │   └── index.html          # 상단 네비게이션바 HTML 파일
-├── Partnership/               
+├── partnership/               
 │   └── index.html          # 상단 네비게이션바 HTML 파일
 ├── data/               
 │   └── site-data.js        # 변수
@@ -30,7 +30,7 @@ nura-homepage/
 │   │   ├── favicon-16x16.png # 파비콘 (16x16)
 │   │   ├── notion-blur.png # 노션 배경 이미지
 │   │   └── onedrive-blur.png # 원드라이브 배경 이미지
-│   └── Partnership/           # 후원사 로고들
+│   └── partnership/           # 후원사 로고들
 │       ├── koreanair.png
 │       ├── innospace.png
 │       ├── kari.jpg

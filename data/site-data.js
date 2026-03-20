@@ -9,7 +9,7 @@ window.NURA_DATA = {
     {
       basis: "2026년 3월 기준",
       label: "회원 수",
-      value: 443,
+      value: 1988,
       unit: "명"
     },
     {
