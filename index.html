@@ -15,8 +15,38 @@
       html, body { background-color: #030712; overflow-x: hidden; }
       body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
       .page-shell { min-height: 100vh; }
+      .hero-title {
+  font-size: 88px;
+  line-height: 1.15;
+}
 
-    </style>
+.hero-subtitle {
+  margin-top: 8px;
+  font-size: 28px;
+  line-height: 1.45;
+}
+
+.hero-cta {
+  margin-top: 16px;
+}
+
+@media (max-width: 767px) {
+  .hero-title {
+    font-size: 8vw;
+  }
+
+  .hero-subtitle {
+    margin-top: 2vw;
+    font-size: min(4vw, 20px);
+    line-height: 1.35;
+  }
+
+  .hero-cta {
+    margin-top: 2vw;
+  }
+}
+</style>
+  
       <script src="./data/site-data.js"></script>
       <script src="./data/shared-layout.js"></script>
   </head>
@@ -42,16 +72,16 @@
           </div>
 <div class="relative z-30 h-full w-full text-white">
 <div class="max-w-7xl mx-auto px-4 md:px-8 h-full flex items-start pt-[450px] md:pt-[400px] lg:pt-[350px]">    <div class="max-w-5xl flex flex-col items-start text-left">
-<h1 class="text-white font-bold tracking-[-0.01em] text-5xl md:text-7xl lg:text-[88px] drop-shadow-[0_6px_24px_rgba(0,0,0,0.35)]" style="line-height: 1.2;" >
+<h1 class="hero-title text-white font-bold tracking-[-0.01em] break-keep">
   함께 더 멀리<br>
-  전국대학교로켓연합회
-</h1> 
+  <span class="whitespace-nowrap">전국대학교로켓연합회</span>
+</h1>
 
-    <p class="mt-4 ml-1 max-w-3xl text-white text-lg md:text-2xl lg:text-[28px] leading-[1.45] font-medium drop-shadow-[0_4px_18px_rgba(0,0,0,0.28)]">
+<p class="hero-subtitle ml-1 max-w-3xl text-white font-medium">
        대한민국 우주항공의 미래를 피워냅니다
     </p>
 
-    <div class="mt-6 flex flex-wrap items-center gap-2.5">
+<p class="hero-subtitle ml-1 max-w-3xl text-white font-medium">
       <a
         href="./source/resources/NURA-company-profile.pdf"
         target="_blank"

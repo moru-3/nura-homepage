@@ -233,8 +233,8 @@
 
                 <div id="mobile-activities-submenu" class="max-h-0 overflow-hidden transition-all duration-300 ease-out">
                   <div class="pb-4">
-                    <a href="${basePath}/activities/conference.html" class="block py-2 text-xl font-medium text-gray-300 hover:text-white transition">학술대회</a>
-                    <a href="${basePath}/activities/launch.html" class="block py-2 text-xl font-medium text-gray-300 hover:text-white transition">발사대회</a>
+                    <a href="${basePath}/activities/conference.html" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">Conference</a>
+                    <a href="${basePath}/activities/launch.html" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">Launch</a>
                   </div>
                 </div>
               </div>
