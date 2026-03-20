@@ -3,89 +3,728 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NURA | PARTNERSHIP</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
     <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/css/common.css" />
-    <title>NURA | PARTNERSHIP</title>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+      html { scroll-behavior: smooth; }
+      html, body { background-color: #030712; overflow-x: hidden; }
+      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+      .page-shell { min-height: 100vh; }
+      #topbar {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 260ms ease,
+      backdrop-filter 260ms ease,
+      -webkit-backdrop-filter 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease;
+  }
+
+  #topbar.is-scrolled {
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(14px) saturate(1.08);
+    -webkit-backdrop-filter: blur(14px) saturate(1.08);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  }
+  body.mobile-menu-open #topbar.is-scrolled {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+ 
+
+/* Activities dropdown */
+.activities-dropdown {
+  position: relative;
+}
+
+.activities-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  margin-top: 11px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  width: 220px;
+  background: rgba(255, 255, 255, 0.96);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms ease;
+  overflow: hidden;
+  z-index: 80;
+}
+
+.activities-dropdown:hover .activities-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.activities-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  color: #111111;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.activities-dropdown-item + .activities-dropdown-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.activities-dropdown-item:hover {
+  background: #3B82F6;
+  color: #ffffff;
+  transform: scale(1.02);
+}
+
+.activities-dropdown-item:hover .activities-dropdown-arrow {
+  color: #ffffff;
+}
+
+.activities-dropdown-arrow {
+  color: #111111;
+  transition: color 180ms ease;
+}
+
+.activities-dropdown::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 14px;
+}
+
+    </style>
   </head>
-  <body data-root=".." data-page="partnership" class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
+  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
     <div class="page-shell flex flex-col">
-      <div id="site-header"></div>
-      <main class="w-full flex-1 flex flex-col">
+    <header
+  id="topbar"
+  class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between"
+  >
+    <a href="../" class="relative z-[70] flex items-center shrink-0">
+  <img
+    src="../source/resources/nura-header.png"
+    alt="전국대학교로켓연합회 로고"
+    class="block h-5 md:h-7 w-auto max-w-[240px] md:max-w-[520px] object-contain translate-y-[1px]"  />
+</a>
 
-        <section class="bg-gray-950">
-          <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-12">
-            <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
-              <div class="max-w-5xl">
-                <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">Partnership</h1>
-              </div>
-              <p class="mt-6 text-base md:text-xl text-gray-300 leading-8">NURA는 전국 대학 로켓팀과 학생 연구자들을 연결하는 비영리 연합체입니다. 학술대회, 발사대회, 학회 교류, 네트워킹 프로그램을 통해 학생들의 실전 경험과 산업 접점을 확장하고 있습니다.</p>
-            </section>
-          </div>
-        </section>
-        <section class="border-b border-white/10 bg-gray-950">
-          <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-20">
-            <div class="max-w-3xl mb-10"><p class="text-sm uppercase tracking-[0.22em] text-blue-300/90 mb-3">Why Partner With NURA</p><h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] text-white">왜 NURA와 함께해야 하는가</h2><p class="mt-4 text-gray-300 text-base md:text-lg leading-8">후원은 단순 노출이 아니라, 항공우주 인재 생태계와의 장기적인 연결입니다.</p></div>
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
-              <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6"><div class="w-12 h-12 rounded-2xl bg-blue-500/15 border border-blue-300/20 flex items-center justify-center text-xl">🚀</div><h3 class="mt-5 text-xl font-bold text-white">인재 파이프라인</h3><p class="mt-3 text-gray-400 leading-7">추진, 구조, 제작, 발표 경험을 가진 학생들과 직접 만나는 접점을 만듭니다.</p></article>
-              <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6"><div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-300/20 flex items-center justify-center text-xl">📡</div><h3 class="mt-5 text-xl font-bold text-white">브랜드 가시성</h3><p class="mt-3 text-gray-400 leading-7">공식 웹사이트, 행사 현장, 프로그램 운영 채널 등 다양한 노출 지점을 확보할 수 있습니다.</p></article>
-              <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6"><div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-300/20 flex items-center justify-center text-xl">🤝</div><h3 class="mt-5 text-xl font-bold text-white">산학 교류</h3><p class="mt-3 text-gray-400 leading-7">기업, 연구기관, 학생팀이 같은 장에서 만나 발표, 멘토링, 교류를 이어갈 수 있습니다.</p></article>
-              <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6"><div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-300/20 flex items-center justify-center text-xl">🧭</div><h3 class="mt-5 text-xl font-bold text-white">장기 협력 구조</h3><p class="mt-3 text-gray-400 leading-7">단발성 후원이 아니라 기술·홍보·교류가 이어지는 협력 구조를 설계할 수 있습니다.</p></article>
-            </div>
-          </div>
-        </section>
-        <section class="border-b border-white/10 bg-black">
-          <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-20">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10"><div class="max-w-3xl"><p class="text-sm uppercase tracking-[0.22em] text-blue-300/90 mb-3">Current Partners</p><h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] text-white">현재 함께하는 파트너</h2><p class="mt-4 text-gray-300 text-base md:text-lg leading-8">NURA의 활동을 지원해주신 기업 및 기관입니다.</p></div></div>
-            <div class="space-y-8">
-              <div>
-                <div class="flex items-center gap-3 mb-4"><div class="h-px flex-1 bg-white/10"></div><p class="text-sm uppercase tracking-[0.2em] text-gray-400">Industry Partners</p><div class="h-px flex-1 bg-white/10"></div></div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-                  <a href="https://www.koreanair.com" target="_blank" rel="noopener noreferrer" class="group rounded-[1.75rem] border border-white/10 bg-white/5 hover:bg-white/10 transition p-6"><div class="rounded-[1.25rem] bg-white min-h-[180px] flex items-center justify-center p-8 shadow-lg shadow-black/10"><img src="../source/partnership/koreanair.png" alt="대한항공 로고" class="max-w-full max-h-24 object-contain" /></div><div class="mt-5"><h3 class="text-lg font-bold text-white">대한항공</h3><p class="mt-2 text-sm text-gray-400 leading-6">항공우주 산업 파트너</p></div></a>
-                  <a href="https://www.innospc.com" target="_blank" rel="noopener noreferrer" class="group rounded-[1.75rem] border border-white/10 bg-white/5 hover:bg-white/10 transition p-6"><div class="rounded-[1.25rem] bg-white min-h-[180px] flex items-center justify-center p-8 shadow-lg shadow-black/10"><img src="../source/partnership/innospace.png" alt="이노스페이스 로고" class="max-w-full max-h-24 object-contain" /></div><div class="mt-5"><h3 class="text-lg font-bold text-white">이노스페이스</h3><p class="mt-2 text-sm text-gray-400 leading-6">우주산업 파트너</p></div></a>
-                  <a href="https://www.ligpoongsan.co.kr" target="_blank" rel="noopener noreferrer" class="group rounded-[1.75rem] border border-white/10 bg-white/5 hover:bg-white/10 transition p-6"><div class="rounded-[1.25rem] bg-white min-h-[180px] flex items-center justify-center p-8 shadow-lg shadow-black/10"><img src="../source/partnership/ligpoongsan.png" alt="LIG풍산 로고" class="max-w-full max-h-24 object-contain" /></div><div class="mt-5"><h3 class="text-lg font-bold text-white">LIG풍산</h3><p class="mt-2 text-sm text-gray-400 leading-6">기술 협력 파트너</p></div></a>
-                </div>
-              </div>
-              <div>
-                <div class="flex items-center gap-3 mb-4"><div class="h-px flex-1 bg-white/10"></div><p class="text-sm uppercase tracking-[0.2em] text-gray-400">Research / Institutional Partner</p><div class="h-px flex-1 bg-white/10"></div></div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-                  <a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer" class="group rounded-[1.75rem] border border-white/10 bg-white/5 hover:bg-white/10 transition p-6"><div class="rounded-[1.25rem] bg-white min-h-[180px] flex items-center justify-center p-8 shadow-lg shadow-black/10"><img src="../source/partnership/kari.jpg" alt="한국항공우주연구원 로고" class="max-w-full max-h-24 object-contain" /></div><div class="mt-5"><h3 class="text-lg font-bold text-white">한국항공우주연구원</h3><p class="mt-2 text-sm text-gray-400 leading-6">연구기관 파트너</p></div></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="border-b border-white/10 bg-gray-950">
-          <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-20">
-            <div class="max-w-3xl mb-10"><p class="text-sm uppercase tracking-[0.22em] text-blue-300/90 mb-3">Touchpoints</p><h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] text-white">함께 만들 수 있는 접점</h2><p class="mt-4 text-gray-300 text-base md:text-lg leading-8">웹사이트 노출, 행사 연계, 현장 브랜딩, 멘토링, 리크루팅 등 다양한 방식으로 협력이 가능합니다.</p></div>
-            <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
-              <div class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6"><p class="text-sm font-semibold text-white">웹사이트·소개서 노출</p><p class="mt-3 text-gray-400 leading-7">브랜드 소개와 로고 노출을 통해 파트너십 메시지를 전달합니다.</p></div>
-              <div class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6"><p class="text-sm font-semibold text-white">행사 현장 브랜딩</p><p class="mt-3 text-gray-400 leading-7">학술대회, 발사대회, 세션 현장에 브랜드를 자연스럽게 연결할 수 있습니다.</p></div>
-              <div class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6"><p class="text-sm font-semibold text-white">멘토링·세션 참여</p><p class="mt-3 text-gray-400 leading-7">전문가 세션, 기술 멘토링, 산업 소개 프로그램 운영이 가능합니다.</p></div>
-              <div class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6"><p class="text-sm font-semibold text-white">리크루팅 접점</p><p class="mt-3 text-gray-400 leading-7">항공우주 분야에 관심 있는 학생들과 직접 연결될 수 있습니다.</p></div>
-            </div>
-          </div>
-        </section>
-        <section class="bg-black">
-          <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-20">
-            <div class="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10">
-              <p class="text-sm uppercase tracking-[0.22em] text-blue-300/90 mb-3">Contact</p>
-              <h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] text-white">협력을 논의해 보세요</h2>
-              <p class="mt-4 text-gray-300 text-base md:text-lg leading-8 max-w-3xl">후원, 공동 프로그램, 세션 참여, 기술 교류 등 협력 방식은 유연하게 조정할 수 있습니다.</p>
-              <div class="mt-8 flex flex-wrap gap-3"><a href="mailto:nurarocketscience@gmail.com?subject=NURA%20Partnership%20Inquiry" class="inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black">이메일 문의</a><a href="../resources/" class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/85">자료실 보기</a></div>
-            </div>
-          </div>
-        </section>
+    <nav class="hidden md:flex items-center gap-8 text-base font-medium">
+      <a href="../" data-page="overview" class="nav-link text-gray-300 hover:text-white transition">Overview</a>
+      <a href="../about/" data-page="about" class="nav-link text-gray-300 hover:text-white transition">About</a>
+<div class="activities-dropdown">
+  <a
+    href="../activities/"
+    data-page="activities"
+    class="nav-link text-gray-300 hover:text-white transition inline-flex items-center gap-2"
+  >
+    Activities
+    <svg
+      class="w-4 h-4 transition-transform duration-200"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </a>
 
-      </main>
-      <div id="site-footer"></div>
+  <div class="activities-dropdown-menu">
+    <a href="../activities/conference.html" class="activities-dropdown-item">
+      <span>학술대회</span>
+      <span class="activities-dropdown-arrow">→</span>
+    </a>
+    <a href="../activities/launch.html" class="activities-dropdown-item">
+      <span>발사대회</span>
+      <span class="activities-dropdown-arrow">→</span>
+    </a>
+  </div>
+</div>
+      <a href="../partnership/" data-page="Partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
+      <a href="../resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
+    </nav>
+
+    <button
+      id="mobile-menu-btn"
+      type="button"
+      aria-label="모바일 메뉴 열기"
+      aria-expanded="false"
+      class="md:hidden relative z-[70] inline-flex items-center justify-center w-11 h-11 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 transition text-white"
+    >
+      <svg
+        id="menu-icon-open"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg
+        id="menu-icon-close"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5 hidden"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-[60] hidden md:hidden bg-slate-950/88 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
+  >
+    <div class="flex flex-col justify-between min-h-screen px-6 pt-20 pb-10 transform transition duration-300 ease-out opacity-0 translate-y-3">
+      <div class="flex flex-col gap-1">
+        <a href="../" data-page="overview" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Overview</a>
+        <a href="../about/" data-page="about" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">About</a>
+<div class="border-b border-white/10">
+  <button
+    id="mobile-activities-toggle"
+    type="button"
+    class="w-full py-4 text-2xl font-semibold text-white flex items-center justify-between"
+    aria-expanded="false"
+    aria-controls="mobile-activities-submenu"
+  >
+    <span>Activities</span>
+    <svg
+      id="mobile-activities-arrow"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-5 h-5 text-gray-300 transition-transform duration-300"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 9l6 6 6-6" />
+    </svg>
+  </button>
+
+  <div
+    id="mobile-activities-submenu"
+    class="max-h-0 overflow-hidden transition-all duration-300 ease-out"
+  >
+    <div class="pb-4">
+      <a
+        href="../activities/conference.html"
+        class="block py-2 text-xl font-medium text-gray-300 hover:text-white transition"
+      >
+        학술대회
+      </a>
+      <a
+        href="../activities/launch.html"
+        class="block py-2 text-xl font-medium text-gray-300 hover:text-white transition"
+      >
+        발사대회
+      </a>
     </div>
-    <script src="../assets/js/layout.js"></script>
-    
+  </div>
+</div>
+        <a href="../partnership/" data-page="Partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
+        <a href="../resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
+      </div>
+
+      <div class="pt-10 text-sm text-gray-400">
+        National University Rocket Association
+      </div>
+    </div>
+  </div>
+</header>
+
+      <main class="w-full flex-1 flex flex-col">
+  <!-- HERO -->
+  <section class="bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-12">
+      <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
+        <div class="max-w-5xl">
+          <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">Partnership</h1>
+        </div>
+          <p class="mt-6 text-base md:text-xl text-gray-300 leading-8">
+            NURA는 전국 대학 로켓팀과 학생 연구자들을 연결하는 비영리 연합체입니다.
+            학술대회, 발사대회, 학회 교류, 네트워킹 프로그램을 통해
+            학생들의 실전 경험과 산업 접점을 확장하고 있습니다.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a
+              href="#contact"
+              class="inline-flex items-center justify-center rounded-2xl bg-blue-600 hover:bg-blue-500 px-6 py-3.5 font-bold text-white shadow-lg shadow-blue-950/40 transition"
+            >
+              협력 문의하기
+            </a>
+            <a
+              href="#tiers"
+              class="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 px-6 py-3.5 font-semibold text-white transition"
+            >
+              후원 혜택 보기
+            </a>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3 text-sm text-gray-300">
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2">Since 1992</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2">비영리 법인</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2">학술·발사·교류 프로그램</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2">기업·기관 협력</span>
+          </div>
+        </div>
+
+        <aside class="rounded-[2rem] border border-white/10 bg-gray-900 p-6 md:p-7">
+          <div class="grid grid-cols-2 gap-4">
+            <article class="rounded-2xl border border-white/10 bg-black/20 p-5">
+              <p class="text-xs uppercase tracking-[0.18em] text-blue-200/80">Established</p>
+              <p class="mt-3 text-3xl md:text-4xl font-black tracking-[-0.04em]">1992</p>
+              <p class="mt-2 text-sm text-gray-400 leading-6">전국대학교로켓연합회 설립</p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-black/20 p-5">
+              <p class="text-xs uppercase tracking-[0.18em] text-blue-200/80">Status</p>
+              <p class="mt-3 text-3xl md:text-4xl font-black tracking-[-0.04em]">NPO</p>
+              <p class="mt-2 text-sm text-gray-400 leading-6">비영리 법인 운영 기반</p>
+            </article>
+
+            <article class="rounded-2xl border border-white/10 bg-black/20 p-5 col-span-2">
+              <p class="text-xs uppercase tracking-[0.18em] text-blue-200/80">Touchpoints</p>
+              <p class="mt-3 text-2xl md:text-3xl font-black tracking-[-0.04em]">
+                학술대회 · 발사대회 · 학회 교류
+              </p>
+              <p class="mt-2 text-sm text-gray-400 leading-6">
+                학생 프로젝트, 현장 행사, 발표 세션, 네트워킹 접점을 하나의 연합체 안에서 만날 수 있습니다.
+              </p>
+            </article>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY PARTNER -->
+  <section class="border-b border-white/10 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-20">
+      <div class="max-w-3xl mb-10">
+        <p class="text-sm uppercase tracking-[0.22em] text-blue-300/90 mb-3">Why Partner With NURA</p>
+        <h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] text-white">왜 NURA와 함께해야 하는가</h2>
+        <p class="mt-4 text-gray-300 text-base md:text-lg leading-8">
+          후원은 단순 노출이 아니라, 항공우주 인재 생태계와의 장기적인 연결입니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+        <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+          <div class="w-12 h-12 rounded-2xl bg-blue-500/15 border border-blue-300/20 flex items-center justify-center text-xl">🚀</div>
+          <h3 class="mt-5 text-xl font-bold text-white">인재 파이프라인</h3>
+          <p class="mt-3 text-gray-400 leading-7">
+            추진, 구조, 제작, 발표 경험을 가진 학생들과 직접 만나는 접점을 만듭니다.
+          </p>
+        </article>
+
+        <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+          <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-300/20 flex items-center justify-center text-xl">📡</div>
+          <h3 class="mt-5 text-xl font-bold text-white">브랜드 가시성</h3>
+          <p class="mt-3 text-gray-400 leading-7">
+            공식 웹사이트, 행사 현장, 프로그램 운영 채널 등 다양한 노출 지점을 확보할 수 있습니다.
+          </p>
+        </article>
+
+        <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-300/20 flex items-center justify-center text-xl">🤝</div>
+          <h3 class="mt-5 text-xl font-bold text-white">산학 교류</h3>
+          <p class="mt-3 text-gray-400 leading-7">
+            기업, 연구기관, 학생팀이 같은 장에서 만나 발표, 멘토링, 교류를 이어갈 수 있습니다.
+          </p>
+        </article>
+
+        <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+          <div class="w-12 h-12 rounded-2xl bg-sky-500/15 border border-sky-300/20 flex items-center justify-center text-xl">🌍</div>
+          <h3 class="mt-5 text-xl font-bold text-white">교육 공익성</h3>
+          <p class="mt-3 text-gray-400 leading-7">
+            비영리 단체 후원과 STEM 교육 기여를 함께 실현할 수 있는 협력 구조입니다.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT TYPES -->
+  <section class="border-b border-white/10 bg-black">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-20">
+      <div class="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-10 lg:gap-14 items-start">
+        <div>
+          <p class="text-sm uppercase tracking-[0.22em] text-blue-300/90 mb-3">Support Types</p>
+          <h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] text-white">후원은 여러 방식으로 가능합니다</h2>
+          <p class="mt-4 text-gray-300 text-base md:text-lg leading-8">
+            재정 후원뿐 아니라 현물 지원, 기술 협력, 인재 프로그램 등
+            조직 성격에 맞는 방식으로 참여할 수 있습니다.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+            <h3 class="text-lg font-bold text-white">재정 후원</h3>
+            <p class="mt-3 text-gray-400 leading-7">대회 운영, 행사 진행, 이동 및 안전, 시상 프로그램 지원</p>
+          </article>
+
+          <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+            <h3 class="text-lg font-bold text-white">현물 후원</h3>
+            <p class="mt-3 text-gray-400 leading-7">부품, 소재, 장비, 공구, 인쇄물, 굿즈 등 실물 자원 제공</p>
+          </article>
+
+          <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+            <h3 class="text-lg font-bold text-white">기술 협력</h3>
+            <p class="mt-3 text-gray-400 leading-7">멘토링, 심사, 세미나, 자문, 발표 세션 협업</p>
+          </article>
+
+          <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+            <h3 class="text-lg font-bold text-white">채용·인재 프로그램</h3>
+            <p class="mt-3 text-gray-400 leading-7">인턴십, 기업 소개, 학생 교류, 리크루팅 접점 운영</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOUCHPOINTS -->
+  <section class="border-b border-white/10 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-20">
+      <div class="max-w-3xl mb-10">
+        <p class="text-sm uppercase tracking-[0.22em] text-blue-300/90 mb-3">Annual Touchpoints</p>
+        <h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] text-white">연중 파트너십 접점</h2>
+        <p class="mt-4 text-gray-300 text-base md:text-lg leading-8">
+          후원은 한 번의 노출로 끝나지 않습니다. NURA의 주요 프로그램 전반에서 접점이 이어집니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+        <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+          <p class="text-xs uppercase tracking-[0.2em] text-blue-200/80">01</p>
+          <h3 class="mt-4 text-xl font-bold text-white">학술대회</h3>
+          <p class="mt-3 text-gray-400 leading-7">
+            학생 발표, 연구 교류, 기관 및 산업 파트너 접점 형성
+          </p>
+        </article>
+
+        <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+          <p class="text-xs uppercase tracking-[0.2em] text-blue-200/80">02</p>
+          <h3 class="mt-4 text-xl font-bold text-white">발사대회</h3>
+          <p class="mt-3 text-gray-400 leading-7">
+            현장 행사, 팀 운영, 안전 및 기술 운영과 연결되는 대표 프로그램
+          </p>
+        </article>
+
+        <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+          <p class="text-xs uppercase tracking-[0.2em] text-blue-200/80">03</p>
+          <h3 class="mt-4 text-xl font-bold text-white">학회·교류 프로그램</h3>
+          <p class="mt-3 text-gray-400 leading-7">
+            특별 세션, 포럼, 네트워킹, 멘토링 등 산학 교류 채널 확대
+          </p>
+        </article>
+
+        <article class="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+          <p class="text-xs uppercase tracking-[0.2em] text-blue-200/80">04</p>
+          <h3 class="mt-4 text-xl font-bold text-white">디지털 노출</h3>
+          <p class="mt-3 text-gray-400 leading-7">
+            공식 웹사이트, 소개 자료, SNS 및 온라인 채널을 통한 연속 노출
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENT PARTNERS -->
+  <section class="border-b border-white/10 bg-black">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-20">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+        <div class="max-w-3xl">
+          <p class="text-sm uppercase tracking-[0.22em] text-blue-300/90 mb-3">Current Partners</p>
+          <h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] text-white">현재 함께하는 파트너</h2>
+          <p class="mt-4 text-gray-300 text-base md:text-lg leading-8">
+            NURA의 활동을 지원해주신 기업 및 기관입니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-8">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-px flex-1 bg-white/10"></div>
+            <p class="text-sm uppercase tracking-[0.2em] text-gray-400">Industry Partners</p>
+            <div class="h-px flex-1 bg-white/10"></div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+            <a
+              href="https://www.koreanair.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-[1.75rem] border border-white/10 bg-white/5 hover:bg-white/10 transition p-6"
+            >
+              <div class="rounded-[1.25rem] bg-white min-h-[180px] flex items-center justify-center p-8 shadow-lg shadow-black/10">
+                <img src="../source/partnership/koreanair.png" alt="대한항공 로고" class="max-w-full max-h-24 object-contain" />
+              </div>
+              <div class="mt-5">
+                <h3 class="text-lg font-bold text-white">대한항공</h3>
+                <p class="mt-2 text-sm text-gray-400 leading-6">항공우주 산업 파트너</p>
+              </div>
+            </a>
+
+            <a
+              href="https://www.innospc.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-[1.75rem] border border-white/10 bg-white/5 hover:bg-white/10 transition p-6"
+            >
+              <div class="rounded-[1.25rem] bg-white min-h-[180px] flex items-center justify-center p-8 shadow-lg shadow-black/10">
+                <img src="../source/partnership/innospace.png" alt="이노스페이스 로고" class="max-w-full max-h-24 object-contain" />
+              </div>
+              <div class="mt-5">
+                <h3 class="text-lg font-bold text-white">이노스페이스</h3>
+                <p class="mt-2 text-sm text-gray-400 leading-6">우주산업 파트너</p>
+              </div>
+            </a>
+
+            <a
+              href="https://www.ligpoongsan.co.kr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-[1.75rem] border border-white/10 bg-white/5 hover:bg-white/10 transition p-6"
+            >
+              <div class="rounded-[1.25rem] bg-white min-h-[180px] flex items-center justify-center p-8 shadow-lg shadow-black/10">
+                <img src="../source/partnership/ligpoongsan.png" alt="LIG풍산 로고" class="max-w-full max-h-24 object-contain" />
+              </div>
+              <div class="mt-5">
+                <h3 class="text-lg font-bold text-white">LIG풍산</h3>
+                <p class="mt-2 text-sm text-gray-400 leading-6">기술 협력 파트너</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-px flex-1 bg-white/10"></div>
+            <p class="text-sm uppercase tracking-[0.2em] text-gray-400">Research / Institutional Partner</p>
+            <div class="h-px flex-1 bg-white/10"></div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+            <a
+              href="https://www.kari.re.kr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-[1.75rem] border border-white/10 bg-white/5 hover:bg-white/10 transition p-6"
+            >
+              <div class="rounded-[1.25rem] bg-white min-h-[180px] flex items-center justify-center p-8 shadow-lg shadow-black/10">
+                <img src="../source/partnership/kari.jpg" alt="한국항공우주연구원 로고" class="max-w-full max-h-24 object-contain" />
+              </div>
+              <div class="mt-5">
+                <h3 class="text-lg font-bold text-white">한국항공우주연구원</h3>
+                <p class="mt-2 text-sm text-gray-400 leading-6">연구·교육 협력 파트너</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="relative overflow-hidden bg-gray-950">
+    <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
+      <div class="rounded-[2rem] border border-white/10 bg-gray-900 p-8 md:p-12">
+        <div class="grid lg:grid-cols-[minmax(0,1fr)_auto] gap-8 items-center">
+          <div>
+            <p class="text-sm uppercase tracking-[0.22em] text-blue-300/90 mb-3">Get Involved</p>
+            <h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] text-white">NURA와의 협력을 논의해보세요</h2>
+            <p class="mt-4 text-gray-300 text-base md:text-lg leading-8 max-w-3xl">
+              파트너십, 현물 후원, 기술 협력, 인재 프로그램 제안은 공식 이메일로 접수할 수 있습니다.
+              조직 성격과 목적에 맞는 협력 방식을 함께 설계하겠습니다.
+            </p>
+
+            <div class="mt-6 space-y-2 text-gray-300">
+              <p><span class="text-gray-500">Email</span> · nurarocketscience@gmail.com</p>
+              <p><span class="text-gray-500">Instagram</span> · @nura._.official</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+            <a
+              href="mailto:nurarocketscience@gmail.com?subject=NURA%20Partnership%20Inquiry"
+              class="inline-flex items-center justify-center rounded-2xl bg-blue-600 hover:bg-blue-500 px-6 py-3.5 font-bold text-white transition"
+            >
+              이메일 보내기
+            </a>
+            <a
+              href="mailto:nurarocketscience@gmail.com?subject=NURA%20Partnershiphip%20Deck%20Request"
+              class="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 px-6 py-3.5 font-semibold text-white transition"
+            >
+              제안서 요청하기
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="bg-gray-950 border-t border-gray-800 py-8 px-4 md:px-16 w-full"> 
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-0 md:px-8">
+          <div>
+            <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
+            <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
+            <p class="text-gray-400 text-sm mb-2">National University Rocket Association</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">연락처</h3>
+            <div class="text-gray-400 text-sm space-y-2">
+              <p class="break-all">Email: nurarocketscience@gmail.com</p>
+              <p>Instagram: @nura._.official</p>
+              <p>Address: 경기도 고양시 덕양구 항공대학로 76</p>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
+            <div class="text-gray-400 text-sm space-y-2">
+              <p>사업자등록번호: 609-82-83482</p>
+              <p>대표자: 전하상</p>
+              <p>설립일: 1992년 3월 2일</p>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
+          <p class="text-gray-500 text-sm">© 1992 NURA. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    </div>
+    <script>
+  const currentPage = 'Partnership';
+  document.querySelectorAll('.nav-link').forEach((link) => {
+    if (link.dataset.page === currentPage) {
+      link.classList.add('text-blue-400', 'font-bold');
+      link.classList.remove('text-gray-300', 'text-white');
+    }
+  });
+
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
+  if (mobileMenuBtn && mobileMenu) {
+    const mobileMenuPanel = mobileMenu.firstElementChild;
+    const ANIMATION_MS = 300;
+    let closeTimeoutId;
+
+    const setMenuState = (isOpen) => {
+      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuIconOpen?.classList.toggle('hidden', isOpen);
+      menuIconClose?.classList.toggle('hidden', !isOpen);
+      document.body.classList.toggle('overflow-hidden', isOpen);
+      document.body.classList.toggle('mobile-menu-open', isOpen);
+    };
+
+    const openMenu = () => {
+      clearTimeout(closeTimeoutId);
+      mobileMenu.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+        mobileMenuPanel?.classList.remove('opacity-0', 'translate-y-3');
+        mobileMenuPanel?.classList.add('opacity-100', 'translate-y-0');
+      });
+      setMenuState(true);
+    };
+
+    const closeMenu = () => {
+      mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+      mobileMenuPanel?.classList.remove('opacity-100', 'translate-y-0');
+      mobileMenuPanel?.classList.add('opacity-0', 'translate-y-3');
+      setMenuState(false);
+      closeTimeoutId = setTimeout(() => mobileMenu.classList.add('hidden'), ANIMATION_MS);
+    };
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+    const topbar = document.getElementById('topbar');
+
+  function updateTopbarBlur() {
+    if (!topbar) return;
+
+    if (window.scrollY > 12) {
+      topbar.classList.add('is-scrolled');
+    } else {
+      topbar.classList.remove('is-scrolled');
+    }
+  }
+
+  updateTopbarBlur();
+  window.addEventListener('scroll', updateTopbarBlur, { passive: true });
+
+  const mobileActivitiesToggle = document.getElementById('mobile-activities-toggle');
+  const mobileActivitiesSubmenu = document.getElementById('mobile-activities-submenu');
+  const mobileActivitiesArrow = document.getElementById('mobile-activities-arrow');
+
+  if (mobileActivitiesToggle && mobileActivitiesSubmenu) {
+    mobileActivitiesToggle.addEventListener('click', () => {
+      const isOpen = mobileActivitiesToggle.getAttribute('aria-expanded') === 'true';
+
+      mobileActivitiesToggle.setAttribute('aria-expanded', String(!isOpen));
+      mobileActivitiesArrow?.classList.toggle('rotate-180', !isOpen);
+
+      if (isOpen) {
+        mobileActivitiesSubmenu.style.maxHeight = '0px';
+      } else {
+        mobileActivitiesSubmenu.style.maxHeight = mobileActivitiesSubmenu.scrollHeight + 'px';
+      }
+    });
+  }
+
+</script>
   </body>
 </html>
