@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <script src="../data/shared-layout.js"></script>
-    <style>
+<style>
   html { scroll-behavior: smooth; }
+
   html, body {
     margin: 0;
     padding: 0;
@@ -38,7 +39,6 @@
   .activity-hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;
     overflow: hidden;
     background: #000;
   }
@@ -71,122 +71,191 @@
   .activity-hero__content {
     position: relative;
     z-index: 2;
-    min-height: 100vh;
     display: flex;
     align-items: flex-end;
+    height: 100%;
   }
 
   .activity-hero__inner {
-    padding-left: clamp(1.5rem, 4vw, 4rem);
-    padding-right: 1.5rem;
-    padding-bottom: clamp(3rem, 8vw, 6rem);
+    width: 100%;
+    padding: 1.25rem;
   }
 
   .activity-label {
     margin: 0;
-    font-size: clamp(2rem, 4vw, 3.6rem);
     line-height: 1;
-    font-weight: 500;
-    letter-spacing: -0.04em;
+    font-weight: 400;
+    letter-spacing: 0.01em;
     text-transform: uppercase;
     color: #fff;
   }
 
-      .activity-label--launch {
-  font-size: 35px;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: 1;
-}
-
-    .activity-label--conference {
-  font-size: 35px;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: 1;
-}
+  .activity-label--conference,
+  .activity-label--launch {
+    font-size: 35px;
+  }
 
   .activity-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1.25rem;
-    width: 176px;
-    height: 58px;
-    border: 2px solid rgba(255,255,255,0.92);
+    margin-top: 1rem;
+    width: 170px;
+    height: 52px;
+    border: 1.5px solid rgba(255,255,255,0.88);
     background: transparent;
     color: #fff;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.88rem;
     font-weight: 400;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
 
- .activity-btn:hover {
-  background: #71b3e2; /* 파란색 */
-  border-color: #71b3e2;
-  color: #000000;
-}
-
-  /* 섹션별 이미지 위치 미세조정 */
-  .activity-hero--conference .activity-hero__image {
-    object-position: center center;
+  .activity-btn:hover {
+    background: #71b3e2;
+    border-color: #71b3e2;
+    color: #000;
+    transform: translateY(-1px);
   }
 
+  .activity-hero--conference .activity-hero__image,
   .activity-hero--launch .activity-hero__image {
     object-position: center center;
   }
 
-  .activity-hero--conference .activity-hero__image {
-    object-position: center center;
+  .activities-layout {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    background: #000;
+    padding-top: px;
   }
 
-  /* 모바일: 사진처럼 한 화면에 여러 카드가 보이게 */
-  @media (max-width: 767px) {
-    .activity-hero {
-      min-height: 38vh;
-    }
+  .activities-intro {
+    flex: 0 0 auto;
+  }
 
-    .activity-hero__content {
-      min-height: 38vh;
-      align-items: flex-end;
-    }
-
-    .activity-hero__inner {
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
-      padding-bottom: 1.9rem;
-    }
-
-    .activity-label {
-      font-size: 2.15rem;
-    }
-    
-    .activity-btn {
-      width: 170px;
-      height: 54px;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-    }
+.intro-wrap {
+  max-width: 80rem; /* max-w-7xl */
+  margin: 0 auto;
+  width: 100%;
 }
 
+.intro-head {
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
 
-  /* 데스크톱: 카드처럼 둥글게 하지 말고 꽉 차게 */
+.intro-title {
+  margin-bottom: 0;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-weight: 600;
+  color: #fff;
+}
+
+  .activities-grid-fit {
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .activities-grid-fit .activity-hero {
+    min-height: 320px;
+    height: 100%;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: #0a0a0a;
+  }
+
+  .activities-grid-fit .activity-hero__content {
+    min-height: 320px;
+    background:
+      linear-gradient(
+        to top,
+        rgba(0,0,0,0.72) 0%,
+        rgba(0,0,0,0.30) 45%,
+        rgba(0,0,0,0.08) 100%
+      );
+  }
+
   @media (min-width: 768px) {
-    .activities-wrap {
-      padding: 0;
+    .activities-layout {
+      padding-top: 92px;
     }
 
-    .activity-grid {
-      gap: 0;
+    .intro-wrap {
+      padding-left: 1.75rem;
+      padding-right: 1.75rem;
     }
 
-    .activity-hero {
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
+    .intro-head {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .intro-gap {
+      padding-top: 0.5rem;
+      padding-bottom: 0.6rem;
+    }
+
+    .intro-title {
+      font-size: 56px;
+      margin-top: 0.2rem;
+    }
+
+    .activities-grid-fit {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      padding: 0 1.75rem 1.75rem;
+      align-items: stretch;
+    }
+
+    .activities-grid-fit .activity-hero,
+    .activities-grid-fit .activity-hero__content {
+      min-height: min(62vh, 620px);
+    }
+
+    .activities-grid-fit .activity-hero__inner {
+      padding: 1.75rem;
+    }
+
+    .activities-grid-fit .activity-label--conference,
+    .activities-grid-fit .activity-label--launch {
+      font-size: clamp(2rem, 2.7vw, 3rem);
+    }
+
+    .activities-grid-fit .activity-btn {
+      width: 170px;
+      height: 50px;
+      font-size: 0.84rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .activities-grid-fit .activity-hero__inner {
+      padding-left: 1.1rem;
+      padding-right: 1.1rem;
+      padding-bottom: 1.2rem;
+    }
+
+    .activities-grid-fit .activity-label--conference,
+    .activities-grid-fit .activity-label--launch {
+      font-size: 1.9rem;
+    }
+
+    .activities-grid-fit .activity-btn {
+      width: 156px;
+      height: 48px;
+      margin-top: 0.8rem;
+      font-size: 0.82rem;
     }
   }
 </style>
@@ -195,38 +264,52 @@
     <div class="page-shell flex flex-col">
       <div data-shared-header></div>
 
-      <main class="w-full flex-1 flex flex-col bg-black">
+<main class="w-full flex-1 flex flex-col bg-black">
+<section class="activities-intro">
+<div class="max-w-7xl mx-auto px-4 md:px-8 pt-8 md:pt-12 pb-2 md:pb-3 intro-wrap">
+  <section class="px-0 md:px-2 lg:px-4 pt-6 md:pt-10 pb-2 md:pb-3 border-b border-white/10 intro-head">
+    <div class="max-w-5xl">
+      <h1 class="mt-1 text-[32px] md:text-[56px] leading-none tracking-[-0.06em] font-semibold text-white intro-title">
+        Activities
+      </h1>
+    </div>
+  </section>
 
-  <section class="activity-grid">
+  <section class="px-0 md:px-2 lg:px-4 py-0 md:py-1 intro-gap">
+    <div class="border-white/10"></div>
+  </section>
+</div>
+</section>
 
-    <article class="activity-hero activity-hero--conference">
-      <img
-        src="../source/overview/IMG_0651.jpg"
-        alt="추진 시스템 대표 이미지"
-        class="activity-hero__image"
-      />
-      <div class="activity-hero__content">
-        <div class="activity-hero__inner">
-          <h2 class="activity-label activity-label--conference">CONFERENCE</h2>
-          <a href="./conference.html" class="activity-btn">LEARN MORE</a>
+    <section class="activity-grid activities-grid-fit">
+      <article class="activity-hero activity-hero--conference">
+        <img
+          src="../source/news/news1.jpg"
+          alt="추진 시스템 대표 이미지"
+          class="activity-hero__image"
+        />
+        <div class="activity-hero__content">
+          <div class="activity-hero__inner">
+            <h2 class="activity-label activity-label--conference">CONFERENCE</h2>
+            <a href="./conference.html" class="activity-btn">LEARN MORE</a>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="activity-hero activity-hero--launch">
-      <img
-        src="../source/overview/IMG_0651.jpg"
-        alt="전국대학교로켓발사대회 대표 이미지"
-        class="activity-hero__image"
-      />
-      <div class="activity-hero__content">
-        <div class="activity-hero__inner">
-          <h2 class="activity-label activity-label--launch">LAUNCH</h2>
-          <a href="./launch.html" class="activity-btn">LEARN MORE</a>
+      <article class="activity-hero activity-hero--launch">
+        <img
+          src="../source/news/news2.jpg"
+          alt="전국대학교로켓발사대회 대표 이미지"
+          class="activity-hero__image"
+        />
+        <div class="activity-hero__content">
+          <div class="activity-hero__inner">
+            <h2 class="activity-label activity-label--launch">LAUNCH</h2>
+            <a href="./launch.html" class="activity-btn">LEARN MORE</a>
+          </div>
         </div>
-      </div>
-    </article>
-
+      </article>
+    </section>
   </section>
 </main>
 
