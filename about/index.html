@@ -89,16 +89,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(2.25rem, 5vw, 4rem);
-  font-weight: 800;          /* 900 -> 800 */
-  letter-spacing: -0.03em;   /* -0.08em -> 완화 */
-  color: rgba(255, 255, 255, 0.22);
-  opacity: 0.7;
-  transform: none;           /* scale 제거 */
+  font-size: clamp(2.25rem, 5vw, 4rem); /* 일반년도 작게 */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.16);
+  opacity: 0.52;
+  transform: none;
   transition:
     color 300ms ease,
     opacity 300ms ease,
-    text-shadow 300ms ease;
+    text-shadow 300ms ease,
+    font-size 300ms ease;
   user-select: none;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -107,10 +108,8 @@
 .history-year-item.is-active {
   color: rgb(147 197 253);
   opacity: 1;
-  transform: none;
   text-shadow: 0 0 22px rgba(96, 165, 250, 0.18);
 }
-
   .history-rail {
     position: relative;
     padding-left: 2.25rem;
@@ -195,9 +194,9 @@
     }
 
     .history-year-item {
-      height: 84px;
-      font-size: 2.28rem;
-    }
+  height: 84px;
+  font-size: 2.28rem;
+}
 
     .history-rail {
       padding-left: 1.75rem;
@@ -220,11 +219,11 @@
   <div class="relative max-w-7xl mx-auto w-full px-4 md:px-8 pt-12 md:pt-12 pb-24 md:pb-28">
     <div class="grid lg:grid-cols-[minmax(280px,0.92fr)_minmax(0,1.08fr)] gap-12 lg:gap-16 items-start">
       <aside class="history-side-panel lg:sticky lg:top-12">
-        <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-0">
-          <div class="max-w-5xl">
-            <h2 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">
-              NURA의 전체 연혁
-            </h2>
+        <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
+  <div class="max-w-5xl">
+    <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">
+      NURA의 전체 연혁
+    </h1>
             <p class="mt-6 text-gray-300 text-base md:text-lg leading-8">
         1992년 첫 로켓발사대회부터 2026년 제35대 집행부까지,
         전국대학교로켓연합회의 주요 흐름을 시간의 축 위에서 한눈에 볼 수 있도록 정리했습니다.
@@ -551,44 +550,74 @@
     }
   ];
 
-  function createHistoryEntry(entry) {
-    const cardClass = entry.featured
-      ? "border-blue-400/20 bg-white/10"
-      : "border-white/10 bg-white/[0.04]";
+function createHistoryEntry(entry) {
+  const isFeatured = Boolean(entry.featured);
 
-    const badgeClass = entry.featured
-      ? "border-blue-400/30 bg-blue-500/12 text-blue-200"
-      : "border-white/10 bg-white/[0.04] text-white";
+  const cardClass = isFeatured
+    ? "border-blue-400/20 bg-white/10"
+    : "border-white/10 bg-white/[0.04]";
 
-    const itemsHtml = entry.items
-      .map(
-        (item) => `
-          <li class="relative pl-4 text-gray-300 leading-7 md:leading-8">
-            <span class="absolute left-0 top-[0.8em] w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-            ${item}
-          </li>
-        `
-      )
-      .join("");
+  const badgeClass = isFeatured
+    ? "border-blue-400/30 bg-blue-500/12 text-blue-200"
+    : "border-white/10 bg-white/[0.04] text-white";
 
-    return `
-      <article class="history-entry rounded-[1.75rem] border ${cardClass} p-5 md:p-7" data-year="${entry.year}">
-        <div class="flex flex-col md:flex-row gap-5 md:gap-6">
-          <div class="shrink-0">
-            <div class="history-entry-year w-16 h-16 md:w-20 md:h-20 rounded-3xl border ${badgeClass} inline-flex items-center justify-center text-xl md:text-2xl font-black">
-              ${entry.year}
-            </div>
-          </div>
+  const articleSizeClass = isFeatured
+    ? "p-5 md:p-7 rounded-[1.75rem]"
+    : "p-4 md:p-5 rounded-[1.35rem]";
 
-          <div class="min-w-0 flex-1">
-            <ul class="space-y-2.5">
-              ${itemsHtml}
-            </ul>
+  const layoutGapClass = isFeatured
+    ? "gap-5 md:gap-6"
+    : "gap-4 md:gap-5";
+
+  const badgeSizeClass = isFeatured
+    ? "w-16 h-16 md:w-20 md:h-20 rounded-3xl text-xl md:text-2xl"
+    : "w-12 h-12 md:w-16 md:h-16 rounded-2xl text-base md:text-xl";
+
+  const listWrapClass = isFeatured
+    ? "space-y-2.5"
+    : "space-y-2";
+
+  const itemTextClass = isFeatured
+    ? "relative pl-4 text-gray-300 leading-7 md:leading-8 text-[15px] md:text-base"
+    : "relative pl-4 text-gray-300/88 leading-6 md:leading-7 text-[12px] md:text-[15px]"; //not featured 본문 글자 크기 변경
+
+  const dotClass = isFeatured
+    ? "absolute left-0 top-[0.8em] w-1.5 h-1.5 rounded-full bg-blue-400"
+    : "absolute left-0 top-[0.78em] w-1.5 h-1.5 rounded-full bg-blue-400/85";
+
+const widthClass = entry.featured
+  ? "w-full"
+  : "w-full md:w-[80%] lg:w-[60%]";
+
+  const itemsHtml = entry.items
+    .map(
+      (item) => `
+        <li class="${itemTextClass}">
+          <span class="${dotClass}"></span>
+          ${item}
+        </li>
+      `
+    )
+    .join("");
+
+  return `
+    <article class="history-entry border ${widthClass} ${cardClass} ${articleSizeClass}" data-year="${entry.year}">
+      <div class="flex flex-col md:flex-row ${layoutGapClass}">
+        <div class="shrink-0">
+          <div class="history-entry-year border ${badgeClass} ${badgeSizeClass} inline-flex items-center justify-center font-black">
+            ${entry.year}
           </div>
         </div>
-      </article>
-    `;
-  }
+
+        <div class="min-w-0 flex-1">
+          <ul class="${listWrapClass}">
+            ${itemsHtml}
+          </ul>
+        </div>
+      </div>
+    </article>
+  `;
+}
 
   (function renderHistoryDialTimeline() {
     const reel = document.getElementById("history-year-reel");
@@ -602,18 +631,18 @@
 
     list.innerHTML = historyData.map(createHistoryEntry).join("");
 
-    const entryYears = historyData.map((entry) => entry.year);
-    const startYear = Math.min(...entryYears);
-    const endYear = Math.max(...entryYears);
-    const years = [];
+const entryYears = historyData.map((entry) => entry.year);
+const startYear = Math.min(...entryYears);
+const endYear = Math.max(...entryYears);
+const years = [];
 
-    for (let year = startYear; year <= endYear; year += 1) {
-      years.push(year);
-    }
+for (let year = startYear; year <= endYear; year += 1) {
+  years.push(year);
+}
 
-    reel.innerHTML = years
-      .map((year) => `<div class="history-year-item" data-year="${year}">${year}</div>`)
-      .join("");
+reel.innerHTML = years
+  .map((year) => `<div class="history-year-item" data-year="${year}">${year}</div>`)
+  .join("");
 
     const yearItems = Array.from(reel.querySelectorAll(".history-year-item"));
     const entries = Array.from(list.querySelectorAll(".history-entry"));
@@ -722,69 +751,6 @@ function setCurrentYearText() {
   }
 }
 
-    function easeOutQuint(t) {
-      return 1 - Math.pow(1 - t, 5);
-    }
-
-    function stopIntro() {
-      if (!introRunning) return;
-      introRunning = false;
-      if (introRaf) cancelAnimationFrame(introRaf);
-      introRaf = null;
-      syncFromScroll();
-    }
-
-    function playIntroAnimation() {
-      if (!entries.length) return;
-
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      updateEndSpacerPrecise();
-      updateStartSpacerPrecise();
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const lastEntry = entries[entries.length - 1];
-          const startScroll = clampScrollY(historySection.offsetTop);
-          const endScroll = clampScrollY(getTargetScrollForEntry(lastEntry));
-
-          if (prefersReducedMotion) {
-            window.scrollTo(0, endScroll);
-            syncFromScroll();
-            return;
-          }
-
-          introRunning = true;
-          const duration = 3600;
-          const startTime = performance.now();
-
-          window.scrollTo(0, startScroll);
-          syncFromScroll();
-
-          function frame(now) {
-            if (!introRunning) return;
-
-            const progress = Math.min((now - startTime) / duration, 1);
-            const eased = easeOutQuint(progress);
-            const currentScroll = startScroll + (endScroll - startScroll) * eased;
-
-            window.scrollTo(0, currentScroll);
-            syncFromScroll();
-
-            if (progress < 1) {
-              introRaf = requestAnimationFrame(frame);
-            } else {
-              introRunning = false;
-              window.scrollTo(0, endScroll);
-              syncFromScroll();
-            }
-          }
-
-          introRaf = requestAnimationFrame(frame);
-        });
-      });
-    }
-
     function handleScroll() {
       if (introRunning) return;
       syncFromScroll();
@@ -793,30 +759,16 @@ function setCurrentYearText() {
     function handleResize() {
       updateEndSpacerPrecise();
       updateStartSpacerPrecise();
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          syncFromScroll();
-        });
-      });
     }
 
     setActiveYear(startYear);
     updateEndSpacerPrecise();
     updateStartSpacerPrecise();
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        playIntroAnimation();
-      });
-    });
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
     window.addEventListener("load", handleResize);
 
-    window.addEventListener("wheel", stopIntro, { passive: true });
-    window.addEventListener("touchstart", stopIntro, { passive: true });
-    window.addEventListener("keydown", stopIntro);
   })();
 </script>
       </main>
