@@ -137,24 +137,6 @@
     flex: 0 0 auto;
   }
 
-.intro-wrap {
-  max-width: 80rem; /* max-w-7xl */
-  margin: 0 auto;
-  width: 100%;
-}
-
-.intro-head {
-  border-bottom: 1px solid rgba(255,255,255,0.10);
-}
-
-.intro-title {
-  margin-bottom: 0;
-  line-height: 1;
-  letter-spacing: -0.06em;
-  font-weight: 600;
-  color: #fff;
-}
-
   .activities-grid-fit {
     max-width: 1320px;
     width: 100%;
@@ -187,26 +169,6 @@
   }
 
   @media (min-width: 768px) {
-
-    .intro-wrap {
-      padding-left: 1.75rem;
-      padding-right: 1.75rem;
-    }
-
-    .intro-head {
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-    }
-
-    .intro-gap {
-      padding-top: 0.5rem;
-      padding-bottom: 0.6rem;
-    }
-
-    .intro-title {
-      font-size: 56px;
-      margin-top: 0.2rem;
-    }
 
     .activities-grid-fit {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -263,17 +225,13 @@
 
 <main class="activities-layout w-full flex-1 flex flex-col bg-black">
 <section class="activities-intro">
-<div class="max-w-7xl mx-auto px-4 md:px-8 pt-8 md:pt-12 pb-2 md:pb-3 intro-wrap">
-  <section class="px-0 md:px-2 lg:px-4 pt-6 md:pt-10 pb-2 md:pb-3 border-b border-white/10 intro-head">
+<div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-6 md:pb-8">
+  <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
     <div class="max-w-5xl">
-      <h1 class="mt-1 text-[32px] md:text-[56px] leading-none tracking-[-0.06em] font-semibold text-white intro-title">
+      <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">
         Activities
       </h1>
     </div>
-  </section>
-
-  <section class="px-0 md:px-2 lg:px-4 py-0 md:py-1 intro-gap">
-    <div class="border-white/10"></div>
   </section>
 </div>
 </section>
