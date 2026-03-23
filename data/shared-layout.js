@@ -87,7 +87,7 @@
       }
 
       .activities-dropdown-item:hover {
-        background: #3B82F6;
+        background: #71b3e2;
         color: #ffffff;
         transform: scale(1.02);
       }
