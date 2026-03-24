@@ -711,6 +711,13 @@ reel.innerHTML = years
     const yearItems = Array.from(reel.querySelectorAll(".history-year-item"));
     const entries = Array.from(list.querySelectorAll(".history-entry"));
 
+function getVisibleEntries() {
+  return entries.filter((entry) => {
+    const hiddenPanel = entry.closest(".history-group-panel[hidden]");
+    return !hiddenPanel;
+  });
+}
+
     list.addEventListener("click", (event) => {
   const button = event.target.closest(".history-group-toggle");
   if (!button) return;
@@ -720,6 +727,11 @@ reel.innerHTML = years
   if (!panel) return;
 
   const isOpen = !panel.hidden;
+  requestAnimationFrame(() => {
+  updateEndSpacerPrecise();
+  updateStartSpacerPrecise();
+  syncFromScroll();
+});
   panel.hidden = isOpen;
 
   button.setAttribute("aria-expanded", String(!isOpen));
@@ -795,7 +807,12 @@ function setCurrentYearText() {
 
       endSpacer.style.height = "0px";
 
-      const lastEntry = entries[entries.length - 1];
+      const visibleEntries = getVisibleEntries();
+if (!endSpacer || !visibleEntries.length) return;
+
+endSpacer.style.height = "0px";
+
+const lastEntry = visibleEntries[visibleEntries.length - 1];
       const rawTargetScroll = getTargetScrollForEntry(lastEntry);
       const currentMaxScroll = getMaxScrollY();
       const extraNeeded = Math.max(rawTargetScroll - currentMaxScroll, 0);
@@ -815,14 +832,15 @@ function setCurrentYearText() {
   return window.innerHeight / 2 - 130;
 }
 
-    function syncFromScroll() {
-  if (!entries.length) return;
+function syncFromScroll() {
+  const visibleEntries = getVisibleEntries();
+  if (!visibleEntries.length) return;
 
   const activationCenterY = getActivationCenterY();
   let closestEntry = null;
   let closestDistance = Infinity;
 
-  entries.forEach((entry) => {
+  visibleEntries.forEach((entry) => {
     const rect = entry.getBoundingClientRect();
     const entryCenterY = rect.top + rect.height / 2;
     const distance = Math.abs(entryCenterY - activationCenterY);
