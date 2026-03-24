@@ -118,7 +118,7 @@
   .history-rail::before {
     content: "";
     position: absolute;
-    left: 0.4rem;
+    left: 0.653rem;
     top: 0;
     bottom: 0;
     width: 1px;
@@ -263,12 +263,13 @@
   const historyData = [
     {
       year: 1992,
+      featured: true,
       items: ["제1회 로켓발사대회(한국항공대학교)"]
     },
     {
       year: 1993,
-      items: [
-        "1월 31일 전국로켓연구연합회 발족(각 대학 로켓 연구회 간의 교류 시작)",
+      featured: true,
+      items: ["1월 31일 전국로켓연구연합회 발족(각 대학 로켓 연구회 간의 교류 시작)",
         "제2회 로켓발사대회(인하대학교)"
       ]
     },
@@ -579,15 +580,15 @@ function createHistoryEntry(entry) {
 
   const itemTextClass = isFeatured
     ? "relative pl-4 text-gray-300 leading-7 md:leading-8 text-[15px] md:text-base"
-    : "relative pl-4 text-gray-300/88 leading-6 md:leading-7 text-[12px] md:text-[15px]"; //not featured 본문 글자 크기 변경
+    : "relative pl-4 text-gray-300/88 leading-6 md:leading-7 text-[12px] md:text-[15px]";
 
   const dotClass = isFeatured
     ? "absolute left-0 top-[0.8em] w-1.5 h-1.5 rounded-full bg-blue-400"
     : "absolute left-0 top-[0.78em] w-1.5 h-1.5 rounded-full bg-blue-400/85";
 
-const widthClass = entry.featured
-  ? "w-full"
-  : "w-full md:w-[80%] lg:w-[60%]";
+  const widthClass = entry.featured
+    ? "w-full"
+    : "w-full md:w-[80%] lg:w-[60%]";
 
   const itemsHtml = entry.items
     .map(
@@ -608,7 +609,6 @@ const widthClass = entry.featured
             ${entry.year}
           </div>
         </div>
-
         <div class="min-w-0 flex-1">
           <ul class="${listWrapClass}">
             ${itemsHtml}
@@ -617,6 +617,70 @@ const widthClass = entry.featured
       </div>
     </article>
   `;
+}
+
+function buildHistoryGroups(data) {
+  const groups = [];
+  let currentGroup = null;
+
+  data.forEach((entry) => {
+    if (entry.featured) {
+      if (currentGroup) groups.push(currentGroup);
+      currentGroup = {
+        featured: entry,
+        children: []
+      };
+    } else if (currentGroup) {
+      currentGroup.children.push(entry);
+    } else {
+      groups.push({
+        featured: null,
+        children: [entry]
+      });
+    }
+  });
+
+  if (currentGroup) groups.push(currentGroup);
+
+  return groups
+    .map((group, index) => {
+      if (!group.featured) {
+        return group.children.map(createHistoryEntry).join("");
+      }
+
+      const childHtml = group.children.map(createHistoryEntry).join("");
+      const hasChildren = group.children.length > 0;
+      const panelId = `history-group-panel-${index}`;
+
+      return `
+        <section class="history-group space-y-4" data-featured-year="${group.featured.year}">
+          ${createHistoryEntry(group.featured)}
+
+          ${
+            hasChildren
+              ? `
+              <div class="pl-0 md:pl-6">
+                <button
+                  type="button"
+                  class="history-group-toggle inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-gray-200 hover:bg-white/[0.08] transition"
+                  data-target="${panelId}"
+                  aria-expanded="false"
+                  aria-controls="${panelId}"
+                >
+                  <span class="toggle-label">세부 연혁 열기</span>
+                </button>
+              </div>
+
+              <div id="${panelId}" class="history-group-panel space-y-5 md:space-y-6" hidden>
+                ${childHtml}
+              </div>
+            `
+              : ""
+          }
+        </section>
+      `;
+    })
+    .join("");
 }
 
   (function renderHistoryDialTimeline() {
@@ -629,7 +693,7 @@ const widthClass = entry.featured
 
     if (!reel || !list || !dial || !historySection) return;
 
-    list.innerHTML = historyData.map(createHistoryEntry).join("");
+    list.innerHTML = buildHistoryGroups(historyData);
 
 const entryYears = historyData.map((entry) => entry.year);
 const startYear = Math.min(...entryYears);
@@ -646,6 +710,29 @@ reel.innerHTML = years
 
     const yearItems = Array.from(reel.querySelectorAll(".history-year-item"));
     const entries = Array.from(list.querySelectorAll(".history-entry"));
+
+    list.addEventListener("click", (event) => {
+  const button = event.target.closest(".history-group-toggle");
+  if (!button) return;
+
+  const panelId = button.dataset.target;
+  const panel = document.getElementById(panelId);
+  if (!panel) return;
+
+  const isOpen = !panel.hidden;
+  panel.hidden = isOpen;
+
+  button.setAttribute("aria-expanded", String(!isOpen));
+  const label = button.querySelector(".toggle-label");
+  if (label) {
+    label.textContent = isOpen ? "세부 연혁 열기" : "세부 연혁 닫기";
+  }
+
+  requestAnimationFrame(() => {
+    updateEndSpacerPrecise();
+    syncFromScroll();
+  });
+});
 
     let introRunning = false;
     let introRaf = null;
@@ -725,7 +812,7 @@ function setCurrentYearText() {
   }
 
   function getActivationCenterY() {
-  return window.innerHeight / 2 - 50;
+  return window.innerHeight / 2 - 130;
 }
 
     function syncFromScroll() {
