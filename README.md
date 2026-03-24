@@ -136,7 +136,7 @@ const contentData = {
 Tailwind CSS 클래스를 사용하여 색상을 변경할 수 있습니다:
 
 - 메인 색상: `text-blue-400`, `bg-blue-600`
-- 배경색: `bg-gray-950`, `bg-gray-900`
+- 배경색: `bg-black`, `bg-gray-900`
 - 텍스트 색상: `text-white`, `text-gray-300`
 
 ### 레이아웃 수정

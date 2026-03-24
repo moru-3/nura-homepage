@@ -185,7 +185,7 @@
     }
 
     #history {
-      padding-bottom: 8.5rem;
+      padding-bottom: 4rem;
     }
 
     .history-dial {
@@ -210,12 +210,12 @@
  </style>
       <script src="../data/shared-layout.js"></script>
   </head>
-  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden" data-current-page="about" data-base-path="..">
+  <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="about" data-base-path="..">
     <div class="page-shell flex flex-col">
     <div data-shared-header></div>
 
 <main class="w-full flex-1 flex flex-col">
-<section id="history" class="relative border-t border-white/10 bg-gray-950">
+<section id="history" class="relative border-t border-white/10 bg-black">
   <div class="relative max-w-7xl mx-auto w-full px-4 md:px-8 pt-12 md:pt-12 pb-24 md:pb-28">
     <div class="grid lg:grid-cols-[minmax(280px,0.92fr)_minmax(0,1.08fr)] gap-12 lg:gap-16 items-start">
       <aside class="history-side-panel lg:sticky lg:top-12">
@@ -756,7 +756,7 @@ function getVisibleEntries() {
 
     function getDialCenterYViewport() {
       const rect = dial.getBoundingClientRect();
-      return rect.top + rect.height / 2;
+      return rect.top + rect.height / 2 - 300;
     }
 
     function getMaxScrollY() {
@@ -802,31 +802,32 @@ function setCurrentYearText() {
   return entryCenterInDocument - getActivationCenterY();
 }
 
-    function updateEndSpacerPrecise() {
-      if (!endSpacer || !entries.length) return;
+function updateStartSpacerPrecise() {
+  const startSpacer = document.getElementById("history-start-spacer");
+  if (!startSpacer || !entries.length) return;
 
-      endSpacer.style.height = "0px";
+  startSpacer.style.height = window.innerWidth >= 1024 ? "56px" : "24px";
+}
 
-      const visibleEntries = getVisibleEntries();
-if (!endSpacer || !visibleEntries.length) return;
+function updateEndSpacerPrecise() {
+  if (!endSpacer || !entries.length) return;
 
-endSpacer.style.height = "0px";
+  endSpacer.style.height = "0px";
 
-const lastEntry = visibleEntries[visibleEntries.length - 1];
-      const rawTargetScroll = getTargetScrollForEntry(lastEntry);
-      const currentMaxScroll = getMaxScrollY();
-      const extraNeeded = Math.max(rawTargetScroll - currentMaxScroll, 0);
+  const visibleEntries = getVisibleEntries();
+  if (!endSpacer || !visibleEntries.length) return;
 
-      endSpacer.style.height = `${Math.ceil(extraNeeded + 250)}px`;
-    }
+  endSpacer.style.height = "0px";
 
-    function updateStartSpacerPrecise() {
-    const startSpacer = document.getElementById("history-start-spacer");
-    if (!startSpacer || !entries.length) return;
+  const lastEntry = visibleEntries[visibleEntries.length - 1];
+  const rawTargetScroll = getTargetScrollForEntry(lastEntry);
+  const currentMaxScroll = getMaxScrollY();
+  const extraNeeded = Math.max(rawTargetScroll - currentMaxScroll, 0);
 
-    // 너무 많이 밀리지 않도록 고정/제한
-    startSpacer.style.height = window.innerWidth >= 1024 ? "56px" : "24px";
-  }
+  endSpacer.style.height = `${Math.ceil(
+    extraNeeded + (window.innerWidth >= 1024 ? 24 : 8)
+  )}px`;
+}
 
   function getActivationCenterY() {
   return window.innerHeight / 2 - 130;
@@ -835,6 +836,22 @@ const lastEntry = visibleEntries[visibleEntries.length - 1];
 function syncFromScroll() {
   const visibleEntries = getVisibleEntries();
   if (!visibleEntries.length) return;
+
+  const firstEntry = visibleEntries[0];
+  const lastEntry = visibleEntries[visibleEntries.length - 1];
+  const maxScrollY = getMaxScrollY();
+
+  // 맨 위에서는 첫 카드 강제 활성화
+  if (window.scrollY <= 40) {
+    setActiveYear(firstEntry.dataset.year);
+    return;
+  }
+
+  // 맨 아래에서는 마지막 카드 강제 활성화
+  if (maxScrollY - window.scrollY <= 450) {
+    setActiveYear(lastEntry.dataset.year);
+    return;
+  }
 
   const activationCenterY = getActivationCenterY();
   let closestEntry = null;
