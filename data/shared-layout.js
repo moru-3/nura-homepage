@@ -149,6 +149,14 @@
               </a>
 
               <div class="activities-dropdown-menu">
+                <a href="${basePath}/activities/meeting.html" class="activities-dropdown-item">
+                  <span>대표자 회의</span>
+                  <span class="activities-dropdown-arrow">→</span>
+                </a>
+                <a href="${basePath}/activities/kspe.html" class="activities-dropdown-item">
+                  <span>춘추계 학술대회</span>
+                  <span class="activities-dropdown-arrow">→</span>
+                </a>
                 <a href="${basePath}/activities/conference.html" class="activities-dropdown-item">
                   <span>학술대회</span>
                   <span class="activities-dropdown-arrow">→</span>
@@ -233,6 +241,8 @@
 
                 <div id="mobile-activities-submenu" class="max-h-0 overflow-hidden transition-all duration-300 ease-out">
                   <div class="pb-4">
+                    <a href="${basePath}/activities/meeting.html" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">Meeting</a>
+                    <a href="${basePath}/activities/kspe.html" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">KSPE Conference</a>
                     <a href="${basePath}/activities/conference.html" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">Conference</a>
                     <a href="${basePath}/activities/launch.html" class="block py-2 text-2xl font-medium text-gray-300 hover:text-white transition">Launch</a>
                   </div>
