@@ -259,7 +259,7 @@
     `;
   }
 
-  function renderFooter(basePath) {
+  function renderFooter() {
     return `
       <footer class="bg-black border-t border-gray-800 py-8 px-4 md:px-16 w-full">
         <div class="max-w-6xl mx-auto">
@@ -283,16 +283,6 @@
                 <p>사업자등록번호: 609-82-83482</p>
                 <p>대표자: 전하상</p>
                 <p>설립일: 1992년 3월 2일</p>
-                <p>
-                  <a
-                    href="${basePath}/sitemap.xml"
-                    class="text-blue-400 hover:text-white transition"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Sitemap.xml
-                  </a>
-                </p>
               </div>
             </div>
           </div>
@@ -421,7 +411,7 @@
     }
 
     if (footerMount) {
-      footerMount.outerHTML = renderFooter(basePath);
+      footerMount.outerHTML = renderFooter();
     }
 
     highlightCurrentPage(currentPage);
