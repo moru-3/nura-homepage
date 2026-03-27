@@ -10,20 +10,20 @@ nura-homepage/
 ├── README.md               # 이 문서
 ├── image_postprocessing.py # 이미지 후처리 스크립트 (선택사항)
 ├── about/                
-│   └── index.html          # 상단 네비게이션바 HTML 파일
+│   └── index.html          # 하위 HTML 파일
 ├── activities/
-│   ├── index.html          # 상단 네비게이션바 HTML 파일
-│   ├── meeting.html
+│   ├── index.html          # 하위 HTML 파일
+│   ├── meeting.html       
 │   ├── kspe.html
 │   ├── conference.html     
 │   └── launch.html 
 ├── resources/           
-│   └── index.html          # 상단 네비게이션바 HTML 파일
+│   └── index.html          # 하위 HTML 파일
 ├── partnership/               
-│   └── index.html          # 상단 네비게이션바 HTML 파일
+│   └── index.html          # 하위 HTML 파일
 ├── data/               
-│   ├── shared-layout.js    # 레이아웃
-│   └── site-data.js        # 변수
+│   ├── shared-layout.js    # 헤더, 푸터
+│   └── site-data.js        # 각종 변수
 ├── source/
 │   ├── overview/           # 개요 섹션 이미지
 │   │   ├── blurred/        # 블러 처리된 슬라이드 이미지
@@ -37,15 +37,16 @@ nura-homepage/
 │   │   ├── onedrive-blur.png # 원드라이브 배경 이미지
 │   │   ├── nura-header.png # 헤더 이미지
 │   │   ├── nura-icon.png   # 로고
+│   │   ├── structure.png   # 내부 구조 이미지
 │   │   ├── meeting.png     # 대표자 회의 배경 이미지
 │   │   ├── kspe.png        # 추진공학회 배경 이미지
 │   │   ├── conference.png  # 학술대회 배경 이미지
 │   │   └── launch.png      # 발사대회 배경 이미지
-│   └── partnership/        # 후원사 로고들
-│       ├── koreanair.png
-│       ├── innospace.png
-│       ├── kari.jpg
-│       └── ligpoongsan.png
+│   ├── partnership/        # 후원사 로고들
+│   │   ├── koreanair.png
+│   │   ├── innospace.png
+│   │   ├── kari.jpg
+│   │   └── ligpoongsan.png
 │   └── news/               # 뉴스 사진들
 │       ├── news1.jpg
 │       ├── news2.jpg
@@ -56,8 +57,20 @@ nura-homepage/
 ## 🚀 시작하기
 
 ### 기본 실행
-1. `index.html` 파일을 웹 브라우저에서 열기
-2. 로컬 서버 없이도 정상 작동합니다
+정적 사이트이므로 프로젝트 루트에서 간단한 로컬 서버를 띄우면 됩니다.
+
+```bash
+python -m http.server 8000
+```
+
+이후 브라우저에서 아래 주소를 열면 됩니다.
+
+```text
+http://localhost:8000
+```
+
+### 그냥 HTML 파일을 직접 열어도 되나요?
+가능한 경우도 있지만, 상대 경로·링크·이미지 확인을 안정적으로 하려면 **로컬 서버 방식**을 권장합니다.
 
 ### 개발 환경 설정 (선택사항)
 ```bash
