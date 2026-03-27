@@ -168,7 +168,7 @@
               </div>
             </div>
 
-            <a href="${basePath}/partnership/" data-page="Partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
+            <a href="${basePath}/partnership/" data-page="partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
             <a href="${basePath}/resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
           </nav>
 
@@ -251,7 +251,7 @@
                 </div>
               </div>
 
-              <a href="${basePath}/partnership/" data-page="Partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
+              <a href="${basePath}/partnership/" data-page="partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
               <a href="${basePath}/resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
             </div>
 
