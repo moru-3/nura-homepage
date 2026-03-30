@@ -55,15 +55,18 @@
         }
       }
 
-      .hero-progress-wrap {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-        width: min(540px, 90vw);
+      .hero-copy-block {
+        width: fit-content;
+        max-width: 100%;
       }
 
       .hero-progress-inline {
-        margin-top: 16px;
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        column-gap: 18px;
+        width: 100%;
       }
 
       .hero-progress-toggle {
@@ -110,8 +113,8 @@
 
       .hero-progress-track {
         position: relative;
-        flex: 1;
         height: 3px;
+        width: 100%;
         background: rgba(255, 255, 255, 0.22);
         overflow: hidden;
       }
@@ -137,13 +140,9 @@
           line-height: 1.35;
         }
 
-        .hero-progress-wrap {
-          gap: 14px;
-          width: min(420px, 92vw);
-        }
-
         .hero-progress-inline {
           margin-top: 18px;
+          column-gap: 14px;
         }
 
         .hero-progress-toggle {
@@ -202,20 +201,22 @@
                   <span class="reveal-line"><span class="reveal-text whitespace-nowrap">전국대학교로켓연합회</span></span>
                 </h1>
 
-                <p class="hero-subtitle max-w-3xl text-white font-medium hero-reveal">
-                  <span class="reveal-line">
-                    <span class="reveal-text">대한민국 미래 우주 · 항공 · 방산 인재들의 요람</span>
-                  </span>
-                </p>
+                <div class="hero-copy-block">
+                  <p class="hero-subtitle text-white font-medium hero-reveal">
+                    <span class="reveal-line">
+                      <span class="reveal-text">대한민국 미래 우주 · 항공 · 방산 인재들의 요람</span>
+                    </span>
+                  </p>
 
-                <div class="hero-progress-wrap hero-progress-inline" aria-label="슬라이드 진행 상태">
-                  <button class="hero-progress-toggle" type="button" aria-label="슬라이드 일시정지">
-                    <span class="pause-bar"></span>
-                    <span class="pause-bar"></span>
-                  </button>
+                  <div class="hero-progress-inline" aria-label="슬라이드 진행 상태">
+                    <button class="hero-progress-toggle" type="button" aria-label="슬라이드 일시정지">
+                      <span class="pause-bar"></span>
+                      <span class="pause-bar"></span>
+                    </button>
 
-                  <div class="hero-progress-track">
-                    <div class="hero-progress-fill"></div>
+                    <div class="hero-progress-track">
+                      <div class="hero-progress-fill"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -322,7 +323,7 @@
 
         if (!slides.length || !progressFill) return;
 
-        const slideDuration = 5000;
+        const slideDuration = 3000;
         let current = 0;
         let isPaused = false;
 
