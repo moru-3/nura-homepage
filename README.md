@@ -117,6 +117,7 @@ pip install Pillow
 - `overviewStats` : 메인 페이지 통계 카드
 - `newsItems` : 메인 페이지 관련 기사 카드
 - `resourceDocuments` : 자료실 문서 목록
+- `historyData` : 연혁 문서 목록
 
 즉, 숫자/뉴스/자료실 목록은 HTML 본문을 직접 수정하지 않아도 이 파일에서 갱신할 수 있습니다.
 
@@ -225,7 +226,20 @@ resourceDocuments: [
 }
 ```
 
-### 4. 공통 네비게이션 수정
+### 4. 자료실 목록 수정
+
+`about/index.html`은 `data/site-data.js`의 `historyData` 배열을 읽어서 목록을 생성합니다.
+
+```javascript
+historyData: [
+  {
+    year: 1992,
+    featured: true,
+    items: ["제1회 로켓발사대회(한국항공대학교)"]
+  }
+```
+
+### 5. 공통 네비게이션 수정
 
 상단 메뉴, Activities 드롭다운, 푸터는 `data/shared-layout.js`에서 수정합니다.
 
@@ -238,7 +252,7 @@ resourceDocuments: [
 - 상단바 스타일
 - 푸터 문구
 
-### 5. 활동 페이지 수정
+### 6. 활동 페이지 수정
 
 활동 소개 페이지는 파일별로 직접 수정합니다.
 
@@ -247,11 +261,6 @@ resourceDocuments: [
 - `activities/kspe.html` : 한국추진공학회 NURA 세션
 - `activities/conference.html` : 전국대학교로켓학술대회
 - `activities/launch.html` : 전국대학교로켓발사대회
-
-### 6. About 연혁 수정
-
-연혁 내용과 카드 구조는 `about/index.html` 내부에서 직접 수정합니다.  
-이 페이지는 커스텀 다이얼/타임라인 UI를 사용하므로, 연도 카드 간격·다이얼 위치·스크롤 기준선을 바꿀 때는 CSS와 스크립트를 함께 확인하는 것이 좋습니다.
 
 ### 7. 새로운 후원사 추가
 1. 로고 이미지를 `source/Partnership/` 폴더에 추가
