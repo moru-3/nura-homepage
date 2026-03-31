@@ -62,12 +62,12 @@ window.NURA_DATA = {
     },
     {
       date: "2026.03",
-      title: "협력 제안서",
+      title: "전국대학교로켓연합회 CI 가이드라인",
       category: "Partnership",
-      format: "PDF",
-      size: "5.4MB",
-      description: "기업·기관 협력 방향, 기대 효과, 지원 항목 등을 정리한 제안 자료입니다.",
-      href: "../source/resources/nura-partnership.pdf"
+      format: "AI",
+      size: "2.2MB",
+      description: "전국대학교로켓연합회의 CI 사용 방안을 담은 가이드라인입니다.",
+      href: "../source/resources/NURA_AI.ai"
     },
     {
       date: "2026.03",
