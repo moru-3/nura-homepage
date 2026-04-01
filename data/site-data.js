@@ -371,6 +371,7 @@ window.NURA_DATA = {
     },
     {
       year: 2027,
+      featured: true,
       items: [
         "제36대 회장 한국대학교 홍길동, 부회장 한국대학교 홍일, 총무 한국대학교 홍이"
       ]
