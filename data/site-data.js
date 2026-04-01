@@ -53,15 +53,6 @@ window.NURA_DATA = {
   resourceDocuments: [
     {
       date: "2026.03",
-      title: "전국대학교로켓연합회 소개서",
-      category: "소개서",
-      format: "PDF",
-      size: "8.2MB",
-      description: "전국대학교로켓연합회의 설립 배경, 활동 개요, 참여 대학, 주요 프로젝트를 담은 소개 자료입니다.",
-      href: "../source/resources/nura-profile.pdf"
-    },
-    {
-      date: "2026.03",
       title: "전국대학교로켓연합회 CI 가이드라인",
       category: "Partnership",
       format: "AI",
@@ -70,11 +61,11 @@ window.NURA_DATA = {
       href: "../source/resources/NURA_AI.ai"
     },
     {
-      date: "2026.03",
-      title: "활동 브로슈어",
+      date: "2026.04",
+      title: "후원제안서",
       category: "Brochure",
       format: "PDF",
-      description: "발사대회, 정기 세미나, 기술 교류 활동을 요약한 브로슈어입니다.",
+      description: "전국대학교로켓연합홰의 후원제안서입니다.",
       status: "coming-soon"
     }
   ],
