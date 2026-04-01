@@ -38,10 +38,10 @@ nura-homepage/
 │   │   ├── nura-header.png # 헤더 이미지
 │   │   ├── nura-icon.png   # 로고
 │   │   ├── structure.png   # 내부 구조 이미지
-│   │   ├── meeting.png     # 대표자 회의 배경 이미지
-│   │   ├── kspe.png        # 추진공학회 배경 이미지
-│   │   ├── conference.png  # 학술대회 배경 이미지
-│   │   └── launch.png      # 발사대회 배경 이미지
+│   │   ├── meeting.jpg     # 대표자 회의 배경 이미지
+│   │   ├── kspe.jpg        # 추진공학회 배경 이미지
+│   │   ├── conference.jpg  # 학술대회 배경 이미지
+│   │   └── launch.jpg      # 발사대회 배경 이미지
 │   ├── partnership/        # 후원사 로고들
 │   │   ├── koreanair.png
 │   │   ├── innospace.png
@@ -166,7 +166,7 @@ Tailwind CSS 클래스를 사용하여 색상을 변경할 수 있습니다:
 
 ## 🛠️ 유지보수 가이드
 
-### 1. 메인 페이지 숫자 카드 수정
+### 메인 페이지 숫자 카드 수정
 
 `data/site-data.js`의 `overviewStats` 배열을 수정합니다.
 
@@ -181,7 +181,7 @@ overviewStats: [
 ]
 ```
 
-### 2. 메인 페이지 기사 카드 수정
+### 메인 페이지 기사 카드 수정
 
 `data/site-data.js`의 `newsItems` 배열을 수정합니다.
 
@@ -197,7 +197,7 @@ newsItems: [
 ]
 ```
 
-### 3. 자료실 목록 수정
+### 자료실 목록 수정
 
 `resources/index.html`은 `data/site-data.js`의 `resourceDocuments` 배열을 읽어서 목록을 생성합니다.
 
@@ -226,7 +226,7 @@ resourceDocuments: [
 }
 ```
 
-### 4. 자료실 목록 수정
+### 자료실 목록 수정
 
 `about/index.html`은 `data/site-data.js`의 `historyData` 배열을 읽어서 목록을 생성합니다.
 
@@ -239,7 +239,7 @@ historyData: [
   }
 ```
 
-### 5. 공통 네비게이션 수정
+### 공통 네비게이션 수정
 
 상단 메뉴, Activities 드롭다운, 푸터는 `data/shared-layout.js`에서 수정합니다.
 
@@ -252,7 +252,7 @@ historyData: [
 - 상단바 스타일
 - 푸터 문구
 
-### 6. 활동 페이지 수정
+### 활동 페이지 수정
 
 활동 소개 페이지는 파일별로 직접 수정합니다.
 
@@ -262,7 +262,7 @@ historyData: [
 - `activities/conference.html` : 전국대학교로켓학술대회
 - `activities/launch.html` : 전국대학교로켓발사대회
 
-### 7. 새로운 후원사 추가
+### 새로운 후원사 추가
 1. 로고 이미지를 `source/Partnership/` 폴더에 추가
 2. `contentData.Partnership.Partnership` 배열에 정보 추가:
 ```javascript
@@ -326,6 +326,6 @@ python image_postprocessing.py
 
 ---
 
-**마지막 업데이트**: 2026년 03월
+**마지막 업데이트**: 2026년 04월
 
 **관리자**: 전현우(jhw030520@gmail.com), 심승기(shimseunggi@naver.com)
