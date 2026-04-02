@@ -443,9 +443,30 @@
         }
       }
       
-      // Active section highlight
+      // Active section highlight (scroll 성능 최적화)
       const links = document.querySelectorAll('.sidebar-link');
       const sections = Array.from(document.querySelectorAll('section'));
+      let sectionMetrics = [];
+      let ticking = false;
+
+      function cacheSectionMetrics() {
+        sectionMetrics = sections.map(section => ({
+          id: section.id,
+          top: Math.round(section.getBoundingClientRect().top + window.scrollY),
+          height: section.offsetHeight
+        }));
+      }
+
+      function setActiveLink(targetSectionId) {
+        links.forEach(link => {
+          if (link.dataset.section === targetSectionId) {
+            link.classList.add('text-blue-400', 'font-bold');
+          } else {
+            link.classList.remove('text-blue-400', 'font-bold');
+          }
+        });
+      }
+
       function onScroll() {
         const scrollPos = window.scrollY;
         const windowHeight = window.innerHeight;
@@ -453,46 +474,51 @@
 
         // 스크롤이 거의 끝에 도달했을 때 resources 섹션 활성화
         if (scrollPos + windowHeight >= documentHeight - 100) {
-          links.forEach(link => {
-            if (link.dataset.section === 'resources') {
-              link.classList.add('text-blue-400', 'font-bold');
-            } else {
-              link.classList.remove('text-blue-400', 'font-bold');
-            }
-          });
+          setActiveLink('resources');
           return;
         }
 
-        let current = sections[0].id;
-        for (const section of sections) {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
+        let current = sectionMetrics[0]?.id || 'overview';
+        for (const section of sectionMetrics) {
           // 섹션의 중간이 화면 상단에 닿을 때까지 활성화 유지
-          if (scrollPos >= sectionTop - windowHeight / 2 && scrollPos < sectionTop + sectionHeight - windowHeight / 2) {
+          if (scrollPos >= section.top - windowHeight / 2 && scrollPos < section.top + section.height - windowHeight / 2) {
             current = section.id;
           }
         }
 
-        links.forEach(link => {
-          if (link.dataset.section === current) {
-            link.classList.add('text-blue-400', 'font-bold');
-          } else {
-            link.classList.remove('text-blue-400', 'font-bold');
-          }
+        setActiveLink(current);
+      }
+
+      function requestScrollUpdate() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          onScroll();
+          ticking = false;
         });
       }
       
       // 페이지 로드 시 내용 불러오기
-      document.addEventListener('DOMContentLoaded', loadContent);
+      document.addEventListener('DOMContentLoaded', () => {
+        loadContent();
+        cacheSectionMetrics();
+        requestScrollUpdate();
+      });
       
-      window.addEventListener('scroll', onScroll);
+      window.addEventListener('load', cacheSectionMetrics);
+      window.addEventListener('resize', () => {
+        cacheSectionMetrics();
+        requestScrollUpdate();
+      });
+      window.addEventListener('scroll', requestScrollUpdate, { passive: true });
       // Smooth scroll for anchor links (for Safari)
       links.forEach(link => {
         link.addEventListener('click', e => {
           const href = link.getAttribute('href');
           if (href.startsWith('#')) {
             e.preventDefault();
-            document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            document.querySelector(href).scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
           }
         });
       });
@@ -526,4 +552,4 @@
       })();
     </script>
   </body>
-</html> 
+</html>
