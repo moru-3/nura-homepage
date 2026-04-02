@@ -42,7 +42,7 @@
         left: 50%;
         transform: translateX(-50%) translateY(8px);
         width: max-content;
-        min-width: 180px;
+        min-width: 1px;
         background: rgba(255, 255, 255, 0.96);
         border: none;
         border-radius: 16px;
@@ -111,6 +111,24 @@
         right: 0;
         top: 100%;
         height: 14px;
+      }
+
+      #mobile-menu {
+        visibility: hidden;
+        will-change: opacity;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      #mobile-menu.is-open {
+        visibility: visible;
+      }
+
+      #mobile-menu > div {
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
       }
     `;
 
@@ -204,7 +222,7 @@
 
         <div
           id="mobile-menu"
-          class="fixed inset-0 z-[60] hidden md:hidden bg-slate-950/88 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
+          class="fixed inset-0 z-[60] md:hidden bg-slate-950/88 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
         >
           <div class="flex flex-col justify-between min-h-screen px-6 pt-20 pb-10 transform transition duration-300 ease-out opacity-0 translate-y-3">
             <div class="flex flex-col gap-1">
@@ -316,35 +334,69 @@
 
     const mobileMenuPanel = mobileMenu.firstElementChild;
     const animationMs = 300;
-    let closeTimeoutId;
+    let savedScrollY = 0;
+    let isAnimating = false;
+
+    const lockBodyScroll = () => {
+      savedScrollY = window.scrollY || window.pageYOffset;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${savedScrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+    };
+
+    const unlockBodyScroll = () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, savedScrollY);
+    };
 
     const setMenuState = (isOpen) => {
       mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
       menuIconOpen?.classList.toggle('hidden', isOpen);
       menuIconClose?.classList.toggle('hidden', !isOpen);
-      document.body.classList.toggle('overflow-hidden', isOpen);
       document.body.classList.toggle('mobile-menu-open', isOpen);
     };
 
     const openMenu = () => {
-      clearTimeout(closeTimeoutId);
-      mobileMenu.classList.remove('hidden');
+      if (isAnimating) return;
+      isAnimating = true;
+
+      lockBodyScroll();
+      setMenuState(true);
+      mobileMenu.classList.add('is-open');
+
       requestAnimationFrame(() => {
         mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
         mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
         mobileMenuPanel?.classList.remove('opacity-0', 'translate-y-3');
         mobileMenuPanel?.classList.add('opacity-100', 'translate-y-0');
+
+        setTimeout(() => {
+          isAnimating = false;
+        }, animationMs);
       });
-      setMenuState(true);
     };
 
     const closeMenu = () => {
+      if (isAnimating) return;
+      isAnimating = true;
+
       mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
       mobileMenu.classList.add('opacity-0', 'pointer-events-none');
       mobileMenuPanel?.classList.remove('opacity-100', 'translate-y-0');
       mobileMenuPanel?.classList.add('opacity-0', 'translate-y-3');
       setMenuState(false);
-      closeTimeoutId = setTimeout(() => mobileMenu.classList.add('hidden'), animationMs);
+
+      setTimeout(() => {
+        mobileMenu.classList.remove('is-open');
+        unlockBodyScroll();
+        isAnimating = false;
+      }, animationMs);
     };
 
     mobileMenuBtn.addEventListener('click', () => {
