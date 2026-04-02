@@ -52,7 +52,7 @@ window.NURA_DATA = {
   
   resourceDocuments: [
     {
-      date: "2026.03",
+      date: "2026.04",
       title: "전국대학교로켓연합회 CI 가이드라인",
       category: "Partnership",
       format: "AI",
@@ -65,7 +65,7 @@ window.NURA_DATA = {
       title: "후원제안서",
       category: "Brochure",
       format: "PDF",
-      description: "전국대학교로켓연합홰의 후원제안서입니다.",
+      description: "전국대학교로켓연합회의 후원제안서입니다.",
       status: "coming-soon"
     }
   ],

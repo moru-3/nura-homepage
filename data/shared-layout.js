@@ -130,6 +130,45 @@
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
       }
+
+      .footer-site-nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 22px;
+      }
+
+      .footer-site-nav a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        font-size: 14px;
+        line-height: 1.4;
+        transition: color 180ms ease, opacity 180ms ease;
+      }
+
+      .footer-site-nav a:hover {
+        color: rgba(255, 255, 255, 0.96);
+      }
+
+.footer-contact-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+.footer-contact-link:hover {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+      @media (max-width: 767px) {
+        .footer-site-nav {
+          gap: 10px 16px;
+        }
+
+        .footer-site-nav a {
+          font-size: 13px;
+        }
+      }
     `;
 
     document.head.appendChild(style);
@@ -280,24 +319,39 @@
     `;
   }
 
-  function renderFooter() {
+  function renderFooter(basePath) {
     return `
       <footer class="bg-black border-t border-gray-800 py-8 px-4 md:px-16 w-full">
         <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-0 md:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-0 md:px-8">
             <div>
               <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
               <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
               <p class="text-gray-400 text-sm mb-2">National University Rocket Association</p>
             </div>
+
             <div>
               <h3 class="text-lg font-bold mb-4">연락처</h3>
               <div class="text-gray-400 text-sm space-y-2">
-                <p class="break-all">Email: nurarocketscience@gmail.com</p>
-                <p>Instagram: @nura._.official</p>
+                <p>
+                  <a href="mailto:nurarocketscience@gmail.com" class="footer-contact-link break-all">
+                    Email: nurarocketscience@gmail.com
+                  </a>
+                </p>
+                <p>
+                  <a
+                    href="https://www.instagram.com/nura._.official/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="footer-contact-link"
+                  >
+                    Instagram: @nura._.official
+                  </a>
+                </p>
                 <p>Address: 경기도 고양시 덕양구 항공대학로 76</p>
               </div>
             </div>
+
             <div>
               <h3 class="text-lg font-bold mb-4">사업자 정보</h3>
               <div class="text-gray-400 text-sm space-y-2">
@@ -306,13 +360,48 @@
                 <p>설립일: 1992년 3월 2일</p>
               </div>
             </div>
+
+            <div>
+              <h3 class="text-lg font-bold mb-4">사이트맵</h3>
+              <div class="footer-site-nav">
+                <a href="${basePath}/">Overview</a>
+                <a href="${basePath}/about/">About</a>
+                <a href="${basePath}/activities/">Activities</a>
+                <a href="${basePath}/partnership/">Partnership</a>
+                <a href="${basePath}/resources/">Resources</a>
+              </div>
+            </div>
           </div>
+
           <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
             <p class="text-gray-500 text-sm">© 1992 - 2026 NURA. All rights reserved.</p>
           </div>
         </div>
       </footer>
     `;
+  }
+
+  function resolveCurrentPage(bodyCurrentPage) {
+    if (bodyCurrentPage) return bodyCurrentPage;
+
+    const path = window.location.pathname.toLowerCase();
+
+    if (
+      path.includes('/activities/') ||
+      path.endsWith('/activities') ||
+      path.includes('meeting.html') ||
+      path.includes('kspe.html') ||
+      path.includes('conference.html') ||
+      path.includes('launch.html')
+    ) {
+      return 'activities';
+    }
+
+    if (path.includes('/about')) return 'about';
+    if (path.includes('/partnership')) return 'partnership';
+    if (path.includes('/resources')) return 'resources';
+
+    return 'overview';
   }
 
   function highlightCurrentPage(currentPage) {
@@ -455,7 +544,7 @@
     if (!body) return;
 
     const basePath = body.dataset.basePath || '.';
-    const currentPage = body.dataset.currentPage || '';
+    const currentPage = resolveCurrentPage(body.dataset.currentPage || '');
     const headerMount = document.querySelector('[data-shared-header]');
     const footerMount = document.querySelector('[data-shared-footer]');
 
@@ -466,7 +555,7 @@
     }
 
     if (footerMount) {
-      footerMount.outerHTML = renderFooter();
+      footerMount.outerHTML = renderFooter(basePath);
     }
 
     highlightCurrentPage(currentPage);
