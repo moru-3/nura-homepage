@@ -55,6 +55,8 @@ nura-homepage/
 │       ├── news1.jpg
 │       ├── news2.jpg
 │       └── news3.jpg
+├── robots.txt
+├── sitemap.xml             # 사이트맵
 └── venv/                   # Python 가상환경 (선택사항)
 ```
 
