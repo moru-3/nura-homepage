@@ -14,6 +14,11 @@
       html, body { background-color: #030712; overflow-x: hidden; }
       body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
       .page-shell { min-height: 100vh; }
+      .page-main-title { font-size: clamp(2rem, 11vw, 4.5rem); }
+      @media (max-width: 430px) {
+        .page-main-title { font-size: clamp(1.75rem, 9.4vw, 2.3rem); }
+      }
+
 
     </style>
         <script src="../data/shared-layout.js"></script>
@@ -27,7 +32,7 @@
     <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-12">
       <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
         <div class="max-w-5xl">
-          <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">자료실</h1>
+          <h1 class="page-main-title mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">자료실</h1>
         </div>
       </section>
 
