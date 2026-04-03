@@ -331,6 +331,5 @@ python image_postprocessing.py
 ---
 
 **마지막 업데이트**: 2026년 04월
-
-**관리자**: 심승기(shimseunggi@naver.com)
-**기여자**: 전현우(jhw030520@gmail.com)
+- **관리자**: 심승기(shimseunggi@naver.com)
+- **기여자**: 전현우(jhw030520@gmail.com)
