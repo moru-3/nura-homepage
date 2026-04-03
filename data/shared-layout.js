@@ -552,10 +552,14 @@
 
     if (headerMount) {
       headerMount.outerHTML = renderHeader(basePath);
+    } else {
+      body.insertAdjacentHTML('afterbegin', renderHeader(basePath));
     }
 
     if (footerMount) {
       footerMount.outerHTML = renderFooter(basePath);
+    } else {
+      body.insertAdjacentHTML('beforeend', renderFooter(basePath));
     }
 
     highlightCurrentPage(currentPage);
