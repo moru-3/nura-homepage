@@ -90,7 +90,7 @@ pip install Pillow
 
 ## 📁 핵심 파일 설명
 
-### 1) `data/shared-layout.js`
+### `data/shared-layout.js`
 공통 레이아웃 파일입니다.
 
 다음 요소를 담당합니다.
@@ -113,7 +113,7 @@ pip install Pillow
 <body data-current-page="about" data-base-path="..">
 ```
 
-### 2) `data/site-data.js`
+### `data/site-data.js`
 반복적으로 렌더링되는 데이터 모음입니다.
 
 현재 관리 항목:
@@ -125,7 +125,7 @@ pip install Pillow
 
 즉, 숫자/뉴스/자료실 목록은 HTML 본문을 직접 수정하지 않아도 이 파일에서 갱신할 수 있습니다.
 
-### 3) 각 페이지의 HTML 파일
+### 각 페이지의 HTML 파일
 페이지별 본문 콘텐츠는 각 HTML 파일 안에 직접 작성되어 있습니다.
 
 - `index.html` : 메인 비주얼, 단체 소개, 뉴스, 통계, 파트너 섹션
@@ -332,4 +332,5 @@ python image_postprocessing.py
 
 **마지막 업데이트**: 2026년 04월
 
-**관리자**: 전현우(jhw030520@gmail.com), 심승기(shimseunggi@naver.com)
+**관리자**: 심승기(shimseunggi@naver.com)
+**기여자**: 전현우(jhw030520@gmail.com)
