@@ -166,6 +166,23 @@
     margin-bottom: 1rem;
   }
 
+.page-main-title {
+  white-space: nowrap;
+  font-size: clamp(2.2rem, 6.4vw, 4.5rem);
+}
+
+@media (min-width: 1024px) and (max-width: 1380px) {
+  .page-main-title {
+    font-size: clamp(2rem, 5.2vw, 4rem);
+  }
+}
+
+@media (max-width: 430px) {
+  .page-main-title {
+    font-size: clamp(1.75rem, 8.8vw, 2.3rem);
+  }
+}
+
   @media (min-width: 768px) {
     .history-group-toggle[aria-expanded="false"] {
       margin-bottom: 1.25rem;
@@ -234,10 +251,10 @@
     <div class="grid lg:grid-cols-[minmax(280px,0.92fr)_minmax(0,1.08fr)] gap-12 lg:gap-16 items-start">
       <aside class="history-side-panel lg:sticky lg:top-12">
         <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
-  <div class="max-w-5xl">
-    <h1 class="mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-bold text-white">
-      NURA의 전체 연혁
-    </h1>
+  <div class="max-w-5xl min-w-0">
+<h1 class="page-main-title min-w-0 mt-5 leading-none tracking-[-0.06em] font-bold text-white">
+  NURA의 전체 연혁
+</h1>
             <p class="mt-6 text-gray-300 text-base md:text-lg leading-8">
 NURA는 국내 대학 간 로켓 관련 학술 교류를 촉진하고 정기적인 로켓발사대회를 개최하여 로켓에 관한 대학생들의 관심과 접근성을 고취하고자 설립되었습니다. 
       </p>
