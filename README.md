@@ -131,7 +131,7 @@ pip install Pillow
 - `index.html` : 메인 비주얼, 단체 소개, 뉴스, 통계, 파트너 섹션
 - `about/index.html` : 연혁 타임라인 및 다이얼 UI
 - `activities/index.html` : 활동 카드 목록
-- `activities/*.html` : 활동별 상세 설명
+- `activities/*/index.html` : 활동별 상세 설명
 - `partnership/index.html` : 협력 개요, 구조 소개, 문의 CTA
 - `resources/index.html` : 자료 목록 렌더링 화면
 
