@@ -1,0 +1,110 @@
+<html lang="ko"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURA | Resources</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+    <script src="../data/site-data.js"></script>
+    <style>
+      html { scroll-behavior: smooth; }
+      html, body { background-color: #030712; overflow-x: hidden; }
+      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+      .page-shell { min-height: 100vh; }
+      .page-main-title { font-size: clamp(2rem, 11vw, 4.5rem); }
+      @media (max-width: 430px) {
+        .page-main-title { font-size: clamp(1.75rem, 9.4vw, 2.3rem); }
+      }
+
+
+    </style>
+        <script src="../data/shared-layout.js"></script>
+  </head>
+  <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="resources" data-base-path="..">
+    <div class="page-shell flex flex-col">
+    <div data-shared-header></div>
+
+<main class="w-full flex-1 flex flex-col">
+  <section class="bg-black">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-12">
+      <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
+        <div class="max-w-5xl">
+          <h1 class="page-main-title mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">자료실</h1>
+        </div>
+      </section>
+
+      <section class="px-0 md:px-2 lg:px-4 py-3 md:py-4">
+        <div id="resource-document-list" class="border-t border-white/10"></div>
+      </section>
+
+      <section id="request" class="px-0 md:px-2 lg:px-4 pt-2 pb-12 md:pb-14">
+        <div class="border-t border-white/10 pt-8 md:pt-10">
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="mailto:nurarocketscience@gmail.com?subject=[NURA]%20정보%20공유%20요청" class="inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black">
+              문의하기
+            </a>
+            <a href="../partnership/" class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/85">
+              협력 안내 보기
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+<div data-shared-footer></div>
+
+</div>
+   
+<script>
+  const resourceDocumentList = document.getElementById('resource-document-list');
+  const resourceDocuments = window.NURA_DATA?.resourceDocuments || [];
+
+  const getResourceAction = (item) => {
+    if (item.status === 'coming-soon') {
+      return '<span class="inline-flex items-center justify-center rounded-full border border-black/15 px-4 py-2 text-sm font-medium text-black/45">업로드 예정</span>';
+    }
+
+    const isMail = typeof item.href === 'string' && item.href.startsWith('mailto:');
+    const label = isMail ? '문의하기' : 'View';
+    const targetAttrs = isMail ? '' : ' target="_blank" rel="noopener noreferrer"';
+    return `
+      <a href="${item.href}"${targetAttrs} class="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-black">
+        <span>${label}</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    `;
+  };
+
+  if (resourceDocumentList) {
+    if (!resourceDocuments.length) {
+      resourceDocumentList.innerHTML = `
+        <article class="py-10 md:py-12 border-b border-white/10">
+          <p class="text-base text-white/55">등록된 자료가 없습니다. <span class="font-medium text-white">data/site-data.js</span>의 <span class="font-medium text-white">resourceDocuments</span> 배열을 추가해 주세요.</p>
+        </article>
+      `;
+    } else {
+      resourceDocumentList.innerHTML = resourceDocuments.map((item) => `
+        <article class="py-6 md:py-8 border-b border-white/10 last:border-b-0">
+          <div class="grid grid-cols-1 md:grid-cols-[170px_minmax(0,1fr)_auto] gap-4 md:gap-8 md:items-center">
+            <div class="text-sm md:text-base text-white/45 font-medium tracking-[-0.01em]">${item.date}</div>
+            <div class="min-w-0">
+              <h2 class="text-[22px] md:text-[30px] leading-[1.22] tracking-[-0.04em] font-semibold text-white break-keep">${item.title}</h2>
+              <p class="mt-2 text-sm md:text-[15px] text-white/55 break-keep">${item.category} · ${item.format}${item.size ? ` · ${item.size}` : ''}</p>
+              ${item.description ? `<p class="mt-3 text-sm md:text-[15px] leading-7 text-white/55 break-keep max-w-3xl">${item.description}</p>` : ''}
+            </div>
+            <div class="pt-1 md:pt-0">
+              ${getResourceAction(item)}
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+  }
+</script>
+
+
+</body></html>

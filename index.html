@@ -4,526 +4,561 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NURA | 전국대학교로켓연합회</title>
-    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="source/resources/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="source/resources/favicon-16x16.png" />
     <link rel="shortcut icon" type="image/png" href="source/resources/favicon-32x32.png" />
-    <!-- Tailwind CSS CDN -->
+    <link rel="apple-touch-icon" href="source/resources/nura-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Pretendard & Noto Sans KR -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
     <style>
-      html {
-        scroll-behavior: smooth;
+      html { scroll-behavior: smooth; }
+      html, body { background-color: #030712; overflow-x: hidden; }
+      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+      .page-shell { min-height: 100vh; }
+
+      .hero-title {
+        font-size: 88px;
+        line-height: 1.15;
       }
-      body {
-        font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+
+      .hero-subtitle {
+        margin-top: 8px;
+        font-size: 28px;
+        line-height: 1.45;
       }
-      /* 개요 섹션 높이 조정 */
-      @media (min-width: 768px) {
-        #overview {
-          min-height: 100vh;
-          padding-top: 0;
-          padding-bottom: 0;
+
+      .reveal-line {
+        display: block;
+        overflow: hidden;
+      }
+
+      .reveal-text {
+        display: inline-block;
+        transform: translateY(108%);
+        will-change: transform;
+      }
+
+      .reveal-line.is-visible .reveal-text {
+        animation: textRise 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      @keyframes textRise {
+        from {
+          transform: translateY(108%);
+        }
+        to {
+          transform: translateY(0);
         }
       }
+
+      .hero-copy-block {
+        width: fit-content;
+        max-width: 100%;
+      }
+
+      .hero-progress-inline {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        column-gap: 18px;
+        width: 100%;
+      }
+
+      .hero-progress-toggle {
+        flex: 0 0 auto;
+        width: 36px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        appearance: none;
+      }
+
+      .hero-progress-toggle .pause-bar {
+        display: block;
+        width: 4px;
+        height: 24px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .hero-progress-toggle.is-play {
+        gap: 0;
+      }
+
+      .hero-progress-toggle.is-play::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 9px solid transparent;
+        border-bottom: 9px solid transparent;
+        border-left: 14px solid rgba(255, 255, 255, 0.96);
+        margin-left: 2px;
+      }
+
+      .hero-progress-toggle.is-play .pause-bar {
+        display: none;
+      }
+
+      .hero-progress-track {
+        position: relative;
+        height: 3px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.22);
+        overflow: hidden;
+      }
+
+      .hero-progress-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 0%;
+        background: rgba(255, 255, 255, 0.95);
+        transform-origin: left center;
+      }
+
       @media (max-width: 767px) {
-        #overview {
-          min-height: 100vh;
-          padding-top: 0;
-          padding-bottom: 0;
+        .hero-title {
+          font-size: 8vw;
         }
-      }
-      
-      /* 전체 배경색 강화 */
-      html, body {
-        background-color: #030712;
-        overflow-x: hidden;
+
+        .hero-subtitle {
+          margin-top: 2vw;
+          font-size: min(4vw, 20px);
+          line-height: 1.35;
+        }
+
+        .hero-progress-inline {
+          margin-top: 18px;
+          column-gap: 14px;
+        }
+
+        .hero-progress-toggle {
+          width: 24px;
+          height: 20px;
+          gap: 5px;
+        }
+
+        .hero-progress-toggle .pause-bar {
+          width: 3px;
+          height: 18px;
+        }
+
+        .hero-progress-toggle.is-play::before {
+          border-top: 7px solid transparent;
+          border-bottom: 7px solid transparent;
+          border-left: 11px solid rgba(255, 255, 255, 0.96);
+        }
+
+        .hero-progress-track {
+          height: 2px;
+        }
       }
     </style>
+
+    <script src="./data/site-data.js"></script>
+    <script src="./data/shared-layout.js"></script>
   </head>
-  <body class="bg-gray-950 text-white min-h-screen overflow-x-hidden">
-    <div class="flex min-h-screen bg-gray-950 min-h-0">
-      <!-- Sidebar Navigation -->
-      <nav id="sidebar" class="fixed top-0 left-0 h-screen w-44 bg-gray-900 flex flex-col py-10 px-6 gap-6 hidden md:flex z-50 overflow-y-auto">
-        <div class="mb-8 text-2xl font-bold tracking-tight flex flex-col items-start pl-1">
-          <img src="source/resources/nura-logo.png" alt="NURA 로고" class="w-24 h-24 object-contain mb-2" />
-          <span class="text-xs text-gray-400 text-left">전국대학교로켓연합회</span>
-          <span class="text-[11px] text-gray-500 text-left mt-0.5 leading-tight block">National University</span>
-          <span class="text-[11px] text-gray-500 text-left leading-tight block">Rocket Association</span>
-        </div>
-        <ul class="flex flex-col gap-4 text-lg">
-          <li><a href="#overview" class="sidebar-link" data-section="overview">개요<br><span class="text-xs text-gray-400">Overview</span></a></li>
-          <li><a href="#about" class="sidebar-link" data-section="about">단체 소개<br><span class="text-xs text-gray-400">About</span></a></li>
-          <li><a href="#activities" class="sidebar-link" data-section="activities">주요 활동<br><span class="text-xs text-gray-400">Activities</span></a></li>
-          <li><a href="#sponsors" class="sidebar-link" data-section="sponsors">후원사<br><span class="text-xs text-gray-400">Sponsors</span></a></li>
-          <li><a href="#resources" class="sidebar-link" data-section="resources">자료실<br><span class="text-xs text-gray-400">Resources</span></a></li>
-        </ul>
-      </nav>
-      <!-- Main Content -->
-      <main class="w-full flex flex-col md:ml-44 overflow-y-auto p-0 m-0">
-        <!-- Overview Section -->
-        <section id="overview" class="relative overflow-hidden flex flex-col justify-center min-h-0 h-screen w-full p-0 m-0">
-          <!-- 배경 슬라이드 이미지들 (본문 전체를 덮음) -->
+
+  <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="overview" data-base-path=".">
+    <div class="page-shell flex flex-col">
+      <div data-shared-header></div>
+
+      <main class="w-full flex-1 flex flex-col">
+        <section id="overview" class="relative overflow-hidden flex flex-col justify-center h-screen w-full p-0 m-0">
           <div id="slideshow-bg" class="absolute inset-0 w-full h-full z-0 pointer-events-none">
-            <img src="source/overview/blurred/slide1.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-[1500ms]" style="z-index:1;" alt="슬라이드1">
-            <img src="source/overview/blurred/slide2.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드2">
-            <img src="source/overview/blurred/slide3.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드3">
-            <img src="source/overview/blurred/slide4.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드4">
-            <img src="source/overview/blurred/slide5.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드5">
-            <img src="source/overview/blurred/slide6.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드6">
-            <img src="source/overview/blurred/slide7.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드7">
-            <img src="source/overview/blurred/slide8.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드8">
-            <img src="source/overview/blurred/slide9.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드9">
-            <img src="source/overview/blurred/slide10.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드10">
-            <img src="source/overview/blurred/slide11.jpg" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드11">
-            <!-- 어두운 오버레이 -->
+            <img src="source/overview/blurred/slide1.webp" class="slide-img absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-[1500ms]" style="z-index:1;" alt="슬라이드1">
+            <img src="source/overview/blurred/slide2.webp" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드2">
+            <img src="source/overview/blurred/slide3.webp" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드3">
+            <img src="source/overview/blurred/slide4.webp" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드4">
+            <img src="source/overview/blurred/slide5.webp" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드5">
+            <img src="source/overview/blurred/slide6.webp" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드6">
+            <img src="source/overview/blurred/slide7.webp" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드7">
+            <img src="source/overview/blurred/slide8.webp" class="slide-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[1500ms]" style="z-index:0;" alt="슬라이드8">
             <div class="absolute inset-0 bg-black/60 z-10"></div>
           </div>
-          <!-- 텍스트 컨텐츠 -->
-          <div class="relative z-30 flex items-center justify-center h-full w-full text-white">
-            <div class="w-full max-w-3xl flex flex-col items-start text-left pl-8 pr-8">
-              <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg min-w-0 break-words text-left"></h1>
-              <p class="text-lg md:text-xl text-gray-200 drop-shadow-lg min-w-0 break-words text-left"></p>
+
+          <div class="relative z-30 h-full w-full text-white">
+            <div class="max-w-7xl mx-auto px-4 md:px-8 h-full flex items-start pt-[450px] md:pt-[400px] lg:pt-[350px]">
+              <div class="max-w-5xl flex flex-col items-start text-left">
+                <h1 class="hero-title text-white font-bold tracking-[-0.01em] break-keep hero-reveal">
+                  <span class="reveal-line"><span class="reveal-text">함께 더 멀리</span></span>
+                  <span class="reveal-line"><span class="reveal-text whitespace-nowrap">전국대학교로켓연합회</span></span>
+                </h1>
+
+                <div class="hero-copy-block">
+                  <p class="hero-subtitle text-white font-medium hero-reveal">
+                    <span class="reveal-line">
+                      <span class="reveal-text">대한민국 미래 우주 · 항공 · 방산 인재들의 요람</span>
+                    </span>
+                  </p>
+
+                  <div class="hero-progress-inline" aria-label="슬라이드 진행 상태">
+                    <button class="hero-progress-toggle" type="button" aria-label="슬라이드 일시정지">
+                      <span class="pause-bar"></span>
+                      <span class="pause-bar"></span>
+                    </button>
+
+                    <div class="hero-progress-track">
+                      <div class="hero-progress-fill"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-        <!-- About Section -->
-        <section id="about" class="py-20 border-t border-gray-800">
-          <h2 class="text-3xl font-bold mb-2 text-left pl-8 pr-8"></h2>
-          <p class="text-gray-300 text-left pl-8 pr-8"></p>
-        </section>
-        <!-- Activities Section -->
-        <section id="activities" class="py-20 border-t border-gray-800">
-          <h2 class="text-3xl font-bold mb-8 text-left pl-8 pr-8"></h2>
-          <div id="activities-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-8"></div>
-        </section>
-        <!-- Sponsors Section -->
-        <section id="sponsors" class="py-20 border-t border-gray-800">
-          <h2 class="text-3xl font-bold mb-2 text-left pl-8 pr-8"></h2>
-          <div id="sponsor-wall" class="mt-4 px-8 py-6 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8"></div>
-        </section>
-        <!-- Resources Section -->
-        <section id="resources" class="py-20 border-t border-gray-800">
-          <h2 class="text-3xl font-bold mb-8 text-left pl-8 pr-8"></h2>
-          <div class="flex flex-col items-start pl-8 pr-8" id="resources-content"></div>
-        </section>
-      </main>
-    </div>
-    
-    <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800 py-8 px-4 md:px-16 w-full pb-14 md:pb-0">
-      <div class="w-full flex flex-col md:ml-44 md:pr-44">
-        <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8">
-          <!-- Organization Info -->
-          <div></div>
-          
-          <!-- Contact Details -->
-          <div></div>
-          
-          <!-- Business Info -->
-          <div></div>
-        </div>
-        
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
-          <p class="text-gray-500 text-sm"></p>
-        </div>
-      </div>
-    </footer>
-    <!-- Mobile Bottom Nav -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-gray-900 flex md:hidden justify-around py-4 z-50 border-t border-gray-800">
-      <a href="#overview" class="sidebar-link px-2" data-section="overview">개요</a>
-      <a href="#about" class="sidebar-link px-2" data-section="about">소개</a>
-      <a href="#activities" class="sidebar-link px-2" data-section="activities">활동</a>
-      <a href="#sponsors" class="sidebar-link px-2" data-section="sponsors">후원</a>
-      <a href="#resources" class="sidebar-link px-2" data-section="resources">자료</a>
-    </nav>
-    <script>
-      // 콘텐츠 데이터를 직접 포함
-      const contentData = {
-        "overview": {
-          "title": "전국대학교로켓연합회",
-          "subtitle": "National University Rocket Association",
-          "description": "로켓 기술 교류를 촉진하고 대학생들의 발사 활동을 지원합니다."
-        },
-        "about": {
-          "title": "단체 소개",
-          "subtitle": "About",
-          "description": "NURA는 대학의 로켓 정보 교류 및 활동, 로켓 발사대회 경진을 목표로 설립되었습니다. 1992년 한국항공대에서 로켓 발사 대회가 개최된 것을 시작으로 1993년 각 대학의 로켓 정보 교류 및 활동을 위한 전국 로켓 연구 연합회가 창설 되었으며 그 후, 2001년 정식으로 전국 대학교 로켓 연합회를 발족하였습니다."
-        },
-        "activities": {
-          "title": "주요 활동",
-          "subtitle": "Activities",
-          "categories": [
-            {
-              "title": "학술대회",
-              "items": [
-                "로켓 설계 및 제작 과정 발표",
-                "자체 개발 기술 소개 및 세미나",
-                "리크루팅 부스 및 참여자 교류"
-              ]
-            },
-            {
-              "title": "발사대회",
-              "items": [
-                "자체 설계한 로켓의 실제 발사 및 비행 실험",
-                "평가/비평가 로켓 운영을 통한 기술 구현 및 검증",
-                "비행 안정성, 구조 완성도 등에 따른 심사 및 시상"
-              ]
-            },
-            {
-              "title": "추진공학회",
-              "items": [
-                "항공우주 분야 기술 교류 학회 참여",
-                "로켓 및 추진기술 논문 세션 운영",
-                "리크루팅 부스 및 산학 협력 활동"
-              ]
-            },
-            {
-              "title": "기타 활동",
-              "items": [
-                "학술대회 연계 교류회 및 네트워킹 행사",
-                "로켓 기술 관련 공동 워크숍 및 기획 세션",
-                "산학 연계 기회 탐색 및 외부 행사 참여"
-              ]
-            }
-          ]
-        },
-        "sponsors": {
-          "title": "후원사",
-          "subtitle": "Sponsors",
-          "description": "NURA의 활동을 후원해주시는 기업 및 기관들입니다.",
-          "sponsors": [
-            {
-              "name": "대한항공",
-              "logo": "source/sponsors/koreanair.png",
-              "url": "https://www.koreanair.com",
-              "ratio": 2.8
-            },
-            {
-              "name": "이노스페이스",
-              "logo": "source/sponsors/innospace.png",
-              "url": "https://www.innospc.com",
-              "ratio": 2.5
-            },
-            {
-              "name": "한국항공우주연구원",
-              "logo": "source/sponsors/kari.jpg",
-              "url": "https://www.kari.re.kr",
-              "ratio": 1.1
-            },
-            {
-              "name": "LIG풍산",
-              "logo": "source/sponsors/ligpoongsan.png",
-              "url": "https://www.ligpoongsan.co.kr",
-              "ratio": 2.0
-            }
-          ]
-        },
-        "footer": {
-          "organization": {
-            "name": "NURA",
-            "fullName": "전국대학교로켓연합회",
-            "englishName": "National University Rocket Association"
-          },
-          "contact": {
-            "title": "연락처",
-            "items": [
-              {
-                "label": "Email",
-                "value": "nurarocketscience@gmail.com"
-              },
-              {
-                "label": "Instagram",
-                "value": "@nura._.official"
-              },
-              {
-                "label": "Address",
-                "value": "경기도 고양시 덕양구 항공대학로 76"
-              }
-            ]
-          },
-          "business": {
-            "title": "사업자 정보",
-            "items": [
-              {
-                "label": "사업자등록번호",
-                "value": "609-82-83482"
-              },
-              {
-                "label": "대표자",
-                "value": "전하상"
-              },
-              {
-                "label": "설립일",
-                "value": "1992년 3월 2일"
-              }
-            ]
-          },
-          "copyright": "© 1992 NURA. All rights reserved."
-        },
-        "resources": {
-          "gallery": {
-            "title": "갤러리",
-            "description": "NURA의 활동 사진, 대회 사진 등은 아래 원드라이브 공유 폴더에서 확인하실 수 있습니다.",
-            "buttonText": "NURA 갤러리 바로가기",
-            "buttonIcon": "🖼️",
-            "url": "https://onedrive.live.com/your-shared-gallery-link",
-            "bgImage": "source/resources/onedrive-blur.png"
-          },
-          "document": {
-            "title": "문서실",
-            "description": "NURA의 기술, 역사 등에 관한 각종 문서는 아래 노션 페이지에서 확인하실 수 있습니다.",
-            "buttonText": "NURA 노션 바로가기",
-            "buttonIcon": "📄",
-            "url": "https://www.notion.so/nura/NURA-Resources",
-            "bgImage": "source/resources/notion-blur.png"
-          },
-          "subtitle": "Resources"
-        },
-      };
-      
-      // 페이지 로드 시 내용 업데이트
-      function loadContent() {
-        updateContent();
-      }
-      
-      // 페이지 내용 업데이트
-      function updateContent() {
-        // Overview 섹션
-        const overviewSection = document.getElementById('overview');
-        if (overviewSection && contentData.overview) {
-          const title = overviewSection.querySelector('h1');
-          const description = overviewSection.querySelector('p');
-          
-          title.innerHTML = `<span class= "text-blue-400">${contentData.overview.title}</span><br><span class="text-lg font-normal text-gray-400">${contentData.overview.subtitle}</span>`;
-          description.textContent = contentData.overview.description;
-        }
-        
-        // About 섹션
-        const aboutSection = document.getElementById('about');
-        if (aboutSection && contentData.about) {
-          const title = aboutSection.querySelector('h2');
-          const description = aboutSection.querySelector('p');
-          
-          title.innerHTML = `${contentData.about.title} <span class="text-lg text-gray-400">${contentData.about.subtitle}</span>`;
-          description.textContent = contentData.about.description;
-        }
-        
-        // Activities 섹션
-        const activitiesSection = document.getElementById('activities');
-        if (activitiesSection && contentData.activities) {
-          const title = activitiesSection.querySelector('h2');
-          const cards = document.getElementById('activities-cards');
-          title.innerHTML = `${contentData.activities.title} <span class="text-lg text-gray-400">${contentData.activities.subtitle}</span>`;
-          if (cards && contentData.activities.categories) {
-            cards.innerHTML = contentData.activities.categories.map(cat => `
-              <div class="bg-gray-900 rounded-xl shadow p-6 flex flex-col">
-                <h3 class="text-xl font-bold mb-2 text-blue-300">${cat.title}</h3>
-                <ul class="list-disc pl-5 text-gray-300 text-sm">
-                  ${cat.items.map(item => `<li>${item}</li>`).join('')}
-                </ul>
+
+        <!-- NURA NOW -->
+        <section id="nura-now" class="w-full bg-black border-t border-white/5">
+          <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+              <div>
+                <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA NOW</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">관련 기사</h2>
+                <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
+                  전국대학교로켓연합회와 관련된 외부 기사입니다.
+                </p>
               </div>
-            `).join('');
-          }
-        }
-        
-        // Sponsors 섹션 (Activities 카드와 동일한 스타일)
-        function renderSponsorWall() {
-          const sponsorsSection = document.getElementById('sponsors');
-          if (!sponsorsSection || !contentData.sponsors) return;
-          const title = sponsorsSection.querySelector('h2');
-          const wall = document.getElementById('sponsor-wall');
-          title.innerHTML = `${contentData.sponsors.title} <span class="text-lg text-gray-400">${contentData.sponsors.subtitle}</span>`;
-          if (wall && contentData.sponsors.sponsors) {
-            wall.innerHTML = contentData.sponsors.sponsors.map(sponsor => `
+            </div>
+
+            <div id="news-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+          </div>
+        </section>
+
+        <!-- NURA OVERVIEW -->
+        <section class="w-full bg-black border-t border-white/5 border-b border-white/5">
+          <div class="max-w-7xl mx-auto px-4 md:px-8 py-20">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+              <div>
+                <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">NURA OVERVIEW</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white tracking-[-0.03em]">숫자로 보는 NURA</h2>
+                <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
+                  연합회의 현재 규모와 활동 현황을 한눈에 볼 수 있도록 주요 지표를 정리했습니다.
+                </p>
+              </div>
+            </div>
+
+            <div id="stats-list" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5"></div>
+          </div>
+        </section>
+
+        <!-- CURRENT PARTNERS -->
+        <section class="border-t border-white/10 border-b border-white/10 bg-black">
+          <div class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+              <div class="max-w-3xl">
+                <p class="text-sm uppercase tracking-[0.2em] text-blue-300/90 mb-3">Current Partners</p>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-white">현재 함께하는 파트너</h2>
+                <p class="mt-3 text-gray-400 leading-7 max-w-2xl">
+                  NURA의 활동을 지원해주신 기업 및 기관입니다.
+                </p>
+              </div>
+            </div>
+
+            <div id="sponsor-wall" class="mt-4 px-8 py-6 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8">
               <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
-                <a href="${sponsor.url}" target="_blank" rel="noopener noreferrer">
-                  <img src="${sponsor.logo}" alt="${sponsor.name} 로고" class="max-w-full max-h-24 object-contain" />
+                <a href="https://www.koreanair.com" target="_blank" rel="noopener noreferrer">
+                  <img src="source/partnership/koreanair.png" alt="대한항공 로고" class="max-w-full max-h-24 object-contain">
                 </a>
               </div>
-            `).join('');
+
+              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
+                <a href="https://www.innospc.com" target="_blank" rel="noopener noreferrer">
+                  <img src="source/partnership/innospace.png" alt="이노스페이스 로고" class="max-w-full max-h-24 object-contain">
+                </a>
+              </div>
+
+              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
+                <a href="https://www.kari.re.kr" target="_blank" rel="noopener noreferrer">
+                  <img src="source/partnership/kari.jpg" alt="한국항공우주연구원 로고" class="max-w-full max-h-24 object-contain">
+                </a>
+              </div>
+
+              <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
+                <a href="https://www.ligpoongsan.co.kr" target="_blank" rel="noopener noreferrer">
+                  <img src="source/partnership/ligpoongsan.png" alt="LIG풍산 로고" class="max-w-full max-h-24 object-contain">
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div data-shared-footer></div>
+    </div>
+
+    <script>
+      window.addEventListener("load", function () {
+        const lines = document.querySelectorAll(".hero-reveal .reveal-line");
+
+        lines.forEach((line, index) => {
+          setTimeout(() => {
+            line.classList.add("is-visible");
+          }, 220 + index * 180);
+        });
+      });
+    </script>
+
+    <script>
+      (function () {
+        const slides = document.querySelectorAll(".slide-img");
+        const progressFill = document.querySelector(".hero-progress-fill");
+        const toggleButton = document.querySelector(".hero-progress-toggle");
+
+        if (!slides.length || !progressFill) return;
+
+        const slideDuration = 5000;
+        let current = 0;
+        let isPaused = false;
+
+        let slideStartTime = performance.now();
+        let elapsedBeforePause = 0;
+        let rafId = null;
+
+        function showSlide(idx) {
+          slides.forEach((img, i) => {
+            img.style.opacity = i === idx ? "1" : "0";
+            img.style.zIndex = i === idx ? "1" : "0";
+          });
+
+          current = idx;
+          slideStartTime = performance.now();
+          elapsedBeforePause = 0;
+          progressFill.style.width = "0%";
+        }
+
+        function nextSlide() {
+          showSlide((current + 1) % slides.length);
+        }
+
+        function updateProgress(now) {
+          if (isPaused) return;
+
+          const elapsed = elapsedBeforePause + (now - slideStartTime);
+          const progress = Math.min(elapsed / slideDuration, 1);
+
+          progressFill.style.width = `${progress * 100}%`;
+
+          if (progress >= 1) {
+            nextSlide();
+          }
+
+          rafId = requestAnimationFrame(updateProgress);
+        }
+
+        function startLoop() {
+          cancelAnimationFrame(rafId);
+          slideStartTime = performance.now();
+          rafId = requestAnimationFrame(updateProgress);
+        }
+
+        function pauseLoop() {
+          cancelAnimationFrame(rafId);
+          elapsedBeforePause += performance.now() - slideStartTime;
+        }
+
+        function resumeLoop() {
+          slideStartTime = performance.now();
+          rafId = requestAnimationFrame(updateProgress);
+        }
+
+        function setPausedState(paused) {
+          isPaused = paused;
+
+          if (isPaused) {
+            pauseLoop();
+            toggleButton.classList.add("is-play");
+            toggleButton.setAttribute("aria-label", "슬라이드 재생");
+          } else {
+            toggleButton.classList.remove("is-play");
+            toggleButton.setAttribute("aria-label", "슬라이드 일시정지");
+            resumeLoop();
           }
         }
-        window.addEventListener('load', renderSponsorWall);
-        window.addEventListener('resize', renderSponsorWall);
-        
-        // Resources 섹션 렌더링
-        const resourcesSection = document.getElementById('resources');
-        if (resourcesSection && contentData.resources && contentData.resources.gallery && contentData.resources.document) {
-          const title = resourcesSection.querySelector('h2');
-          const content = document.getElementById('resources-content');
-          title.innerHTML = `${contentData.resources.title || '자료실'} <span class="text-lg text-gray-400">${contentData.resources.subtitle}</span>`;
-          content.innerHTML = `
-            <div class="flex flex-col md:flex-row gap-8 items-stretch w-full">
-              <!-- 갤러리 카드 (원드라이브 링크) -->
-              <div class="resource-card flex-1 min-h-[260px] bg-white/80 rounded-xl shadow overflow-hidden flex flex-col items-center justify-center p-10 relative">
-                <img src="${contentData.resources.gallery.bgImage}" alt="Gallery" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
-                <div class="relative z-10 flex flex-col items-center">
-                  <h3 class="text-2xl font-bold mb-4 text-gray-900">${contentData.resources.gallery.title}</h3>
-                  <p class="text-gray-700 mb-6 text-center">${contentData.resources.gallery.description}</p>
-                  <a href="${contentData.resources.gallery.url}" target="_blank" rel="noopener noreferrer"
-                     class="inline-flex items-center bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
-                    <span class="text-2xl mr-2">${contentData.resources.gallery.buttonIcon}</span> ${contentData.resources.gallery.buttonText}
-                  </a>
-                </div>
-              </div>
-              <!-- 문서실 안내 카드 -->
-              <div class="resource-card flex-1 min-h-[260px] bg-white/80 rounded-xl shadow overflow-hidden flex flex-col items-center justify-center p-10 relative">
-                <img src="${contentData.resources.document.bgImage}" alt="Notion" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
-                <div class="relative z-10 flex flex-col items-center">
-                  <h3 class="text-2xl font-bold mb-4 text-gray-900">${contentData.resources.document.title}</h3>
-                  <p class="text-gray-700 mb-6 text-center">${contentData.resources.document.description}</p>
-                  <a href="${contentData.resources.document.url}" target="_blank" rel="noopener noreferrer"
-                     class="inline-flex items-center bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
-                    <span class="text-2xl mr-2">${contentData.resources.document.buttonIcon}</span> ${contentData.resources.document.buttonText}
-                  </a>
-                </div>
-              </div>
-            </div>
-          `;
-        }
-        
-        // Footer 업데이트
-        updateFooter();
-      }
-      
-      // Footer 내용 업데이트
-      function updateFooter() {
-        if (!contentData.footer) return;
-        
-        const footer = document.querySelector('footer');
-        if (!footer) return;
-        
-        const orgInfo = footer.querySelector('.grid > div:nth-child(1)');
-        const contactInfo = footer.querySelector('.grid > div:nth-child(2)');
-        const businessInfo = footer.querySelector('.grid > div:nth-child(3)');
-        const copyright = footer.querySelector('.border-t p');
-        
-        // Organization Info
-        if (orgInfo && contentData.footer.organization) {
-          orgInfo.innerHTML = `
-            <h3 class="text-lg font-bold mb-4 text-blue-400">${contentData.footer.organization.name}</h3>
-            <p class="text-gray-400 text-sm mb-2">${contentData.footer.organization.fullName}</p>
-            <p class="text-gray-400 text-sm mb-2">${contentData.footer.organization.englishName}</p>
-          `;
-        }
-        
-        // Contact Info
-        if (contactInfo && contentData.footer.contact) {
-          contactInfo.innerHTML = `
-            <h3 class="text-lg font-bold mb-4">${contentData.footer.contact.title}</h3>
-            <div class="text-gray-400 text-sm space-y-2">
-              ${contentData.footer.contact.items.map(item => 
-                item.label === 'Email'
-                  ? `<p class='break-all'>${item.label}: ${item.value}</p>`
-                  : `<p>${item.label}: ${item.value}</p>`
-              ).join('')}
-            </div>
-          `;
-        }
-        
-        // Business Info
-        if (businessInfo && contentData.footer.business) {
-          businessInfo.innerHTML = `
-            <h3 class="text-lg font-bold mb-4">${contentData.footer.business.title}</h3>
-            <div class="text-gray-400 text-sm space-y-2">
-              ${contentData.footer.business.items.map(item => 
-                `<p>${item.label}: ${item.value}</p>`
-              ).join('')}
-            </div>
-          `;
-        }
-        
-        // Copyright
-        if (copyright && contentData.footer.copyright) {
-          copyright.textContent = contentData.footer.copyright;
-        }
-      }
-      
-      // Active section highlight
-      const links = document.querySelectorAll('.sidebar-link');
-      const sections = Array.from(document.querySelectorAll('section'));
-      function onScroll() {
-        const scrollPos = window.scrollY;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
 
-        // 스크롤이 거의 끝에 도달했을 때 resources 섹션 활성화
-        if (scrollPos + windowHeight >= documentHeight - 100) {
-          links.forEach(link => {
-            if (link.dataset.section === 'resources') {
-              link.classList.add('text-blue-400', 'font-bold');
-            } else {
-              link.classList.remove('text-blue-400', 'font-bold');
-            }
+        if (toggleButton) {
+          toggleButton.addEventListener("click", function () {
+            setPausedState(!isPaused);
+          });
+        }
+
+        showSlide(0);
+        startLoop();
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const counters = document.querySelectorAll(".count-up");
+        if (!counters.length) return;
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (prefersReducedMotion) {
+          counters.forEach((counter) => {
+            counter.textContent = counter.dataset.target;
           });
           return;
         }
 
-        let current = sections[0].id;
-        for (const section of sections) {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          // 섹션의 중간이 화면 상단에 닿을 때까지 활성화 유지
-          if (scrollPos >= sectionTop - windowHeight / 2 && scrollPos < sectionTop + sectionHeight - windowHeight / 2) {
-            current = section.id;
-          }
-        }
+        const animateCounter = (el) => {
+          const target = parseInt(el.dataset.target, 10);
+          const duration = 1200;
+          const startTime = performance.now();
 
-        links.forEach(link => {
-          if (link.dataset.section === current) {
-            link.classList.add('text-blue-400', 'font-bold');
-          } else {
-            link.classList.remove('text-blue-400', 'font-bold');
+          function update(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const value = Math.floor(target * eased);
+            el.textContent = String(value).padStart(String(el.dataset.target).length, "0");
+
+            if (progress < 1) {
+              requestAnimationFrame(update);
+            } else {
+              el.textContent = el.dataset.target;
+            }
           }
-        });
-      }
-      
-      // 페이지 로드 시 내용 불러오기
-      document.addEventListener('DOMContentLoaded', loadContent);
-      
-      window.addEventListener('scroll', onScroll);
-      // Smooth scroll for anchor links (for Safari)
-      links.forEach(link => {
-        link.addEventListener('click', e => {
-          const href = link.getAttribute('href');
-          if (href.startsWith('#')) {
-            e.preventDefault();
-            document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
+
+          requestAnimationFrame(update);
+        };
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+
+        counters.forEach((counter) => observer.observe(counter));
+      })();
     </script>
-    <!-- 슬라이드쇼 기능 -->
-    <script>
-      (function() {
-        const slides = document.querySelectorAll('.slide-img');
-        let current = 0;
-        let timer = null;
 
-        function showSlide(idx) {
-          slides.forEach((img, i) => {
-            img.style.opacity = (i === idx) ? '1' : '0';
-            img.style.zIndex = (i === idx) ? '1' : '0';
-          });
-          current = idx;
+    <script>
+      (function () {
+        const data = window.NURA_DATA;
+        if (!data) return;
+
+        const newsContainer = document.getElementById("news-list");
+        const statsContainer = document.getElementById("stats-list");
+
+        if (newsContainer) {
+          newsContainer.innerHTML = data.newsItems
+            .map(
+              (item) => `
+                <article class="rounded-3xl border border-white/10 bg-white/5 overflow-hidden hover:border-blue-400/40 transition">
+                  <a href="${item.href}" target="_blank" rel="noopener noreferrer" class="block h-full">
+                    <div class="aspect-[16/10] overflow-hidden bg-gray-900">
+                      <img
+                        src="${item.image}"
+                        alt="${item.title}"
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <div class="p-6">
+                      <div class="text-sm text-gray-500 mb-3">${item.date}</div>
+
+                      <h3 class="text-xl font-bold text-white leading-snug">
+                        ${item.title}
+                      </h3>
+
+                      <p class="mt-4 text-gray-400 leading-7">
+                        ${item.summary}
+                      </p>
+
+                      <span class="mt-6 inline-flex text-sm font-semibold text-blue-300 hover:text-blue-200">
+                        기사 보기 →
+                      </span>
+                    </div>
+                  </a>
+                </article>
+              `
+            )
+            .join("");
         }
-        function nextSlide() {
-          showSlide((current + 1) % slides.length);
+
+        if (statsContainer) {
+          statsContainer.innerHTML = data.overviewStats
+            .map(
+              (item) => `
+                <article class="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-7">
+                  <p class="text-sm text-gray-500">${item.basis}</p>
+                  <h3 class="mt-3 text-lg font-semibold text-gray-200">${item.label}</h3>
+                  <p class="mt-5 text-4xl md:text-5xl font-extrabold tracking-[-0.03em] text-white">
+                    <span class="count-up text-blue-300" data-target="${item.value}">0</span><span class="text-white">${item.unit}</span>
+                  </p>
+                </article>
+              `
+            )
+            .join("");
+
+          const counters = statsContainer.querySelectorAll(".count-up");
+          const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+          function animateCounter(el) {
+            const target = parseInt(el.dataset.target, 10);
+            const duration = 1400;
+            const startTime = performance.now();
+
+            function update(now) {
+              const progress = Math.min((now - startTime) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = Math.floor(target * eased);
+
+              el.textContent = current.toLocaleString();
+
+              if (progress < 1) {
+                requestAnimationFrame(update);
+              } else {
+                el.textContent = target.toLocaleString();
+              }
+            }
+
+            requestAnimationFrame(update);
+          }
+
+          if (prefersReducedMotion) {
+            counters.forEach((el) => {
+              el.textContent = parseInt(el.dataset.target, 10).toLocaleString();
+            });
+          } else {
+            const observer = new IntersectionObserver(
+              (entries, obs) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    obs.unobserve(entry.target);
+                  }
+                });
+              },
+              {
+                threshold: 0.35
+              }
+            );
+
+            counters.forEach((counter) => observer.observe(counter));
+          }
         }
-        function startAuto() {
-          timer = setInterval(nextSlide, 3000);
-        }
-        function stopAuto() {
-          clearInterval(timer);
-        }
-        // 자동만, 수동조작 없음
-        showSlide(0);
-        startAuto();
       })();
     </script>
   </body>
-</html> 
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NURA | Activities</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
+    <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <script src="../data/shared-layout.js"></script>
+<style>
+  html { scroll-behavior: smooth; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    color: #fff;
+  }
+
+  .page-shell {
+    min-height: 100vh;
+    background: #000;
+  }
+
+  .activity-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-main-title {
+    font-size: clamp(2rem, 11vw, 4.5rem);
+  }
+
+  .activity-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .activity-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.01);
+  }
+
+  .activity-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,0.42) 0%,
+        rgba(0,0,0,0.18) 28%,
+        rgba(0,0,0,0.34) 55%,
+        rgba(0,0,0,0.50) 100%
+      );
+  }
+
+  .activity-hero__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+  }
+
+  .activity-hero__inner {
+    width: 100%;
+    padding: 1.25rem;
+  }
+
+.activity-label {
+  margin: 0;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 35px;
+}
+
+  .activity-label--conference,
+  .activity-label--launch {
+    font-size: 35px;
+  }
+
+  .activity-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    width: 170px;
+    height: 52px;
+    border: 1.5px solid rgba(255,255,255,0.88);
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .activity-btn:hover {
+    background: #71b3e2;
+    border-color: #71b3e2;
+    color: #000;
+    transform: translateY(-1px);
+  }
+
+  .activity-hero--conference .activity-hero__image,
+  .activity-hero--launch .activity-hero__image {
+    object-position: center center;
+  }
+
+  .activities-layout {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    background: #000;
+  }
+
+  .activities-intro {
+    flex: 0 0 auto;
+  }
+
+  .activities-grid-fit {
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .activities-grid-fit .activity-hero {
+    min-height: 320px;
+    height: 100%;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: #0a0a0a;
+  }
+
+  .activities-grid-fit .activity-hero__content {
+    min-height: 320px;
+    background:
+      linear-gradient(
+        to top,
+        rgba(0,0,0,0.72) 0%,
+        rgba(0,0,0,0.30) 45%,
+        rgba(0,0,0,0.08) 100%
+      );
+  }
+
+  @media (min-width: 768px) {
+
+    .activities-grid-fit {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      padding: 0 1.75rem 1.75rem;
+      align-items: stretch;
+    }
+
+    .activities-grid-fit .activity-hero,
+    .activities-grid-fit .activity-hero__content {
+      min-height: min(62vh, 620px);
+    }
+
+    .activities-grid-fit .activity-hero__inner {
+      padding: 1.75rem;
+    }
+
+    .activities-grid-fit .activity-label--conference,
+    .activities-grid-fit .activity-label--launch {
+      font-size: clamp(2rem, 2.7vw, 3rem);
+    }
+
+    .activities-grid-fit .activity-btn {
+      width: 170px;
+      height: 50px;
+      font-size: 0.84rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .page-main-title {
+      font-size: clamp(1.75rem, 9.4vw, 2.3rem);
+    }
+
+    .activities-grid-fit .activity-hero__inner {
+      padding-left: 1.1rem;
+      padding-right: 1.1rem;
+      padding-bottom: 1.2rem;
+    }
+
+    .activities-grid-fit .activity-label--conference,
+    .activities-grid-fit .activity-label--launch {
+      font-size: 1.9rem;
+    }
+
+    .activities-grid-fit .activity-btn {
+      width: 156px;
+      height: 48px;
+      margin-top: 0.8rem;
+      font-size: 0.82rem;
+    }
+  }
+</style>
+  </head>
+  <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="activities" data-base-path="..">
+    <div class="page-shell flex flex-col">
+      <div data-shared-header></div>
+
+<main class="activities-layout w-full flex-1 flex flex-col bg-black">
+<section class="activities-intro">
+<div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-6 md:pb-8">
+  <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
+    <div class="max-w-5xl">
+      <h1 class="page-main-title mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">
+        Activities
+      </h1>
+    </div>
+  </section>
+</div>
+</section>
+
+      <section class="activity-grid activities-grid-fit">
+
+          <article class="activity-hero activity-hero--meeting">
+    <img
+      src="../source/resources/meeting.jpg"
+      alt="대표자회의 대표 이미지"
+      class="activity-hero__image"
+    />
+    <div class="activity-hero__content">
+      <div class="activity-hero__inner">
+        <h2 class="activity-label">MEETING</h2>
+        <a href="./meeting/" class="activity-btn">LEARN MORE</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="activity-hero activity-hero--kspe">
+    <img
+      src="../source/resources/kspe.jpg"
+      alt="춘추계학술대회 대표 이미지"
+      class="activity-hero__image"
+    />
+    <div class="activity-hero__content">
+      <div class="activity-hero__inner">
+        <h2 class="activity-label">KSPE CONFERENCE</h2>
+        <a href="./kspe/" class="activity-btn">LEARN MORE</a>
+      </div>
+    </div>
+  </article>
+  
+      <article class="activity-hero activity-hero--conference">
+        <img
+          src="../source/resources/conference.jpg"
+          alt="전국대학교로켓학술대회 대표 이미지"
+          class="activity-hero__image"
+        />
+        <div class="activity-hero__content">
+          <div class="activity-hero__inner">
+            <h2 class="activity-label activity-label--conference">CONFERENCE</h2>
+            <a href="./conference/" class="activity-btn">LEARN MORE</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="activity-hero activity-hero--launch">
+        <img
+          src="../source/resources/launch.jpg"
+          alt="전국대학교로켓발사대회 대표 이미지"
+          class="activity-hero__image"
+        />
+        <div class="activity-hero__content">
+          <div class="activity-hero__inner">
+            <h2 class="activity-label activity-label--launch">LAUNCH</h2>
+            <a href="./launch/" class="activity-btn">LEARN MORE</a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </section>
+</main>
+
+      <div data-shared-footer></div>
+    </div>
+  </body>
+</html>

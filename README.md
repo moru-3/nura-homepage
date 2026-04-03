@@ -9,32 +9,72 @@ nura-homepage/
 ├── index.html              # 메인 HTML 파일
 ├── README.md               # 이 문서
 ├── image_postprocessing.py # 이미지 후처리 스크립트 (선택사항)
+├── about/                
+│   └── index.html          # 하위 HTML 파일
+├── activities/
+│   ├── index.html          # 하위 HTML 파일
+│   ├── meeting/
+│   │   └── index.html
+│   ├── kspe/
+│   │   └── index.html
+│   ├── conference/
+│   │   └── index.html
+│   └── launch/
+│       └── index.html
+├── resources/           
+│   └── index.html          # 하위 HTML 파일
+├── partnership/               
+│   └── index.html          # 하위 HTML 파일
+├── data/               
+│   ├── shared-layout.js    # 헤더, 푸터
+│   └── site-data.js        # 각종 변수
 ├── source/
 │   ├── overview/           # 개요 섹션 이미지
 │   │   ├── blurred/        # 블러 처리된 슬라이드 이미지
-│   │   │   ├── slide1.jpg
-│   │   │   ├── slide2.jpg
-│   │   │   └── slide3.jpg
+│   │   │   └── [블러 처리된 이미지들]
 │   │   └── [원본 이미지들]
 │   ├── resources/          # 리소스 파일들
 │   │   ├── nura-logo.png   # 메인 로고
 │   │   ├── favicon-32x32.png # 파비콘 (32x32)
 │   │   ├── favicon-16x16.png # 파비콘 (16x16)
 │   │   ├── notion-blur.png # 노션 배경 이미지
-│   │   └── onedrive-blur.png # 원드라이브 배경 이미지
-│   └── sponsors/           # 후원사 로고들
-│       ├── koreanair.png
-│       ├── innospace.png
-│       ├── kari.jpg
-│       └── ligpoongsan.png
+│   │   ├── onedrive-blur.png # 원드라이브 배경 이미지
+│   │   ├── nura-header.png # 헤더 이미지
+│   │   ├── nura-icon.png   # 로고
+│   │   ├── structure.png   # 내부 구조 이미지
+│   │   ├── meeting.jpg     # 대표자 회의 배경 이미지
+│   │   ├── kspe.jpg        # 추진공학회 배경 이미지
+│   │   ├── conference.jpg  # 학술대회 배경 이미지
+│   │   └── launch.jpg      # 발사대회 배경 이미지
+│   ├── partnership/        # 후원사 로고들
+│   │   ├── koreanair.png
+│   │   ├── innospace.png
+│   │   ├── kari.jpg
+│   │   └── ligpoongsan.png
+│   └── news/               # 뉴스 사진들
+│       ├── news1.jpg
+│       ├── news2.jpg
+│       └── news3.jpg
 └── venv/                   # Python 가상환경 (선택사항)
 ```
 
 ## 🚀 시작하기
 
 ### 기본 실행
-1. `index.html` 파일을 웹 브라우저에서 열기
-2. 로컬 서버 없이도 정상 작동합니다
+정적 사이트이므로 프로젝트 루트에서 간단한 로컬 서버를 띄우면 됩니다.
+
+```bash
+python -m http.server 8000
+```
+
+이후 브라우저에서 아래 주소를 열면 됩니다.
+
+```text
+http://localhost:8000
+```
+
+### 그냥 HTML 파일을 직접 열어도 되나요?
+가능한 경우도 있지만, 상대 경로·링크·이미지 확인을 안정적으로 하려면 **로컬 서버 방식**을 권장합니다.
 
 ### 개발 환경 설정 (선택사항)
 ```bash
@@ -46,76 +86,56 @@ source venv/bin/activate  # macOS/Linux
 pip install Pillow
 ```
 
-## 📝 콘텐츠 관리
+---
 
-### 1. 텍스트 콘텐츠 수정
-모든 텍스트 콘텐츠는 `index.html` 파일 내의 `contentData` 객체에서 관리됩니다.
+## 📁 핵심 파일 설명
 
-```javascript
-const contentData = {
-  "overview": {
-    "title": "전국대학교로켓연합회",
-    "subtitle": "National University Rocket Association",
-    "description": "로켓 기술 교류를 촉진하고 대학생들의 발사 활동을 지원합니다."
-  },
-  // ... 기타 섹션들
-};
+### `data/shared-layout.js`
+공통 레이아웃 파일입니다.
+
+다음 요소를 담당합니다.
+
+- 상단 헤더 렌더링
+- 데스크톱/모바일 네비게이션
+- Activities 드롭다운 메뉴
+- 공통 푸터 렌더링
+- 현재 페이지 강조 표시
+
+각 HTML 파일의 `body`에는 아래 속성이 들어가 있어야 공통 네비게이션이 올바르게 동작합니다.
+
+```html
+<body data-current-page="overview" data-base-path=".">
 ```
 
-#### 수정 가능한 섹션들:
-- **overview**: 메인 화면 제목과 설명
-- **about**: 단체 소개
-- **activities**: 주요 활동 (카테고리별로 구성)
-- **sponsors**: 후원사 정보
-- **resources**: 자료실 링크
-- **footer**: 푸터 정보 (연락처, 사업자 정보 등)
+하위 폴더 페이지에서는 보통 아래처럼 설정합니다.
 
-### 2. 이미지 교체
-
-#### 개요 슬라이드 이미지
-- 위치: `source/overview/blurred/`
-- 파일명: `slide1.jpg`, `slide2.jpg`, `slide3.jpg`
-- 권장 크기: 1920x1080 이상
-- **중요**: 블러 처리된 이미지를 사용해야 합니다
-- **블러 처리**: `image_postprocessing.py` 스크립트를 사용하여 원본 이미지를 블러 처리할 수 있습니다
-- **파일 형식**: JPG, PNG 등 웹 호환 형식 사용 (HEIC, TIFF 등은 피하기)
-
-#### 로고 및 파비콘
-- 메인 로고: `source/resources/nura-logo.png`
-- 파비콘: `source/resources/favicon-32x32.png`, `favicon-16x16.png`
-- **파일 형식**: PNG 권장 (투명 배경 지원)
-
-#### 후원사 로고
-- 위치: `source/sponsors/`
-- 권장 크기: 300x150px (2:1 직사각형 비율)
-- 투명 배경 권장
-- **파일 형식**: JPG, PNG, GIF 등 웹 호환 형식 사용 (HEIC, TIFF 등은 피하기)
-
-### 3. 링크 수정
-
-#### 자료실 링크
-```javascript
-"resources": {
-  "gallery": {
-    "url": "https://onedrive.live.com/your-shared-gallery-link"
-  },
-  "document": {
-    "url": "https://www.notion.so/nura/NURA-Resources"
-  }
-}
+```html
+<body data-current-page="about" data-base-path="..">
 ```
 
-#### 후원사 링크
-```javascript
-"sponsors": {
-  "sponsors": [
-    {
-      "name": "대한항공",
-      "url": "https://www.koreanair.com"
-    }
-  ]
-}
-```
+### `data/site-data.js`
+반복적으로 렌더링되는 데이터 모음입니다.
+
+현재 관리 항목:
+
+- `overviewStats` : 메인 페이지 통계 카드
+- `newsItems` : 메인 페이지 관련 기사 카드
+- `resourceDocuments` : 자료실 문서 목록
+- `historyData` : 연혁 문서 목록
+
+즉, 숫자/뉴스/자료실 목록은 HTML 본문을 직접 수정하지 않아도 이 파일에서 갱신할 수 있습니다.
+
+### 각 페이지의 HTML 파일
+페이지별 본문 콘텐츠는 각 HTML 파일 안에 직접 작성되어 있습니다.
+
+- `index.html` : 메인 비주얼, 단체 소개, 뉴스, 통계, 파트너 섹션
+- `about/index.html` : 연혁 타임라인 및 다이얼 UI
+- `activities/index.html` : 활동 카드 목록
+- `activities/*/index.html` : 활동별 상세 설명
+- `partnership/index.html` : 협력 개요, 구조 소개, 문의 CTA
+- `resources/index.html` : 자료 목록 렌더링 화면
+
+---
 
 ## 🎨 디자인 커스터마이징
 
@@ -123,37 +143,138 @@ const contentData = {
 Tailwind CSS 클래스를 사용하여 색상을 변경할 수 있습니다:
 
 - 메인 색상: `text-blue-400`, `bg-blue-600`
-- 배경색: `bg-gray-950`, `bg-gray-900`
+- 배경색: `bg-black`, `bg-gray-900`
 - 텍스트 색상: `text-white`, `text-gray-300`
 
-### 레이아웃 수정
-- 사이드바 너비: `w-44` (176px)
-- 섹션 패딩: `py-20`
-- 반응형 그리드: `grid-cols-1 md:grid-cols-2 lg:grid-cols-4`
+### 커스터마이징
+이 프로젝트는 Tailwind CDN 기반이지만, 실제로는 다음 두 방식이 함께 사용됩니다.
+
+- HTML 내 Tailwind 유틸리티 클래스
+- 각 페이지 내부 `<style>` 블록의 커스텀 CSS
+
+따라서 디자인 수정 시 아래 순서로 확인하는 것이 좋습니다.
+
+1. HTML 클래스 값 확인
+2. 페이지 내부 `<style>` 확인
+3. 공통 요소면 `data/shared-layout.js` 확인
+
+특히 아래 항목은 페이지마다 직접 스타일이 들어가 있습니다.
+
+- 히어로 영역 높이/여백
+- 타임라인 카드
+- 활동 카드
+- 드롭다운 메뉴
+- 모바일 메뉴
+
+---
 
 ## 🛠️ 유지보수 가이드
 
-### 새로운 후원사 추가
-1. 로고 이미지를 `source/sponsors/` 폴더에 추가
-2. `contentData.sponsors.sponsors` 배열에 정보 추가:
+### 메인 페이지 숫자 카드 수정
+
+`data/site-data.js`의 `overviewStats` 배열을 수정합니다.
+
+```javascript
+overviewStats: [
+  {
+    basis: "2026년 3월 기준",
+    label: "참여 대학",
+    value: 35,
+    unit: "개교"
+  }
+]
+```
+
+### 메인 페이지 기사 카드 수정
+
+`data/site-data.js`의 `newsItems` 배열을 수정합니다.
+
+```javascript
+newsItems: [
+  {
+    date: "2024.07.08",
+    title: "기사 제목",
+    summary: "기사 요약",
+    image: "source/news/news1.jpg",
+    href: "https://..."
+  }
+]
+```
+
+### 자료실 목록 수정
+
+`resources/index.html`은 `data/site-data.js`의 `resourceDocuments` 배열을 읽어서 목록을 생성합니다.
+
+```javascript
+resourceDocuments: [
+  {
+    date: "2026.03",
+    title: "전국대학교로켓연합회 소개서",
+    category: "소개서",
+    format: "PDF",
+    size: "8.2MB",
+    description: "소개 자료 설명",
+    href: "../source/resources/nura-profile.pdf"
+  }
+]
+```
+
+업로드 예정 상태로 표시하고 싶다면:
+
 ```javascript
 {
-  "name": "새로운 후원사",
-  "logo": "source/sponsors/new-sponsor.png",
-  "url": "https://new-sponsor.com",
-  "ratio": 1.5  // 로고 가로세로 비율
+  title: "활동 브로슈어",
+  category: "Brochure",
+  format: "PDF",
+  status: "coming-soon"
 }
 ```
 
-### 새로운 활동 카테고리 추가
-1. `contentData.activities.categories` 배열에 추가:
+### 자료실 목록 수정
+
+`about/index.html`은 `data/site-data.js`의 `historyData` 배열을 읽어서 목록을 생성합니다.
+
+```javascript
+historyData: [
+  {
+    year: 1992,
+    featured: true,
+    items: ["제1회 로켓발사대회(한국항공대학교)"]
+  }
+```
+
+### 공통 네비게이션 수정
+
+상단 메뉴, Activities 드롭다운, 푸터는 `data/shared-layout.js`에서 수정합니다.
+
+수정 가능 항목 예시:
+
+- 메뉴 이름
+- 드롭다운 항목
+- 링크 경로
+- 모바일 메뉴 구조
+- 상단바 스타일
+- 푸터 문구
+
+### 활동 페이지 수정
+
+활동 소개 페이지는 파일별로 직접 수정합니다.
+
+- `activities/index.html` : Activities 목록 화면
+- `activities/meeting/index.html` : 대표자 회의
+- `activities/kspe/index.html` : 한국추진공학회 NURA 세션
+- `activities/conference/index.html` : 전국대학교로켓학술대회
+- `activities/launch/index.html` : 전국대학교로켓발사대회
+
+### 새로운 후원사 추가
+1. 로고 이미지를 `source/partnership/` 폴더에 추가
+2. `contentData.Partnership.Partnership` 배열에 정보 추가:
 ```javascript
 {
-  "title": "새로운 활동",
-  "items": [
-    "활동 내용 1",
-    "활동 내용 2"
-  ]
+  "name": "새로운 후원사",
+  "logo": "source/partnership/new-sponsor.png",
+  "url": "https://new-sponsor.com",
+  "ratio": 1.5  // 로고 가로세로 비율
 }
 ```
 
@@ -182,36 +303,17 @@ python image_postprocessing.py
 ```
 스크립트는 `source/overview/` 폴더의 원본 이미지들을 블러 처리하여 `source/overview/blurred/` 폴더에 저장합니다.
 
-## 📞 연락처 정보 업데이트
-
-푸터의 연락처 정보는 `contentData.footer.contact`에서 관리됩니다:
-
-```javascript
-"contact": {
-  "title": "연락처",
-  "items": [
-    {
-      "label": "Email",
-      "value": "nurarocketscience@gmail.com"
-    },
-    {
-      "label": "Instagram", 
-      "value": "@nura._.official"
-    },
-    {
-      "label": "Address",
-      "value": "경기도 고양시 덕양구 항공대학로 76"
-    }
-  ]
-}
-```
-
 ## ⚠️ 주의사항
 
 1. **이미지 최적화**: 웹용으로 이미지를 압축하여 로딩 속도를 개선하세요
 2. **파일명**: 한글 파일명 사용을 피하고 영문으로 작성하세요
 3. **백업**: 중요한 변경사항 전에 반드시 백업을 만드세요
 4. **테스트**: 변경사항 적용 후 다양한 브라우저에서 테스트하세요
+
+5. **파일 추가**: PDF 링크가 들어가 있지만, 실제 저장소의 `source/resources/` 안에는 해당 PDF 파일이 없을 수 있습니다.  
+버튼이 정상 동작하려면 아래 둘 중 하나가 필요합니다.
+- 실제 PDF 파일을 해당 경로에 추가
+- `href`를 외부 문서 링크로 변경
 
 ## 🔄 배포
 
@@ -228,6 +330,6 @@ python image_postprocessing.py
 
 ---
 
-**마지막 업데이트**: 2025년 07월
-
-**관리자**: 전현우(jhw030520@gmail.com)
+**마지막 업데이트**: 2026년 04월
+- **관리자**: 심승기(shimseunggi@naver.com)
+- **기여자**: 전현우(jhw030520@gmail.com)

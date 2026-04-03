@@ -30,6 +30,7 @@ else:
 for idx, filename in enumerate(files, 1):
     img_path = os.path.join(input_dir, filename)
     ext = os.path.splitext(filename)[1].lower()
+
     # HEIC 파일 처리
     if ext == '.heic':
         if not HEIC_SUPPORT:
@@ -47,12 +48,17 @@ for idx, filename in enumerate(files, 1):
         )
     else:
         img = Image.open(img_path)
+
     blurred = img.filter(ImageFilter.GaussianBlur(radius=24))
-    out_name = f"slide{idx}.jpg"
-    # JPG로 저장 (RGBA는 RGB로 변환)
-    if blurred.mode in ("RGBA", "LA"):
-        blurred = blurred.convert("RGB")
-    blurred.save(os.path.join(output_dir, out_name), "JPEG", quality=90)
+
+    out_name = f"slide{idx}.webp"
+
+    blurred.save(
+        os.path.join(output_dir, out_name),
+        "WEBP",
+        quality=90
+    )
+
     print(f"Saved: {out_name}")
 
-print("모든 이미지 블러 및 JPG 변환 완료!")
+print("모든 이미지 블러 및 WEBP 변환 완료!")
