@@ -71,11 +71,11 @@ window.NURA_DATA = {
     },
         {
       date: "2026.04",
-      title: "2026 전국대학교로켓발사대회 규정",
+      title: "2026 전국대학교로켓발사대회 규정집",
       category: "Launch",
       format: "pdf",
       size: "323KB",
-      description: "2026 전국대학교로켓발사대회 규정입니다.",
+      description: "2026 전국대학교로켓발사대회 규정집입니다.",
       href: "../source/resources/2026 전국대학교로켓발사대회 규정집_260403.pdf"
     },
     {
