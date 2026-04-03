@@ -15,7 +15,7 @@ window.NURA_DATA = {
     {
       basis: "누적 기준",
       label: "누적 행사",
-      value: 34,
+      value: 71,
       unit: "회"
     },
     {

@@ -13,10 +13,14 @@ nura-homepage/
 │   └── index.html          # 하위 HTML 파일
 ├── activities/
 │   ├── index.html          # 하위 HTML 파일
-│   ├── meeting.html       
-│   ├── kspe.html
-│   ├── conference.html     
-│   └── launch.html 
+│   ├── meeting/
+│   │   └── index.html
+│   ├── kspe/
+│   │   └── index.html
+│   ├── conference/
+│   │   └── index.html
+│   └── launch/
+│       └── index.html
 ├── resources/           
 │   └── index.html          # 하위 HTML 파일
 ├── partnership/               
@@ -257,18 +261,18 @@ historyData: [
 활동 소개 페이지는 파일별로 직접 수정합니다.
 
 - `activities/index.html` : Activities 목록 화면
-- `activities/meeting.html` : 대표자 회의
-- `activities/kspe.html` : 한국추진공학회 NURA 세션
-- `activities/conference.html` : 전국대학교로켓학술대회
-- `activities/launch.html` : 전국대학교로켓발사대회
+- `activities/meeting/index.html` : 대표자 회의
+- `activities/kspe/index.html` : 한국추진공학회 NURA 세션
+- `activities/conference/index.html` : 전국대학교로켓학술대회
+- `activities/launch/index.html` : 전국대학교로켓발사대회
 
 ### 새로운 후원사 추가
-1. 로고 이미지를 `source/Partnership/` 폴더에 추가
+1. 로고 이미지를 `source/partnership/` 폴더에 추가
 2. `contentData.Partnership.Partnership` 배열에 정보 추가:
 ```javascript
 {
   "name": "새로운 후원사",
-  "logo": "source/Partnership/new-sponsor.png",
+  "logo": "source/partnership/new-sponsor.png",
   "url": "https://new-sponsor.com",
   "ratio": 1.5  // 로고 가로세로 비율
 }
