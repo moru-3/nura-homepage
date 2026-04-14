@@ -1,9 +1,9 @@
 window.NURA_DATA = {
   overviewStats: [
     {
-      basis: "2026년 3월 기준",
+      basis: "2026년 4월 기준",
       label: "참여 대학",
-      value: 35,
+      value: 36,
       unit: "개교"
     },
     {
