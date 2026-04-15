@@ -37,37 +37,43 @@ window.NURA_DATA = {
       name: "건국대학교",
       region: "seoul",
       clubName: "ASEC 로켓팀",
-      description: "서울특별시 광진구 능동로 120 (서울캠)"
+      description: "서울특별시 광진구 능동로 120 (서울캠)",
+      instagramHandle: "@konkuk_asec"
     },
     {
       name: "경기대학교",
       region: "gyeonggi",
       clubName: "KURBC",
-      description: "경기도 수원시 영통구 광교산로 154-42 (수원캠)"
+      description: "경기도 수원시 영통구 광교산로 154-42 (수원캠)",
+      instagramHandle: "@kurbc"
     },
     {
       name: "경북대학교",
       region: "daegu",
       clubName: "천상연",
-      description: "대구광역시 북구 대학로 80 (대구캠)"
+      description: "대구광역시 북구 대학로 80 (대구캠)",
+      instagramHandle: "@cheonsangyeon_knu"
     },
     {
       name: "경상국립대학교",
       region: "gyeongnam",
       clubName: "ALTIS (알티스)",
-      description: "경상남도 진주시 진주대로 501 (가좌캠)"
+      description: "경상남도 진주시 진주대로 501 (가좌캠)",
+      instagramHandle: "@altis_official"
     },
     {
       name: "경희대학교",
       region: "gyeonggi",
       clubName: "TUSI",
-      description: "경기도 용인시 기흥구 덕영대로 1732 (국제캠)"
+      description: "경기도 용인시 기흥구 덕영대로 1732 (국제캠)",
+      instagramHandle: "@tusi_rocket"
     },
     {
       name: "고려대학교",
       region: "seoul",
       clubName: "고로켓(GOROCKET)",
-      description: "서울특별시 성북구 안암로 145 (서울캠)"
+      description: "서울특별시 성북구 안암로 145 (서울캠)",
+      instagramHandle: "@gorocket_ku"
     },
     {
       name: "공군사관학교",
@@ -91,25 +97,29 @@ window.NURA_DATA = {
       name: "국립한국교통대학교",
       region: "chungbuk",
       clubName: "TAURUS",
-      description: "충청북도 충주시 대소원면 대학로 50 (충주캠)"
+      description: "충청북도 충주시 대소원면 대학로 50 (충주캠)",
+      instagramHandle: "@knut_taurus"
     },
     {
       name: "국민대학교",
       region: "seoul",
       clubName: "ERUCA",
-      description: "서울특별시 성북구 정릉로 77"
+      description: "서울특별시 성북구 정릉로 77",
+      instagramHandle: "@eruca_official"
     },
     {
       name: "동국대학교",
       region: "seoul",
       clubName: "DAVI",
-      description: "서울특별시 중구 필동로1길 30 (서울캠)"
+      description: "서울특별시 중구 필동로1길 30 (서울캠)",
+      instagramHandle: "@dgu_davi"
     },
     {
       name: "부산대학교",
       region: "busan",
       clubName: "P.R.O",
-      description: "부산광역시 금정구 부산대학로63번길 2 (부산캠)"
+      description: "부산광역시 금정구 부산대학로63번길 2 (부산캠)",
+      instagramHandle: "@pnu_rocket_organization"
     },
     {
       name: "서울과학기술대학교",
@@ -121,25 +131,29 @@ window.NURA_DATA = {
       name: "서울대학교",
       region: "seoul",
       clubName: "하나로",
-      description: "서울특별시 관악구 관악로 1 (관악캠)"
+      description: "서울특별시 관악구 관악로 1 (관악캠)",
+      instagramHandle: "@snu_hanaro"
     },
     {
       name: "성균관대학교",
       region: "gyeonggi",
       clubName: "ARES",
-      description: "경기도 수원시 장안구 서부로 2066 (수원캠)"
+      description: "경기도 수원시 장안구 서부로 2066 (수원캠)",
+      instagramHandle: "@skku_ares"
     },
     {
       name: "세종대학교",
       region: "seoul",
       clubName: "RUDDER",
-      description: "서울특별시 광진구 능동로 209"
+      description: "서울특별시 광진구 능동로 209",
+      instagramHandle: "@rudder_sejong"
     },
     {
       name: "숙명여자대학교",
       region: "seoul",
       clubName: "DTU (Destiny To the Universe)",
-      description: "서울특별시 용산구 청파로47길 100"
+      description: "서울특별시 용산구 청파로47길 100",
+      instagramHandle: "@smwu_dtu"
     },
     {
       name: "숭실대학교",
@@ -151,13 +165,15 @@ window.NURA_DATA = {
       name: "아주대학교",
       region: "gyeonggi",
       clubName: "아주로",
-      description: "경기도 수원시 영통구 월드컵로 206"
+      description: "경기도 수원시 영통구 월드컵로 206",
+      instagramHandle: "@ajou_ro"
     },
     {
       name: "연세대학교",
       region: "seoul",
       clubName: "SPACE Y",
-      description: "서울특별시 서대문구 연세로 50 (신촌캠)"
+      description: "서울특별시 서대문구 연세로 50 (신촌캠)",
+      instagramHandle: "@yonsei_space"
     },
     {
       name: "영남대학교",
@@ -169,31 +185,36 @@ window.NURA_DATA = {
       name: "울산과학기술원",
       region: "ulsan",
       clubName: "에어로",
-      description: "울산광역시 울주군 언양읍 유니스트길 50"
+      description: "울산광역시 울주군 언양읍 유니스트길 50",
+      instagramHandle: "@project_aero_unist"
     },
     {
       name: "인하대학교",
       region: "incheon",
       clubName: "인하로케트연구회",
-      description: "인천광역시 연수구 갯벌로 36 (항우캠)"
+      description: "인천광역시 연수구 갯벌로 36 (항우캠)",
+      instagramHandle: "@irri_official"
     },
     {
       name: "전북대학교",
       region: "jeonbuk",
       clubName: "JURG",
-      description: "전북특별자치도 전주시 덕진구 백제대로 567"
+      description: "전북특별자치도 전주시 덕진구 백제대로 567",
+      instagramHandle: "@jbnu_ohcket"
     },
     {
       name: "조선대학교",
       region: "gwangju",
       clubName: "HANul",
-      description: "광주광역시 동구 조선대길 146"
+      description: "광주광역시 동구 조선대길 146",
+      instagramHandle: "@hanulrocketry"
     },
     {
       name: "중앙대학교",
       region: "seoul",
       clubName: "MACH",
-      description: "서울특별시 동작구 흑석로 84 (서울캠)"
+      description: "서울특별시 동작구 흑석로 84 (서울캠)",
+      instagramHandle: "@cau_mach"
     },
     {
       name: "충남대학교",
@@ -205,19 +226,22 @@ window.NURA_DATA = {
       name: "포항공과대학교",
       region: "gyeongbuk",
       clubName: "포항공과대학교 항공우주연구회 PSI",
-      description: "경상북도 포항시 남구 청암로 77"
+      description: "경상북도 포항시 남구 청암로 77",
+      instagramHandle: "@postech_psi"
     },
     {
       name: "한국과학기술원",
       region: "daejeon",
       clubName: "THRUST",
-      description: "대전광역시 유성구 대학로 291 (본원)"
+      description: "대전광역시 유성구 대학로 291 (본원)",
+      instagramHandle: "@kaist_thrust"
     },
     {
       name: "한국기술교육대학교",
       region: "chungnam",
       clubName: "KARS(Koreatech Aerospace Research Society, 한기대 항공우주연구회)",
-      description: "충청남도 천안시 동남구 병천면 충절로 1600 (제1캠)"
+      description: "충청남도 천안시 동남구 병천면 충절로 1600 (제1캠)",
+      instagramHandle: "@rocketdan_koreatech"
     },
     {
       name: "한국에너지공과대학교",
@@ -229,19 +253,22 @@ window.NURA_DATA = {
       name: "한국항공대학교",
       region: "gyeonggi",
       clubName: "로켓연구회 SRS",
-      description: "경기도 고양시 덕양구 항공대학로 76"
+      description: "경기도 고양시 덕양구 항공대학로 76",
+      instagramHandle: "@kau_srs"
     },
     {
       name: "한양대학교",
       region: "seoul",
       clubName: "헬리오스(Helios)",
-      description: "서울특별시 성동구 왕십리로 222"
+      description: "서울특별시 성동구 왕십리로 222",
+      instagramHandle: "@rocket.helios"
     },
     {
       name: "한양대학교 ERICA",
       region: "gyeonggi",
       clubName: "COMET",
-      description: "경기도 안산시 상록구 한양대학로 55"
+      description: "경기도 안산시 상록구 한양대학로 55",
+      instagramHandle: "@hyu_erica_comet"
     }
   ],
 

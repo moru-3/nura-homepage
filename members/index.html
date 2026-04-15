@@ -154,6 +154,19 @@
         font-size: 0.68rem;
         font-weight: 700;
         color: rgba(255, 255, 255, 0.8);
+        transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+      }
+
+      .region-toggle.is-active .region-toggle__badge {
+        border-color: rgba(147, 197, 253, 0.2);
+        background: rgba(147, 197, 253, 0.05);
+        color: rgba(219, 234, 254, 0.86);
+      }
+
+      .region-toggle.is-subregion-hovered .region-toggle__badge {
+        border-color: rgba(191, 219, 254, 0.24);
+        background: rgba(191, 219, 254, 0.07);
+        color: rgba(239, 246, 255, 0.9);
       }
 
       .region-toggle__chevron {
@@ -168,7 +181,11 @@
 
       .region-toggle[aria-expanded="true"] .region-toggle__chevron {
         transform: rotate(180deg);
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(191, 219, 254, 0.72);
+      }
+
+      .region-toggle.is-subregion-hovered .region-toggle__chevron {
+        color: rgba(191, 219, 254, 0.78);
       }
 
       .region-panel {
@@ -248,6 +265,7 @@
       .subregion-group__toggle:hover .subregion-group__name,
       .subregion-group__toggle:focus-visible .subregion-group__name {
         color: #93c5fd;
+        text-shadow: 0 0 14px rgba(147, 197, 253, 0.14);
       }
 
       .subregion-group__header {
@@ -318,6 +336,25 @@
         color: rgba(191, 219, 254, 0.8);
       }
 
+      .subregion-group__toggle:hover .subregion-group__coverage,
+      .subregion-group__toggle:focus-visible .subregion-group__coverage {
+        color: rgba(191, 219, 254, 0.8);
+      }
+
+      .subregion-group.is-hovered .subregion-group__count,
+      .subregion-group__toggle:hover .subregion-group__count,
+      .subregion-group__toggle:focus-visible .subregion-group__count {
+        border-color: rgba(147, 197, 253, 0.28);
+        background: rgba(147, 197, 253, 0.08);
+        color: rgba(239, 246, 255, 0.94);
+      }
+
+      .subregion-group.is-hovered .subregion-group__chevron,
+      .subregion-group__toggle:hover .subregion-group__chevron,
+      .subregion-group__toggle:focus-visible .subregion-group__chevron {
+        color: rgba(191, 219, 254, 0.88);
+      }
+
       .subregion-group.is-active .subregion-group__count {
         border-color: rgba(147, 197, 253, 0.42);
         background: rgba(147, 197, 253, 0.16);
@@ -386,6 +423,14 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.07);
       }
 
+      .member-entry--interactive {
+        cursor: pointer;
+      }
+
+      .member-entry--interactive:focus-visible {
+        outline: none;
+      }
+
       .member-entry:last-child {
         border-bottom: 0;
       }
@@ -395,6 +440,7 @@
         font-weight: 700;
         letter-spacing: -0.03em;
         color: #ffffff;
+        transition: color 180ms ease;
       }
 
       .member-entry__meta {
@@ -402,26 +448,40 @@
         font-size: 0.78rem;
         line-height: 1.45;
         color: rgba(255, 255, 255, 0.56);
+        transition: color 180ms ease;
+      }
+
+      .member-entry--interactive:hover .member-entry__name,
+      .member-entry--interactive:focus-visible .member-entry__name {
+        color: #60a5fa;
+        text-shadow: 0 0 18px rgba(96, 165, 250, 0.22);
+      }
+
+      .member-entry--interactive:hover .member-entry__meta,
+      .member-entry--interactive:focus-visible .member-entry__meta {
+        color: rgba(255, 255, 255, 0.74);
       }
 
       .member-entry__links {
         display: flex;
         flex-wrap: wrap;
         gap: 0.42rem;
-        margin-top: 0.44rem;
+        margin-top: 0.34rem;
+        justify-content: flex-start;
       }
 
       .member-entry__link {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 28px;
-        padding: 0 0.64rem;
+        min-height: 24px;
+        padding: 0 0.56rem;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: rgba(255, 255, 255, 0.88);
-        font-size: 0.72rem;
-        font-weight: 700;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
         text-decoration: none;
         transition:
           background-color 180ms ease,
@@ -431,9 +491,9 @@
 
       .member-entry__link:hover,
       .member-entry__link:focus-visible {
-        background: #ffffff;
-        border-color: #ffffff;
-        color: #020617;
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.24);
+        color: rgba(255, 255, 255, 0.92);
       }
 
       .member-entry__empty {
@@ -638,14 +698,18 @@
 
       const MAP_BASE_FILL = 'rgba(255,255,255,0.045)';
       const MAP_BASE_STROKE = 'rgba(255,255,255,0.18)';
-      const MAP_HOVER_FILL = 'rgba(147,197,253,0.18)';
-      const MAP_HOVER_STROKE = 'rgba(147,197,253,0.92)';
-      const MAP_SELECTED_FILL = 'rgba(147,197,253,0.28)';
+      const MAP_HOVER_FILL = 'rgba(96,165,250,0.10)';
+      const MAP_HOVER_STROKE = 'rgba(147,197,253,0.72)';
+      const MAP_INTERACTIVE_FILL = 'rgba(255,255,255,0.14)';
+      const MAP_INTERACTIVE_STROKE = 'rgba(191,219,254,0.94)';
+      const MAP_SELECTED_FILL = 'rgba(96,165,250,0.18)';
       const MAP_SELECTED_STROKE = 'rgba(191,219,254,1)';
 
       let provinceNodes = [];
+      let svgRootNode = null;
       let activeMacroRegionId = null;
       let selectedProvinceId = null;
+      let hoveredProvinceId = null;
       let hoveredMacroRegionId = null;
       let isRegionPanelOpen = false;
       let hasPinnedRegionSelection = false;
@@ -689,23 +753,30 @@
         return members
           .map((member) => {
             const links = [];
-
-            if (member.instagram) {
-              links.push(`<a class="member-entry__link" href="${member.instagram}" target="_blank" rel="noopener noreferrer">Instagram</a>`);
-            }
+            const instagramHandle = typeof member.instagramHandle === 'string' ? member.instagramHandle.trim() : '';
+            const normalizedInstagramHandle = instagramHandle
+              ? (instagramHandle.startsWith('@') ? instagramHandle : `@${instagramHandle}`)
+              : '';
+            const instagramUrl = normalizedInstagramHandle
+              ? `https://www.instagram.com/${normalizedInstagramHandle.slice(1)}/`
+              : member.instagram;
 
             if (member.website) {
               links.push(`<a class="member-entry__link" href="${member.website}" target="_blank" rel="noopener noreferrer">Website</a>`);
             }
 
+            const interactiveAttrs = instagramUrl
+              ? ` data-member-href="${instagramUrl}" tabindex="0" role="link" aria-label="${member.name} 인스타그램 열기"`
+              : '';
+
             return `
-              <article class="member-entry">
+              <article class="member-entry${instagramUrl ? ' member-entry--interactive' : ''}"${interactiveAttrs}>
                 <h3 class="member-entry__name">${member.clubName || member.name}</h3>
                 <p class="member-entry__meta">
                   ${member.name}
                 </p>
-                ${member.description ? `<p class="member-entry__meta break-keep">${member.description}</p>` : ''}
                 ${links.length ? `<div class="member-entry__links">${links.join('')}</div>` : ''}
+                ${member.description ? `<p class="member-entry__meta break-keep">${member.description}</p>` : ''}
               </article>
             `;
           })
@@ -730,7 +801,6 @@
 
             const memberCountByRegion = getMembersByFineRegion(regionId).length;
             const isOpen = openSubregionByMacro.get(macroRegion.id) === regionId;
-
             return `
               <section class="subregion-group ${isOpen ? 'is-active' : ''}">
                 <button
@@ -818,26 +888,115 @@
             </section>
           `)
           .join('');
+
+        applySubregionHoverClasses();
+      };
+
+      const clearSubregionHoverState = ({ sync = true } = {}) => {
+        if (!regionAccordion) return;
+
+        regionAccordion.querySelectorAll('.subregion-group.is-hovered').forEach((element) => {
+          element.classList.remove('is-hovered');
+        });
+
+        regionAccordion.querySelectorAll('.region-toggle.is-subregion-hovered').forEach((element) => {
+          element.classList.remove('is-subregion-hovered');
+        });
+
+        hoveredProvinceId = null;
+
+        if (sync) {
+          syncActiveState();
+        }
+      };
+
+      const applySubregionHoverClasses = () => {
+        if (!regionAccordion) return;
+
+        regionAccordion.querySelectorAll('.subregion-group.is-hovered').forEach((element) => {
+          element.classList.remove('is-hovered');
+        });
+
+        regionAccordion.querySelectorAll('.region-toggle.is-subregion-hovered').forEach((element) => {
+          element.classList.remove('is-subregion-hovered');
+        });
+
+        if (!hoveredProvinceId) return;
+
+        const fineRegionId = provinceFineRegionMap.get(hoveredProvinceId);
+        const macroRegionId = provinceMacroRegionMap.get(hoveredProvinceId);
+        if (!fineRegionId || !macroRegionId) return;
+
+        const subregionGroup = regionAccordion.querySelector(
+          `[data-subregion-toggle="${fineRegionId}"]`
+        )?.closest('.subregion-group');
+        const parentRegionButton = regionAccordion.querySelector(
+          `[data-region-toggle="${macroRegionId}"]`
+        );
+
+        subregionGroup?.classList.add('is-hovered');
+        parentRegionButton?.classList.add('is-subregion-hovered');
+      };
+
+      const setSubregionHoverState = (subregionButton) => {
+        if (!regionAccordion) return;
+
+        if (!subregionButton) return;
+
+        const provinceId = getProvinceIdByFineRegion(subregionButton.dataset.subregionToggle);
+        hoveredProvinceId = provinceId;
+        applySubregionHoverClasses();
+        syncActiveState();
       };
 
       const applyProvinceVisual = (provinceNode, state) => {
         const isSelected = state === 'selected';
         const isHovered = state === 'hovered';
+        const isInteractive = state === 'interactive';
 
         provinceNode.style.fill = isSelected
           ? MAP_SELECTED_FILL
+          : isInteractive
+            ? MAP_INTERACTIVE_FILL
           : isHovered
             ? MAP_HOVER_FILL
             : MAP_BASE_FILL;
         provinceNode.style.stroke = isSelected
           ? MAP_SELECTED_STROKE
+          : isInteractive
+            ? MAP_INTERACTIVE_STROKE
           : isHovered
             ? MAP_HOVER_STROKE
             : MAP_BASE_STROKE;
-        provinceNode.style.strokeWidth = '1.4';
+        provinceNode.style.strokeWidth = isInteractive || isSelected ? '1.7' : '1.4';
         provinceNode.style.vectorEffect = 'non-scaling-stroke';
         provinceNode.style.transition = 'fill 180ms ease, stroke 180ms ease, opacity 180ms ease';
         provinceNode.style.cursor = 'pointer';
+      };
+
+      const getProvinceVisualPriority = (provinceNode, highlightedMacroRegionId) => {
+        if (provinceNode.id === hoveredProvinceId) return 3;
+        if (provinceNode.id === selectedProvinceId) return 2;
+        if (highlightedMacroRegionId && provinceNode.dataset.regionId === highlightedMacroRegionId) return 1;
+        return 0;
+      };
+
+      const syncProvinceDrawOrder = (highlightedMacroRegionId) => {
+        if (!svgRootNode || !provinceNodes.length) return;
+
+        const orderedProvinceNodes = [...provinceNodes].sort((leftNode, rightNode) => {
+          const priorityDiff =
+            getProvinceVisualPriority(leftNode, highlightedMacroRegionId) -
+            getProvinceVisualPriority(rightNode, highlightedMacroRegionId);
+
+          if (priorityDiff !== 0) return priorityDiff;
+
+          return Number(leftNode.dataset.drawOrder || '0') - Number(rightNode.dataset.drawOrder || '0');
+        });
+
+        orderedProvinceNodes.forEach((provinceNode) => {
+          svgRootNode.appendChild(provinceNode);
+        });
       };
 
       const syncActiveState = () => {
@@ -862,14 +1021,18 @@
         );
 
         provinceNodes.forEach((provinceNode) => {
-          const visualState = provinceNode.id === selectedProvinceId
-            ? 'selected'
+          const visualState = provinceNode.id === hoveredProvinceId
+            ? 'interactive'
+            : provinceNode.id === selectedProvinceId
+              ? 'selected'
             : highlightedMacroRegionId && provinceNode.dataset.regionId === highlightedMacroRegionId
               ? 'hovered'
               : 'base';
 
           applyProvinceVisual(provinceNode, visualState);
         });
+
+        syncProvinceDrawOrder(highlightedMacroRegionId);
 
         if (membersGuideBlock) {
           const shouldHideGuide =
@@ -884,6 +1047,7 @@
       const resetToDefaultState = () => {
         activeMacroRegionId = null;
         selectedProvinceId = null;
+        hoveredProvinceId = null;
         hoveredMacroRegionId = null;
         isRegionPanelOpen = false;
         hasPinnedRegionSelection = false;
@@ -903,6 +1067,7 @@
 
         activeMacroRegionId = macroRegionId;
         selectedProvinceId = null;
+        hoveredProvinceId = null;
         hoveredMacroRegionId = null;
         isRegionPanelOpen = open;
         renderRegionAccordion();
@@ -922,6 +1087,7 @@
           }
           hasPinnedRegionSelection = true;
           selectedProvinceId = null;
+          hoveredProvinceId = null;
           hoveredMacroRegionId = null;
           renderRegionAccordion();
           syncActiveState();
@@ -947,6 +1113,7 @@
         hasPinnedRegionSelection = true;
         activeMacroRegionId = macroRegionId;
         selectedProvinceId = null;
+        hoveredProvinceId = null;
         hoveredMacroRegionId = null;
         isRegionPanelOpen = true;
         openSubregionByMacro.set(macroRegionId, null);
@@ -957,6 +1124,9 @@
       const previewMapProvince = (provinceId) => {
         const macroRegionId = provinceMacroRegionMap.get(provinceId);
         if (!macroRegionId) return;
+
+        hoveredProvinceId = provinceId;
+        applySubregionHoverClasses();
 
         if (selectedProvinceId) {
           hoveredMacroRegionId = provinceId === selectedProvinceId ? null : macroRegionId;
@@ -977,7 +1147,14 @@
       };
 
       const clearHoveredMacroRegion = () => {
-        if (!hoveredMacroRegionId && selectedProvinceId) return;
+        hoveredProvinceId = null;
+        applySubregionHoverClasses();
+
+        if (!hoveredMacroRegionId && selectedProvinceId) {
+          syncActiveState();
+          return;
+        }
+
         if (!hoveredMacroRegionId && hasPinnedRegionSelection) {
           syncActiveState();
           return;
@@ -1013,6 +1190,7 @@
 
         hasPinnedRegionSelection = true;
         selectedProvinceId = provinceId;
+        hoveredProvinceId = null;
         hoveredMacroRegionId = null;
         activeMacroRegionId = macroRegionId;
         isRegionPanelOpen = true;
@@ -1101,7 +1279,9 @@
             return;
           }
 
-          provinceNodes = Array.from(svgRoot.querySelectorAll('[id^="KR-"]')).filter((provinceNode) => {
+          svgRootNode = svgRoot;
+
+          provinceNodes = Array.from(svgRoot.querySelectorAll('[id^="KR-"]')).filter((provinceNode, index) => {
             const macroRegionId = provinceMacroRegionMap.get(provinceNode.id);
             if (!macroRegionId) {
               provinceNode.style.fill = 'rgba(255,255,255,0.03)';
@@ -1110,6 +1290,7 @@
               return false;
             }
 
+            provinceNode.dataset.drawOrder = String(index);
             bindProvinceEvents(provinceNode, macroRegionId);
             return true;
           });
@@ -1136,7 +1317,63 @@
       };
 
       if (regionAccordion) {
+        regionAccordion.addEventListener('mouseover', (event) => {
+          const subregionButton = event.target.closest('[data-subregion-toggle]');
+          if (!subregionButton) return;
+
+          setSubregionHoverState(subregionButton);
+        });
+
+        regionAccordion.addEventListener('mouseout', (event) => {
+          const subregionButton = event.target.closest('[data-subregion-toggle]');
+          if (!subregionButton) return;
+
+          const nextSubregionButton = typeof event.relatedTarget?.closest === 'function'
+            ? event.relatedTarget.closest('[data-subregion-toggle]')
+            : null;
+
+          if (nextSubregionButton && regionAccordion.contains(nextSubregionButton)) {
+            setSubregionHoverState(nextSubregionButton);
+            return;
+          }
+
+          clearSubregionHoverState();
+        });
+
+        regionAccordion.addEventListener('focusin', (event) => {
+          const subregionButton = event.target.closest('[data-subregion-toggle]');
+          if (!subregionButton) return;
+
+          setSubregionHoverState(subregionButton);
+        });
+
+        regionAccordion.addEventListener('focusout', (event) => {
+          const subregionButton = event.target.closest('[data-subregion-toggle]');
+          if (!subregionButton) return;
+
+          const nextSubregionButton = typeof event.relatedTarget?.closest === 'function'
+            ? event.relatedTarget.closest('[data-subregion-toggle]')
+            : null;
+
+          if (nextSubregionButton && regionAccordion.contains(nextSubregionButton)) {
+            setSubregionHoverState(nextSubregionButton);
+            return;
+          }
+
+          clearSubregionHoverState();
+        });
+
         regionAccordion.addEventListener('click', (event) => {
+          if (event.target.closest('.member-entry__link')) {
+            return;
+          }
+
+          const interactiveMemberCard = event.target.closest('[data-member-href]');
+          if (interactiveMemberCard) {
+            window.open(interactiveMemberCard.dataset.memberHref, '_blank', 'noopener,noreferrer');
+            return;
+          }
+
           const regionButton = event.target.closest('[data-region-toggle]');
           if (regionButton) {
             toggleRegionPanel(regionButton.dataset.regionToggle);
@@ -1165,6 +1402,15 @@
           isRegionPanelOpen = true;
           renderRegionAccordion();
           syncActiveState();
+        });
+
+        regionAccordion.addEventListener('keydown', (event) => {
+          const interactiveMemberCard = event.target.closest('[data-member-href]');
+          if (!interactiveMemberCard) return;
+          if (event.key !== 'Enter' && event.key !== ' ') return;
+
+          event.preventDefault();
+          window.open(interactiveMemberCard.dataset.memberHref, '_blank', 'noopener,noreferrer');
         });
       }
 
