@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NURA | Members</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../source/resources/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
+    <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <script src="../data/site-data.js"></script>
+    <style>
+      html { scroll-behavior: smooth; }
+      html, body { background-color: #030712; overflow-x: hidden; }
+      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+      .page-shell { min-height: 100vh; }
+      .page-main-title { font-size: clamp(2rem, 11vw, 4.5rem); }
+      .break-keep { word-break: keep-all; }
+
+      .map-graphic {
+        position: relative;
+        width: 100%;
+        max-width: 524px;
+        aspect-ratio: 524.23737 / 630.5871;
+        margin: 0 auto;
+      }
+
+      .map-status {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.95rem;
+        letter-spacing: -0.02em;
+        transition: opacity 180ms ease;
+        pointer-events: none;
+      }
+
+      .map-status.is-hidden {
+        opacity: 0;
+      }
+
+      .korea-map-frame {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        opacity: 0;
+        transition: opacity 180ms ease;
+      }
+
+      .korea-map-frame.is-ready {
+        opacity: 1;
+      }
+
+      .region-accordion {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .region-item {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .region-item:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .region-toggle {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+        padding: 0.82rem 0;
+        color: rgba(255, 255, 255, 0.84);
+        text-align: left;
+        transition: color 180ms ease;
+      }
+
+      .region-toggle:hover,
+      .region-toggle:focus-visible,
+      .region-toggle.is-active {
+        color: #ffffff;
+      }
+
+      .region-toggle.is-hovered {
+        color: rgba(191, 219, 254, 0.96);
+      }
+
+      .region-toggle__meta {
+        display: flex;
+        align-items: baseline;
+        gap: 0.55rem;
+        min-width: 0;
+      }
+
+      .region-toggle__name {
+        font-size: 0.98rem;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        color: rgba(255, 255, 255, 0.82);
+        transition: color 180ms ease;
+      }
+
+      .region-toggle.is-hovered .region-toggle__name {
+        color: #93c5fd;
+      }
+
+      .region-toggle.is-active .region-toggle__name {
+        color: #60a5fa;
+        text-shadow: 0 0 18px rgba(96, 165, 250, 0.22);
+      }
+
+      .region-toggle__coverage {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.42);
+        white-space: nowrap;
+        transition: color 180ms ease;
+      }
+
+      .region-toggle.is-hovered .region-toggle__coverage {
+        color: rgba(147, 197, 253, 0.88);
+      }
+
+      .region-toggle.is-active .region-toggle__coverage {
+        color: rgba(191, 219, 254, 0.92);
+      }
+
+      .region-toggle__side {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        flex-shrink: 0;
+      }
+
+      .region-toggle__badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        min-height: 22px;
+        padding: 0 0.5rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .region-toggle__chevron {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        color: rgba(255, 255, 255, 0.36);
+        transition: transform 240ms ease, color 180ms ease;
+      }
+
+      .region-toggle[aria-expanded="true"] .region-toggle__chevron {
+        transform: rotate(180deg);
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .region-panel {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-6px);
+        padding-bottom: 0;
+        transition:
+          max-height 320ms cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 220ms ease,
+          transform 220ms ease,
+          padding-bottom 220ms ease;
+      }
+
+      .region-panel:not([hidden]) {
+        max-height: 3200px;
+        opacity: 1;
+        transform: translateY(0);
+        padding-bottom: 0.75rem;
+      }
+
+      .region-panel__description {
+        font-size: 0.84rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.54);
+      }
+
+      .subregion-stack {
+        margin-top: 0.95rem;
+        margin-left: 0.9rem;
+        padding-left: 0.95rem;
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .subregion-group {
+        margin-top: 0.55rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        transition: border-color 180ms ease;
+      }
+
+      .subregion-group:first-child {
+        margin-top: 0;
+        border-top: 0;
+      }
+
+      .subregion-group.is-active {
+        border-top-color: rgba(96, 165, 250, 0.28);
+      }
+
+      .subregion-group.is-active .subregion-group__name {
+        color: #60a5fa;
+        text-shadow: 0 0 18px rgba(96, 165, 250, 0.22);
+      }
+
+      .subregion-group__toggle {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+        padding: 0.72rem 0.1rem 0.66rem 0.2rem;
+        color: rgba(255, 255, 255, 0.82);
+        text-align: left;
+        transition: color 180ms ease;
+      }
+
+      .subregion-group__toggle:hover,
+      .subregion-group__toggle:focus-visible,
+      .subregion-group__toggle.is-active {
+        color: #ffffff;
+      }
+
+      .subregion-group__toggle:hover .subregion-group__name,
+      .subregion-group__toggle:focus-visible .subregion-group__name {
+        color: #93c5fd;
+      }
+
+      .subregion-group__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+        width: 100%;
+      }
+
+      .subregion-group__meta {
+        min-width: 0;
+      }
+
+      .subregion-group__name {
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: rgba(255, 255, 255, 0.82);
+        transition: color 180ms ease, text-shadow 180ms ease;
+      }
+
+      .subregion-group__coverage {
+        margin-top: 0.14rem;
+        font-size: 0.76rem;
+        color: rgba(255, 255, 255, 0.42);
+        transition: color 180ms ease;
+      }
+
+      .subregion-group__side {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-shrink: 0;
+      }
+
+      .subregion-group__count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 34px;
+        min-height: 22px;
+        padding: 0 0.45rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        font-size: 0.66rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.78);
+        transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+      }
+
+      .subregion-group__chevron {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        color: rgba(255, 255, 255, 0.34);
+        transition: transform 220ms ease, color 180ms ease;
+      }
+
+      .subregion-group__toggle[aria-expanded="true"] .subregion-group__chevron {
+        transform: rotate(180deg);
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .subregion-group.is-active .subregion-group__coverage {
+        color: rgba(191, 219, 254, 0.8);
+      }
+
+      .subregion-group.is-active .subregion-group__count {
+        border-color: rgba(147, 197, 253, 0.42);
+        background: rgba(147, 197, 253, 0.16);
+        color: #eff6ff;
+      }
+
+      .subregion-group__panel {
+        overflow: hidden;
+        overflow-y: auto;
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-4px);
+        margin-left: 0.2rem;
+        padding-left: 0.9rem;
+        padding-right: 0.3rem;
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.42) rgba(255, 255, 255, 0.06);
+        transition:
+          max-height 280ms cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 200ms ease,
+          transform 200ms ease,
+          padding-bottom 200ms ease,
+          border-color 180ms ease;
+        padding-bottom: 0;
+      }
+
+      .subregion-group__panel:not([hidden]) {
+        max-height: 55vh;
+        opacity: 1;
+        transform: translateY(0);
+        padding-bottom: 0.35rem;
+        border-left-color: rgba(96, 165, 250, 0.2);
+        background:
+          linear-gradient(to bottom, rgba(2, 6, 23, 0.52), rgba(2, 6, 23, 0)) top / 100% 14px no-repeat,
+          linear-gradient(to top, rgba(2, 6, 23, 0.52), rgba(2, 6, 23, 0)) bottom / 100% 14px no-repeat;
+      }
+
+      .subregion-group__panel::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      .subregion-group__panel::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 999px;
+      }
+
+      .subregion-group__panel::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.42);
+        border: 2px solid rgba(2, 6, 23, 0.18);
+        border-radius: 999px;
+      }
+
+      .subregion-group__panel::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      .member-list-card {
+        margin-top: 0.2rem;
+      }
+
+      .member-entry {
+        padding: 0.58rem 0.05rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      .member-entry:last-child {
+        border-bottom: 0;
+      }
+
+      .member-entry__name {
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: #ffffff;
+      }
+
+      .member-entry__meta {
+        margin-top: 0.12rem;
+        font-size: 0.78rem;
+        line-height: 1.45;
+        color: rgba(255, 255, 255, 0.56);
+      }
+
+      .member-entry__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.42rem;
+        margin-top: 0.44rem;
+      }
+
+      .member-entry__link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 28px;
+        padding: 0 0.64rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition:
+          background-color 180ms ease,
+          border-color 180ms ease,
+          color 180ms ease;
+      }
+
+      .member-entry__link:hover,
+      .member-entry__link:focus-visible {
+        background: #ffffff;
+        border-color: #ffffff;
+        color: #020617;
+      }
+
+      .member-entry__empty {
+        padding: 0.42rem 0 0.12rem;
+        font-size: 0.76rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.46);
+      }
+
+      .members-guide-block {
+        overflow: hidden;
+        max-height: 120px;
+        opacity: 1;
+        transform: translateY(0);
+        margin-bottom: 1.5rem;
+        transition:
+          max-height 520ms cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 320ms ease,
+          transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+          margin-bottom 420ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .members-guide-block.is-hidden {
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-18px);
+        margin-bottom: 0;
+        pointer-events: none;
+      }
+
+      @media (max-width: 430px) {
+        .page-main-title { font-size: clamp(1.75rem, 9.4vw, 2.3rem); }
+
+        .region-toggle__meta {
+          gap: 0.4rem;
+          flex-wrap: wrap;
+        }
+
+        .region-toggle__name {
+          font-size: 0.92rem;
+        }
+
+        .region-toggle__coverage {
+          font-size: 0.72rem;
+        }
+
+        .subregion-stack {
+          margin-left: 0.55rem;
+          padding-left: 0.7rem;
+        }
+
+        .subregion-group__panel {
+          padding-left: 0.7rem;
+        }
+      }
+    </style>
+    <script src="../data/shared-layout.js"></script>
+  </head>
+  <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="members" data-base-path="..">
+    <div class="page-shell flex flex-col">
+      <div data-shared-header></div>
+
+      <main class="w-full flex-1 flex flex-col">
+        <section class="bg-black">
+          <div class="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-12 pb-16 md:pb-12">
+            <section class="px-0 md:px-2 lg:px-4 pt-12 md:pt-16 pb-6 md:pb-8 border-b border-white/10">
+              <div class="max-w-5xl">
+                <h1 class="page-main-title mt-5 text-[42px] md:text-[72px] leading-none tracking-[-0.06em] font-semibold text-white">회원 대학</h1>
+                <p class="mt-6 text-gray-300 text-base md:text-lg leading-8 break-keep max-w-3xl">
+                  전국대학교로켓연합회와 함께하는 대학 로켓 동아리를 대한민국 지역 지도로 정리했습니다.
+                  현재 <span id="member-total-count" class="font-semibold text-white">36</span>개 대학이 참여하고 있으며,
+                  권역을 먼저 보고, 펼친 뒤 세부 지역별 회원 대학을 확인할 수 있습니다.
+                </p>
+              </div>
+            </section>
+
+            <section class="px-0 md:px-2 lg:px-4 py-8 md:py-10">
+              <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.9fr)] gap-8 lg:gap-10 items-start">
+                <div class="min-w-0">
+                  <div class="map-graphic">
+                    <div id="members-map-status" class="map-status">대한민국 지도를 불러오는 중입니다.</div>
+                    <object
+                      id="members-korea-map"
+                      class="korea-map-frame"
+                      type="image/svg+xml"
+                      data="../source/members/south-korea.svg"
+                      aria-label="대한민국 회원 대학 지도"
+                    ></object>
+                  </div>
+                </div>
+
+                <div class="min-w-0">
+                  <div class="max-w-[440px] ml-auto">
+                    <div id="members-guide-block" class="members-guide-block">
+                      <p class="text-xl md:text-2xl font-bold tracking-[-0.03em] text-white">권역별 회원 대학</p>
+                      <p class="mt-1 text-sm md:text-[15px] leading-7 text-white/55 break-keep">
+                        지도를 보며 권역을 살펴보고, 오른쪽 목록에서 세부 권역과 회원 대학 정보를 확인할 수 있습니다.
+                      </p>
+                    </div>
+                    <div id="region-accordion" class="region-accordion"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+      <div data-shared-footer></div>
+    </div>
+
+    <script>
+      const memberOrganizations = Array.isArray(window.NURA_DATA?.memberOrganizations) ? window.NURA_DATA.memberOrganizations : [];
+      const memberRegions = Array.isArray(window.NURA_DATA?.memberRegions) ? window.NURA_DATA.memberRegions : [];
+      const memberCount = window.NURA_DATA?.overviewStats?.find((item) => item.label === '참여 대학')?.value || 36;
+      const memberTotalCount = document.getElementById('member-total-count');
+      const mapFrame = document.getElementById('members-korea-map');
+      const mapStatus = document.getElementById('members-map-status');
+      const membersGuideBlock = document.getElementById('members-guide-block');
+      const regionAccordion = document.getElementById('region-accordion');
+
+      const provinceGroupsByRegion = {
+        seoul: ['KR-11'],
+        incheon: ['KR-28'],
+        gyeonggi: ['KR-41'],
+        gangwon: ['KR-42'],
+        daejeon: ['KR-30'],
+        sejong: ['KR-50'],
+        chungbuk: ['KR-43'],
+        chungnam: ['KR-44'],
+        gwangju: ['KR-29'],
+        jeonbuk: ['KR-45'],
+        jeonnam: ['KR-46'],
+        daegu: ['KR-27'],
+        gyeongbuk: ['KR-47'],
+        busan: ['KR-26'],
+        ulsan: ['KR-31'],
+        gyeongnam: ['KR-48'],
+        jeju: ['KR-49']
+      };
+
+      const macroRegions = [
+        {
+          id: 'capital',
+          name: '수도권',
+          coverage: '서울 · 인천 · 경기',
+          description: '서울, 인천, 경기 지역의 회원 대학을 함께 보고, 안에서 세부 지역별로 나누어 확인할 수 있습니다.',
+          regions: ['seoul', 'incheon', 'gyeonggi']
+        },
+        {
+          id: 'gangwon',
+          name: '강원권',
+          coverage: '강원',
+          description: '강원 지역 회원 대학입니다.',
+          regions: ['gangwon']
+        },
+        {
+          id: 'chungcheong',
+          name: '충청권',
+          coverage: '대전 · 세종 · 충북 · 충남',
+          description: '충청권은 대전, 세종, 충북, 충남으로 나누어 회원 대학을 정리했습니다.',
+          regions: ['daejeon', 'sejong', 'chungbuk', 'chungnam']
+        },
+        {
+          id: 'honam',
+          name: '호남권',
+          coverage: '광주 · 전북 · 전남',
+          description: '호남권은 광주, 전북, 전남으로 구분해 회원 대학을 확인할 수 있습니다.',
+          regions: ['gwangju', 'jeonbuk', 'jeonnam']
+        },
+        {
+          id: 'yeongnam',
+          name: '영남권',
+          coverage: '대구 · 경북 · 부산 · 울산 · 경남',
+          description: '영남권은 대구, 경북, 부산, 울산, 경남으로 나누어 회원 대학을 정리했습니다.',
+          regions: ['daegu', 'gyeongbuk', 'busan', 'ulsan', 'gyeongnam']
+        },
+        {
+          id: 'jeju',
+          name: '제주권',
+          coverage: '제주',
+          description: '제주 지역 회원 대학입니다.',
+          regions: ['jeju']
+        }
+      ];
+
+      const provinceMacroRegionMap = new Map(
+        macroRegions.flatMap((macroRegion) =>
+          macroRegion.regions.flatMap((regionId) =>
+            (provinceGroupsByRegion[regionId] || []).map((provinceId) => [provinceId, macroRegion.id])
+          )
+        )
+      );
+
+      const provinceFineRegionMap = new Map(
+        Object.entries(provinceGroupsByRegion).flatMap(([regionId, provinceIds]) =>
+          (provinceIds || []).map((provinceId) => [provinceId, regionId])
+        )
+      );
+
+      const regionDefinitionMap = new Map(memberRegions.map((region) => [region.id, region]));
+      const regionMembersMap = new Map(memberRegions.map((region) => [region.id, []]));
+
+      const MAP_BASE_FILL = 'rgba(255,255,255,0.045)';
+      const MAP_BASE_STROKE = 'rgba(255,255,255,0.18)';
+      const MAP_HOVER_FILL = 'rgba(147,197,253,0.18)';
+      const MAP_HOVER_STROKE = 'rgba(147,197,253,0.92)';
+      const MAP_SELECTED_FILL = 'rgba(147,197,253,0.28)';
+      const MAP_SELECTED_STROKE = 'rgba(191,219,254,1)';
+
+      let provinceNodes = [];
+      let activeMacroRegionId = null;
+      let selectedProvinceId = null;
+      let hoveredMacroRegionId = null;
+      let isRegionPanelOpen = false;
+      let hasPinnedRegionSelection = false;
+      const openSubregionByMacro = new Map(
+        macroRegions.map((macroRegion) => [macroRegion.id, null])
+      );
+
+      if (memberTotalCount) {
+        memberTotalCount.textContent = String(memberCount);
+      }
+
+      memberOrganizations.forEach((member) => {
+        if (!member.region) return;
+        if (!regionMembersMap.has(member.region)) {
+          regionMembersMap.set(member.region, []);
+        }
+        regionMembersMap.get(member.region).push(member);
+      });
+
+      const getMembersByFineRegion = (regionId) => regionMembersMap.get(regionId) || [];
+
+      const getMacroRegionCount = (macroRegionId) => {
+        const macroRegion = macroRegions.find((item) => item.id === macroRegionId);
+        if (!macroRegion) return 0;
+        return macroRegion.regions.reduce((total, regionId) => total + getMembersByFineRegion(regionId).length, 0);
+      };
+
+      const getMacroRegionCountLabel = (macroRegionId) => {
+        return memberOrganizations.length ? `${getMacroRegionCount(macroRegionId)}개` : '준비중';
+      };
+
+      const getProvinceIdByFineRegion = (regionId) => (provinceGroupsByRegion[regionId] || [])[0] || null;
+
+      const getMemberListHtml = (regionId) => {
+        const members = getMembersByFineRegion(regionId);
+
+        if (!members.length) {
+          return `<p class="member-entry__empty break-keep">등록된 회원 대학 정보가 아직 없습니다.</p>`;
+        }
+
+        return members
+          .map((member) => {
+            const links = [];
+
+            if (member.instagram) {
+              links.push(`<a class="member-entry__link" href="${member.instagram}" target="_blank" rel="noopener noreferrer">Instagram</a>`);
+            }
+
+            if (member.website) {
+              links.push(`<a class="member-entry__link" href="${member.website}" target="_blank" rel="noopener noreferrer">Website</a>`);
+            }
+
+            return `
+              <article class="member-entry">
+                <h3 class="member-entry__name">${member.clubName || member.name}</h3>
+                <p class="member-entry__meta">
+                  ${member.name}
+                </p>
+                ${member.description ? `<p class="member-entry__meta break-keep">${member.description}</p>` : ''}
+                ${links.length ? `<div class="member-entry__links">${links.join('')}</div>` : ''}
+              </article>
+            `;
+          })
+          .join('');
+      };
+
+      const getOrderedSubregions = (macroRegion) => {
+        const openSubregionId = openSubregionByMacro.get(macroRegion.id);
+        if (!openSubregionId) return macroRegion.regions;
+
+        return [
+          openSubregionId,
+          ...macroRegion.regions.filter((regionId) => regionId !== openSubregionId)
+        ];
+      };
+
+      const getMacroRegionPanelHtml = (macroRegion) => {
+        const subregionHtml = getOrderedSubregions(macroRegion)
+          .map((regionId) => {
+            const region = regionDefinitionMap.get(regionId);
+            if (!region) return '';
+
+            const memberCountByRegion = getMembersByFineRegion(regionId).length;
+            const isOpen = openSubregionByMacro.get(macroRegion.id) === regionId;
+
+            return `
+              <section class="subregion-group ${isOpen ? 'is-active' : ''}">
+                <button
+                  type="button"
+                  class="subregion-group__toggle ${isOpen ? 'is-active' : ''}"
+                  data-subregion-toggle="${regionId}"
+                  data-parent-region="${macroRegion.id}"
+                  aria-expanded="${isOpen}"
+                  aria-controls="subregion-panel-${macroRegion.id}-${regionId}"
+                >
+                  <span class="subregion-group__header">
+                    <span class="subregion-group__meta">
+                      <span class="subregion-group__name">${region.name}</span>
+                      <span class="subregion-group__coverage">${region.coverage}</span>
+                    </span>
+                    <span class="subregion-group__side">
+                      <span class="subregion-group__count">${memberCountByRegion}개</span>
+                      <span class="subregion-group__chevron" aria-hidden="true">
+                        <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                </button>
+                <div id="subregion-panel-${macroRegion.id}-${regionId}" class="subregion-group__panel" ${isOpen ? '' : 'hidden'}>
+                  <div class="member-list-card">
+                    ${getMemberListHtml(regionId)}
+                  </div>
+                </div>
+              </section>
+            `;
+          })
+          .join('');
+
+        return `
+          <div class="region-panel__description break-keep">${macroRegion.description}</div>
+          <div class="subregion-stack">
+            ${subregionHtml}
+          </div>
+        `;
+      };
+
+      const getOrderedMacroRegions = () => {
+        if (!activeMacroRegionId || !isRegionPanelOpen) return macroRegions;
+
+        const activeMacroRegion = macroRegions.find((item) => item.id === activeMacroRegionId);
+        if (!activeMacroRegion) return macroRegions;
+
+        return [
+          activeMacroRegion,
+          ...macroRegions.filter((item) => item.id !== activeMacroRegionId)
+        ];
+      };
+
+      const renderRegionAccordion = () => {
+        if (!regionAccordion) return;
+
+        regionAccordion.innerHTML = getOrderedMacroRegions()
+          .map((macroRegion) => `
+            <section class="region-item">
+              <button
+                type="button"
+                class="region-toggle"
+                data-region-toggle="${macroRegion.id}"
+                aria-expanded="false"
+                aria-controls="region-panel-${macroRegion.id}"
+              >
+                <span class="region-toggle__meta">
+                  <span class="region-toggle__name">${macroRegion.name}</span>
+                  <span class="region-toggle__coverage">${macroRegion.coverage}</span>
+                </span>
+                <span class="region-toggle__side">
+                  <span class="region-toggle__badge">${getMacroRegionCountLabel(macroRegion.id)}</span>
+                  <span class="region-toggle__chevron" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                      <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+              <div id="region-panel-${macroRegion.id}" class="region-panel" hidden>
+                ${getMacroRegionPanelHtml(macroRegion)}
+              </div>
+            </section>
+          `)
+          .join('');
+      };
+
+      const applyProvinceVisual = (provinceNode, state) => {
+        const isSelected = state === 'selected';
+        const isHovered = state === 'hovered';
+
+        provinceNode.style.fill = isSelected
+          ? MAP_SELECTED_FILL
+          : isHovered
+            ? MAP_HOVER_FILL
+            : MAP_BASE_FILL;
+        provinceNode.style.stroke = isSelected
+          ? MAP_SELECTED_STROKE
+          : isHovered
+            ? MAP_HOVER_STROKE
+            : MAP_BASE_STROKE;
+        provinceNode.style.strokeWidth = '1.4';
+        provinceNode.style.vectorEffect = 'non-scaling-stroke';
+        provinceNode.style.transition = 'fill 180ms ease, stroke 180ms ease, opacity 180ms ease';
+        provinceNode.style.cursor = 'pointer';
+      };
+
+      const syncActiveState = () => {
+        document.querySelectorAll('[data-region-toggle]').forEach((button) => {
+          const isActive = button.dataset.regionToggle === activeMacroRegionId;
+          const isHovered = button.dataset.regionToggle === hoveredMacroRegionId;
+          const isOpen = isActive && isRegionPanelOpen;
+          const panelId = button.getAttribute('aria-controls');
+          const panel = panelId ? document.getElementById(panelId) : null;
+
+          button.classList.toggle('is-active', isActive);
+          button.classList.toggle('is-hovered', !isActive && isHovered);
+          button.setAttribute('aria-expanded', String(isOpen));
+
+          if (panel) {
+            panel.hidden = !isOpen;
+          }
+        });
+
+        const highlightedMacroRegionId = hoveredMacroRegionId || (
+          !selectedProvinceId && isRegionPanelOpen ? activeMacroRegionId : null
+        );
+
+        provinceNodes.forEach((provinceNode) => {
+          const visualState = provinceNode.id === selectedProvinceId
+            ? 'selected'
+            : highlightedMacroRegionId && provinceNode.dataset.regionId === highlightedMacroRegionId
+              ? 'hovered'
+              : 'base';
+
+          applyProvinceVisual(provinceNode, visualState);
+        });
+
+        if (membersGuideBlock) {
+          const shouldHideGuide =
+            hasPinnedRegionSelection ||
+            Boolean(hoveredMacroRegionId) ||
+            Boolean(activeMacroRegionId && isRegionPanelOpen);
+
+          membersGuideBlock.classList.toggle('is-hidden', shouldHideGuide);
+        }
+      };
+
+      const resetToDefaultState = () => {
+        activeMacroRegionId = null;
+        selectedProvinceId = null;
+        hoveredMacroRegionId = null;
+        isRegionPanelOpen = false;
+        hasPinnedRegionSelection = false;
+        macroRegions.forEach((macroRegion) => {
+          openSubregionByMacro.set(macroRegion.id, null);
+        });
+        renderRegionAccordion();
+        syncActiveState();
+      };
+
+      const setActiveMacroRegion = (macroRegionId, { open = isRegionPanelOpen, resetSubregion = false } = {}) => {
+        if (!macroRegions.find((item) => item.id === macroRegionId)) return;
+
+        if (resetSubregion && (activeMacroRegionId !== macroRegionId || !isRegionPanelOpen)) {
+          openSubregionByMacro.set(macroRegionId, null);
+        }
+
+        activeMacroRegionId = macroRegionId;
+        selectedProvinceId = null;
+        hoveredMacroRegionId = null;
+        isRegionPanelOpen = open;
+        renderRegionAccordion();
+        syncActiveState();
+      };
+
+      const toggleRegionPanel = (macroRegionId) => {
+        if (!macroRegionId) return;
+
+        if (activeMacroRegionId === macroRegionId) {
+          isRegionPanelOpen = !isRegionPanelOpen;
+          if (isRegionPanelOpen) {
+            openSubregionByMacro.set(macroRegionId, null);
+          } else {
+            resetToDefaultState();
+            return;
+          }
+          hasPinnedRegionSelection = true;
+          selectedProvinceId = null;
+          hoveredMacroRegionId = null;
+          renderRegionAccordion();
+          syncActiveState();
+        } else {
+          hasPinnedRegionSelection = true;
+          setActiveMacroRegion(macroRegionId, { open: true, resetSubregion: true });
+        }
+      };
+
+      const openMacroRegionFromMap = (macroRegionId) => {
+        if (!macroRegionId) return;
+
+        const isSameOpenMacroRegion =
+          activeMacroRegionId === macroRegionId &&
+          isRegionPanelOpen &&
+          !selectedProvinceId;
+
+        if (isSameOpenMacroRegion) {
+          resetToDefaultState();
+          return;
+        }
+
+        hasPinnedRegionSelection = true;
+        activeMacroRegionId = macroRegionId;
+        selectedProvinceId = null;
+        hoveredMacroRegionId = null;
+        isRegionPanelOpen = true;
+        openSubregionByMacro.set(macroRegionId, null);
+        renderRegionAccordion();
+        syncActiveState();
+      };
+
+      const previewMapProvince = (provinceId) => {
+        const macroRegionId = provinceMacroRegionMap.get(provinceId);
+        if (!macroRegionId) return;
+
+        if (selectedProvinceId) {
+          hoveredMacroRegionId = provinceId === selectedProvinceId ? null : macroRegionId;
+          syncActiveState();
+          return;
+        }
+
+        hoveredMacroRegionId = macroRegionId;
+
+        if (activeMacroRegionId !== macroRegionId || !isRegionPanelOpen) {
+          activeMacroRegionId = macroRegionId;
+          isRegionPanelOpen = true;
+          openSubregionByMacro.set(macroRegionId, null);
+          renderRegionAccordion();
+        }
+
+        syncActiveState();
+      };
+
+      const clearHoveredMacroRegion = () => {
+        if (!hoveredMacroRegionId && selectedProvinceId) return;
+        if (!hoveredMacroRegionId && hasPinnedRegionSelection) {
+          syncActiveState();
+          return;
+        }
+        if (!hoveredMacroRegionId) {
+          resetToDefaultState();
+          return;
+        }
+        hoveredMacroRegionId = null;
+
+        if (!selectedProvinceId && !hasPinnedRegionSelection) {
+          resetToDefaultState();
+          return;
+        }
+
+        syncActiveState();
+      };
+
+      const isMobileMapInteraction = () => window.matchMedia('(pointer: coarse), (max-width: 767px)').matches;
+
+      const openMapSubregion = (provinceId) => {
+        const macroRegionId = provinceMacroRegionMap.get(provinceId);
+        const fineRegionId = provinceFineRegionMap.get(provinceId);
+
+        if (!macroRegionId) return;
+
+        const isSameProvinceSelected = selectedProvinceId === provinceId;
+
+        if (isSameProvinceSelected) {
+          resetToDefaultState();
+          return;
+        }
+
+        hasPinnedRegionSelection = true;
+        selectedProvinceId = provinceId;
+        hoveredMacroRegionId = null;
+        activeMacroRegionId = macroRegionId;
+        isRegionPanelOpen = true;
+        openSubregionByMacro.set(macroRegionId, fineRegionId || null);
+        renderRegionAccordion();
+        syncActiveState();
+      };
+
+      const activateProvinceSelection = (provinceNode, macroRegionId) => {
+        if (isMobileMapInteraction()) {
+          openMacroRegionFromMap(macroRegionId);
+          return;
+        }
+
+        openMapSubregion(provinceNode.id);
+      };
+
+      const bindProvinceEvents = (provinceNode, macroRegionId) => {
+        applyProvinceVisual(provinceNode, provinceNode.id === selectedProvinceId ? 'selected' : 'base');
+        provinceNode.dataset.regionId = macroRegionId;
+        provinceNode.setAttribute('tabindex', '0');
+        provinceNode.setAttribute('role', 'button');
+        provinceNode.setAttribute('focusable', 'true');
+        provinceNode.style.outline = 'none';
+        provinceNode.style.touchAction = 'manipulation';
+        provinceNode.style.webkitTapHighlightColor = 'transparent';
+
+        const provinceTitle = provinceNode.getAttribute('title') || '지역';
+        const macroRegionName = macroRegions.find((item) => item.id === macroRegionId)?.name || '권역';
+        provinceNode.setAttribute('aria-label', `${provinceTitle} · ${macroRegionName}`);
+
+        let lastTouchActivationAt = 0;
+
+        provinceNode.addEventListener('mousedown', (event) => {
+          event.preventDefault();
+        });
+
+        provinceNode.addEventListener('pointerup', (event) => {
+          if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
+
+          event.preventDefault();
+          lastTouchActivationAt = Date.now();
+          activateProvinceSelection(provinceNode, macroRegionId);
+        });
+
+        provinceNode.addEventListener('click', () => {
+          if (Date.now() - lastTouchActivationAt < 700) return;
+          activateProvinceSelection(provinceNode, macroRegionId);
+        });
+
+        provinceNode.addEventListener('mouseenter', () => {
+          if (isMobileMapInteraction()) return;
+          previewMapProvince(provinceNode.id);
+        });
+
+        provinceNode.addEventListener('mouseleave', () => {
+          if (isMobileMapInteraction()) return;
+          clearHoveredMacroRegion();
+        });
+
+        provinceNode.addEventListener('keydown', (event) => {
+          if (event.key !== 'Enter' && event.key !== ' ') return;
+          event.preventDefault();
+          activateProvinceSelection(provinceNode, macroRegionId);
+        });
+
+        provinceNode.addEventListener('focus', () => {
+          if (isMobileMapInteraction()) return;
+          previewMapProvince(provinceNode.id);
+        });
+
+        provinceNode.addEventListener('blur', () => {
+          if (isMobileMapInteraction()) return;
+          clearHoveredMacroRegion();
+        });
+      };
+
+      const initializeMap = () => {
+        if (!mapFrame) return;
+
+        const handleMapReady = () => {
+          const svgDocument = mapFrame.contentDocument;
+          const svgRoot = svgDocument?.querySelector('svg');
+
+          if (!svgRoot) {
+            return;
+          }
+
+          provinceNodes = Array.from(svgRoot.querySelectorAll('[id^="KR-"]')).filter((provinceNode) => {
+            const macroRegionId = provinceMacroRegionMap.get(provinceNode.id);
+            if (!macroRegionId) {
+              provinceNode.style.fill = 'rgba(255,255,255,0.03)';
+              provinceNode.style.stroke = 'rgba(255,255,255,0.08)';
+              provinceNode.style.strokeWidth = '1';
+              return false;
+            }
+
+            bindProvinceEvents(provinceNode, macroRegionId);
+            return true;
+          });
+
+          mapFrame.classList.add('is-ready');
+          if (mapStatus) {
+            mapStatus.classList.add('is-hidden');
+          }
+          syncActiveState();
+        };
+
+        mapFrame.addEventListener('load', handleMapReady);
+
+        mapFrame.addEventListener('error', () => {
+          if (mapStatus) {
+            mapStatus.textContent = '대한민국 지도를 불러오지 못했습니다.';
+          }
+        });
+
+        window.setTimeout(() => {
+          if (provinceNodes.length) return;
+          handleMapReady();
+        }, 120);
+      };
+
+      if (regionAccordion) {
+        regionAccordion.addEventListener('click', (event) => {
+          const regionButton = event.target.closest('[data-region-toggle]');
+          if (regionButton) {
+            toggleRegionPanel(regionButton.dataset.regionToggle);
+            return;
+          }
+
+          const subregionButton = event.target.closest('[data-subregion-toggle]');
+          if (!subregionButton) return;
+
+          const macroRegionId = subregionButton.dataset.parentRegion;
+          const subregionId = subregionButton.dataset.subregionToggle;
+          const currentOpenSubregion = openSubregionByMacro.get(macroRegionId);
+          const provinceId = getProvinceIdByFineRegion(subregionId);
+
+          if (currentOpenSubregion === subregionId) {
+            openSubregionByMacro.set(macroRegionId, null);
+            selectedProvinceId = null;
+          } else {
+            openSubregionByMacro.set(macroRegionId, subregionId);
+            selectedProvinceId = provinceId;
+          }
+
+          hasPinnedRegionSelection = true;
+          hoveredMacroRegionId = null;
+          activeMacroRegionId = macroRegionId;
+          isRegionPanelOpen = true;
+          renderRegionAccordion();
+          syncActiveState();
+        });
+      }
+
+      if (activeMacroRegionId) {
+        setActiveMacroRegion(activeMacroRegionId, { open: true });
+      } else {
+        renderRegionAccordion();
+      }
+
+      initializeMap();
+    </script>
+  </body>
+</html>

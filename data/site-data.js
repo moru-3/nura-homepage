@@ -26,6 +26,330 @@ window.NURA_DATA = {
     }
   ],
 
+  memberOrganizations: [
+    {
+      name: "가천대학교",
+      region: "gyeonggi",
+      clubName: "GRPL (가천로켓추진연구회)",
+      description: "경기도 성남시 수정구 성남대로 1342 (글로벌)"
+    },
+    {
+      name: "건국대학교",
+      region: "seoul",
+      clubName: "ASEC 로켓팀",
+      description: "서울특별시 광진구 능동로 120 (서울캠)"
+    },
+    {
+      name: "경기대학교",
+      region: "gyeonggi",
+      clubName: "KURBC",
+      description: "경기도 수원시 영통구 광교산로 154-42 (수원캠)"
+    },
+    {
+      name: "경북대학교",
+      region: "daegu",
+      clubName: "천상연",
+      description: "대구광역시 북구 대학로 80 (대구캠)"
+    },
+    {
+      name: "경상국립대학교",
+      region: "gyeongnam",
+      clubName: "ALTIS (알티스)",
+      description: "경상남도 진주시 진주대로 501 (가좌캠)"
+    },
+    {
+      name: "경희대학교",
+      region: "gyeonggi",
+      clubName: "TUSI",
+      description: "경기도 용인시 기흥구 덕영대로 1732 (국제캠)"
+    },
+    {
+      name: "고려대학교",
+      region: "seoul",
+      clubName: "고로켓(GOROCKET)",
+      description: "서울특별시 성북구 안암로 145 (서울캠)"
+    },
+    {
+      name: "공군사관학교",
+      region: "chungbuk",
+      clubName: "공군사관학교 로켓동아리",
+      description: "충청북도 청주시 상당구 남일면 단재로 635"
+    },
+    {
+      name: "광주과학기술원",
+      region: "gwangju",
+      clubName: "GPERI",
+      description: "광주광역시 북구 첨단과기로 123"
+    },
+    {
+      name: "국립순천대학교",
+      region: "jeonnam",
+      clubName: "로켓단",
+      description: "전라남도 순천시 중앙로 255"
+    },
+    {
+      name: "국립한국교통대학교",
+      region: "chungbuk",
+      clubName: "TAURUS",
+      description: "충청북도 충주시 대소원면 대학로 50 (충주캠)"
+    },
+    {
+      name: "국민대학교",
+      region: "seoul",
+      clubName: "ERUCA",
+      description: "서울특별시 성북구 정릉로 77"
+    },
+    {
+      name: "동국대학교",
+      region: "seoul",
+      clubName: "DAVI",
+      description: "서울특별시 중구 필동로1길 30 (서울캠)"
+    },
+    {
+      name: "부산대학교",
+      region: "busan",
+      clubName: "P.R.O",
+      description: "부산광역시 금정구 부산대학로63번길 2 (부산캠)"
+    },
+    {
+      name: "서울과학기술대학교",
+      region: "seoul",
+      clubName: "MACH1ne",
+      description: "서울특별시 노원구 공릉로 232"
+    },
+    {
+      name: "서울대학교",
+      region: "seoul",
+      clubName: "하나로",
+      description: "서울특별시 관악구 관악로 1 (관악캠)"
+    },
+    {
+      name: "성균관대학교",
+      region: "gyeonggi",
+      clubName: "ARES",
+      description: "경기도 수원시 장안구 서부로 2066 (수원캠)"
+    },
+    {
+      name: "세종대학교",
+      region: "seoul",
+      clubName: "RUDDER",
+      description: "서울특별시 광진구 능동로 209"
+    },
+    {
+      name: "숙명여자대학교",
+      region: "seoul",
+      clubName: "DTU (Destiny To the Universe)",
+      description: "서울특별시 용산구 청파로47길 100"
+    },
+    {
+      name: "숭실대학교",
+      region: "seoul",
+      clubName: "UsFromEarth",
+      description: "서울특별시 동작구 상도로 369"
+    },
+    {
+      name: "아주대학교",
+      region: "gyeonggi",
+      clubName: "아주로",
+      description: "경기도 수원시 영통구 월드컵로 206"
+    },
+    {
+      name: "연세대학교",
+      region: "seoul",
+      clubName: "SPACE Y",
+      description: "서울특별시 서대문구 연세로 50 (신촌캠)"
+    },
+    {
+      name: "영남대학교",
+      region: "gyeongbuk",
+      clubName: "ARC",
+      description: "경상북도 경산시 대학로 280 (경산캠)"
+    },
+    {
+      name: "울산과학기술원",
+      region: "ulsan",
+      clubName: "에어로",
+      description: "울산광역시 울주군 언양읍 유니스트길 50"
+    },
+    {
+      name: "인하대학교",
+      region: "incheon",
+      clubName: "인하로케트연구회",
+      description: "인천광역시 연수구 갯벌로 36 (항우캠)"
+    },
+    {
+      name: "전북대학교",
+      region: "jeonbuk",
+      clubName: "JURG",
+      description: "전북특별자치도 전주시 덕진구 백제대로 567"
+    },
+    {
+      name: "조선대학교",
+      region: "gwangju",
+      clubName: "HANul",
+      description: "광주광역시 동구 조선대길 146"
+    },
+    {
+      name: "중앙대학교",
+      region: "seoul",
+      clubName: "MACH",
+      description: "서울특별시 동작구 흑석로 84 (서울캠)"
+    },
+    {
+      name: "충남대학교",
+      region: "daejeon",
+      clubName: "Challenge",
+      description: "대전광역시 유성구 대학로 99"
+    },
+    {
+      name: "포항공과대학교",
+      region: "gyeongbuk",
+      clubName: "포항공과대학교 항공우주연구회 PSI",
+      description: "경상북도 포항시 남구 청암로 77"
+    },
+    {
+      name: "한국과학기술원",
+      region: "daejeon",
+      clubName: "THRUST",
+      description: "대전광역시 유성구 대학로 291 (본원)"
+    },
+    {
+      name: "한국기술교육대학교",
+      region: "chungnam",
+      clubName: "KARS(Koreatech Aerospace Research Society, 한기대 항공우주연구회)",
+      description: "충청남도 천안시 동남구 병천면 충절로 1600 (제1캠)"
+    },
+    {
+      name: "한국에너지공과대학교",
+      region: "jeonnam",
+      clubName: "WGM",
+      description: "전라남도 나주시 켄텍길 21"
+    },
+    {
+      name: "한국항공대학교",
+      region: "gyeonggi",
+      clubName: "로켓연구회 SRS",
+      description: "경기도 고양시 덕양구 항공대학로 76"
+    },
+    {
+      name: "한양대학교",
+      region: "seoul",
+      clubName: "헬리오스(Helios)",
+      description: "서울특별시 성동구 왕십리로 222"
+    },
+    {
+      name: "한양대학교 ERICA",
+      region: "gyeonggi",
+      clubName: "COMET",
+      description: "경기도 안산시 상록구 한양대학로 55"
+    }
+  ],
+
+  memberRegions: [
+    {
+      id: "seoul",
+      name: "서울",
+      coverage: "서울특별시",
+      description: "서울 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "incheon",
+      name: "인천",
+      coverage: "인천광역시",
+      description: "인천 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "gyeonggi",
+      name: "경기",
+      coverage: "경기도",
+      description: "경기 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "gangwon",
+      name: "강원",
+      coverage: "강원특별자치도",
+      description: "강원 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "daejeon",
+      name: "대전",
+      coverage: "대전광역시",
+      description: "대전 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "sejong",
+      name: "세종",
+      coverage: "세종특별자치시",
+      description: "세종 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "chungbuk",
+      name: "충북",
+      coverage: "충청북도",
+      description: "충북 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "chungnam",
+      name: "충남",
+      coverage: "충청남도",
+      description: "충남 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "gwangju",
+      name: "광주",
+      coverage: "광주광역시",
+      description: "광주 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "jeonbuk",
+      name: "전북",
+      coverage: "전북특별자치도",
+      description: "전북 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "jeonnam",
+      name: "전남",
+      coverage: "전라남도",
+      description: "전남 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "daegu",
+      name: "대구",
+      coverage: "대구광역시",
+      description: "대구 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "gyeongbuk",
+      name: "경북",
+      coverage: "경상북도",
+      description: "경북 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "busan",
+      name: "부산",
+      coverage: "부산광역시",
+      description: "부산 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "ulsan",
+      name: "울산",
+      coverage: "울산광역시",
+      description: "울산 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "gyeongnam",
+      name: "경남",
+      coverage: "경상남도",
+      description: "경남 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    },
+    {
+      id: "jeju",
+      name: "제주",
+      coverage: "제주특별자치도",
+      description: "제주 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+    }
+  ],
+
   newsItems: [
     {
       date: "2022.06.11",

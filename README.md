@@ -25,6 +25,8 @@ nura-homepage/
 │   └── index.html          # 하위 HTML 파일
 ├── partnership/               
 │   └── index.html          # 하위 HTML 파일
+├── members/               
+│   └── index.html          # 하위 HTML 파일
 ├── data/               
 │   ├── shared-layout.js    # 헤더, 푸터
 │   └── site-data.js        # 각종 변수
@@ -124,6 +126,8 @@ pip install Pillow
 - `newsItems` : 메인 페이지 관련 기사 카드
 - `resourceDocuments` : 자료실 문서 목록
 - `historyData` : 연혁 문서 목록
+- `memberOrganizations` : 회원 대학/동아리 목록
+- `memberRegions` : 세부 권역 정의
 
 즉, 숫자/뉴스/자료실 목록은 HTML 본문을 직접 수정하지 않아도 이 파일에서 갱신할 수 있습니다.
 
@@ -135,6 +139,7 @@ pip install Pillow
 - `activities/index.html` : 활동 카드 목록
 - `activities/*/index.html` : 활동별 상세 설명
 - `partnership/index.html` : 협력 개요, 구조 소개, 문의 CTA
+- `members/index.html` : 각 권역별 회원 대학 소개
 - `resources/index.html` : 자료 목록 렌더링 화면
 
 ---
@@ -243,6 +248,34 @@ historyData: [
     featured: true,
     items: ["제1회 로켓발사대회(한국항공대학교)"]
   }
+```
+
+### 회원 대학 데이터 수정
+
+예시:
+
+```javascript
+memberOrganizations: [
+  {
+    name: "전북대학교",
+    region: "jeonbuk",
+    clubName: "JURG",
+    description: "전북특별자치도 전주시 덕진구 백제대로 567"
+  }
+]
+```
+
+`region` 값은 `memberRegions`의 `id`와 일치해야 합니다.
+
+```javascript
+memberRegions: [
+  {
+    id: "jeonbuk",
+    name: "전북",
+    coverage: "전북특별자치도",
+    description: "전북 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+  }
+]
 ```
 
 ### 공통 네비게이션 수정
