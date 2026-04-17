@@ -45,7 +45,6 @@ window.NURA_DATA = {
       region: "gyeonggi",
       clubName: "KURBC",
       description: "경기도 수원시 영통구 광교산로 154-42 (수원캠)",
-      instagramHandle: "@kurbc"
     },
     {
       name: "경북대학교",
@@ -85,7 +84,8 @@ window.NURA_DATA = {
       name: "광주과학기술원",
       region: "gwangju",
       clubName: "GPERI",
-      description: "광주광역시 북구 첨단과기로 123"
+      description: "광주광역시 북구 첨단과기로 123",
+      instagramHandle: "@gperi_official"
     },
     {
       name: "국립순천대학교",
@@ -220,7 +220,8 @@ window.NURA_DATA = {
       name: "충남대학교",
       region: "daejeon",
       clubName: "Challenge",
-      description: "대전광역시 유성구 대학로 99"
+      description: "대전광역시 유성구 대학로 99",
+      instagramHandle: "@cnu_challenge"
     },
     {
       name: "포항공과대학교",
