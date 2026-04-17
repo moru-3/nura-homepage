@@ -85,7 +85,7 @@ window.NURA_DATA = {
       region: "gwangju",
       clubName: "GPERI",
       description: "광주광역시 북구 첨단과기로 123",
-      instagramHandle: "@gperi_official"
+      instagramHandle: "@gperi_gist"
     },
     {
       name: "국립순천대학교",
