@@ -226,6 +226,7 @@
 
             <a href="${basePath}/partnership/" data-page="partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
             <a href="${basePath}/members/" data-page="members" class="nav-link text-gray-300 hover:text-white transition">Members</a>
+            <a href="${basePath}/members2/" data-page="members2" class="nav-link text-gray-300 hover:text-white transition">Members2</a>
             <a href="${basePath}/resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
           </nav>
 
@@ -309,6 +310,7 @@
 
               <a href="${basePath}/partnership/" data-page="partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
               <a href="${basePath}/members/" data-page="members" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Members</a>
+              <a href="${basePath}/members2/" data-page="members2" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Members2</a>
               <a href="${basePath}/resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
             </div>
 
@@ -369,6 +371,7 @@
                 <a href="${basePath}/activities/">Activities</a>
                 <a href="${basePath}/partnership/">Partnership</a>
                 <a href="${basePath}/members/">Members</a>
+                <a href="${basePath}/members2/">Members2</a>
                 <a href="${basePath}/resources/">Resources</a>
               </div>
             </div>
@@ -400,6 +403,7 @@
 
     if (path.includes('/about')) return 'about';
     if (path.includes('/partnership')) return 'partnership';
+    if (path.includes('/members2')) return 'members2';
     if (path.includes('/members')) return 'members';
     if (path.includes('/resources')) return 'resources';
 
