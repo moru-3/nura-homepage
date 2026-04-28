@@ -3,7 +3,7 @@ window.NURA_DATA = {
     {
       basis: "2026년 4월 기준",
       label: "참여 대학",
-      value: 36,
+      value: 37,
       unit: "개교"
     },
     {
@@ -376,6 +376,7 @@ window.NURA_DATA = {
       featured: true,
       items: [
         "제35대 회장 광주과학기술원 이창현, 부회장 동국대학교 한재경, 총무 건국대학교 윤원빈"
+        "2026 대표자회의"
       ]
     }
   ]
