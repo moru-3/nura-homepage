@@ -334,8 +334,8 @@
               <h3 class="text-lg font-bold mb-4">연락처</h3>
               <div class="text-gray-400 text-sm space-y-2">
                 <p>
-                  <a href="mailto:nurarocketscience@gmail.com" class="footer-contact-link break-all">
-                    Email: nurarocketscience@gmail.com
+                  <a href="mailto:nura@nura.kr" class="footer-contact-link break-all">
+                    Email: nura@nura.kr
                   </a>
                 </p>
                 <p>
