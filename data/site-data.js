@@ -91,9 +91,10 @@ window.NURA_DATA = {
       date: "2026.05",
       title: "후원제안서",
       category: "Brochure",
-      format: "PDF",
+      format: "pdf",
+      size: "4.3MB",
       description: "전국대학교로켓연합회의 후원제안서입니다.",
-      status: "coming-soon"
+      href: "../source/resources/전국대학교로켓연합회 NURA 후원제안서.pdf"
     }
   ],
 
