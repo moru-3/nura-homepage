@@ -52,15 +52,15 @@ window.NURA_DATA = {
   
   resourceDocuments: [
     {
-      date: "2026.04",
-      title: "전국대학교로켓연합회 CI 가이드라인",
-      category: "Partnership",
-      format: "AI",
-      size: "2.2MB",
-      description: "전국대학교로켓연합회의 CI 사용 방안을 담은 가이드라인입니다.",
-      href: "../source/resources/NURA_AI.ai"
+      date: "2026.03",
+      title: "2026 전국대학교로켓연합회 회칙",
+      category: "Rule",
+      format: "pdf ",
+      size: "397KB",
+      description: "전국대학교로켓연합회의 회칙 입니다.",
+      href: "../source/resources/2026 전국대학교로켓연합회 회칙_260314.pdf"
     },
-        {
+    {
       date: "2026.04",
       title: "2026 전국대학교로켓학술대회 규정",
       category: "Conference",
@@ -77,6 +77,15 @@ window.NURA_DATA = {
       size: "323KB",
       description: "2026 전국대학교로켓발사대회 규정집입니다.",
       href: "../source/resources/2026 전국대학교로켓발사대회 규정집_260403.pdf"
+    },
+    {
+      date: "2026.04",
+      title: "전국대학교로켓연합회 CI 가이드라인",
+      category: "Partnership",
+      format: "AI",
+      size: "2.2MB",
+      description: "전국대학교로켓연합회의 CI 사용 방안을 담은 가이드라인입니다.",
+      href: "../source/resources/NURA_AI.ai"
     },
     {
       date: "2026.05",
