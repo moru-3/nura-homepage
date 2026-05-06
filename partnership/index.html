@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NURA | PARTNERSHIP</title>
-    <meta name="description" content="전국대학교로켓연합회(NURA)는 국내 대학 간 로켓 학술 교류와 발사대회를 통해 대한민국 우주 · 항공 · 방산 인재를 연결하고 성장시키는 연합회입니다." />
-    <meta property="og:title" content="NURA | 전국대학교로켓연합회" />
-    <meta property="og:description" content="전국대학교로켓연합회(NURA)는 국내 대학 간 로켓 학술 교류와 발사대회를 통해 대한민국 우주 · 항공 · 방산 인재를 연결하고 성장시키는 연합회입니다." />
+    <meta name="description" content="전국대학교로켓연합회(NURA)는 국내 대학 로켓 동아리와 학생 연구자들이 함께 교류하고 성장하는 전국 단위 연합회입니다." />
+    <meta property="og:title" content="NURA | PARTNERSHIP" />
+    <meta property="og:description" content="전국대학교로켓연합회(NURA)는 국내 대학 로켓 동아리와 학생 연구자들이 함께 교류하고 성장하는 전국 단위 연합회입니다." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://nura.kr/partnership/" />
     <meta property="og:image" content="https://nura.kr/source/resources/og-image.jpg" />
@@ -18,13 +18,14 @@
     <meta name="twitter:image" content="https://nura.kr/source/resources/og-image.jpg" />
     <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
     <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <script src="../data/site-data.js"></script>
     <style>
       html { scroll-behavior: smooth; }
       html, body { background-color: #030712; overflow-x: hidden; }
-      body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+      body { font-family: 'Pretendard', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; }
       .page-shell { min-height: 100vh; }
       .break-keep { word-break: keep-all; }
       .page-main-title { font-size: clamp(2rem, 11vw, 4.5rem); }
@@ -32,8 +33,120 @@
         .page-main-title { font-size: clamp(1.75rem, 9.4vw, 2.3rem); }
       }
 
+      .sponsor-benefit-card {
+        position: relative;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        border-radius: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: rgba(255, 255, 255, 0.045);
+        padding: 1.5rem;
+      }
+      .sponsor-benefit-head {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+      }
+      .sponsor-benefit-icon {
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.28);
+        border: 1px solid rgba(255,255,255,0.10);
+        color: rgba(255,255,255,0.72);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .sponsor-benefit-icon svg {
+        width: 1.35rem;
+        height: 1.35rem;
+      }
+      .sponsor-benefit-title {
+        color: #fff;
+        font-size: clamp(1.15rem, 1.7vw, 1.55rem);
+        line-height: 1.2;
+        letter-spacing: -0.04em;
+        font-weight: 650;
+      }
+      .sponsor-benefit-copy {
+        margin-top: 1rem;
+        margin-bottom: 1.15rem;
+        color: rgba(255,255,255,0.56);
+        font-size: 0.95rem;
+        line-height: 1.85;
+        letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .sponsor-benefit-copy strong {
+        color: rgba(255,255,255,0.88);
+        font-weight: 650;
+      }
+      .sponsor-benefit-tag {
+        display: inline-flex;
+        align-items: center;
+        align-self: flex-start;
+        margin-top: auto;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        color: rgba(255,255,255,0.58);
+        font-size: 0.83rem;
+        font-weight: 600;
+        padding: 0.48rem 0.75rem;
+        letter-spacing: -0.025em;
+      }
+
+      .sponsor-account-text {
+        color: rgba(191, 219, 254, 0.95);
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .sponsor-account-copy {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        display: inline;
+        font: inherit;
+        padding: 0;
+        text-decoration: underline;
+        text-decoration-color: rgba(191, 219, 254, 0.38);
+        text-underline-offset: 0.18em;
+      }
+
+      .sponsor-account-copy:hover,
+      .sponsor-account-copy:focus-visible {
+        color: rgba(219, 234, 254, 0.98);
+        outline: none;
+        text-decoration-color: rgba(219, 234, 254, 0.72);
+      }
+
+      @media (max-width: 768px) {
+        .sponsor-benefit-card { padding: 1.25rem; }
+        .sponsor-benefit-icon {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 0.85rem;
+        }
+        .sponsor-benefit-icon svg {
+          width: 1.2rem;
+          height: 1.2rem;
+        }
+        .sponsor-benefit-copy {
+          font-size: 0.92rem;
+          line-height: 1.75;
+        }
+
+        .sponsor-account-text { white-space: normal; }
+      }
+
     </style>
-    <script src="../data/shared-layout.js"></script>
+    <script src="../data/shared-layout.js" defer></script>
   </head>
   <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="partnership" data-base-path="..">
     <div class="page-shell flex flex-col">
@@ -60,6 +173,7 @@
                         <img
                           src="../source/resources/structure.png"
                           alt="NURA 운영위원회 및 참여 학교 관련 이미지"
+                          decoding="async"
                           class="block w-full h-auto object-cover"
                         />
                       </div>
@@ -68,7 +182,7 @@
                       </h2>
                       <p class="mt-3 text-sm md:text-[15px] leading-7 text-white/55 break-keep max-w-4xl">
                         전국대학교로켓연합회는 대학 간 연합을 바탕으로, 혼자서는 하기 어려운 도전을 함께 가능하게 만드는 협력 구조를 만들어가고 있습니다.
-                        2026년 현재 전국 37개의 대학교가 회원으로 참여하고 있으며, 체계적인 조직 관리를 위해 매년 운영위원회를 구성하여 대회와 학회 세션을 운영합니다.
+                        2026년 현재 전국 <span id="partnership-member-count" class="font-semibold text-white">37</span>개의 대학교가 회원으로 참여하고 있으며, 체계적인 조직 관리를 위해 매년 운영위원회를 구성하여 대회와 학회 세션을 운영합니다.
                         또한 산·학·연 각지에서 우주항공 업무에 종사하는 NURA 출신 선배 공학자들을 자문위원으로 위촉하여 연구와 운영 방면의 조언을 받고 있습니다.
                       </p>
                     </div>
@@ -111,6 +225,149 @@
                     </div>
                   </div>
                 </article>
+
+                <article class="py-6 md:py-8 border-b border-white/10">
+                  <div class="grid grid-cols-1 md:grid-cols-[170px_minmax(0,1fr)] gap-4 md:gap-8">
+                    <div class="text-sm md:text-base text-white/45 font-medium tracking-[-0.01em]">후원 효과</div>
+                    <div class="min-w-0">
+                      <h2 class="text-[22px] md:text-[30px] leading-[1.22] tracking-[-0.04em] font-semibold text-white break-keep">
+                        NURA의 오랜 역사와 네트워크에 함께합니다
+                      </h2>
+                      <p class="mt-3 text-sm md:text-[15px] leading-7 text-white/55 break-keep max-w-4xl">
+                        NURA는 35년의 역사와 수만 명의 졸업생, 그리고 현재 전국
+                        <span id="partnership-sponsor-member-count" class="font-semibold text-white">37</span>개 대학과
+                        2천 명의 구성원으로 이루어진 방대한 네트워크를 나날이 키워 나가고 있습니다.
+                        미래 산업과 연구의 주역이 될 인재들, 한국 우주항공 산업을 넘어 전 세계 사회 곳곳에서 활동하는 졸업생 네트워크와 함께하게 됩니다.
+                      </p>
+                      <p class="mt-3 text-sm md:text-[15px] leading-7 text-white/55 break-keep max-w-4xl">
+                        오랜 역사를 통해 건설된 튼튼한 네트워크에 후원사로 합류하신다면,
+                        NURA의 학생들뿐만 아니라 후원사에도 의미 있는 연결과 성장의 기회가 될 것입니다.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="py-6 md:py-8 border-b border-white/10">
+                  <div class="grid grid-cols-1 md:grid-cols-[170px_minmax(0,1fr)] gap-4 md:gap-8">
+                    <div class="text-sm md:text-base text-white/45 font-medium tracking-[-0.01em]">후원 방식</div>
+                    <div class="min-w-0">
+                      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5">
+                        <div class="rounded-[2rem] border border-white/10 bg-white/5 px-5 py-5 md:px-6 md:py-6">
+                          <div class="flex items-center gap-3">
+                            <h3 class="text-lg md:text-[22px] font-semibold tracking-[-0.03em] text-white">현금 후원</h3>
+                          </div>
+                          <div class="mt-4 space-y-2 text-sm md:text-[15px] leading-7 text-white/55 break-keep">
+                            <p>학술 · 발사대회 운영 자금 지원</p>
+                            <p>대학 동아리 연구 자금 지원</p>
+                          </div>
+                          <p class="mt-4 text-sm md:text-[15px] leading-7 text-white/55 break-keep">
+                            지원해주신 자금은 NURA 총회 의결을 거친 예산에 따라 투명하게 집행되며,
+                            NURA 운영진과 세부 범위를 추가 논의하시거나 <span class="sponsor-account-text">NURA 계좌(<button class="sponsor-account-copy" type="button" data-copy-account="국민은행 824201-00-114793" aria-label="NURA 계좌번호 824201-00-114793 복사">국민은행 824201-00-114793</button>)</span>를 통하여 후원하실 수 있습니다.
+                          </p>
+                        </div>
+
+                        <div class="rounded-[2rem] border border-white/10 bg-white/5 px-5 py-5 md:px-6 md:py-6">
+                          <div class="flex items-center gap-3">
+                            <h3 class="text-lg md:text-[22px] font-semibold tracking-[-0.03em] text-white">현물 후원</h3>
+                          </div>
+                          <div class="mt-4 space-y-2 text-sm md:text-[15px] leading-7 text-white/55 break-keep">
+                            <p>로켓 제작 부품</p>
+                            <p>설계 소프트웨어 및 서비스 지원</p>
+                          </div>
+                          <p class="mt-4 text-sm md:text-[15px] leading-7 text-white/55 break-keep">
+                            전자 부품, 계측 장비, 라이선스, 크레딧 등 후원해주신 제품은 전국의 NURA 회원 단체에 분배되어 소중하게 사용됩니다.
+                            그 외에도 NURA 운영진과 지원 사항을 논의하실 수 있습니다.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="py-6 md:py-8 border-b border-white/10">
+                  <div class="grid grid-cols-1 md:grid-cols-[170px_minmax(0,1fr)] gap-4 md:gap-8">
+                    <div class="text-sm md:text-base text-white/45 font-medium tracking-[-0.01em]">후원자 예우</div>
+                    <div class="min-w-0">
+                      <h2 class="text-[22px] md:text-[30px] leading-[1.22] tracking-[-0.04em] font-semibold text-white break-keep">
+                        후원사의 이름과 가치를 NURA 네트워크에 자연스럽게 연결합니다
+                      </h2>
+                      <p class="mt-3 text-sm md:text-[15px] leading-7 text-white/55 break-keep max-w-4xl">
+                        후원 내용과 행사 성격에 따라 홍보, 현장 노출, 채용 연계 등 다양한 방식으로 후원사의 메시지를 전달합니다.
+                      </p>
+
+                      <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5">
+                        <div class="sponsor-benefit-card">
+                          <div class="sponsor-benefit-head">
+                            <span class="sponsor-benefit-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 0 1 0 18"></path><path d="M12 3a15 15 0 0 0 0 18"></path></svg>
+                            </span>
+                            <h3 class="sponsor-benefit-title">웹상 홍보</h3>
+                          </div>
+                          <p class="sponsor-benefit-copy">
+                            후원사 제품 사용 후기, 후원사 소개 컨텐츠 등을 대한민국 아마추어 로켓 커뮤니티 대다수가 참고하는 NURA 공식 SNS 채널들과 홈페이지에 게시합니다.
+                          </p>
+                          <span class="sponsor-benefit-tag">직접적인 기업 홍보</span>
+                        </div>
+
+                        <div class="sponsor-benefit-card">
+                          <div class="sponsor-benefit-head">
+                            <span class="sponsor-benefit-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V5a2 2 0 0 1 3-1.7l7 3.7a2 2 0 0 0 1.9 0L20 5v11l-3.1 1.7a2 2 0 0 1-1.9 0l-7-3.7A2 2 0 0 0 5 16z"></path></svg>
+                            </span>
+                            <h3 class="sponsor-benefit-title">로켓 및 현수막 프린팅</h3>
+                          </div>
+                          <p class="sponsor-benefit-copy">
+                            학술대회와 발사대회 현수막에 후원사명을 인쇄하며, 대회에서 발사되는 모든 로켓에 후원사 로고를 포함한 스티커를 부착합니다.
+                          </p>
+                          <span class="sponsor-benefit-tag">대회 참가자 + 언론 노출</span>
+                        </div>
+
+                        <div class="sponsor-benefit-card lg:col-span-2">
+                          <div class="sponsor-benefit-head">
+                            <span class="sponsor-benefit-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2.8l1.2.8 1.4-.3.8 1.2 1.5.1.4 1.4 1.2.8-.3 1.4.8 1.3-.8 1.3.3 1.4-1.2.8-.4 1.4-1.5.1-.8 1.2-1.4-.3-1.2.8-1.2-.8-1.4.3-.8-1.2-1.5-.1-.4-1.4-1.2-.8.3-1.4-.8-1.3.8-1.3-.3-1.4 1.2-.8.4-1.4 1.5-.1.8-1.2 1.4.3L12 2.8Z"></path>
+                                <circle cx="12" cy="9.5" r="3.4"></circle>
+                                <path d="M9.2 15.7 8 21l4-2.2 4 2.2-1.2-5.3"></path>
+                              </svg>
+                            </span>
+                            <h3 class="sponsor-benefit-title">기업 명의 시상</h3>
+                          </div>
+                          <p class="sponsor-benefit-copy max-w-4xl">
+                            대회 우수팀에게 후원사 명의 상장이 전달되어, NURA의 성과를 함께 더 밝게 빛냅니다. 시상 사실은 각 대학에서 보도자료로 배포하여 언론에 홍보됩니다.
+                          </p>
+                          <span class="sponsor-benefit-tag">대한민국 인재와 함께한 기록</span>
+                        </div>
+
+                        <div class="sponsor-benefit-card">
+                          <div class="sponsor-benefit-head">
+                            <span class="sponsor-benefit-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8"></path><path d="M8 17h6"></path></svg>
+                            </span>
+                            <h3 class="sponsor-benefit-title">후원사 자료 공지</h3>
+                          </div>
+                          <p class="sponsor-benefit-copy">
+                            후원사 홍보나 채용 정보 등 자료를 정기적으로 모든 구성원에게 공지하여, 인턴십과 취업에 관심이 있는 NURA의 인재들에게 직접적으로 전달됩니다.
+                          </p>
+                          <span class="sponsor-benefit-tag">효과적인 기업 정보 전달</span>
+                        </div>
+
+                        <div class="sponsor-benefit-card">
+                          <div class="sponsor-benefit-head">
+                            <span class="sponsor-benefit-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="9.5" cy="7" r="3.5"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </span>
+                            <h3 class="sponsor-benefit-title">리크루팅 부스</h3>
+                          </div>
+                          <p class="sponsor-benefit-copy">
+                            수백 명의 우주공학도가 이틀간 참석하는 전국대학교로켓학술대회에 후원사의 리크루팅 부스를 설치하여, 후원사를 홍보하고 학생들의 진로 개척을 돕습니다.
+                          </p>
+                          <span class="sponsor-benefit-tag">700+ 참가자 대상</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
               </div>
             </section>
           </div>
@@ -121,27 +378,27 @@
             <div class="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-12">
               <div class="grid lg:grid-cols-[minmax(0,1fr)_auto] gap-8 items-center">
                 <div>
-                  <h2 class="text-3xl md:text-5xl font-bold tracking-[-0.04em] text-white">NURA와의 협력을 논의해보세요</h2>
+                  <h2 class="text-3xl md:text-5xl font-bold tracking-[-0.04em] text-white">NURA 후원 및 협력을 논의해보세요</h2>
                   <p class="mt-4 text-gray-300 text-base md:text-lg leading-8 max-w-3xl">
                     연중 지속적인 학술 및 운영 프로그램을 통해, 
                     로켓 동아리 간 ​협력과 연구 활동이 체계적으로 이루어지도록 지원하고 있습니다.
                   </p>
 
                   <div class="mt-6 space-y-2 text-gray-300">
-                    <p><span class="text-gray-500">Email</span> · nura@nura.kr</p>
+                    <p><span class="text-gray-500">Email</span> · nurarocketscience@gmail.com</p>
                     <p><span class="text-gray-500">Instagram</span> · @nura._.official</p>
                   </div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
                   <a
-                    href="mailto:nura@nura.kr?subject=[NURA]%20협력%20문의"
+                    href="mailto:nurarocketscience@gmail.com?subject=[NURA]%20협력%20문의"
                     class="inline-flex items-center justify-center rounded-2xl bg-blue-600 hover:bg-blue-500 px-6 py-3.5 font-bold text-white transition"
                   >
                     이메일 보내기
                   </a>
                   <a
-                    href="mailto:nura@nura.kr?subject=[NURA]%20자료%20문의"
+                    href="mailto:nurarocketscience@gmail.com?subject=[NURA]%20자료%20문의"
                     class="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 px-6 py-3.5 font-semibold text-white transition"
                   >
                     자료 요청하기
@@ -155,5 +412,37 @@
 
       <div data-shared-footer></div>
     </div>
+
+    <script>
+      const partnershipMemberCount = document.getElementById('partnership-member-count');
+      const currentMemberCount =
+        window.NURA_DATA?.overviewStats?.find((item) => item.label === '참여 대학')?.value ||
+        (Array.isArray(window.NURA_DATA?.memberOrganizations) ? window.NURA_DATA.memberOrganizations.length : 37);
+
+      const partnershipSponsorMemberCount = document.getElementById('partnership-sponsor-member-count');
+
+      [partnershipMemberCount, partnershipSponsorMemberCount].forEach((target) => {
+        if (target) target.textContent = String(currentMemberCount);
+      });
+
+      document.querySelectorAll('[data-copy-account]').forEach((button) => {
+        button.addEventListener('click', async () => {
+          const account = button.dataset.copyAccount || '';
+          if (!account) return;
+
+          try {
+            await navigator.clipboard.writeText(account);
+            const originalText = button.textContent || account;
+            button.textContent = '복사됨';
+            setTimeout(() => {
+              button.textContent = originalText;
+            }, 1200);
+          } catch (error) {
+            button.textContent = account;
+          }
+        });
+      });
+
+    </script>
   </body>
 </html>

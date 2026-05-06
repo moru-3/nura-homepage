@@ -150,17 +150,80 @@
         color: rgba(255, 255, 255, 0.96);
       }
 
-.footer-contact-link {
-  color: inherit;
-  text-decoration: none;
-  transition: color 180ms ease, opacity 180ms ease;
-}
+      .footer-contact-link {
+        color: inherit;
+        text-decoration: none;
+        transition: color 180ms ease, opacity 180ms ease;
+      }
 
-.footer-contact-link:hover {
-  color: rgba(255, 255, 255, 0.96);
-}
+      .footer-contact-link:hover {
+        color: rgba(255, 255, 255, 0.96);
+      }
 
       @media (max-width: 767px) {
+        .site-footer {
+          padding: 1.15rem 1rem max(1.15rem, env(safe-area-inset-bottom));
+        }
+
+        .site-footer__grid {
+          gap: 1rem;
+        }
+
+        .site-footer h3 {
+          margin-bottom: 0.45rem;
+        }
+
+        .site-footer__copyright {
+          margin-top: 1rem;
+          padding-top: 1rem;
+          padding-bottom: 0;
+        }
+
+        .page-shell > main > section > .max-w-7xl,
+        .page-shell > main > .max-w-7xl,
+        .activities-intro > .max-w-7xl {
+          padding-top: 4rem !important;
+          padding-bottom: 1.25rem !important;
+        }
+
+        .page-shell > main > section > .max-w-7xl > section:first-child,
+        .page-shell > main > .max-w-7xl > section:first-child,
+        .activities-intro > .max-w-7xl > section:first-child {
+          padding-top: 3rem !important;
+          padding-bottom: 1rem !important;
+        }
+
+        .page-main-title {
+          margin-top: 0 !important;
+        }
+
+        .page-main-title + p,
+        .page-shell > main > section > .max-w-7xl > section:first-child p,
+        .page-shell > main > .max-w-7xl > section:first-child p,
+        .activities-intro > .max-w-7xl > section:first-child p {
+          margin-top: 0.85rem !important;
+          line-height: 1.55 !important;
+        }
+
+        #topbar > div {
+          gap: 0.75rem;
+        }
+
+        #topbar img {
+          max-width: min(58vw, 210px);
+        }
+
+        #mobile-menu {
+          height: 100dvh;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+        }
+
+        #mobile-menu > div {
+          min-height: 100dvh;
+          padding-bottom: max(2rem, env(safe-area-inset-bottom));
+        }
+
         .footer-site-nav {
           gap: 10px 16px;
         }
@@ -185,12 +248,14 @@
             <img
               src="${basePath}/source/resources/nura-header.png"
               alt="전국대학교로켓연합회 로고"
+              width="720"
+              height="79"
+              decoding="async"
               class="block h-5 md:h-7 w-auto max-w-[240px] md:max-w-[520px] object-contain translate-y-[1px]"
             />
           </a>
 
           <nav class="hidden lg:flex items-center gap-8 text-base font-medium">
-            <a href="${basePath}/" data-page="overview" class="nav-link text-gray-300 hover:text-white transition">Overview</a>
             <a href="${basePath}/about/" data-page="about" class="nav-link text-gray-300 hover:text-white transition">About</a>
 
             <div class="activities-dropdown">
@@ -225,6 +290,7 @@
               </div>
             </div>
 
+            <a href="${basePath}/members/" data-page="members" class="nav-link text-gray-300 hover:text-white transition">Members</a>
             <a href="${basePath}/partnership/" data-page="partnership" class="nav-link text-gray-300 hover:text-white transition">Partnership</a>
             <a href="${basePath}/resources/" data-page="resources" class="nav-link text-gray-300 hover:text-white transition">Resources</a>
           </nav>
@@ -265,7 +331,6 @@
         >
           <div class="flex flex-col justify-between min-h-screen px-6 pt-20 pb-10 transform transition duration-300 ease-out opacity-0 translate-y-3">
             <div class="flex flex-col gap-1">
-              <a href="${basePath}/" data-page="overview" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Overview</a>
               <a href="${basePath}/about/" data-page="about" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">About</a>
 
               <div class="border-b border-white/10">
@@ -308,6 +373,7 @@
                 </div>
               </div>
 
+              <a href="${basePath}/members/" data-page="members" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Members</a>
               <a href="${basePath}/partnership/" data-page="partnership" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Partnership</a>
               <a href="${basePath}/resources/" data-page="resources" class="nav-link py-4 text-2xl font-semibold text-white border-b border-white/10">Resources</a>
             </div>
@@ -321,9 +387,9 @@
 
   function renderFooter(basePath) {
     return `
-      <footer class="bg-black border-t border-gray-800 py-8 px-4 md:px-16 w-full">
+      <footer class="site-footer bg-black border-t border-gray-800 py-8 px-4 md:px-16 w-full">
         <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-0 md:px-8">
+          <div class="site-footer__grid grid grid-cols-1 md:grid-cols-4 gap-8 px-0 md:px-8">
             <div>
               <h3 class="text-lg font-bold mb-4 text-blue-400">NURA</h3>
               <p class="text-gray-400 text-sm mb-2">전국대학교로켓연합회</p>
@@ -364,16 +430,17 @@
             <div>
               <h3 class="text-lg font-bold mb-4">사이트맵</h3>
               <div class="footer-site-nav">
-                <a href="${basePath}/">Overview</a>
+                <a href="${basePath}/">Home</a>
                 <a href="${basePath}/about/">About</a>
                 <a href="${basePath}/activities/">Activities</a>
                 <a href="${basePath}/partnership/">Partnership</a>
+                <a href="${basePath}/members/">Members</a>
                 <a href="${basePath}/resources/">Resources</a>
               </div>
             </div>
           </div>
 
-          <div class="border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
+          <div class="site-footer__copyright border-t border-gray-800 mt-8 pt-8 text-center pb-2 md:pb-8">
             <p class="text-gray-500 text-sm">© 1992 - 2026 NURA. All rights reserved.</p>
           </div>
         </div>
@@ -399,9 +466,10 @@
 
     if (path.includes('/about')) return 'about';
     if (path.includes('/partnership')) return 'partnership';
+    if (path.includes('/members')) return 'members';
     if (path.includes('/resources')) return 'resources';
 
-    return 'overview';
+    return 'home';
   }
 
   function highlightCurrentPage(currentPage) {

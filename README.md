@@ -25,6 +25,8 @@ nura-homepage/
 │   └── index.html          # 하위 HTML 파일
 ├── partnership/               
 │   └── index.html          # 하위 HTML 파일
+├── members/               
+│   └── index.html          # 하위 HTML 파일
 ├── data/               
 │   ├── shared-layout.js    # 헤더, 푸터
 │   └── site-data.js        # 각종 변수
@@ -34,14 +36,14 @@ nura-homepage/
 │   │   │   └── [블러 처리된 이미지들]
 │   │   └── [원본 이미지들]
 │   ├── resources/          # 리소스 파일들
-│   │   ├── nura-logo.png   # 메인 로고
+│   │   ├── nura-header.png # 헤더 로고 이미지
+│   │   ├── nura-icon.png   # 앱 아이콘 및 터치 아이콘
 │   │   ├── favicon-32x32.png # 파비콘 (32x32)
 │   │   ├── favicon-16x16.png # 파비콘 (16x16)
-│   │   ├── notion-blur.png # 노션 배경 이미지
-│   │   ├── onedrive-blur.png # 원드라이브 배경 이미지
-│   │   ├── nura-header.png # 헤더 이미지
-│   │   ├── nura-icon.png   # 로고
 │   │   ├── structure.png   # 내부 구조 이미지
+│   │   ├── NURA_AI.ai      # CI 가이드라인 파일
+│   │   ├── 2026 전국대학교로켓학술대회 규정_260402.pdf
+│   │   ├── 2026 전국대학교로켓발사대회 규정집_260403.pdf
 │   │   ├── meeting.jpg     # 대표자 회의 배경 이미지
 │   │   ├── kspe.jpg        # 추진공학회 배경 이미지
 │   │   ├── conference.jpg  # 학술대회 배경 이미지
@@ -50,13 +52,19 @@ nura-homepage/
 │   │   ├── koreanair.png
 │   │   ├── innospace.png
 │   │   ├── kari.jpg
+│   │   ├── kasa.png
 │   │   └── ligpoongsan.png
+│   ├── members/            # 회원 대학 지도 및 로고
+│   │   ├── south-korea.svg
+│   │   └── used-logos/
+│   │       └── [회원 대학 로고들]
 │   └── news/               # 뉴스 사진들
 │       ├── news1.jpg
 │       ├── news2.jpg
 │       └── news3.jpg
 ├── robots.txt
 ├── sitemap.xml             # 사이트맵
+├── [네이버 인증 파일]          # 네이버 사이트 인증 파일
 └── venv/                   # Python 가상환경 (선택사항)
 ```
 
@@ -100,13 +108,14 @@ pip install Pillow
 - 상단 헤더 렌더링
 - 데스크톱/모바일 네비게이션
 - Activities 드롭다운 메뉴
+- 모바일 메뉴 열림/닫힘 및 스크롤 잠금
 - 공통 푸터 렌더링
 - 현재 페이지 강조 표시
 
 각 HTML 파일의 `body`에는 아래 속성이 들어가 있어야 공통 네비게이션이 올바르게 동작합니다.
 
 ```html
-<body data-current-page="overview" data-base-path=".">
+<body data-current-page="home" data-base-path=".">
 ```
 
 하위 폴더 페이지에서는 보통 아래처럼 설정합니다.
@@ -124,6 +133,8 @@ pip install Pillow
 - `newsItems` : 메인 페이지 관련 기사 카드
 - `resourceDocuments` : 자료실 문서 목록
 - `historyData` : 연혁 문서 목록
+- `memberOrganizations` : 회원 대학/동아리 목록
+- `memberRegions` : 세부 권역 정의
 
 즉, 숫자/뉴스/자료실 목록은 HTML 본문을 직접 수정하지 않아도 이 파일에서 갱신할 수 있습니다.
 
@@ -134,7 +145,8 @@ pip install Pillow
 - `about/index.html` : 연혁 타임라인 및 다이얼 UI
 - `activities/index.html` : 활동 카드 목록
 - `activities/*/index.html` : 활동별 상세 설명
-- `partnership/index.html` : 협력 개요, 구조 소개, 문의 CTA
+- `partnership/index.html` : 협력 개요, 후원 안내, 계좌 안내, 문의 CTA
+- `members/index.html` : 지도 기반 권역별 회원 대학 소개 및 로고 월
 - `resources/index.html` : 자료 목록 렌더링 화면
 
 ---
@@ -167,6 +179,8 @@ Tailwind CSS 클래스를 사용하여 색상을 변경할 수 있습니다:
 - 활동 카드
 - 드롭다운 메뉴
 - 모바일 메뉴
+- 회원 대학 지도/로고 영역
+- 후원 안내 카드와 계좌 팝오버
 
 ---
 
@@ -179,9 +193,9 @@ Tailwind CSS 클래스를 사용하여 색상을 변경할 수 있습니다:
 ```javascript
 overviewStats: [
   {
-    basis: "2026년 3월 기준",
+    basis: "2026년 4월 기준",
     label: "참여 대학",
-    value: 35,
+    value: 37,
     unit: "개교"
   }
 ]
@@ -210,13 +224,13 @@ newsItems: [
 ```javascript
 resourceDocuments: [
   {
-    date: "2026.03",
-    title: "전국대학교로켓연합회 소개서",
-    category: "소개서",
-    format: "PDF",
-    size: "8.2MB",
-    description: "소개 자료 설명",
-    href: "../source/resources/nura-profile.pdf"
+    date: "2026.04",
+    title: "2026 전국대학교로켓학술대회 규정",
+    category: "Conference",
+    format: "pdf",
+    size: "491KB",
+    description: "2026 전국대학교로켓학술대회 규정입니다.",
+    href: "../source/resources/2026 전국대학교로켓학술대회 규정_260402.pdf"
   }
 ]
 ```
@@ -232,7 +246,7 @@ resourceDocuments: [
 }
 ```
 
-### 자료실 목록 수정
+### 연혁 목록 수정
 
 `about/index.html`은 `data/site-data.js`의 `historyData` 배열을 읽어서 목록을 생성합니다.
 
@@ -243,6 +257,43 @@ historyData: [
     featured: true,
     items: ["제1회 로켓발사대회(한국항공대학교)"]
   }
+]
+```
+
+### 회원 대학 데이터 수정
+
+예시:
+
+```javascript
+memberOrganizations: [
+  {
+    name: "전북대학교",
+    region: "jeonbuk",
+    clubName: "JURG",
+    description: "전북특별자치도 전주시 덕진구 백제대로 567",
+    instagramHandle: "@jbnu_ohcket"
+  }
+]
+```
+
+`region` 값은 `memberRegions`의 `id`와 일치해야 합니다.
+
+회원 대학 카드와 로고 월의 외부 링크는 아래 순서로 사용됩니다.
+
+1. `instagramHandle`
+2. `website`
+
+로고 이미지는 `members/index.html`의 `memberLogoPathByName` 객체에서 학교명과 파일 경로를 연결합니다.
+
+```javascript
+memberRegions: [
+  {
+    id: "jeonbuk",
+    name: "전북",
+    coverage: "전북특별자치도",
+    description: "전북 지역에 속한 회원 대학과 로켓 동아리 현황입니다."
+  }
+]
 ```
 
 ### 공통 네비게이션 수정
@@ -269,16 +320,24 @@ historyData: [
 - `activities/launch/index.html` : 전국대학교로켓발사대회
 
 ### 새로운 후원사 추가
+
 1. 로고 이미지를 `source/partnership/` 폴더에 추가
-2. `contentData.Partnership.Partnership` 배열에 정보 추가:
-```javascript
-{
-  "name": "새로운 후원사",
-  "logo": "source/partnership/new-sponsor.png",
-  "url": "https://new-sponsor.com",
-  "ratio": 1.5  // 로고 가로세로 비율
-}
-```
+2. `index.html`의 파트너 로고 영역에 이미지와 링크 추가
+3. 필요하면 `source/partnership/` 아래 기존 로고 비율에 맞게 이미지를 정리
+
+현재 사용 중인 후원사 로고 파일:
+
+- `koreanair.png`
+- `innospace.png`
+- `kari.jpg`
+- `kasa.png`
+- `ligpoongsan.png`
+
+### 후원 안내 수정
+
+후원 방식, 후원 효과, 계좌 안내는 `partnership/index.html`에서 직접 수정합니다.
+
+계좌 정보는 후원 안내 문장 안의 계좌 팝오버와 하단 CTA 영역에 들어가 있으므로, 변경 시 두 위치를 함께 확인하는 것이 좋습니다.
 
 ### 파비콘 재생성
 로고가 변경된 경우:
@@ -286,7 +345,7 @@ historyData: [
 # Python 스크립트로 파비콘 생성
 python -c "
 from PIL import Image
-img = Image.open('source/resources/nura-logo.png')
+img = Image.open('source/resources/nura-icon.png')
 size = max(img.size)
 favicon = Image.new('RGBA', (size, size), (0, 0, 0, 0))
 x_offset = (size - img.size[0]) // 2
@@ -296,6 +355,20 @@ favicon.resize((32, 32)).save('source/resources/favicon-32x32.png')
 favicon.resize((16, 16)).save('source/resources/favicon-16x16.png')
 "
 ```
+
+### SEO 정보 수정
+
+각 HTML 파일의 `<head>`에는 기본 SEO 정보가 들어가 있습니다.
+
+수정 대상 예시:
+
+- `<title>`
+- `<meta name="description">`
+- `og:title`
+- `og:description`
+- 파비콘 및 터치 아이콘 링크
+
+네이버 사이트 인증 파일은 `naver489cbd41cbce3895ff5c2fbf7e61e54c.html`입니다. 인증 파일명은 검색 콘솔에서 발급된 값과 일치해야 합니다.
 
 ### 이미지 블러 처리
 개요 슬라이드용 이미지를 블러 처리하려면:
@@ -308,14 +381,11 @@ python image_postprocessing.py
 ## ⚠️ 주의사항
 
 1. **이미지 최적화**: 웹용으로 이미지를 압축하여 로딩 속도를 개선하세요
-2. **파일명**: 한글 파일명 사용을 피하고 영문으로 작성하세요
+2. **파일명**: 새 이미지 파일명은 가능하면 영문으로 작성하세요
 3. **백업**: 중요한 변경사항 전에 반드시 백업을 만드세요
 4. **테스트**: 변경사항 적용 후 다양한 브라우저에서 테스트하세요
-
-5. **파일 추가**: PDF 링크가 들어가 있지만, 실제 저장소의 `source/resources/` 안에는 해당 PDF 파일이 없을 수 있습니다.  
-버튼이 정상 동작하려면 아래 둘 중 하나가 필요합니다.
-- 실제 PDF 파일을 해당 경로에 추가
-- `href`를 외부 문서 링크로 변경
+5. **자료 링크**: `resourceDocuments`에 `href`를 추가한 경우 실제 파일이 있는지 함께 확인하세요
+6. **모바일 확인**: 헤더, 모바일 메뉴, 회원 지도, 후원 안내는 모바일에서 반드시 다시 확인하세요
 
 ## 🔄 배포
 
@@ -333,6 +403,5 @@ python image_postprocessing.py
 ---
 
 **마지막 업데이트**: 2026년 04월
-
-- **관리자**: 심승기(shimseunggi@naver.com)
-- **기여자**: 전현우(jhw030520@gmail.com)
+- **현재 관리자**: 심승기(shimseunggi@naver.com)
+- **기여자**: 전현우(jhw030520@gmail.com), 심승기(shimseunggi@naver.com)

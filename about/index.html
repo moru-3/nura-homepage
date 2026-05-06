@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NURA | About</title>
-    <meta name="description" content="전국대학교로켓연합회(NURA)는 국내 대학 간 로켓 학술 교류와 발사대회를 통해 대한민국 우주 · 항공 · 방산 인재를 연결하고 성장시키는 연합회입니다." />
-    <meta property="og:title" content="NURA | 전국대학교로켓연합회" />
-    <meta property="og:description" content="전국대학교로켓연합회(NURA)는 국내 대학 간 로켓 학술 교류와 발사대회를 통해 대한민국 우주 · 항공 · 방산 인재를 연결하고 성장시키는 연합회입니다." />
+    <meta name="description" content="전국대학교로켓연합회(NURA)는 국내 대학 로켓 동아리와 학생 연구자들이 함께 교류하고 성장하는 전국 단위 연합회입니다." />
+    <meta property="og:title" content="NURA | About" />
+    <meta property="og:description" content="전국대학교로켓연합회(NURA)는 국내 대학 로켓 동아리와 학생 연구자들이 함께 교류하고 성장하는 전국 단위 연합회입니다." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://nura.kr/about/" />
     <meta property="og:image" content="https://nura.kr/source/resources/og-image.jpg" />
@@ -18,12 +18,60 @@
     <meta name="twitter:image" content="https://nura.kr/source/resources/og-image.jpg" />
     <link rel="icon" type="image/png" sizes="16x16" href="../source/resources/favicon-16x16.png" />
     <link rel="shortcut icon" type="image/png" href="../source/resources/favicon-32x32.png" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
   .history-side-panel {
     position: relative;
+  }
+
+  .history-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .history-stat-card,
+  .history-dial-wrap {
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.045);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .history-stat-card {
+    border-radius: 1.35rem;
+    padding: 1.25rem;
+  }
+
+  .history-dial-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 250px);
+    gap: 1.25rem;
+    align-items: center;
+    border-radius: 1.5rem;
+    padding: 1.15rem;
+  }
+
+  .history-dial-copy {
+    min-width: 0;
+  }
+
+  .history-dial-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.48);
+  }
+
+  .history-dial-description {
+    margin-top: 0.55rem;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.62);
+    word-break: keep-all;
   }
 
   .history-dial {
@@ -32,11 +80,8 @@
     max-width: 250px;
     height: 112px;
     overflow: hidden;
-    border-radius: 1.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    border-radius: 1.1rem;
+    background: rgba(0, 0, 0, 0.28);
   }
 
  .history-dial::before,
@@ -88,7 +133,7 @@
 
   .history-year-item,
 #history-current-year {
-  font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+  font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1, "lnum" 1;
   -webkit-font-smoothing: antialiased;
@@ -215,12 +260,27 @@
       z-index: 40;
       margin-top: 0;
       padding: 0.8rem 0.8rem 0.9rem;
+      display: block;
       border-radius: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px) saturate(1.15);
-      -webkit-backdrop-filter: blur(12px) saturate(1.15);
-  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.28);    }
+      box-shadow: 0 12px 28px rgba(2, 6, 23, 0.28);
+    }
+
+    .history-summary-grid {
+      gap: 0.75rem;
+    }
+
+    .history-stat-card {
+      border-radius: 1.15rem;
+      padding: 1rem;
+    }
+
+    .history-dial-copy {
+      margin-bottom: 0.65rem;
+    }
+
+    .history-dial-description {
+      display: none;
+    }
 
     .history-dial-wrap .history-dial {
       max-width: none;
@@ -249,8 +309,67 @@
     }
   }
 
+  @media (max-width: 1023px) {
+    .history-dial-wrap {
+      display: none !important;
+      position: static !important;
+      transform: none !important;
+    }
+
+    #history {
+      padding-bottom: 0 !important;
+    }
+
+    #history > .relative {
+      padding-bottom: 1.75rem !important;
+    }
+
+    #history > .relative > .grid {
+      gap: 1.5rem !important;
+    }
+
+    .history-side-panel > section {
+      padding-bottom: 1.25rem !important;
+    }
+
+    .history-summary-grid {
+      gap: 0.75rem !important;
+      margin-top: 1.5rem !important;
+    }
+
+    .history-stat-card {
+      border-radius: 1rem !important;
+      padding: 1rem !important;
+    }
+
+    .history-rail {
+      margin-top: 0.5rem;
+      padding-left: 1.75rem;
+    }
+
+    .history-entry {
+      padding-top: 1.35rem !important;
+      padding-bottom: 1.35rem !important;
+      scroll-margin-top: 5rem;
+    }
+
+    .history-entry::before {
+      left: -1.55rem;
+      top: 1.85rem;
+    }
+
+    .history-entry-year {
+      font-size: 1.55rem !important;
+    }
+
+    .history-entry p {
+      font-size: 0.95rem !important;
+      line-height: 1.6 !important;
+    }
+  }
+
  </style>
-      <script src="../data/shared-layout.js"></script>
+      <script src="../data/shared-layout.js" defer></script>
       <script src="../data/site-data.js"></script>
   </head>
   <body class="bg-black text-white min-h-screen overflow-x-hidden" data-current-page="about" data-base-path="..">
@@ -271,24 +390,29 @@
 NURA는 국내 대학 간 로켓 관련 학술 교류를 촉진하고 정기적인 로켓발사대회를 개최하여 로켓에 관한 대학생들의 관심과 접근성을 고취하고자 설립되었습니다. 
       </p>
 
-        <div class="mt-10 grid grid-cols-2 gap-4">
-          <div class="rounded-3xl border border-white/10 bg-white/5 p-5">
+        <div class="history-summary-grid mt-10">
+          <div class="history-stat-card">
             <div class="text-xs uppercase tracking-[0.18em] text-gray-400">Founded from</div>
             <div class="mt-2 text-3xl font-black tracking-[-0.04em] text-white">1992</div>
           </div>
-          <div class="rounded-3xl border border-white/10 bg-white/5 p-5">
+          <div class="history-stat-card">
             <div class="text-xs uppercase tracking-[0.18em] text-gray-400">Current</div>
 <div id="history-current-year" class="mt-2 text-3xl font-black tracking-[-0.04em] text-white"></div>
           </div>
         </div>
 
         <div class="history-dial-wrap mt-8">
-          <div class="text-xs uppercase tracking-[0.18em] text-gray-500 mb-3">Current Year</div>
+          <div class="history-dial-copy">
+            <div class="history-dial-label">Timeline Focus</div>
+            <p class="history-dial-description">1992년부터 현재까지</p>
+          </div>
           <div class="history-dial">
             <div class="history-dial-focus"></div>
             <div id="history-year-reel" class="history-year-reel"></div>
           </div>
         </div>
+  </div>
+        </section>
       </aside>
 
       <div class="history-rail">
@@ -517,7 +641,7 @@ function updateStartSpacerPrecise() {
   const startSpacer = document.getElementById("history-start-spacer");
   if (!startSpacer || !entries.length) return;
 
-  startSpacer.style.height = window.innerWidth >= 1024 ? "56px" : "24px";
+  startSpacer.style.height = window.innerWidth >= 1024 ? "56px" : "0px";
 }
 
 function updateEndSpacerPrecise() {
@@ -536,12 +660,12 @@ function updateEndSpacerPrecise() {
   const extraNeeded = Math.max(rawTargetScroll - currentMaxScroll, 0);
 
   endSpacer.style.height = `${Math.ceil(
-    extraNeeded + (window.innerWidth >= 1024 ? 24 : 8)
+    extraNeeded + (window.innerWidth >= 1024 ? 24 : 0)
   )}px`;
 }
 
   function getActivationCenterY() {
-  return window.innerHeight / 2 - 130;
+  return window.innerWidth >= 1024 ? window.innerHeight / 2 - 130 : window.innerHeight / 2 - 56;
 }
 
 function syncFromScroll() {
