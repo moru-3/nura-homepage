@@ -3,7 +3,7 @@ window.NURA_DATA = {
     {
       basis: "2026년 4월 기준",
       label: "참여 대학",
-      value: 37,
+      value: 38,
       unit: "개교"
     },
     {
@@ -167,6 +167,14 @@ window.NURA_DATA = {
       website: "https://hanaro.snu.ac.kr/",
       instagramHandle: "@snu_hanaro",
       primaryLink: "instagram"
+    },
+    {
+      name: "서울시립대학교",
+      region: "seoul",
+      clubName: "서울시립대산악부",
+      website: "https://www.uos.ac.kr/",
+      primaryLink: "website"
+
     },
     {
       name: "성균관대학교",
