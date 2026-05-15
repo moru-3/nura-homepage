@@ -172,9 +172,9 @@ window.NURA_DATA = {
       name: "서울시립대학교",
       region: "seoul",
       clubName: "서울시립대산악부",
+      description: "서울특별시 동대문구 서울시립대로 163",
       website: "https://www.uos.ac.kr/",
       primaryLink: "website"
-
     },
     {
       name: "성균관대학교",

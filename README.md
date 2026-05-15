@@ -195,7 +195,7 @@ overviewStats: [
   {
     basis: "2026년 4월 기준",
     label: "참여 대학",
-    value: 37,
+    value: 38,
     unit: "개교"
   }
 ]
@@ -278,12 +278,54 @@ memberOrganizations: [
 
 `region` 값은 `memberRegions`의 `id`와 일치해야 합니다.
 
-회원 대학 카드와 로고 월의 외부 링크는 아래 순서로 사용됩니다.
+회원 대학을 추가/수정할 때는 보통 아래 항목을 함께 확인합니다.
+
+1. `data/site-data.js`의 `memberOrganizations`에 학교 데이터 추가
+2. `name`, `region`, `clubName`, `description` 입력
+3. 학교 공식 홈페이지가 있으면 `website` 입력
+4. 인스타그램이 있으면 `instagramHandle` 입력
+5. 기본으로 열릴 링크를 정하고 싶으면 `primaryLink: "website"` 또는 `primaryLink: "instagram"` 지정
+6. 신규 학교라면 참여 대학 수(`overviewStats`의 `참여 대학`)도 실제 수와 맞게 수정
+7. 로고를 노출하려면 `source/members/used-logos/`에 파일을 넣고, `members/index.html`의 `memberLogoPathByName`에 학교명과 파일 경로를 연결
+8. 특정 로고만 크기 보정이 필요하면 `members/index.html`의 `logoImageClassByName`에 전용 클래스를 연결하고, 같은 파일의 CSS에 스타일 추가
+
+회원 대학 카드와 로고 월의 외부 링크는 기본적으로 아래 순서로 사용됩니다.
 
 1. `instagramHandle`
 2. `website`
 
+단, `primaryLink`가 있으면 그 값을 우선합니다.
+
+예시:
+
+```javascript
+{
+  name: "서울시립대학교",
+  region: "seoul",
+  clubName: "서울시립대산악부",
+  description: "서울특별시 동대문구 서울시립대로 163",
+  website: "https://www.uos.ac.kr/",
+  primaryLink: "website"
+}
+```
+
+`description`에는 보통 학교 주소를 넣습니다. 가능하면 학교 공식 홈페이지의 표기를 기준으로 맞춥니다.
+
 로고 이미지는 `members/index.html`의 `memberLogoPathByName` 객체에서 학교명과 파일 경로를 연결합니다.
+
+```javascript
+const memberLogoPathByName = {
+  '서울시립대학교': '../source/members/used-logos/서울시립대.png'
+};
+```
+
+로고 비율이나 여백이 어색한 학교는 전용 클래스를 하나 더 연결할 수 있습니다.
+
+```javascript
+const logoImageClassByName = {
+  '서울시립대학교': 'members-logo-item__image--uos'
+};
+```
 
 ```javascript
 memberRegions: [
@@ -308,6 +350,32 @@ memberRegions: [
 - 모바일 메뉴 구조
 - 상단바 스타일
 - 푸터 문구
+
+### 캐시 때문에 수정 내용이 바로 안 보일 때
+
+이 사이트는 정적 파일을 직접 서빙하므로 브라우저가 오래된 JS 파일을 캐시할 수 있습니다.
+
+특히 아래 파일을 수정했는데 배포 후에도 이전 데이터가 보이면 캐시를 의심합니다.
+
+- `data/site-data.js`
+- `data/shared-layout.js`
+
+현재 각 HTML은 아래처럼 쿼리 문자열 버전을 붙여 공통 JS를 불러옵니다.
+
+```html
+<script src="../data/site-data.js?v=20260515"></script>
+<script src="../data/shared-layout.js?v=20260515" defer></script>
+```
+
+브라우저는 `site-data.js`와 `site-data.js?v=20260515`를 서로 다른 파일로 인식하므로, 버전 값을 바꾸면 새 파일을 다시 받아옵니다.
+
+공통 데이터나 공통 레이아웃 JS를 수정해 배포할 때는:
+
+1. 관련 HTML 파일들의 `?v=...` 값을 같은 새 버전으로 올립니다.
+2. 날짜 기반 값(`YYYYMMDD`)을 쓰면 추적하기 쉽습니다.
+3. HTML 자체가 이미 캐시된 탭에서는 첫 한 번 새로고침이 필요할 수 있습니다.
+
+현재 버전 문자열은 여러 HTML 파일에 직접 들어가 있으므로, 바꿀 때는 프로젝트 전체에서 `site-data.js?v=` 또는 `shared-layout.js?v=`를 검색해 한 번에 맞춥니다.
 
 ### 활동 페이지 수정
 
